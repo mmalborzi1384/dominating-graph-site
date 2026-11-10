@@ -1,0 +1,83 @@
+# Quickstart and Validation Guide
+
+This is a future implementation validation guide. At planning completion no website or test
+suite has been built. Commands referencing proposed files become runnable after implementation.
+
+## Prerequisites and local serving
+
+Python 3 for a development-only static server, a modern browser, and repository files with
+vendored KaTeX/Vazirmatn assets. No build, package manager or database is required for serving.
+From the repository root:
+
+```sh
+python3 -m http.server 8000 --bind 127.0.0.1
+```
+
+Open http://127.0.0.1:8000/. `file://` is not supported. For a local subpath check, serve the
+parent directory and open the repository-name path; verify relative JSON/font/script requests.
+Production supports standard static HTTP servers, not the Python process as a required backend.
+
+## Automated development checks (after their tasks are implemented)
+
+Prerequisites: Node.js 22+; Playwright development dependency/browser binaries as pinned by
+the eventual test tooling. These tools never become product runtime dependencies.
+
+```sh
+node scripts/validate-content.mjs
+node --test tests/unit/*.test.mjs tests/contract/*.test.mjs
+npx playwright test
+```
+
+Content validator must report 150 stable IDs, valid stage/tab references and complete reviewed
+context/required figures. Domain tests cover graph invariants, all scoring caps, progress
+monotonicity/reset and coverage. Browser tests cover real persistence/navigation/import flows.
+Run `graphify update .` after each code slice; this is separate from serving the static site.
+
+## Acceptance walkthrough
+
+| Scenario | Steps | Expected result |
+| --- | --- | --- |
+| Fresh teaching | Clear only application key; open Teaching | 0%, first stage open, later locked |
+| Target-specific feedback | Submit nonminimal dominating set to dominating then minimal tasks | First accepted; second explains removable vertex before revealing solution |
+| Complete stage | Pass all required activities, refresh | 25%; stage 2 open, progress shown identically in Records |
+| Partial stage resume | Complete one required activity, refresh | Completion flag retained; no saved answer or selected vertices |
+| Return and review | Visit a passed stage, submit wrong answer, refresh | Pass flags/percent unchanged; previously unlocked stages remain open |
+| Four stages | Complete sequentially | 0→25→50→75→100, direct links never bypass locks |
+| Reset cancel/confirm | Cancel reset, then confirm | Cancel leaves state; confirm gives 0%, first stage only; other tabs' records retained |
+| Teaching data exclusion | Inspect localStorage/export after answers and hints | Only completion/navigation data; no teaching attempts/scores/answers/hints |
+| Practice hints | Same correct set with 0–3 hints | Same base score; no teaching unlock effect |
+| Competition caps | Minimum answers with 0/1/2/3 hints | 15/10/5/0; refresh does not restore cap |
+| Competition bounds | Complete matches with every count 2–10; try 1/11/fraction | Valid counts equal turns; invalid counts blocked; ties share rank |
+| Lab stations | Run every station with a modeled fixture | All five accessible; before/after metrics and minimal/minimum distinctions correct |
+| Custom graph | Build 2 then 10 vertices, drag, edit edges | Bounds enforced; drag changes positions only; edges change evaluation |
+| Multiple optimums | Submit two distinct optimal sets on same fixture | Both accepted, even if one absent from sample bank gamma_sets |
+| Deadline | Start challenge, hide tab, return after 180s | No new answer accepted; completed results persisted |
+| Records coverage | Repeat then delete a question attempt | Unique coverage unchanged by repetition; recomputed from remaining records after deletion |
+| Transfer | Export, import into fresh browser, import again | Progress/records restored; second import idempotent |
+| Bad transfer | Corrupt JSON, curriculum, score or IDs | Whole import rejected; existing state unchanged |
+| Failed storage | Deny storage or fill quota, then complete action | Inline unsaved warning; no false success; in-memory work exportable |
+| Theme and RTL | Review both themes at 360px/1280px | Correct math isolation, readable contrast, no overlap, keyboard-accessible controls |
+
+Fixtures must include disconnected/edgeless graphs, isolated vertices, a minimal nonminimum
+set, several optima and directed introductory models rejected by the undirected evaluator.
+Cross-check small graph results against an independent reference enumeration in tests.
+
+## Static hosting matrix
+
+- GitHub Pages: publish the static repository files including `.nojekyll`; visit project
+  subpath, refresh every hash tab, verify JSON/font/math assets and no root-absolute paths.
+- Linux VPS: serve the same directory with Nginx or Apache as static content; no rewrite
+  fallback, API process or database. Check exact filename case and MIME types.
+- Windows VPS: serve the same directory in IIS; configure standard .json/.mjs (if used)/.woff2
+  MIME mappings if unavailable. Repeat navigation, math/font and storage checks.
+
+Verify localStorage scope separately per origin/base path: cross-host progress moves via
+export/import, not automatic sharing. Deployment is a later authorized action, not executed
+by this planning command. Record actual URLs, browsers, host settings and outcomes in the PR.
+
+## Review gates
+
+Human educational review confirms lesson/page accuracy, all modeling contexts, missing book
+figures, APOS activity choices and text rubrics. Five-student usability check requires 4/5
+to locate/answer a practice item and find its report unaided. Human PR review verifies
+constitution compliance. Runtime, host and usability results remain pending implementation.

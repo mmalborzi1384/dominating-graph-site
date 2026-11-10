@@ -1,0 +1,56 @@
+# User Interface Contract
+
+## Navigation and shared presentation
+
+Five top-level hash destinations: #teach, #practice, #competition, #records, #lab.
+No additional top-level page flow, modal, browser alert/confirm/prompt or popup. Unknown hash
+opens Teaching with a clear default. Browser back/forward and direct hash links preserve
+state and cannot bypass APOS locks. Use accessible tablist/tab/tabpanel roles, arrow-key
+navigation and visible focus. Buttons and graph selections work with keyboard and touch.
+Dragging has a keyboard/button position alternative and cannot accidentally submit answers.
+
+Document language fa and RTL; ordinary text right-aligned. Math/Latin vertex lists are
+isolated in LTR spans with unicode-bidi:isolate and left alignment. KaTeX renders only math
+segments with trust disabled. Text/labels are not innerHTML. Content images have Persian
+alternative descriptions and associated vertex/edge meaning.
+
+Theme variables define every font/color including SVG strokes, fills, focus, status and
+patterns. Semantic classes consume tokens. Day/night use the bank's educational paper/green
+family; validate normal-text contrast >=4.5:1. Coverage/error use pattern/text in addition
+to color. Mobile 360px must expose usable controls without overlapping math/graph labels.
+
+## Teaching
+
+Show four APOS sections, overall progress 0/25/50/75/100, pass/lock states and reason for lock.
+Provide previous/continue controls limited to unlocked stages, a stage selector and a
+confirmed inline start-over control. A passed stage stays unlocked even after a wrong review
+answer. Refresh restores the last visited unlocked stage and saved completion flags.
+Each activity shows context, target, selectable graph, check, inline diagnostics/hint and
+separate reveal action. No teaching score table, attempt log or stored selected vertices.
+Records has a dedicated progress summary with continue and reset, not teaching score analytics.
+
+## Practice / competition
+
+Practice: lesson/category/easy-hard filters, question selection, free sequential hints,
+feedback, final submission and retry. Text/proof response compares to an explicit rubric and
+records the student's self-assessment as such. Competition: group count/names, rounds, current
+group/round, selected graph response, current hint cap and final submit. Hint consumption
+survives refresh. Finalized turn disables scoring inputs and advances on explicit action.
+
+## Lab
+
+Five station selectors inside the Lab tab, never extra top-level tabs: gamma calculation;
+formula discovery; bounds/edge effects; minimal versus minimum; two-group game.
+Shared tools: modeled 2–10 vertex custom graph, add/remove edges, drag vertices, draw to n/gamma,
+selected-set coverage and delete-one test. Timed challenge exposes 5 graphs/180 seconds with
+absolute deadline and final result. Show before/after gamma on topology changes; never call
+pattern observation a proof. Preserve directed/multigraph introductory displays separately
+from simple-undirected custom domination tools.
+
+## Records / transfer
+
+Teaching progress panel plus practice/competition/lab analysis. Six-sahat coverage counts
+unique bank question IDs with recorded attempts only; teaching flags and free lab edits
+cannot fabricate sahat evidence. Allow row selection, inline delete preview/confirm/cancel,
+JSON export, import preview/confirm/cancel and explicit validation errors. Report unknown or
+empty data honestly; storage failure is visible throughout, with export for unsaved work.
