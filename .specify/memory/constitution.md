@@ -1,50 +1,94 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# قانون‌نامهٔ سایت گراف احاطه‌گر
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. اجرای کاملاً استاتیک و ذخیره‌سازی محلی
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+محصول MUST صرفاً با فایل‌های استاتیک HTML، CSS، JavaScript و دارایی‌های همراه اجرا شود.
+اجرا و انتشار MUST بدون مرحلهٔ بیلد، سرویس سمت سرور یا پایگاه داده ممکن باشد.
+ذخیره‌سازی پایدار داده‌های برنامه MUST فقط با localStorage انجام شود؛ افزودن ذخیره‌ساز
+پایدار دیگر یا وابستگی به API سمت سرور ممنوع است. همان فایل‌های محصول MUST روی
+GitHub Pages و وب‌سرور استاتیک VPS لینوکس و ویندوز قابل ارائه باشند.
+این محدودیت، استقرار ساده و استقلال از زیرساخت پردازشی را تضمین می‌کند.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. پنج تب مستقل آموزشی
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+رابط MUST دقیقاً پنج تب مستقل داشته باشد: «آموزش»، «تمرین»، «مسابقه»، «سوابق» و
+«آزمایشگاه». آموزش MUST بر مبنای APOS و دارای قفل مرحله باشد؛ بازشدن مراحل MUST تابع
+معیار تکمیل پیش‌نیازهای تعریف‌شده در داده‌های آموزشی باشد. مسابقه MUST تعداد صحیح
+۲ تا ۱۰ گروه، شامل هر دو کران، را پشتیبانی کند. سوابق MUST «نمای ساحت» داشته باشد؛
+تعریف دقیق این نما و معیار پذیرش آن MUST پیش از پیاده‌سازی در مشخصات ویژگی ثبت شود.
+تمام تعامل‌ها MUST در صفحه و تب مربوط انجام شوند؛ پاپ‌آپ، پنجرهٔ جدا و دیالوگ مودال
+برای جریان‌های محصول ممنوع است. این ساختار مسیر یادگیری را قابل پیگیری نگه می‌دارد.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### III. یادگیری مبتنی بر مدل‌سازی
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+تمام مثال‌ها و سؤال‌ها در هر پنج تب MUST موقعیتی معنادار برای مدل‌سازی داشته باشند.
+هر مورد MUST زمینهٔ مسئله، معنای رأس‌ها و یال‌ها، و هدف یا محدودیت مسئله را مشخص کند.
+گراف خالی یا گراف انتزاعی بدون زمینه MUST به‌عنوان مثال یا سؤال ارائه نشود.
+نمایش گراف MUST به مدل مسئله متصل بماند تا رابطهٔ موقعیت و ساختار ریاضی روشن باشد.
+بازبینی محتوایی MUST رعایت این شرط را برای هر مثال و سؤال بررسی کند.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### IV. فارسی، ریاضی و پوسته‌های آموزشی
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+رابط فارسی MUST راست‌به‌چپ و با فونت Vazirmatn باشد. فرمول‌ها MUST با KaTeX نمایش داده
+شوند و در span با جهت چپ‌به‌راست و تراز چپ قرار گیرند تا ترتیب نمادها حفظ شود.
+محصول MUST دو پالت آموزشی روز و شب داشته باشد. متن، کنترل‌ها، وضعیت قفل و اجزای گراف
+MUST در هر دو حالت خوانا و قابل تشخیص باشند.
+رنگ و فونت MUST از توکن‌های مرکزی پوسته و تایپوگرافی دریافت شوند؛ مقادیر پراکنده و
+هاردکدشده در مؤلفه‌ها، منطق یا داده‌های آموزشی ممنوع است. مقادیر پایه MUST فقط در
+محل مرکزی تعریف توکن‌ها تعیین شوند تا تغییر ظاهر با ویرایش همان محل ممکن باشد.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### V. اولویت ویرایش‌پذیری و جداسازی داده از رفتار
+
+ویرایش‌پذیری MUST معیار اصلی انتخاب ساختار و راه‌حل فنی باشد. ساختار صفحه، سبک‌ها،
+منطق رفتار و داده‌های آموزشی MUST در فایل‌های جدا و با مسئولیت مشخص نگهداری شوند.
+مثال‌ها، سؤال‌ها، مراحل APOS، پیش‌نیازهای قفل و تنظیمات مسابقه MUST داده‌محور باشند؛
+تغییر محتوای معمول MUST بدون بازنویسی منطق رابط ممکن باشد.
+تغییر ساختار MUST روش ویرایش محتوای مرتبط را روشن کند و وابستگی بیلد ایجاد نکند.
+
+## Platform Constraints
+
+- مسیر دارایی‌ها و پیوندها MUST در زیرمسیر GitHub Pages و ارائهٔ استاتیک VPS درست
+  کار کنند؛ مسیریابی MUST به بازنویسی مسیر در سرور نیاز نداشته باشد.
+- استفاده از KaTeX و Vazirmatn MUST با اجرای مستقیم نسخهٔ استاتیک سازگار باشد.
+- ساختار داده‌های localStorage MUST مشخص باشد. تغییر ناسازگار MUST روش مهاجرت یا
+  بازیابی روشن داشته باشد. دادهٔ غایب، نامعتبر یا عدم دسترسی به localStorage MUST
+  باعث توقف کامل رابط نشود؛ ناتوانی در ذخیره‌سازی MUST به کاربر اعلام شود.
+- معیار پذیرش هر ویژگی MUST محدودیت‌های تب مربوط، مدل‌سازی، فارسی و دو پوسته را
+  در حد ارتباط با همان ویژگی پوشش دهد.
+
+## Development Workflow
+
+- هر ویژگی MUST در یک PR مستقل ارائه شود؛ هر PR ویژگی MUST فقط همان ویژگی را پوشش
+  دهد. هر PR MUST پیش از ادغام یک بازبینی انسانی و تأیید آن را دریافت کند.
+  بررسی خودکار جایگزین بازبینی انسانی نیست.
+- مشخصات، برنامه و وظایف هر ویژگی MUST پیش از اجرا با قانون‌نامه تطبیق داده شوند.
+  ابهام مؤثر بر رفتار، از جمله معنای «نمای ساحت»، MUST پیش از اجرای بخش وابسته رفع
+  و در مشخصات ثبت شود.
+- پس از هر تکهٔ تکمیل‌شدهٔ تغییر کد، MUST دستور `graphify update .` اجرا شود تا گراف
+  دوباره نمایه‌سازی شود. این ابزار توسعه MUST پیش‌نیاز اجرای محصول یا بیلد آن نشود.
+- هنگام وجود `graphify-out/graph.json`، بررسی کد MUST پیش از جست‌وجو یا خواندن منبع با
+  `graphify query` آغاز شود. روابط MUST با `graphify path` و مفاهیم با `graphify explain`
+  بررسی شوند. خواندن منبع MUST محدود به محل‌های مشخص‌شده در گراف یا خواندن قبلی باشد.
+  برای ناوبری کلی، در صورت وجود، MUST از `graphify-out/wiki/index.md` استفاده شود.
+  کثیف بودن فایل‌های گراف دلیل کنارگذاشتن این روند نیست.
+- هر PR MUST شواهد بررسی متناسب با تغییر را ثبت کند: اجرای استاتیک بدون بیلد، رفتار
+  تغییرکرده، ذخیره و بازیابی محلی و نمایش فارسی/ریاضی در هر دو پوسته، در صورت ارتباط.
+  تغییر مؤثر بر استقرار MUST روی GitHub Pages و وب‌سرور استاتیک لینوکس و ویندوز بررسی
+  شود. نتیجه و محدودیت‌های بررسی MUST در PR ثبت شوند.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+این سند مرجع قواعد معماری، محصول و گردش توسعهٔ پروژه است. مشخصات و تصمیم‌های اجرایی
+MUST با آن سازگار باشند. بازبین انسانی هر PR MUST انطباق را بررسی کند؛ ناسازگاری MUST
+پیش از ادغام رفع شود یا از طریق اصلاح رسمی همین قانون‌نامه حل شود.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+اصلاح قانون‌نامه MUST در PR شامل متن تغییر، دلیل، اثر بر ویژگی‌ها و داده‌های موجود،
+و در صورت نیاز برنامهٔ مهاجرت ارائه و با بازبینی انسانی تأیید شود. نسخه‌بندی MUST معنایی
+باشد: MAJOR برای حذف یا بازتعریف ناسازگار اصل، MINOR برای افزودن اصل یا گسترش معنادار
+الزام، و PATCH برای اصلاح نگارشی یا شفاف‌سازی بدون تغییر معنا. تاریخ آخرین اصلاح MUST
+هنگام تغییر به‌روز شود؛ تاریخ تصویب اولیه ثابت است. گزارش Sync Impact Report صرفاً
+یادداشت موقت بازبینی است و MUST پیش از commit قانون‌نامه حذف شود.
+
+**Version**: 1.0.0 | **Ratified**: 2026-11-10 | **Last Amended**: 2026-11-10
