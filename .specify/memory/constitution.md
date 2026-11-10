@@ -1,3 +1,10 @@
+<!--
+Sync Impact Report — temporary review material; remove before committing.
+Version change: 1.0.0 → 1.1.0 (material expansion of presentation requirements).
+Modified principles: IV. فارسی، ریاضی و پوسته‌های آموزشی — liquid glass containers,
+opaque graph/pieces, >=4.5:1 normal text contrast, graceful blur fallback and reduced motion.
+Added sections: none. Removed sections: none. Deferred placeholders: none.
+-->
 # قانون‌نامهٔ سایت گراف احاطه‌گر
 
 ## Core Principles
@@ -38,6 +45,13 @@ MUST در هر دو حالت خوانا و قابل تشخیص باشند.
 رنگ و فونت MUST از توکن‌های مرکزی پوسته و تایپوگرافی دریافت شوند؛ مقادیر پراکنده و
 هاردکدشده در مؤلفه‌ها، منطق یا داده‌های آموزشی ممنوع است. مقادیر پایه MUST فقط در
 محل مرکزی تعریف توکن‌ها تعیین شوند تا تغییر ظاهر با ویرایش همان محل ممکن باشد.
+
+نوار تب‌ها، کارت سؤال، ظرف برد و کارت سوابق MUST طراحی لیکوئید گلس با زمینهٔ نیمه‌شفاف،
+blur پشت‌زمینه، حاشیهٔ نازک روشن و سایهٔ نرم داشته باشند. پالت آموزشی روز/شب MUST حفظ
+شود؛ رنگ متن متناسب با تم و کنتراست متن عادی حداقل ۴٫۵:۱ باشد. در نبود پشتیبانی blur،
+زمینهٔ مات خوانا MUST جایگزین شود. خود گراف، رأس‌ها و مهره‌ها MUST مات، بدون blur و با
+مرز و حالت انتخاب واضح بمانند. گذار تب، بازشدن کارت و تغییر تم MUST نرم باشد و با
+prefers-reduced-motion حرکت و گذار غیرضروری حذف شود تا خوانایی و دسترس‌پذیری حفظ شوند.
 
 ### V. اولویت ویرایش‌پذیری و جداسازی داده از رفتار
 
@@ -91,4 +105,4 @@ MUST با آن سازگار باشند. بازبین انسانی هر PR MUST �
 هنگام تغییر به‌روز شود؛ تاریخ تصویب اولیه ثابت است. گزارش Sync Impact Report صرفاً
 یادداشت موقت بازبینی است و MUST پیش از commit قانون‌نامه حذف شود.
 
-**Version**: 1.0.0 | **Ratified**: 2026-11-10 | **Last Amended**: 2026-11-10
+**Version**: 1.1.0 | **Ratified**: 2026-11-10 | **Last Amended**: 2026-11-10

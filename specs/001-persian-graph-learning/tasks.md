@@ -64,10 +64,10 @@ or tab workflows beyond this requested shell are implemented. Stop here for huma
 **Independent Test**: Load a ready modeled question, evaluate its graph, render math and safely commit/reload a validated empty state.
 
 - [ ] T006 [P] Implement source and supplemental content validation in `assets/js/data/validate.js` and loading/adaptation in `assets/js/data/load.js` and `assets/js/data/adapt.js`; enforce “Q001–Q150 exactly once, category A–F, difficulty 1–3, three hints, one known sahat, valid tab list”, “existing ID only; no silent source replacement; human-approved semantic adaptation”, and “nonempty context/mapping/goal before publication”. Resolve fetches relative to module base, index by ID and expose explicit unready/error states.
-- [ ] T007 [P] Implement canonical topology, vertex/edge validation and layout-independent operations in `assets/js/domain/graph.js`; enforce “unique IDs; edge endpoints exist; count matches n; simple evaluator rejects loops/direction/parallel edges”. Keep directed/multigraph introductory models displayable through distinct types; custom graphs are 2–10 vertices, prepared graphs may have 12.
+- [X] T007 [P] Implement canonical topology, vertex/edge validation and layout-independent operations in `assets/js/domain/graph.js`; enforce “unique IDs; edge endpoints exist; count matches n; simple evaluator rejects loops/direction/parallel edges”. Keep directed/multigraph introductory models displayable through distinct types; custom graphs are 2–10 vertices, prepared graphs may have 12.
 - [ ] T008 [P] Define envelope validation and conservative version dispatch in `assets/js/storage/validate.js` and `assets/js/storage/migrate.js`; enforce schemaVersion=1 (“unsupported versions rejected without overwriting”), curriculumVersion=1 (“incompatible curricula rejected pending explicit migration”), revision a “nonnegative integer”, attempts “excludes teach entirely”, sessions “practice/competition/lab only”, theme “day/night” and “allowlist; no arbitrary executable configuration”. Accept only known fields and valid references; never coerce incompatible state into defaults. Define shared user limits in `assets/js/domain/limits.js`: group name <=30, user label <=50, text response <=1000 Unicode code points after NFC (trim names/labels only), live Attempt count <=200 and Session count <=100. Apply identical allowlisted rules to every local write and pre/post-merge import; refuse overflow without truncation, partial commit or eviction. Validate turn resultStatus pending|finalized|finalized-deleted and conditional nullable attempt references per data model.
-- [ ] T009 Implement exact closed-neighborhood domination, delete-one minimality, increasing-subset minimum enumeration and all-optimum acceptance in `assets/js/domain/evaluate.js` after graph primitives; output all fields from `contracts/evaluation.md`, cache by topology, handle isolated/edgeless/disconnected graphs and reject unknown selected IDs as invalid input rather than student errors.
-- [ ] T010 Implement pure quality scoring and hint caps in `assets/js/domain/scoring.js`: bases 0/5/10/15; practice unchanged by hints; competition final=min(base,cap) with caps 15/10/5/0 for 0/1/2/3 hints. Keep target correctness distinct from quality; no teaching score aggregation. The third cap remains the documented spec assumption.
+- [X] T009 Implement exact closed-neighborhood domination, delete-one minimality, increasing-subset minimum enumeration and all-optimum acceptance in `assets/js/domain/evaluate.js` after graph primitives; output all fields from `contracts/evaluation.md`, cache by topology, handle isolated/edgeless/disconnected graphs and reject unknown selected IDs as invalid input rather than student errors.
+- [X] T010 Implement pure quality scoring and hint caps in `assets/js/domain/scoring.js`: bases 0/5/10/15; practice unchanged by hints; competition final=min(base,cap) with caps 15/10/5/0 for 0/1/2/3 hints. Keep target correctness distinct from quality; no teaching score aggregation. The third cap remains the documented spec assumption.
 - [ ] T011 Implement one-envelope storage in `assets/js/storage/repository.js` after envelope validation: key `graph-learning:v1:<normalized-base-path>`, in-memory prepare plus one setItem, expected-revision check, revision increment only on success, corrupt/absent/unavailable states, recoverable unsaved memory and export access. Re-read revision; react to storage events and pause dirty cross-tab writes; never use localStorage.clear or silently evict data.
 - [ ] T012 [P] Implement safe text/math and feedback helpers in `assets/js/ui/math.js` and `assets/js/ui/feedback.js`; render text as text nodes, delimit math into left-aligned isolated LTR spans, use KaTeX trust=false, keep fallback readable and show Persian errors/confirmations inline without alert/confirm/prompt or modals.
 - [ ] T013 Implement five hash tabs, keyboard/ARIA navigation and persisted theme selection in `assets/js/ui/tabs.js` and integrate `assets/js/app.js`; support browser back/forward, unknown-hash fallback, inline storage status and no server-side route rewrite.
@@ -76,7 +76,16 @@ or tab workflows beyond this requested shell are implemented. Stop here for huma
 - [ ] T016 Implement `scripts/validate-content.mjs` using shared content validation and independent gamma checks: report 150 unique IDs, category/APOS/tab/teaching references, 3 hints, sahat counts 60/25/20/15/15/15, endpoint integrity and every graph.gamma. Separate machine errors from human-review readiness; release mode fails on any unready question, missing required figure or unreachable ID.
 - [ ] T017 Run the foundation smoke verification from `quickstart.md` and record exact outcomes in `specs/001-persian-graph-learning/validation/foundation.md`: static subpath loading, safe math fallback, exact small-graph edge cases, successful/failed writes, no extra storage backend and Graphify update. Foundation interfaces must be stable before story work; unresolved required source content is a tracked release dependency, not a fabricated pass.
 
-**Checkpoint**: Shared interfaces are ready. Content review can continue, but no story may require an unready question for progression.
+**Checkpoint**: Shared interfaces are ready only when every foundational task is complete. Content review can continue, but no story may require an unready question for progression.
+
+Scoped phase-2 review slice (2026-11-10): user authorized only SVG selection, exhaustive
+assessment, quality scores/hint caps and the liquid-glass presentation amendment.
+T007/T009/T010 are complete. T014 is selection/keyboard/mobile rendering only; topology
+editing/dragging is deferred, so its checkbox stays open. T006/T008/T011/T012/T015–T017
+and all story workflows are deferred. The preview in `assets/js/ui/board-preview.js` is
+not a teaching/practice/competition controller and creates no records or persistent scores.
+Validate with `node scripts/validate-graph.mjs`; see [validation/phase-2.md](validation/phase-2.md).
+Stop for user review after this slice.
 
 ---
 
@@ -181,7 +190,7 @@ or tab workflows beyond this requested shell are implemented. Stop here for huma
 - [ ] T055 Measure exact evaluation <=12 vertices (<100ms target), pointer redraw (16.7ms target) and loaded-tab transitions (<200ms target); correct justified bottlenecks in `assets/js/domain/evaluate.js`, `assets/js/ui/graph-editor.js` and `assets/js/ui/tabs.js`, and record hardware/browser/dataset/timings in `specs/001-persian-graph-learning/validation/performance.md`.
 - [ ] T056 Validate static project-subpath asset loading and hosting prerequisites for GitHub Pages, Linux Nginx/Apache and Windows IIS per `quickstart.md`; record actual host/browser outcomes or untested limitations in `specs/001-persian-graph-learning/validation/deployment.md`. Update `README.md` with copy-only deployment/MIME instructions; prepare deployable files but publish to external hosts only when separately authorized.
 - [ ] T057 Carry out the five-student usability protocol (4/5 locate/answer a practice question and find its result unaided), record observations in `specs/001-persian-graph-learning/validation/usability.md` and fix observed blockers; if participants are unavailable, record that pending release gate instead of fabricated results.
-- [ ] T058 Run the applicable end-to-end scenarios in `specs/001-persian-graph-learning/quickstart.md` and existing appropriate checks, inspect storage/export for teaching-data exclusion and validate no build/backend/storage drift; update `specs/001-persian-graph-learning/validation/release.md` with FR-001–024/SC-001–009 evidence, unresolved gates and each feature PR/human-review status. Complete the final code-slice Graphify update before requesting any merge/publication approval.
+- [ ] T058 Run the applicable end-to-end scenarios in `specs/001-persian-graph-learning/quickstart.md` and existing appropriate checks, inspect storage/export for teaching-data exclusion and validate no build/backend/storage drift; update `specs/001-persian-graph-learning/validation/release.md` with FR-001–025/SC-001–010 evidence, unresolved gates and each feature PR/human-review status. Complete the final code-slice Graphify update before requesting any merge/publication approval.
 
 **Checkpoint**: Full release requires genuine human/content/host/usability evidence; local implementation success alone is not a completed external gate.
 
@@ -304,9 +313,10 @@ Do not create/merge PRs, contact reviewers/participants or deploy merely by gene
 | FR-022 error honesty | T006, T008, T011–T013, T051, T058 |
 | FR-023 teaching reset | T019, T023–T025, T050 |
 | FR-024 shared input/capacity limits | T008, T027, T032, T047–T048, T052 |
+| FR-025 liquid glass and motion | T004 shared styles amendment, T054 future flow verification |
 
 SC-001 maps to T016/T053; SC-002 to T025; SC-003 to T036; SC-004 to T045;
-SC-005/006 to T052; SC-007 to T054; SC-008 to T057; SC-009 to T056/T058.
+SC-005/006 to T052; SC-007/010 to T054; SC-008 to T057; SC-009 to T056/T058.
 
 ## Notes
 
