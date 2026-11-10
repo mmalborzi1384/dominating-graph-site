@@ -138,7 +138,7 @@ Run `graphify update .` after each completed code slice. Plan-only documents do 
 ## Phase Outputs and Validation
 
 Phase 0 decisions: [research.md](research.md). Phase 1: [data-model.md](data-model.md),
-[contracts](contracts/), [quickstart.md](quickstart.md). All 24 FRs are assigned below.
+[contracts](contracts/), [quickstart.md](quickstart.md). All 25 FRs are assigned below.
 
 | Requirements | Design / validation location |
 | --- | --- |
@@ -148,6 +148,25 @@ Phase 0 decisions: [research.md](research.md). Phase 1: [data-model.md](data-mod
 | FR-011–013 | Graph/evaluation contracts and all five lab station checks |
 | FR-014–017 | Records/storage/coverage/transfer contracts and manual round-trip checks |
 | FR-024 | Shared limits, local/import boundary checks and capacity failure handling |
+| FR-025 | Glass tokens/containers, opaque graph, reduced-motion and fallback verification |
+
+## Liquid Glass Presentation Amendment
+
+Constitution 1.1.0 / FR-025: apply shared glass container classes to tab bar, question cards,
+board panels and future records cards. Centralize translucent fills, bright thin borders,
+soft shadows, blur strength and motion durations in tokens.css for day/night. The fallback
+is an opaque theme surface; enhance with backdrop-filter under @supports. Do not apply
+opacity/filter to a whole container: its text and children remain opaque. SVG graph canvas,
+nodes and selection pieces use opaque token fills without filters; coverage also uses
+patterns/text. Validate composited text contrast >=4.5:1 against the actual patterned backdrop.
+
+Use a brief opacity/position entrance for active tab/card and targeted color/background
+transitions for theme changes. Under prefers-reduced-motion: reduce, remove entrance motion
+and nonessential transitions. No continuous decorative animation. The interactive board
+review slice adopts these styles now; future question/records flows reuse the same classes.
+Manual checks cover both themes, 360px/1280px, reduced motion and disabled blur. Map FR-025 /
+SC-010 to shared styles and T054 presentation verification; do not implement future tab
+workflows merely to demonstrate their container styles.
 
 ## Complexity Tracking
 

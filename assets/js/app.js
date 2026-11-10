@@ -1,3 +1,4 @@
+import { initBoardPreview } from './ui/board-preview.js';
 import { initTabs } from './ui/tabs.js';
 
 const themeButton = document.getElementById('theme-toggle');
@@ -45,4 +46,12 @@ for (const math of document.querySelectorAll('[data-math]')) {
         output: 'htmlAndMathml' });
     } catch { document.getElementById('math-notice').hidden = false; }
   } else document.getElementById('math-notice').hidden = false;
+}
+
+try {
+  await initBoardPreview();
+} catch {
+  const notice = document.getElementById('content-notice');
+  notice.textContent = 'برد نمونه بارگیری نشد؛ فایل‌های محتوایی سایت را بررسی کنید.';
+  notice.hidden = false;
 }

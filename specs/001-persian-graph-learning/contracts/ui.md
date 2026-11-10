@@ -60,3 +60,21 @@ Group names accept at most 30 characters, user labels 50, and text responses 100
 the shared normalization/counting rules. Show length errors inline. At 200 live results or
 100 sessions, refuse additional storage with export/selective deletion options. A failure
 must not claim persistence or silently discard existing records.
+
+
+## Liquid-glass amendment (constitution 1.1.0, FR-025)
+
+Use shared glass container tokens/classes for tab bar, question cards, board vessel and
+future records cards. Background translucency and backdrop blur belong to the vessel, never
+to a parent opacity/filter that blurs text or graph children. Keep the graph canvas, nodes
+and pieces opaque; coverage hatching/text are additional to color. Retain educational
+palettes and >=4.5:1 normal-text contrast on the composited background. Use an opaque theme
+surface when backdrop filtering is unsupported. Tab/card entrance and theme transitions
+are brief; prefers-reduced-motion removes all nonessential animation/transition.
+
+
+Exact visual reference: `docs/repo-patterns.md`. Use --panel rgba(255,251,243,0.84) /
+rgba(26,43,36,0.84) and 12px blur; all bead/hatch tokens come verbatim from the reference.
+Vertex identity is zero-based graph.vertices index modulo 10. Selected=solid own bead;
+nonselected=equal wedge per owner in N[v] intersect S, each with owner's 7x7/45-degree/2.2px
+hatch on sheet. Empty=sheet. After assessment only, missed vertices get 3.2px error rings.
