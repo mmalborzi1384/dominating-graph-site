@@ -52,5 +52,11 @@ from simple-undirected custom domination tools.
 Teaching progress panel plus practice/competition/lab analysis. Six-sahat coverage counts
 unique bank question IDs with recorded attempts only; teaching flags and free lab edits
 cannot fabricate sahat evidence. Allow row selection, inline delete preview/confirm/cancel,
-JSON export, import preview/confirm/cancel and explicit validation errors. Report unknown or
+JSON export, import preview/confirm/cancel and explicit validation errors. Finalized turns
+whose result was removed display «حذف‌شده» and never expose a replay action. Report unknown or
 empty data honestly; storage failure is visible throughout, with export for unsaved work.
+
+Group names accept at most 30 characters, user labels 50, and text responses 1000 under
+the shared normalization/counting rules. Show length errors inline. At 200 live results or
+100 sessions, refuse additional storage with export/selective deletion options. A failure
+must not claim persistence or silently discard existing records.

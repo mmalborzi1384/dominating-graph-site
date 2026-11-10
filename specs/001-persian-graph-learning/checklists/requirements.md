@@ -42,3 +42,10 @@
 - User constraints (KaTeX, Vazirmatn, localStorage, deployment) intentionally retained.
 - Required modeling context and missing figures remain content preparation dependencies.
 - Ready for planning; this checklist assesses specification quality, not implemented behavior.
+
+- Review iteration 4: user-approved I1/U1/U2 remediation synchronized across all design artifacts.
+- Validation is manual mobile/desktop browser checks plus a dependency-free local script.
+- Deleted results use finalized-deleted spent turns, null result references, preserved
+  export/import markers and deletion-precedence merge; Records displays «حذف‌شده».
+- Shared local/import limits: group name 30, label 50, text response 1000 characters,
+  200 live Attempt records and 100 sessions; boundary/merge checks assigned to T052.

@@ -78,12 +78,13 @@ colors scatter settings; injecting bank/import text as HTML creates executable c
 
 ## 8. Validation boundaries
 
-**Decision**: domain tests for mathematical/storage invariants, browser tests for meaningful
-user flows, human educational review and actual host smoke checks before release. Development
-tooling can use Node/Playwright but never becomes a deployment/build prerequisite.
+**Decision**: manual mobile/desktop browser checks for mathematics, scoring, persistence
+and meaningful user flows, plus a dependency-free local content/gamma validation script,
+human educational review and actual host smoke checks before release. Node is used only to
+run the local script; there is no automated test suite or browser automation dependency.
 **Rationale**: correct mathematics, durable progress and platform behavior need different evidence.
 **Alternatives considered**: only visual review misses state corruption; implementation-mirroring
-tests add little value. No application tests can run during this documentation-only phase.
+tests add little value. No application runtime checks can run during this documentation-only phase.
 
 ## Primary documentation references
 

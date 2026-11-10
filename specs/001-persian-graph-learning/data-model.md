@@ -68,11 +68,20 @@ Attempt: `id`, `sessionId?`, `tab` (practice/competition/lab), `questionId?`, `a
 Session: `id`, `kind`, `status` (configured/active/completed), `questionIds`, `startedAt`,
 `deadlineAt?`, `currentIndex`, `groups?`, `roundCount?`, `turns?`, `graphDraft?`.
 Groups have stable id, name and order, count 2–10 for competition and exactly 2 in lab station 5.
-Each turn has stable id, groupId, questionId, consumedHintLevel and finalizedAttemptId?.
+Each turn has stable id, groupId (nullable for an individual timed challenge), questionId,
+consumedHintLevel, resultStatus and finalizedAttemptId. resultStatus is one of pending,
+finalized, finalized-deleted. pending requires finalizedAttemptId=null; finalized requires
+an existing matching Attempt; finalized-deleted requires finalizedAttemptId=null and retains
+only turn identity/context and consumed status, not response/evaluation/score copies.
+Both finalized statuses are spent and cannot accept another answer. Deletion is irreversible
+for the same turn identity, including when an older backup is imported.
 Question choices and hint usage persist before display so refresh cannot grant fresh hints.
 Clock uses absolute deadline; timeout is re-evaluated on visibility change and resume.
 Group totals are derived from remaining finalized attempts, not independently editable totals.
-A deleted finalized turn remains spent with result removed, so deletion does not grant replay.
+Deleting a finalized result removes its Attempt, clears finalizedAttemptId and sets
+resultStatus=finalized-deleted atomically. Records displays «حذف‌شده» for that turn; it has no
+score/outcome/coverage contribution. The marker is session metadata, not a new Attempt.
+Standalone practice attempt deletion removes that record without creating a turn marker.
 
 ## Derived reports
 
@@ -99,6 +108,29 @@ attempt counts separate. Custom untagged lab activities contribute activity repo
    Never claim a successful save. In-memory progress can continue while storage is unavailable.
 
 ## Capacity and concurrency
+
+### Shared user-data limits
+
+The implementation has one source `assets/js/domain/limits.js`, used by UI validation,
+local commits, export validation and both pre-merge/post-merge import validation.
+
+| User field / collection | Inclusive maximum |
+| --- | --- |
+| Group name | 30 characters |
+| User-entered label (vertex/graph/activity label) | 50 characters |
+| Text response | 1000 characters |
+| Live stored Attempt records, total across all recorded tabs | 200 |
+| Stored Session objects, total across all kinds/statuses | 100 |
+
+Character count is Unicode code points after NFC normalization; trim leading/trailing
+whitespace on names/labels, but not answer text. Internal whitespace counts. Group names
+and labels must remain nonempty after trimming. Apply these rules to every user-entered
+copy, including graph snapshots/drafts and imports; source-bank instructional text is not
+user input and is not truncated to these bounds. Tombstones stay within the 100-session
+limit and are not additional live Attempt records. Completed sessions still count.
+A new attempt/session beyond a maximum is refused with an inline explanation and an offer
+to export/delete chosen data; never silently evict, truncate or partially commit.
+Exactly 200/100 is valid. Validate the merged candidate, not just each incoming file.
 
 Set an import file limit of 5 MiB and validate before mutation. Do not silently evict records
 when quota is reached; offer selective deletion/export. Same-origin storage events refresh

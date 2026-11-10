@@ -1,7 +1,7 @@
 # Quickstart and Validation Guide
 
-This is a future implementation validation guide. At planning completion no website or test
-suite has been built. Commands referencing proposed files become runnable after implementation.
+This is a future implementation validation guide. At planning completion no website has
+been built. Commands referencing proposed files become runnable after implementation.
 
 ## Prerequisites and local serving
 
@@ -17,20 +17,19 @@ Open http://127.0.0.1:8000/. `file://` is not supported. For a local subpath che
 parent directory and open the repository-name path; verify relative JSON/font/script requests.
 Production supports standard static HTTP servers, not the Python process as a required backend.
 
-## Automated development checks (after their tasks are implemented)
+## Lightweight local validation and manual browser checks
 
-Prerequisites: Node.js 22+; Playwright development dependency/browser binaries as pinned by
-the eventual test tooling. These tools never become product runtime dependencies.
+Optional development prerequisite: Node.js 22+ to run one dependency-free content script.
+No test runner, browser automation, browser-driver download or package installation is required.
 
 ```sh
 node scripts/validate-content.mjs
-node --test tests/unit/*.test.mjs tests/contract/*.test.mjs
-npx playwright test
 ```
 
-Content validator must report 150 stable IDs, valid stage/tab references and complete reviewed
-context/required figures. Domain tests cover graph invariants, all scoring caps, progress
-monotonicity/reset and coverage. Browser tests cover real persistence/navigation/import flows.
+The script reports 150 stable IDs, valid stage/tab references, gamma checks and reviewed
+context/required figures. Execute the acceptance walkthrough manually in mobile and desktop
+browsers; record browser/device, steps, actual outcomes and failures in validation evidence.
+Mathematical, scoring, persistence and transfer checks use known fixtures and boundary inputs.
 Run `graphify update .` after each code slice; this is separate from serving the static site.
 
 ## Acceptance walkthrough
@@ -54,13 +53,17 @@ Run `graphify update .` after each code slice; this is separate from serving the
 | Deadline | Start challenge, hide tab, return after 180s | No new answer accepted; completed results persisted |
 | Records coverage | Repeat then delete a question attempt | Unique coverage unchanged by repetition; recomputed from remaining records after deletion |
 | Transfer | Export, import into fresh browser, import again | Progress/records restored; second import idempotent |
+| Deleted turn transfer | Finalize a turn, delete its result, refresh, export/import; then import an older result backup | Records shows «حذف‌شده»; turn remains spent, no answer/score restored, no dangling attempt reference |
+| Text boundaries | Locally enter then import group names 30/31, labels 50/51, text answers 1000/1001 characters | Exact limit accepted; one over rejected identically with no truncation or partial save |
+| Capacity boundaries | Prepare 200/201 live attempts and 100/101 sessions; also merge two individually valid backups over capacity | Limit accepted; new save or complete merge above limit rejected, existing state retained, no silent eviction |
 | Bad transfer | Corrupt JSON, curriculum, score or IDs | Whole import rejected; existing state unchanged |
 | Failed storage | Deny storage or fill quota, then complete action | Inline unsaved warning; no false success; in-memory work exportable |
 | Theme and RTL | Review both themes at 360px/1280px | Correct math isolation, readable contrast, no overlap, keyboard-accessible controls |
 
 Fixtures must include disconnected/edgeless graphs, isolated vertices, a minimal nonminimum
 set, several optima and directed introductory models rejected by the undirected evaluator.
-Cross-check small graph results against an independent reference enumeration in tests.
+Cross-check small-graph results with hand-enumerated subset fixtures and the lightweight
+content script; this does not require an automated test suite.
 
 ## Static hosting matrix
 

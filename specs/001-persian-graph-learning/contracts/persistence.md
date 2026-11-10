@@ -48,7 +48,8 @@ responses, selected vertices, hint counts, score or attempt history.
    collections, enum values, graph references, timestamps, finite numbers and IDs. Reject
    dangerous object keys and executable markup. Recompute derived score/coverage where possible.
 3. Validate complete referential consistency before mutation. Conflicting duplicate attempt
-   or finalized-turn IDs with different content reject the whole candidate, not overwrite.
+   or finalized-turn IDs with different content reject the whole candidate, not overwrite, except for the explicit
+   same-turn deletion precedence below.
 4. Prepare preview: counts added/deduplicated, teaching progress before/after, whether an
    imported backup restores completion cleared by an earlier reset, and settings policy.
 5. Inline confirm commits the complete merged state in one write; cancel changes nothing.
@@ -65,7 +66,30 @@ an explicit tested migration is available. No generic best-effort data coercion.
 ## Deletion
 
 Preview selected stored records and affected derived reports, then confirm inline. Delete
-only the selected attempts; keep spent turn markers for finalized competition/challenge turns
-so deleting results cannot create another scoring chance. Session totals and coverage derive
+only the selected attempts; for a finalized competition/challenge result, atomically set
+its turn resultStatus=finalized-deleted and finalizedAttemptId=null. Keep stable turn identity
+and spent status, remove all result/response/score copies and display «حذف‌شده» in Records.
+No turn in finalized or finalized-deleted may be replayed. pending has null attempt reference;
+finalized must reference an existing matching Attempt; finalized-deleted must not reference one.
+Export/import carries these statuses and validates these rules, so deletion creates no dangling
+reference. A tombstone contributes neither a score nor a question-coverage attempt. Session totals and coverage derive
 from remaining records; an empty result displays no data. Teaching progress changes only via
 its dedicated reset action, exposed from Teaching and the teaching panel in Records.
+
+## Deleted-turn merge precedence
+
+For the same session/turn identity and matching question/group context, finalized-deleted
+wins over pending or finalized on either side. Remove the associated incoming/local Attempt
+from the merged candidate; never resurrect the response, score or scoring opportunity from
+an older backup. This is an intentional conflict exception, shown in preview. Identity/context
+mismatch still rejects the complete import. Re-importing the marker is idempotent. Ordinary
+practice deletion without a turn marker retains the existing general record-merge policy.
+
+## Identical local/import limits
+
+Use the shared rules in [data-model.md](../data-model.md): name 30, label 50, text response
+1000 Unicode code points, 200 live Attempt records, 100 Session objects. Use the same NFC/
+whitespace normalization, enum checks and capacity code for UI/local commit and file import.
+Reject length overflow rather than truncate. Check both incoming data and the fully merged
+candidate; show counts/violations in preview and leave existing state untouched on failure.
+These count limits do not guarantee storage quota: a setItem quota failure remains recoverable.

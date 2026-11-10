@@ -24,9 +24,10 @@ Exact artifact versions/hashes are recorded when acquired in implementation, bef
 **Storage**: one versioned localStorage envelope per site base path; no database, cookies,
 IndexedDB, service-worker persistence or remote user-data endpoint.
 
-**Testing**: pure domain tests with Node.js 22+ built-in test runner; browser integration
-with Playwright as development-only tooling; manual RTL, instructional and deployment review.
-No package installation or test tooling is required to serve the site.
+**Validation**: manual mobile/desktop browser acceptance checks, instructional/deployment
+review and the dependency-free local content script `node scripts/validate-content.mjs`.
+Node.js 22+ is optional development tooling for that script only; no automated test framework,
+browser driver, test runner or package installation is required.
 
 **Target Platform**: modern Chromium, Firefox and WebKit; 360px mobile and 1280px desktop;
 HTTP(S) static hosting on GitHub Pages project subpaths, Linux Nginx/Apache and Windows IIS.
@@ -44,7 +45,9 @@ modeling context mandatory; ordinary text contrast >=4.5:1 in both palettes.
 
 **Scale/Scope**: 150 stable questions, six categories/sahat, four APOS stages, 2–10 local
 groups, five lab stations, custom graphs 2–10 vertices; existing prepared graphs up to 12.
-All locally persisted user data is bounded by available browser storage, not an unlimited log.
+User-data limits are shared across local writes and imports: group names 30 characters,
+labels 50, text responses 1000, live attempt records 200 and sessions 100. See the exact
+counting and capacity rules in data-model.md and contracts/persistence.md.
 
 ## Constitution Check
 
@@ -97,7 +100,7 @@ assets/
 ├── content/                         # reviewed figures and modeling scenes
 └── js/
     ├── app.js
-    ├── domain/{graph,evaluate,scoring,progress,coverage}.js
+    ├── domain/{graph,evaluate,scoring,progress,coverage,limits,attempts,sessions}.js
     ├── data/{load,validate,adapt}.js
     ├── storage/{repository,validate,migrate,transfer}.js
     ├── ui/{tabs,math,graph-editor,feedback}.js
@@ -109,10 +112,7 @@ content/
 ├── lab.json                        # stations, templates, timed challenge
 └── competition.json                # rounds, scoring and question eligibility
 scripts/validate-content.mjs
-tests/
-├── unit/                           # exact graph, score, progress, coverage
-├── contract/                       # content/import validation and round-trip
-└── browser/                        # persistence, reset, navigation and workflows
+specs/001-persian-graph-learning/validation/  # recorded manual checks and script outputs
 ```
 
 **Structure Decision**: browser-loadable files are served directly from the repository.
@@ -138,15 +138,16 @@ Run `graphify update .` after each completed code slice. Plan-only documents do 
 ## Phase Outputs and Validation
 
 Phase 0 decisions: [research.md](research.md). Phase 1: [data-model.md](data-model.md),
-[contracts](contracts/), [quickstart.md](quickstart.md). All 23 FRs are assigned below.
+[contracts](contracts/), [quickstart.md](quickstart.md). All 24 FRs are assigned below.
 
 | Requirements | Design / validation location |
 | --- | --- |
 | FR-001–004, FR-018–022 | UI/content contracts, static-host and instructional audit |
-| FR-005–008, FR-023 | Evaluation/progress/storage contracts; reset and hint tests |
-| FR-009–010 | Practice/competition UI, scoring and session tests |
+| FR-005–008, FR-023 | Evaluation/progress/storage contracts; manual reset and hint checks |
+| FR-009–010 | Practice/competition UI, manual scoring and session checks |
 | FR-011–013 | Graph/evaluation contracts and all five lab station checks |
-| FR-014–017 | Records/storage/coverage/transfer contracts and round-trip tests |
+| FR-014–017 | Records/storage/coverage/transfer contracts and manual round-trip checks |
+| FR-024 | Shared limits, local/import boundary checks and capacity failure handling |
 
 ## Complexity Tracking
 
