@@ -161,3 +161,8 @@ are preserved until a real reviewed migration exists. Only the prior shell theme
 and its old key is removed after a durable new envelope. There is no generic coercion, eviction,
 partial multi-key save or localStorage.clear. The check-before-write protects stale revisions
 but does not provide a transactional multi-tab lock; one active writer remains the contract.
+
+Phase-4 additive graph-construction target field: optional minimumSetCountMin is a positive
+integer. The exact evaluator checks that many distinct minimum sets in addition to n/gamma;
+Q075 declares 2. This preserves the source's multiple-optimum requirement. Existing targets
+without this field retain their prior behavior.

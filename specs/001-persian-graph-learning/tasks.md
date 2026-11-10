@@ -146,11 +146,19 @@ Stop for human review; do not proceed to the next story.
 
 **Independent Test**: Without passing teaching, select easy/hard exercises, finalize responses and retry; verify free hints preserve score and teaching progress is unchanged.
 
-- [ ] T026 [P] [US2] Implement question filtering/selection in `assets/js/tabs/practice.js`: allowed practice tab only, lesson/category filter, easy difficulty=1, hard difficulty=2 or 3; preserve source difficulty and show explicit no-question/unready states.
-- [ ] T027 [P] [US2] Implement recorded Attempt factories and validation in `assets/js/domain/attempts.js` with the fields in `data-model.md`: “At least questionId or lab activityId exists”, custom activity snapshot, tab practice/competition/lab only, mode-specific evaluation, stable IDs/time and “Finalized response is immutable”. Text rubric accepted=10 otherwise=0, explicitly labeled self-assessment; never represent it as machine-verified. Enforce the shared <=1000-character text response, <=50-character user labels and <=200-live-Attempt limits in local recording; preserve teaching flags when capacity blocks a record. Deleted result markers are session metadata, not Attempts.
-- [ ] T028 [US2] Connect selection/integer/graph-construction/self-assessed-text response modes to reviewed rubrics and shared evaluator in `assets/js/tabs/practice.js`; show explanations and three free sequential hints, with no automatic free-text correctness claim and no teaching unlock effect.
-- [ ] T029 [US2] Finalize and persist practice outcomes from `assets/js/tabs/practice.js` through attempt/repository interfaces; finalize once per attempt, retry creates a fresh ID, record hintLevel/baseScore/finalScore and valid session references while teaching responses remain excluded.
-- [ ] T030 [US2] Execute US2 acceptance checks and record outcomes in `specs/001-persian-graph-learning/validation/us2.md`: independent access, filter boundaries/empty state, each response mode, retry identity, unchanged score for 0–3 hints, correct stored result and unchanged teaching progress.
+- [X] T026 [P] [US2] Implement question filtering/selection in `assets/js/tabs/practice.js`: allowed practice tab only, lesson/category filter, easy difficulty=1, hard difficulty=2 or 3; preserve source difficulty and show explicit no-question/unready states.
+- [X] T027 [P] [US2] Implement recorded Attempt factories and validation in `assets/js/domain/attempts.js` with the fields in `data-model.md`: “At least questionId or lab activityId exists”, custom activity snapshot, tab practice/competition/lab only, mode-specific evaluation, stable IDs/time and “Finalized response is immutable”. Text rubric accepted=10 otherwise=0, explicitly labeled self-assessment; never represent it as machine-verified. Enforce the shared <=1000-character text response, <=50-character user labels and <=200-live-Attempt limits in local recording; preserve teaching flags when capacity blocks a record. Deleted result markers are session metadata, not Attempts.
+- [X] T028 [US2] Connect selection/integer/graph-construction/self-assessed-text response modes to reviewed rubrics and shared evaluator in `assets/js/tabs/practice.js`; show explanations and three free sequential hints, with no automatic free-text correctness claim and no teaching unlock effect.
+- [X] T029 [US2] Finalize and persist practice outcomes from `assets/js/tabs/practice.js` through attempt/repository interfaces; finalize once per attempt, retry creates a fresh ID, record hintLevel/baseScore/finalScore and valid session references while teaching responses remain excluded.
+- [X] T030 [US2] Execute US2 acceptance checks and record outcomes in `specs/001-persian-graph-learning/validation/us2.md`: independent access, filter boundaries/empty state, each response mode, retry identity, unchanged score for 0–3 hints, correct stored result and unchanged teaching progress.
+
+Implementation (2026-11-11): T026–T030 complete for the scoped Practice feature; see
+[validation/us2.md](validation/us2.md). Eleven source-backed questions have explicit modeling,
+response contracts and hints in content/practice.json. The rest of the permitted bank is
+visible as unavailable content, with empty-pool explanations; full-bank preparation remains
+T006/T015–T017 before release. Human educational review of added adaptations remains pending.
+The graph-construction activity for Q075 checks six vertices, gamma=2 and at least two
+minimum sets, preserving its full mathematical requirement. No later tab controller started.
 
 **Checkpoint**: Practice can run without completing US1; attempt interface is now shared by competition and lab.
 
