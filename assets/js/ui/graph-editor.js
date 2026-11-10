@@ -39,7 +39,7 @@ export function createGraphBoard(host, model, onToggle) {
   for (const [a, b] of graph.edges) { neighbors.get(a).add(b); neighbors.get(b).add(a); }
   const prefix = `board-${++boardCount}`;
   const svg = svgElement('svg', { viewBox: '0 0 600 330', role: 'group',
-    'aria-label': 'نقشهٔ محله؛ با انتخاب مکان، کتابخانهٔ سیار قرار دهید.', class: 'graph-canvas' });
+    'aria-label': model.boardLabel ?? 'مدل محله؛ مکان‌های موردنظر را انتخاب کنید.', class: 'graph-canvas' });
   const defs = svgElement('defs');
   for (let color = 0; color < 10; color++) {
     const pattern = svgElement('pattern', { id: `${prefix}-hatch-${color}`, width: 7, height: 7,
@@ -118,6 +118,7 @@ export function createGraphBoard(host, model, onToggle) {
   media.addEventListener('change', layout);
   layout(); host.replaceChildren(svg, buttons);
   return {
+    destroy() { media.removeEventListener('change', layout); },
     update(selected, { missed = [], hinted = [] } = {}) {
       const selectedIds = new Set(selected), missedIds = new Set(missed), hintIds = new Set(hinted);
       // Owner order is canonical vertex order, not click order.
@@ -142,7 +143,7 @@ export function createGraphBoard(host, model, onToggle) {
         view.group.classList.toggle('is-hinted', !covered && hintIds.has(id));
         view.group.setAttribute('aria-pressed', String(chosen));
         const ownerText = owners.map(owner => places.get(owner).label).join('، ');
-        view.group.setAttribute('aria-label', `${view.label}؛ ${chosen ? 'ایستگاه انتخاب‌شده' : covered ? `تحت پوشش ${ownerText}` : missedIds.has(id) ? 'جاافتاده؛ بی‌پوشش' : 'بی‌پوشش'}`);
+        view.group.setAttribute('aria-label', `${view.label}؛ ${chosen ? 'انتخاب‌شده' : covered ? `تحت پوشش ${ownerText}` : missedIds.has(id) ? 'جاافتاده؛ بی‌پوشش' : 'بی‌پوشش'}`);
         view.button.setAttribute('aria-pressed', String(chosen));
         view.button.setAttribute('aria-label', view.group.getAttribute('aria-label'));
       }

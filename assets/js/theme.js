@@ -1,7 +1,8 @@
-/* Small shell-only preference. No learning records are created in phase 1. */
+/* Early paint only. The module repository owns all writes after content validation. */
 (() => {
   const base = new URL('../../', document.currentScript.src).pathname;
-  const key = `graph-learning:shell:v1:${base}`;
+  const key = `graph-learning:v1:${base}`;
+  const legacyKey = `graph-learning:shell:v1:${base}`;
   let writable = true;
   let warning = '';
   let theme = 'day';
@@ -9,10 +10,16 @@
     const raw = localStorage.getItem(key);
     if (raw !== null) {
       const saved = JSON.parse(raw);
-      if (saved?.version !== 1 || !['day', 'night'].includes(saved.theme)) {
-        throw new Error('Invalid theme preference');
+      if (saved?.schemaVersion !== 1 || saved.curriculumVersion !== 1
+          || !['day', 'night'].includes(saved.settings?.theme)) throw new Error('Unsupported preference');
+      theme = saved.settings.theme;
+    } else {
+      const legacyRaw = localStorage.getItem(legacyKey);
+      if (legacyRaw !== null) {
+        const saved = JSON.parse(legacyRaw);
+        if (saved?.version !== 1 || !['day', 'night'].includes(saved.theme)) throw new Error('Invalid preference');
+        theme = saved.theme;
       }
-      theme = saved.theme;
     }
   } catch {
     writable = false;
@@ -24,12 +31,11 @@
     set(next) {
       if (!['day', 'night'].includes(next)) return;
       document.documentElement.dataset.theme = next;
-      if (!writable) return;
-      try {
-        localStorage.setItem(key, JSON.stringify({ version: 1, theme: next }));
-        warning = '';
-      } catch {
-        warning = 'تم تغییر کرد، اما ذخیره نشد. فضای ذخیره‌سازی مرورگر را بررسی کنید.';
+      if (window.graphRepository) {
+        window.graphRepository.setTheme(next);
+        warning = window.graphRepository.snapshot().warning;
+      } else if (writable) {
+        warning = 'تم فعلاً موقت است؛ پس از آماده‌شدن آموزش دوباره انتخاب کنید.';
       }
     },
   };
