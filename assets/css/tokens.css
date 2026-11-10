@@ -1,0 +1,53 @@
+@font-face {
+  font-family: Vazirmatn;
+  src: url("../vendor/vazirmatn/Vazirmatn-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --font-body: Vazirmatn, Tahoma, sans-serif;
+  --font-math: KaTeX_Main, serif;
+  --paper: #fff6e5;
+  --surface: #fffbf3;
+  --ink: #1f2a25;
+  --muted: #5b655d;
+  --heading: #174c3c;
+  --accent: #2e7d5b;
+  --accent-soft: #e5eddf;
+  --gold: #d9aa45;
+  --line: #d8ddcc;
+  --grid: #eae6d7;
+  --error: #a23b32;
+  --focus: #174c3c;
+  --on-accent: #fffbf3;
+  --node-fill: #fffbf3;
+  --graph-line: #7c9585;
+  --shade: #174c3c12;
+  --font-xs: .75rem;
+  --font-sm: .875rem;
+  --font-base: 1rem;
+  --font-lg: 1.125rem;
+  --font-xl: 1.5rem;
+  --font-display: clamp(2.1rem, 4vw, 3.8rem);
+  --content-width: 1160px;
+  color-scheme: light;
+}
+:root[data-theme="night"] {
+  --paper: #13211b;
+  --surface: #1a2b24;
+  --ink: #ede6d3;
+  --muted: #b4c1b5;
+  --heading: #8ed1b5;
+  --accent: #6cc79e;
+  --accent-soft: #273f32;
+  --line: #3e5547;
+  --grid: #203329;
+  --error: #f08a80;
+  --focus: #d9aa45;
+  --on-accent: #13211b;
+  --node-fill: #1a2b24;
+  --graph-line: #85aa94;
+  --shade: #00000025;
+  color-scheme: dark;
+}
