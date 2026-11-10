@@ -1,0 +1,13 @@
+/* Cover illustration only; interactive graph editing belongs to a later phase. */
+.model-cover { margin: 0; position: relative; padding: 1.4rem 1rem .9rem; border: 1px solid var(--line); border-radius: 8px; background-color: var(--paper); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 20px 20px; transform: rotate(-2deg); }
+.model-cover::before { content: ""; position: absolute; top: -5px; inset-inline: 32%; height: 9px; border-top: 2px solid var(--gold); }
+.model-cover svg { width: 100%; height: auto; overflow: visible; }
+.model-cover .edge { stroke: var(--graph-line); stroke-width: 2; stroke-linecap: round; fill: none; }
+.model-cover .node { fill: var(--node-fill); stroke: var(--heading); stroke-width: 2; }
+.model-cover .selected-node { fill: var(--accent-soft); stroke: var(--heading); }
+.model-cover .location-label { font-family: var(--font-body); font-size: 14px; fill: var(--ink); text-anchor: middle; }
+.model-cover .scene-caption { font-family: var(--font-body); font-size: 12px; fill: var(--muted); text-anchor: middle; }
+.model-cover .symbol { stroke: var(--heading); stroke-width: 1.7; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.model-caption { display: flex; justify-content: center; gap: 1rem; align-items: center; flex-wrap: wrap; font-size: var(--font-xs); color: var(--muted); padding-top: .6rem; border-top: 1px dashed var(--line); }
+.model-caption .math { color: var(--heading); font-size: var(--font-sm); }
+@media (max-width: 640px) { .model-cover { max-width: 360px; width: 100%; margin-inline: auto; transform: none; } }

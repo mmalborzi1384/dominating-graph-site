@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="day">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="گراف‌نامه؛ فضای یادگیری گراف و مدل‌سازی، فصل دوم ریاضیات گسستهٔ پایهٔ دوازدهم.">
+ <title>آموزش | گراف‌نامه</title>
+ <link rel="icon" href="data:,">
+ <script src="./assets/js/theme.js"></script>
+ <link rel="preload" href="./assets/vendor/vazirmatn/Vazirmatn-variable.woff2" as="font" type="font/woff2" crossorigin>
+ <link rel="stylesheet" href="./assets/vendor/katex/katex.min.css">
+ <link rel="stylesheet" href="./assets/css/tokens.css">
+ <link rel="stylesheet" href="./assets/css/base.css">
+ <link rel="stylesheet" href="./assets/css/layout.css">
+ <link rel="stylesheet" href="./assets/css/graph.css">
+ <script defer src="./assets/vendor/katex/katex.min.js"></script>
+ <script type="module" src="./assets/js/app.js"></script>
+</head>
+<body>
+ <a class="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
+ <header class="site-header"><div class="header-inner page-width">
+ <div class="brand"><svg class="brand-mark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m10 11 29 1-7 27-25-6zM10 11l22 28M7 33l32-21"/><g fill="currentColor"><circle cx="10" cy="11" r="4"/><circle cx="39" cy="12" r="4"/><circle cx="32" cy="39" r="4"/><circle cx="7" cy="33" r="4"/></g></svg><div><div class="brand-name">گراف‌نامه</div><p class="brand-subtitle">ببین، فکر کن، مدل بساز.</p></div></div>
+ <div class="header-controls"><span class="course-label">ریاضیات گسسته · پایهٔ دوازدهم</span>
+ <button id="theme-toggle" class="theme-toggle" type="button" aria-label="تغییر به حالت شب">
+ <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10Z"/></svg>
+ <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4 4l2 2M18 18l2 2M4 20l2-2M18 6l2-2"/></svg><span id="theme-label">حالت شب</span></button></div>
+ </div></header>
+ <main class="page-width" id="main-content" tabindex="-1">
+ <div class="course-intro"><div class="course-name chapter-marker">فصل دوم؛ گراف و مدل‌سازی</div><p>از رابطه‌های روزمره تا زبان ریاضی</p></div>
+ <nav class="tab-list" role="tablist" aria-label="بخش‌های یادگیری"><a class="tab" id="tab-teach" href="#teach" role="tab" aria-controls="panel-teach" aria-selected="true" tabindex="0" data-title="آموزش"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h6a4 4 0 0 1 3 1.5A4 4 0 0 1 15 4h6v15h-6a4 4 0 0 0-3 1.5A4 4 0 0 0 9 19H3z"/><path d="M12 5.5v15"/></svg><span>آموزش</span></a>
+<a class="tab" id="tab-practice" href="#practice" role="tab" aria-controls="panel-practice" aria-selected="false" tabindex="-1" data-title="تمرین"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 5 5 5M4 20l4-1 12-12a2 2 0 0 0-5-5L3 14zM3 21h18"/></svg><span>تمرین</span></a>
+<a class="tab" id="tab-competition" href="#competition" role="tab" aria-controls="panel-competition" aria-selected="false" tabindex="-1" data-title="مسابقه"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10v5a5 5 0 0 1-10 0zM7 5H3v2a4 4 0 0 0 5 4M17 5h4v2a4 4 0 0 1-5 4M12 13v6M8 21h8M9 19h6"/></svg><span>مسابقه</span></a>
+<a class="tab" id="tab-records" href="#records" role="tab" aria-controls="panel-records" aria-selected="false" tabindex="-1" data-title="سوابق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14v18H5zM9 15v2M12 11v6M15 7v10"/></svg><span>سوابق</span></a>
+<a class="tab" id="tab-lab" href="#lab" role="tab" aria-controls="panel-lab" aria-selected="false" tabindex="-1" data-title="آزمایشگاه"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v7L4 19a1 1 0 0 0 1 2h14a1 1 0 0 0 1-2l-6-9V3M7 15h10"/></svg><span>آزمایشگاه</span></a>
+</nav>
+ <p id="storage-notice" class="notice" role="status" hidden></p>
+ <p id="content-notice" class="notice" role="status" hidden>متن‌های تکمیلی بارگیری نشدند؛ اتصال به فایل‌های سایت را بررسی کنید.</p>
+ <p id="math-notice" class="notice" role="status" hidden>نمایش ریاضی بارگیری نشد؛ نمادها به شکل متنی نمایش داده می‌شوند.</p>
+ <noscript><p class="notice">برای جابه‌جایی بین بخش‌ها و تغییر تم، جاوااسکریپت مرورگر را فعال کنید.</p></noscript>
+ <div class="workspace"><section id="panel-teach" role="tabpanel" aria-labelledby="tab-teach" tabindex="0">
+ <div class="panel-layout"><div class="panel-copy">
+ <span class="availability"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>در دست آماده‌سازی</span>
+ <h1 class="panel-heading" data-panel-heading>از یک موقعیت واقعی، به یک مدل ریاضی.</h1>
+ <p class="panel-lead" data-panel-description>فصل گراف و مدل‌سازی را قدم‌به‌قدم با نگاه‌کردن، فکرکردن و کشف رابطه‌ها یاد می‌گیریم.</p>
+ <p class="empty-note">بخش «آموزش» هنوز فعال نشده است.<br>فعلاً می‌توانید فضای سایت و حالت روز و شب را ببینید.</p>
+ </div><figure class="model-cover">
+<svg viewBox="0 0 360 270" role="img" aria-label="تصویر مفهومی محله: مکان‌ها رأس و مسیرهای پیاده‌روی یال‌اند">
+ <text class="scene-caption" x="180" y="23" direction="rtl">از نقشهٔ محله تا گراف رابطه‌ها</text>
+ <g class="edge"><path d="M85 90 265 95 230 205 75 195 85 90 230 205M75 195 265 95"/></g>
+ <g class="node"><circle cx="85" cy="90" r="30"/><circle cx="265" cy="95" r="30"/><circle cx="230" cy="205" r="30"/><circle class="selected-node" cx="75" cy="195" r="30"/></g>
+ <g class="symbol"><path d="M70 95V82l15-9 15 9v13M76 95V85h18v10M82 95v-7h6v7M254 101V85h10l3 3h10v16h-10l-3-3zM264 85v16M218 210l12-21 12 21h-24M230 210v7M61 201v-12l14-10 14 10v12M71 201v-10h8v10"/></g>
+ <text class="location-label" x="85" y="45" direction="rtl">مدرسه</text>
+ <text class="location-label" x="265" y="50" direction="rtl">کتابخانه</text>
+ <text class="location-label" x="230" y="253" direction="rtl">پارک</text>
+ <text class="location-label" x="75" y="243" direction="rtl">خانه</text>
+</svg>
+<figcaption class="model-caption"><span>مکان‌ها: رأس · مسیرها: یال</span><span class="math" dir="ltr" data-math="G=(V,E)">G = (V, E)</span></figcaption>
+</figure></div>
+ </section>
+<section id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" tabindex="0" hidden>
+ <div class="panel-layout"><div class="panel-copy">
+ <span class="availability"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>در دست آماده‌سازی</span>
+ <h1 class="panel-heading" data-panel-heading>برای فکرکردن، راه‌های بیشتری هست.</h1>
+ <p class="panel-lead" data-panel-description>این بخش به تمرین‌های تکمیلی آسان و سختِ گراف و مدل‌سازی اختصاص دارد.</p>
+ <p class="empty-note">بخش «تمرین» هنوز فعال نشده است.<br>فعلاً می‌توانید فضای سایت و حالت روز و شب را ببینید.</p>
+ </div><figure class="model-cover">
+<svg viewBox="0 0 360 270" role="img" aria-label="تصویر مفهومی محله: مکان‌ها رأس و مسیرهای پیاده‌روی یال‌اند">
+ <text class="scene-caption" x="180" y="23" direction="rtl">از نقشهٔ محله تا گراف رابطه‌ها</text>
+ <g class="edge"><path d="M85 90 265 95 230 205 75 195 85 90 230 205M75 195 265 95"/></g>
+ <g class="node"><circle cx="85" cy="90" r="30"/><circle cx="265" cy="95" r="30"/><circle cx="230" cy="205" r="30"/><circle class="selected-node" cx="75" cy="195" r="30"/></g>
+ <g class="symbol"><path d="M70 95V82l15-9 15 9v13M76 95V85h18v10M82 95v-7h6v7M254 101V85h10l3 3h10v16h-10l-3-3zM264 85v16M218 210l12-21 12 21h-24M230 210v7M61 201v-12l14-10 14 10v12M71 201v-10h8v10"/></g>
+ <text class="location-label" x="85" y="45" direction="rtl">مدرسه</text>
+ <text class="location-label" x="265" y="50" direction="rtl">کتابخانه</text>
+ <text class="location-label" x="230" y="253" direction="rtl">پارک</text>
+ <text class="location-label" x="75" y="243" direction="rtl">خانه</text>
+</svg>
+<figcaption class="model-caption"><span>مکان‌ها: رأس · مسیرها: یال</span><span class="math" dir="ltr" data-math="G=(V,E)">G = (V, E)</span></figcaption>
+</figure></div>
+ </section>
+<section id="panel-competition" role="tabpanel" aria-labelledby="tab-competition" tabindex="0" hidden>
+ <div class="panel-layout"><div class="panel-copy">
+ <span class="availability"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>در دست آماده‌سازی</span>
+ <h1 class="panel-heading" data-panel-heading>یک مسئله، چند نگاه متفاوت.</h1>
+ <p class="panel-lead" data-panel-description>این بخش برای رقابت کلاسی و همکاری گروه‌ها در حل مسئله‌های مدل‌سازی در نظر گرفته شده است.</p>
+ <p class="empty-note">بخش «مسابقه» هنوز فعال نشده است.<br>فعلاً می‌توانید فضای سایت و حالت روز و شب را ببینید.</p>
+ </div><figure class="model-cover">
+<svg viewBox="0 0 360 270" role="img" aria-label="تصویر مفهومی محله: مکان‌ها رأس و مسیرهای پیاده‌روی یال‌اند">
+ <text class="scene-caption" x="180" y="23" direction="rtl">از نقشهٔ محله تا گراف رابطه‌ها</text>
+ <g class="edge"><path d="M85 90 265 95 230 205 75 195 85 90 230 205M75 195 265 95"/></g>
+ <g class="node"><circle cx="85" cy="90" r="30"/><circle cx="265" cy="95" r="30"/><circle cx="230" cy="205" r="30"/><circle class="selected-node" cx="75" cy="195" r="30"/></g>
+ <g class="symbol"><path d="M70 95V82l15-9 15 9v13M76 95V85h18v10M82 95v-7h6v7M254 101V85h10l3 3h10v16h-10l-3-3zM264 85v16M218 210l12-21 12 21h-24M230 210v7M61 201v-12l14-10 14 10v12M71 201v-10h8v10"/></g>
+ <text class="location-label" x="85" y="45" direction="rtl">مدرسه</text>
+ <text class="location-label" x="265" y="50" direction="rtl">کتابخانه</text>
+ <text class="location-label" x="230" y="253" direction="rtl">پارک</text>
+ <text class="location-label" x="75" y="243" direction="rtl">خانه</text>
+</svg>
+<figcaption class="model-caption"><span>مکان‌ها: رأس · مسیرها: یال</span><span class="math" dir="ltr" data-math="G=(V,E)">G = (V, E)</span></figcaption>
+</figure></div>
+ </section>
+<section id="panel-records" role="tabpanel" aria-labelledby="tab-records" tabindex="0" hidden>
+ <div class="panel-layout"><div class="panel-copy">
+ <span class="availability"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>در دست آماده‌سازی</span>
+ <h1 class="panel-heading" data-panel-heading>مسیر یادگیری‌ات را ببین.</h1>
+ <p class="panel-lead" data-panel-description>پیشرفت آموزش و گزارش فعالیت‌های تمرین، مسابقه و آزمایشگاه در این بخش قرار می‌گیرند.</p>
+ <p class="empty-note">بخش «سوابق» هنوز فعال نشده است.<br>فعلاً می‌توانید فضای سایت و حالت روز و شب را ببینید.</p>
+ </div><figure class="model-cover">
+<svg viewBox="0 0 360 270" role="img" aria-label="تصویر مفهومی محله: مکان‌ها رأس و مسیرهای پیاده‌روی یال‌اند">
+ <text class="scene-caption" x="180" y="23" direction="rtl">از نقشهٔ محله تا گراف رابطه‌ها</text>
+ <g class="edge"><path d="M85 90 265 95 230 205 75 195 85 90 230 205M75 195 265 95"/></g>
+ <g class="node"><circle cx="85" cy="90" r="30"/><circle cx="265" cy="95" r="30"/><circle cx="230" cy="205" r="30"/><circle class="selected-node" cx="75" cy="195" r="30"/></g>
+ <g class="symbol"><path d="M70 95V82l15-9 15 9v13M76 95V85h18v10M82 95v-7h6v7M254 101V85h10l3 3h10v16h-10l-3-3zM264 85v16M218 210l12-21 12 21h-24M230 210v7M61 201v-12l14-10 14 10v12M71 201v-10h8v10"/></g>
+ <text class="location-label" x="85" y="45" direction="rtl">مدرسه</text>
+ <text class="location-label" x="265" y="50" direction="rtl">کتابخانه</text>
+ <text class="location-label" x="230" y="253" direction="rtl">پارک</text>
+ <text class="location-label" x="75" y="243" direction="rtl">خانه</text>
+</svg>
+<figcaption class="model-caption"><span>مکان‌ها: رأس · مسیرها: یال</span><span class="math" dir="ltr" data-math="G=(V,E)">G = (V, E)</span></figcaption>
+</figure></div>
+ </section>
+<section id="panel-lab" role="tabpanel" aria-labelledby="tab-lab" tabindex="0" hidden>
+ <div class="panel-layout"><div class="panel-copy">
+ <span class="availability"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>در دست آماده‌سازی</span>
+ <h1 class="panel-heading" data-panel-heading>بساز، تغییر بده، کشف کن.</h1>
+ <p class="panel-lead" data-panel-description>این بخش فضای کاوش و تجربه‌کردن ایده‌های گراف با مدل‌های معنادار خواهد بود.</p>
+ <p class="empty-note">بخش «آزمایشگاه» هنوز فعال نشده است.<br>فعلاً می‌توانید فضای سایت و حالت روز و شب را ببینید.</p>
+ </div><figure class="model-cover">
+<svg viewBox="0 0 360 270" role="img" aria-label="تصویر مفهومی محله: مکان‌ها رأس و مسیرهای پیاده‌روی یال‌اند">
+ <text class="scene-caption" x="180" y="23" direction="rtl">از نقشهٔ محله تا گراف رابطه‌ها</text>
+ <g class="edge"><path d="M85 90 265 95 230 205 75 195 85 90 230 205M75 195 265 95"/></g>
+ <g class="node"><circle cx="85" cy="90" r="30"/><circle cx="265" cy="95" r="30"/><circle cx="230" cy="205" r="30"/><circle class="selected-node" cx="75" cy="195" r="30"/></g>
+ <g class="symbol"><path d="M70 95V82l15-9 15 9v13M76 95V85h18v10M82 95v-7h6v7M254 101V85h10l3 3h10v16h-10l-3-3zM264 85v16M218 210l12-21 12 21h-24M230 210v7M61 201v-12l14-10 14 10v12M71 201v-10h8v10"/></g>
+ <text class="location-label" x="85" y="45" direction="rtl">مدرسه</text>
+ <text class="location-label" x="265" y="50" direction="rtl">کتابخانه</text>
+ <text class="location-label" x="230" y="253" direction="rtl">پارک</text>
+ <text class="location-label" x="75" y="243" direction="rtl">خانه</text>
+</svg>
+<figcaption class="model-caption"><span>مکان‌ها: رأس · مسیرها: یال</span><span class="math" dir="ltr" data-math="G=(V,E)">G = (V, E)</span></figcaption>
+</figure></div>
+ </section>
+
+ <div class="lesson-overview" aria-label="درس‌های فصل دوم">
+ <div class="lesson"><span class="lesson-id" aria-hidden="true">۱</span><div><h2>درس اول؛ معرفی گراف</h2><p>صفحه‌های ۳۲ تا ۴۲ کتاب درسی</p></div></div>
+ <div class="lesson"><span class="lesson-id" aria-hidden="true">۲</span><div><h2>درس دوم؛ مدل‌سازی با گراف</h2><p>صفحه‌های ۴۳ تا ۵۴ کتاب درسی</p></div></div>
+ </div></div>
+ </main>
+ <footer class="page-width site-footer"><p>گراف‌نامه؛ همراه یادگیری فصل دوم گسسته</p><p class="footer-note"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 8V5a5 5 0 0 1 10 0v3M3 8h14v10H3z"/></svg>نسخهٔ اولیه · آمادهٔ بازبینی ظاهر</p></footer>
+</body>
+</html>

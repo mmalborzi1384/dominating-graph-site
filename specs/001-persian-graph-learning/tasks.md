@@ -41,13 +41,19 @@ may use separate narrowly scoped PRs; do not combine all five stories into one i
 
 **Independent Test**: Serve repository files with a static HTTP server; no build command is needed.
 
-- [ ] T001 Create the static Persian document shell in `index.html`, module entry in `assets/js/app.js` and `.nojekyll`; set lang=fa and dir=rtl, use only relative asset URLs and reserve exactly five tab panels without implementing story workflows.
-- [ ] T002 [P] Acquire pinned official KaTeX browser JS/CSS/fonts into `assets/vendor/katex/` and record exact version, upstream URL, checksum and license in `assets/vendor/katex/PROVENANCE.md`; serving must not depend on a CDN.
-- [ ] T003 [P] Acquire official Vazirmatn WOFF2 into `assets/vendor/vazirmatn/` and record version/checksum/OFL license in `assets/vendor/vazirmatn/PROVENANCE.md`; keep Persian and mathematical font families separate.
-- [ ] T004 [P] Define the bank’s educational day/night palettes, typography and semantic graph/status/focus tokens in `assets/css/tokens.css`; implement base/layout/graph rules in `assets/css/base.css`, `assets/css/layout.css` and `assets/css/graph.css`, with every color/font consumed from tokens and normal-text contrast >=4.5:1.
-- [ ] T005 Document build-free static serving, Node.js 22+ development-only validation, manual mobile/desktop browser acceptance workflow and the one-feature/one-PR/human-review/Graphify workflow in `README.md`; preserve existing applicable guidance.
+- [X] T001 Create the static Persian document shell in `index.html`, module entry in `assets/js/app.js` and `.nojekyll`; set lang=fa and dir=rtl, use only relative asset URLs and reserve exactly five tab panels without implementing story workflows.
+- [X] T002 [P] Acquire pinned official KaTeX browser JS/CSS/fonts into `assets/vendor/katex/` and record exact version, upstream URL, checksum and license in `assets/vendor/katex/PROVENANCE.md`; serving must not depend on a CDN.
+- [X] T003 [P] Acquire official Vazirmatn WOFF2 into `assets/vendor/vazirmatn/` and record version/checksum/OFL license in `assets/vendor/vazirmatn/PROVENANCE.md`; keep Persian and mathematical font families separate.
+- [X] T004 [P] Define the bank’s educational day/night palettes, typography and semantic graph/status/focus tokens in `assets/css/tokens.css`; implement base/layout/graph rules in `assets/css/base.css`, `assets/css/layout.css` and `assets/css/graph.css`, with every color/font consumed from tokens and normal-text contrast >=4.5:1.
+- [X] T005 Document build-free static serving, Node.js 22+ development-only validation, manual mobile/desktop browser acceptance workflow and the one-feature/one-PR/human-review/Graphify workflow in `README.md`; preserve existing applicable guidance.
 
 **Checkpoint**: Setup complete; vendor acquisition and basic serving are evidenced, not assumed.
+
+Implementation scope (2026-11-10): T001–T005 complete, evidence in
+[validation/phase-1.md](validation/phase-1.md). At the user's explicit request this slice
+also supplies shell-only hash navigation and theme persistence from T013; T013 stays unchecked
+because integration with the future repository remains deferred. No foundation/domain logic
+or tab workflows beyond this requested shell are implemented. Stop here for human review.
 
 ---
 
