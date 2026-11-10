@@ -65,20 +65,27 @@ or tab workflows beyond this requested shell are implemented. Stop here for huma
 
 - [ ] T006 [P] Implement source and supplemental content validation in `assets/js/data/validate.js` and loading/adaptation in `assets/js/data/load.js` and `assets/js/data/adapt.js`; enforce “Q001–Q150 exactly once, category A–F, difficulty 1–3, three hints, one known sahat, valid tab list”, “existing ID only; no silent source replacement; human-approved semantic adaptation”, and “nonempty context/mapping/goal before publication”. Resolve fetches relative to module base, index by ID and expose explicit unready/error states.
 - [X] T007 [P] Implement canonical topology, vertex/edge validation and layout-independent operations in `assets/js/domain/graph.js`; enforce “unique IDs; edge endpoints exist; count matches n; simple evaluator rejects loops/direction/parallel edges”. Keep directed/multigraph introductory models displayable through distinct types; custom graphs are 2–10 vertices, prepared graphs may have 12.
-- [ ] T008 [P] Define envelope validation and conservative version dispatch in `assets/js/storage/validate.js` and `assets/js/storage/migrate.js`; enforce schemaVersion=1 (“unsupported versions rejected without overwriting”), curriculumVersion=1 (“incompatible curricula rejected pending explicit migration”), revision a “nonnegative integer”, attempts “excludes teach entirely”, sessions “practice/competition/lab only”, theme “day/night” and “allowlist; no arbitrary executable configuration”. Accept only known fields and valid references; never coerce incompatible state into defaults. Define shared user limits in `assets/js/domain/limits.js`: group name <=30, user label <=50, text response <=1000 Unicode code points after NFC (trim names/labels only), live Attempt count <=200 and Session count <=100. Apply identical allowlisted rules to every local write and pre/post-merge import; refuse overflow without truncation, partial commit or eviction. Validate turn resultStatus pending|finalized|finalized-deleted and conditional nullable attempt references per data model.
+- [X] T008 [P] Define envelope validation and conservative version dispatch in `assets/js/storage/validate.js` and `assets/js/storage/migrate.js`; enforce schemaVersion=1 (“unsupported versions rejected without overwriting”), curriculumVersion=1 (“incompatible curricula rejected pending explicit migration”), revision a “nonnegative integer”, attempts “excludes teach entirely”, sessions “practice/competition/lab only”, theme “day/night” and “allowlist; no arbitrary executable configuration”. Accept only known fields and valid references; never coerce incompatible state into defaults. Define shared user limits in `assets/js/domain/limits.js`: group name <=30, user label <=50, text response <=1000 Unicode code points after NFC (trim names/labels only), live Attempt count <=200 and Session count <=100. Apply identical allowlisted rules to every local write and pre/post-merge import; refuse overflow without truncation, partial commit or eviction. Validate turn resultStatus pending|finalized|finalized-deleted and conditional nullable attempt references per data model.
 - [X] T009 Implement exact closed-neighborhood domination, delete-one minimality, increasing-subset minimum enumeration and all-optimum acceptance in `assets/js/domain/evaluate.js` after graph primitives; output all fields from `contracts/evaluation.md`, cache by topology, handle isolated/edgeless/disconnected graphs and reject unknown selected IDs as invalid input rather than student errors.
 - [X] T010 Implement pure quality scoring and hint caps in `assets/js/domain/scoring.js`: bases 0/5/10/15; practice unchanged by hints; competition final=min(base,cap) with caps 15/10/5/0 for 0/1/2/3 hints. Keep target correctness distinct from quality; no teaching score aggregation. The third cap remains the documented spec assumption.
-- [ ] T011 Implement one-envelope storage in `assets/js/storage/repository.js` after envelope validation: key `graph-learning:v1:<normalized-base-path>`, in-memory prepare plus one setItem, expected-revision check, revision increment only on success, corrupt/absent/unavailable states, recoverable unsaved memory and export access. Re-read revision; react to storage events and pause dirty cross-tab writes; never use localStorage.clear or silently evict data.
-- [ ] T012 [P] Implement safe text/math and feedback helpers in `assets/js/ui/math.js` and `assets/js/ui/feedback.js`; render text as text nodes, delimit math into left-aligned isolated LTR spans, use KaTeX trust=false, keep fallback readable and show Persian errors/confirmations inline without alert/confirm/prompt or modals.
-- [ ] T013 Implement five hash tabs, keyboard/ARIA navigation and persisted theme selection in `assets/js/ui/tabs.js` and integrate `assets/js/app.js`; support browser back/forward, unknown-hash fallback, inline storage status and no server-side route rewrite.
+- [X] T011 Implement one-envelope storage in `assets/js/storage/repository.js` after envelope validation: key `graph-learning:v1:<normalized-base-path>`, in-memory prepare plus one setItem, expected-revision check, revision increment only on success, corrupt/absent/unavailable states, recoverable unsaved memory and export access. Re-read revision; react to storage events and pause dirty cross-tab writes; never use localStorage.clear or silently evict data.
+- [X] T012 [P] Implement safe text/math and feedback helpers in `assets/js/ui/math.js` and `assets/js/ui/feedback.js`; render text as text nodes, delimit math into left-aligned isolated LTR spans, use KaTeX trust=false, keep fallback readable and show Persian errors/confirmations inline without alert/confirm/prompt or modals.
+- [X] T013 Implement five hash tabs, keyboard/ARIA navigation and persisted theme selection in `assets/js/ui/tabs.js` and integrate `assets/js/app.js`; support browser back/forward, unknown-hash fallback, inline storage status and no server-side route rewrite.
 - [ ] T014 Implement shared accessible SVG graph selection and editing in `assets/js/ui/graph-editor.js`; provide touch/keyboard selection, drag with normalized positions and non-drag alternatives, add/remove edges, distinguish selection from drag/submit and display vertex/edge meanings with the graph. Mathematical evaluation must not change from dragging alone.
 - [ ] T015 Create reviewed supplemental records in `content/question-overrides.json` and figure/model assets in `assets/content/`; audit all 150 IDs from `docs/question-bank.json`, fill missing contexts/response modes/targets/rubrics and required graph data without inventing book figures or changing question identity, lesson, sahat or allowed tabs. Record source/review status; unverified items stay explicitly unready.
 - [ ] T016 Implement `scripts/validate-content.mjs` using shared content validation and independent gamma checks: report 150 unique IDs, category/APOS/tab/teaching references, 3 hints, sahat counts 60/25/20/15/15/15, endpoint integrity and every graph.gamma. Separate machine errors from human-review readiness; release mode fails on any unready question, missing required figure or unreachable ID.
 - [ ] T017 Run the foundation smoke verification from `quickstart.md` and record exact outcomes in `specs/001-persian-graph-learning/validation/foundation.md`: static subpath loading, safe math fallback, exact small-graph edge cases, successful/failed writes, no extra storage backend and Graphify update. Foundation interfaces must be stable before story work; unresolved required source content is a tracked release dependency, not a fabricated pass.
 
-**Checkpoint**: Shared interfaces are ready only when every foundational task is complete. Content review can continue, but no story may require an unready question for progression.
+**Scheduling amendment (user, 2026-11-11)**: T008/T011/T012 are completed before phase 4.
+T006 and T015–T017 are explicitly deferred to the pre-release gate; they remain unchecked
+and are not blockers for the next feature slices. Every consumed question still needs its
+own valid model/reference/assessment contract. The full 150-question audit remains mandatory
+before publication. T014's unbuilt topology editing remains required for the Lab feature.
 
-Scoped phase-2 review slice (2026-11-10): user authorized only SVG selection, exhaustive
+**Checkpoint**: Shared storage/math/feedback interfaces are ready for later tab controllers;
+full source readiness and integrated foundation/release smoke checks remain pending.
+
+Historical phase-2 review slice (2026-11-10): user authorized only SVG selection, exhaustive
 assessment, quality scores/hint caps and the liquid-glass presentation amendment.
 T007/T009/T010 are complete. T014 is selection/keyboard/mobile rendering only; topology
 editing/dragging is deferred, so its checkbox stays open. T006/T008/T011/T012/T015–T017
@@ -89,20 +96,45 @@ Stop for user review after this slice.
 
 ---
 
+Foundation follow-up (2026-11-11): T008/T011/T012 are complete. Evidence:
+[validation/storage-foundation.md](validation/storage-foundation.md). Shared strict envelope,
+record/session/reference/turn validation, limits, conservative version dispatch, complete-state
+commit/expected revision, unsaved recovery, dirty-form cross-page conflict handling and shared
+math/feedback/inline confirmation helpers are implemented. Teaching uses these helpers.
+No Practice/Competition/Records/Lab flow was added. T006/T015–T017 remain pre-release gates;
+import/merge UI and producer controllers/factories remain their later story tasks. Stop for review.
+
+
 ## Phase 3: User Story 1 - یادگیری مرحله‌ای (Priority: P1) — MVP
 
 **Purpose / Goal**: Deliver APOS self-assessment with persistent monotonic progress and isolated reset.
 
 **Independent Test**: Complete one stage, refresh, return and answer incorrectly: pass/unlock remains; cancel then confirm reset: only teaching progress clears. Inspect storage: no teaching responses/scores/hints.
 
-- [ ] T018 [P] [US1] Create four ordered APOS sections and lesson blocks in `content/teaching.json`; enforce “exactly four, nonempty required list; prerequisites sequential” with Action/Process/Object/Schema order 0–3. Each activity has stable id/questionId/stageId and target dominating|minimal|minimum; enforce “source tab includes teach; APOS matches; graph supports target evaluator” without relabeling unrelated source questions.
-- [ ] T019 [P] [US1] Implement pure monotonic progress transitions in `assets/js/domain/progress.js`: completedActivityIds, passedStageIds as the sequential completed prefix, lastVisitedStageId restricted to unlocked stages; “Current percent = 25 * passed prefix length”. No independent percentage/unlock flags or teaching timestamps, answers, selected vertices, hint counts or scores; reset clears only this progress subtree.
-- [ ] T020 [US1] Implement stage selector, locked reasons, 0/25/50/75/100 percent and previous/continue navigation in `assets/js/tabs/teach.js`; after curriculum and progress are ready, restore last visited unlocked stage through repository, block direct-link bypass and keep every passed/open stage available on backward navigation.
-- [ ] T021 [US1] Implement target-specific teaching interactions in `assets/js/tabs/teach.js` with graph selection/evaluation and inline feedback: accept dominating/minimal/minimum according to the requested target, explain uncovered/removable/smaller-set failures, automatically show a suitable free hint below the question before a separate full-answer action; reveal alone never completes an activity.
-- [ ] T022 [US1] Persist only accepted completion flags and navigation from `assets/js/tabs/teach.js`; all required activities must pass before unlocking the next stage. Wrong review answers cannot remove flags, reduce percent or relock previously open stages; reload resumes partial completion without restoring old answers.
-- [ ] T023 [US1] Implement confirmed inline “شروع از اول” in `assets/js/tabs/teach.js` using the progress-only reset; cancel does nothing, confirm returns to Action/0%, failed storage shows unsaved status, and practice/competition/lab records and settings are untouched.
+- [X] T018 [P] [US1] Create four ordered APOS sections and lesson blocks in `content/teaching.json`; enforce “exactly four, nonempty required list; prerequisites sequential” with Action/Process/Object/Schema order 0–3. Each activity has stable id/questionId/stageId and target dominating|minimal|minimum; enforce “source tab includes teach; APOS matches; graph supports target evaluator” without relabeling unrelated source questions.
+- [X] T019 [P] [US1] Implement pure monotonic progress transitions in `assets/js/domain/progress.js`: completedActivityIds, passedStageIds as the sequential completed prefix, lastVisitedStageId restricted to unlocked stages; “Current percent = 25 * passed prefix length”. No independent percentage/unlock flags or teaching timestamps, answers, selected vertices, hint counts or scores; reset clears only this progress subtree.
+- [X] T020 [US1] Implement stage selector, locked reasons, 0/25/50/75/100 percent and previous/continue navigation in `assets/js/tabs/teach.js`; after curriculum and progress are ready, restore last visited unlocked stage through repository, block direct-link bypass and keep every passed/open stage available on backward navigation.
+- [X] T021 [US1] Implement target-specific teaching interactions in `assets/js/tabs/teach.js` with graph selection/evaluation and inline feedback: accept dominating/minimal/minimum according to the requested target, explain uncovered/removable/smaller-set failures, automatically show a suitable free hint below the question before a separate full-answer action; reveal alone never completes an activity.
+- [X] T022 [US1] Persist only accepted completion flags and navigation from `assets/js/tabs/teach.js`; all required activities must pass before unlocking the next stage. Wrong review answers cannot remove flags, reduce percent or relock previously open stages; reload resumes partial completion without restoring old answers.
+- [X] T023 [US1] Implement confirmed inline “شروع از اول” in `assets/js/tabs/teach.js` using the progress-only reset; cancel does nothing, confirm returns to Action/0%, failed storage shows unsaved status, and practice/competition/lab records and settings are untouched.
 - [ ] T024 [US1] Add the minimal teaching progress panel to `assets/js/tabs/records.js`, wired through `assets/js/app.js`; show percent/passed stages/continue destination and the same reset action without teaching scores or attempt counts. This US1 slice is independently usable before US5 analytics.
 - [ ] T025 [US1] Execute US1 acceptance scenarios and record evidence in `specs/001-persian-graph-learning/validation/us1.md`: all five progress values survive reload, direct links respect locks, wrong review leaves unlock intact, partial flags resume, reset cancel/confirm/failure preserve unrelated data, and storage contains no teaching attempts/responses/scores/hints; inspect transfer allowlist when US5 lands.
+
+Scoped phase-3 review slice (2026-11-11): per the user's explicit “Teaching tab only”
+authorization, T018–T023 are implemented. T024 is deliberately deferred; Records, Practice,
+Competition and Lab remain their existing placeholders. T025 has teaching-only local/browser
+evidence in [validation/us1.md](validation/us1.md), but stays open for its Records/transfer
+integration checks. Eight source-backed modeled activities are ready for user review; human
+educational approval and full page-by-page book validation remain release gates (T053).
+
+Necessary foundation subsets are implemented for this slice: teaching content/reference
+validation in data/{load,validate}.js, safe math rendering, and a revision-checked one-envelope
+repository that patches only progress/theme. Shell theme migrates after a successful write.
+At the phase-3 checkpoint T006/T008/T011/T012/T015–T017 were unchecked. The foundation
+follow-up below supersedes that storage/math/feedback limitation; full-bank work remains pending.
+The recovery-only download is available on storage failure; no import/Records workflow was started.
+T013 now integrates with the repository and is complete. T014 remains selection-only.
+Stop for human review; do not proceed to the next story.
 
 **Checkpoint**: US1 MVP is independently demonstrable after setup/foundation; human review is required before merging its feature PR.
 
@@ -200,10 +232,12 @@ Stop for user review after this slice.
 
 ### Phase Dependencies
 
-Setup T001–T005 completes before foundation T006–T017. Foundation interfaces block story
-implementation. Authoring/review of missing educational source assets can continue while
-ready fixtures support independent story work, but all 150 must be ready before release.
-Do not use unready questions as mandatory teaching activities.
+Setup T001–T005 precedes shared foundations. Per the user's scheduling amendment,
+T006/T015–T017 move to immediately before release, while storage/math/feedback T008/T011/T012
+are finished before phase 4. Later stories can use individually validated source-backed
+models; they must not depend on missing figures or unready questions. All 150 must pass the
+full content and integrated smoke gate before publication. T014's topology editing blocks
+Lab editing, not Practice's selection-only flow.
 
 Within foundation: T006/T007/T008 are independent; T009 requires T007; T010 requires T009;
 T011 requires T008; T012 is independent of domain/storage code; T013 requires T011/T012;

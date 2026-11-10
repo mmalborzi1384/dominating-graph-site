@@ -1,8 +1,8 @@
 export function initTabs() {
   const tabs = [...document.querySelectorAll('[role="tab"]')];
   function activateFromHash() {
-    const selected = tabs.find(tab => tab.hash === window.location.hash) ?? tabs[0];
-    if (window.location.hash !== selected.hash) {
+    const selected = tabs.find(tab => tab.hash === window.location.hash.split('/')[0]) ?? tabs[0];
+    if (window.location.hash.split('/')[0] !== selected.hash) {
       history.replaceState(null, '', selected.hash);
     }
     for (const tab of tabs) {

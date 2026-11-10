@@ -135,6 +135,14 @@ Each independently reviewable feature is one PR with human approval before merge
 changes precede dependent features; partial delivery does not constitute the full release.
 Run `graphify update .` after each completed code slice. Plan-only documents do not modify code.
 
+## Scheduling amendment — 2026-11-11
+
+The user deferred T006 and T015–T017 to before publication and requested completing T008,
+T011 and T012 before phase 4. The current slice completes those shared storage/math/feedback
+boundaries only. Feature controllers can consume individually validated source-backed models;
+whole-bank authoring, readiness and integrated foundation smoke checks remain release blockers.
+No scored Practice or other new tab flow is authorized by this foundation follow-up.
+
 ## Phase Outputs and Validation
 
 Phase 0 decisions: [research.md](research.md). Phase 1: [data-model.md](data-model.md),
