@@ -46,5 +46,5 @@ export function validateTeaching(curriculum, overrides, bank) {
         && Number.isFinite(place.y) && place.y >= 45 && place.y <= 275), 'چیدمان سؤال معتبر نیست.');
     models.set(activity.id, { ...extra, graph: question.graph, question, activity });
   }
-  return { curriculum, models, questions: bank.questions };
+  return { curriculum, models, questions: bank.questions, bankVersion: bank.meta.version };
 }

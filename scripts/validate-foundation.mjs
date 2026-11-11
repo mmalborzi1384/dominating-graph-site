@@ -11,7 +11,7 @@ import { splitMathText } from '../assets/js/ui/math.js';
 import { selectionFeedback } from '../assets/js/ui/feedback.js';
 const read = path => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
 const curriculum = read('../content/teaching.json'), bank = read('../docs/question-bank.json');
-const context = { questions: bank.questions, activityIds: ['lab:draw'] };
+const context = { questions: bank.questions, bankVersion: bank.meta.version, activityIds: ['lab:draw'] };
 const clone = structuredClone;
 let checks = 0;
 function expect(ok, message) { checks++; if (!ok) throw Error(message); }
@@ -175,6 +175,7 @@ const deniedStorage = { getItem() { throw Error('denied'); }, setItem() { throw 
 const unavailable = createRepository(curriculum, deniedStorage, context);
 expect(unavailable.snapshot().readStatus === 'unavailable' && !unavailable.setTheme('night'), 'Unavailable storage explicit');
 expect(JSON.parse(unavailable.recoveryJSON()).data.settings.theme === 'night', 'Unavailable storage recovery');
+expect(JSON.parse(unavailable.recoveryJSON()).bankVersion === bank.meta.version, 'Recovery identifies the supplied source bank');
 unavailable.dispose();
 for (const [input, expectedMath] of [['متن $x+1$ پایان', 1], ['$$x\ny$$', 1], [String.raw`قیمت \$5 و $x$`, 1], ['بدون $پایان', 0]]) {
   expect(splitMathText(input).filter(part => part.type === 'math').length === expectedMath, 'Math delimiters and fallback text');

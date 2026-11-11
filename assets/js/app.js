@@ -48,7 +48,8 @@ for (const math of document.querySelectorAll('[data-math]')) {
 
 try {
   const teaching = await loadTeaching();
-  const repository = createRepository(teaching.curriculum, undefined, { questions: teaching.questions });
+  const repository = createRepository(teaching.curriculum, undefined,
+    { questions: teaching.questions, bankVersion: teaching.bankVersion });
   window.graphRepository = repository;
   repository.subscribe(({ state }) => {
     document.documentElement.dataset.theme = state.settings.theme;

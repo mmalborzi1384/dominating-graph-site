@@ -105,6 +105,12 @@ math/feedback/inline confirmation helpers are implemented. Teaching uses these h
 No Practice/Competition/Records/Lab flow was added. T006/T015–T017 remain pre-release gates;
 import/merge UI and producer controllers/factories remain their later story tasks. Stop for review.
 
+Revalidation against bank v1.2 (2026-11-11): T008/T011/T012 remain complete; 104 foundation
+checks and 46 Teaching checks pass. Fixed the stale Teaching supplement version after
+confirming all eight referenced source questions are unchanged, and passed the loaded bank
+version to recovery exports. See the revalidation section of the evidence above. No phase-4
+workflow was started; stop for human review.
+
 
 ## Phase 3: User Story 1 - یادگیری مرحله‌ای (Priority: P1) — MVP
 

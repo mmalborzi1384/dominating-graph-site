@@ -1,5 +1,23 @@
 # Storage/math/feedback foundation follow-up — 2026-11-11
 
+## Revalidation with bank v1.2 — 2026-11-11
+
+T008/T011/T012 already exist on main. Their dependency-free foundation checks passed,
+but the Teaching integration check initially failed because question-overrides.json still
+declared bankVersion 1.1. Compared all eight referenced source questions against commit
+5c02593: Q087/Q088/Q067/Q070/Q048/Q079/Q081/Q082 are unchanged in v1.2. Updated the
+supplement version to 1.2 without changing activities, IDs or progress schema. The validated
+loader result now exposes bankVersion and app.js passes it to the repository so recovery
+files correctly identify the active bank. This does not implement an importer or migration.
+
+Current results: `node scripts/validate-foundation.mjs` passes 104 checks;
+`node scripts/validate-teaching.mjs` passes 46 checks. Graphify update completed (730 nodes,
+1233 edges); PDF extraction was skipped because its optional pypdf dependency is absent.
+No new browser verification was performed in this revalidation; the browser observations
+below are historical. T008/T011/T012 remain complete, and this slice stops before phase 4.
+The scheduling notes below describe the original follow-up; the latest tasks.md amendment
+prioritizes bank completion before further feature phases.
+
 ## Authorization and gates
 
 User scope: complete T008, T011, T012 before phase 4, then stop for review. T006 and
