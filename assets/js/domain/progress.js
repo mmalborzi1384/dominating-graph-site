@@ -30,6 +30,7 @@ export function validateProgress(progress, curriculum) {
   if ([...completed].some(id => !curriculum.activities.some(activity => activity.id === id))) {
     throw new TypeError('فعالیت ذخیره‌شده در این نسخهٔ آموزش وجود ندارد.');
   }
+  if(curriculum.curriculumVersion===2 && curriculum.activities.some(a=>completed.has(a.id)&&!a.prerequisites.every(id=>completed.has(id))))throw new TypeError('ترتیب فعالیت‌های آموزش تازه معتبر نیست.');
   const passed = passedPrefix(curriculum, completed);
   if (JSON.stringify(passed) !== JSON.stringify(progress.passedStageIds)
       || !unlockedStages(progress).includes(progress.lastVisitedStageId)
@@ -41,6 +42,7 @@ export function completeActivity(progress, activityId, curriculum) {
   validateProgress(progress, curriculum);
   const activity = curriculum.activities.find(item => item.id === activityId);
   if (!activity || !unlockedStages(progress).includes(activity.stageId)) throw new TypeError('این فعالیت هنوز باز نیست.');
+  if(curriculum.curriculumVersion===2&&!activity.prerequisites.every(id=>progress.completedActivityIds.includes(id)))throw new TypeError('ابتدا فعالیت قبلی همین مرحله را کامل کنید.');
   const completed = new Set([...progress.completedActivityIds, activityId]);
   return { ...progress,
     completedActivityIds: curriculum.activities.filter(item => completed.has(item.id)).map(item => item.id),

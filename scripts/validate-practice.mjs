@@ -3,7 +3,7 @@ import {practiceCatalog,filterPractice} from '../assets/js/data/practice.js';
 import {createAttempt,appendAttempt} from '../assets/js/domain/attempts.js';
 import {initialProgress} from '../assets/js/domain/progress.js';
 const read=p=>JSON.parse(readFileSync(new URL(p,import.meta.url),'utf8'));
-const questions=read('../docs/question-bank.json').questions,curriculum=read('../content/teaching.json');
+const questions=read('../docs/question-bank.json').questions,curriculum=read('../content/teaching-v1.json');
 const catalog=practiceCatalog(questions,read('../content/practice.json'));
 const context={questions};
 let count=0;const check=(v,m)=>{count++;if(!v)throw Error(m)};

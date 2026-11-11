@@ -8,8 +8,8 @@ const fa=n=>n.toLocaleString('fa-IR',{maximumFractionDigits:1});
 function el(tag,text,className='') { const e=document.createElement(tag);e.className=className;if(text!==undefined)e.textContent=text;return e; }
 function btn(text,id,action) { const b=el('button',text,'secondary-button');b.type='button';b.id=id;b.addEventListener('click',action);return b; }
 function download(text,name) {const url=URL.createObjectURL(new Blob([text],{type:'application/json;charset=utf-8'})),a=el('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-export async function initRecords({questions,curriculum,bankVersion},repository) {
-  const response=await fetch(new URL('../../../content/records.json',import.meta.url));if(!response.ok)throw Error('محتوای سوابق بارگیری نشد.');const copy=await response.json(),context={questions,bankVersion};
+export async function initRecords({questions,curriculum,bankVersion,legacyCurriculum},repository) {
+  const response=await fetch(new URL('../../../content/records.json',import.meta.url));if(!response.ok)throw Error('محتوای سوابق بارگیری نشد.');const copy=await response.json(),context={questions,bankVersion,legacyCurriculum};
   const root=document.getElementById('panel-records'),heading=el('h1',copy.title),intro=el('p',copy.intro),notice=el('p'),progress=el('section',undefined,'records-card glass-surface'),summary=el('section',undefined,'records-card glass-surface'),coverage=el('section',undefined,'records-card glass-surface'),history=el('section',undefined,'records-card glass-surface'),transfer=el('section',undefined,'records-card glass-surface');
   root.replaceChildren(heading,intro,notice,progress,summary,coverage,history,transfer);
   const selected=new Set();let pending=null,selectionRevision=null,filter='all',requestId=0;
@@ -45,10 +45,10 @@ export async function initRecords({questions,curriculum,bankVersion},repository)
   fileInput.addEventListener('change',async()=>{
     const id=++requestId;clearImport();const file=fileInput.files[0];if(!file)return;
     try {if(file.size>LIMITS.importBytes)throw Error('حداکثر حجم فایل ۵ مگابایت است.');const text=await file.text();if(id!==requestId)return;
-      const incoming=parseBackup(text,curriculum,context),snap=repository.snapshot();if(snap.conflict||snap.dirty||!['ready','absent'].includes(snap.readStatus))throw Error('ابتدا وضعیت ذخیره را با خروجی بازیابی و بازخوانی یا تلاش دوباره حل کنید.');
+      const incoming=parseBackup(text,curriculum,context),snap=repository.snapshot();if(snap.needsMigration||snap.conflict||snap.dirty||!['ready','absent'].includes(snap.readStatus))throw Error('ابتدا وضعیت ذخیره را با خروجی بازیابی و بازخوانی یا تلاش دوباره حل کنید.');
       const fresh=snap.state.revision<=1&&!Object.keys(snap.state.attempts).length&&!Object.keys(snap.state.sessions).length&&!snap.state.teachingProgress.completedActivityIds.length;
-      const result=mergeBackup(snap.state,incoming,curriculum,context,{fresh});pending={...result,revision:snap.state.revision};const p=result.preview;
-      importPreview.replaceChildren(el('h3','پیش‌نمایش ورود؛ هنوز ذخیره نشده'),el('p',`${fa(p.added)} نتیجه و ${fa(p.addedSessions)} نشست افزوده؛ ${fa(p.deduplicated)} نتیجهٔ تکراری؛ ${fa(p.suppressed)} نتیجهٔ قدیمی به‌علت علامت حذف بازگردانده نمی‌شود.`),el('p',`پیشرفت: ${fa(p.before)}٪ ← ${fa(p.after)}٪. ${p.restoresProgress?'این فایل تکمیل فعالیت‌ها را بازمی‌گرداند؛ حتی اگر قبلاً ریست شده باشند.':''}`),el('p',fresh?'مرورگر تازه: تم و محل ادامه از فایل گرفته می‌شوند.':'تم و محل ادامهٔ فعلی حفظ می‌شوند.'));
+      const oldCurriculum=JSON.parse(text).curriculumVersion===1&&curriculum.curriculumVersion===2;const result=mergeBackup(snap.state,incoming,curriculum,context,{fresh});pending={...result,revision:snap.state.revision};const p=result.preview;
+      importPreview.replaceChildren(el('h3','پیش‌نمایش ورود؛ هنوز ذخیره نشده'),el('p',oldCurriculum?'این فایل آموزش قدیمی دارد؛ هیچ پیشرفت قدیمی منتقل نمی‌شود. سوابق سایر تب‌ها حفظ و پیشرفت آموزش تازهٔ موجود کم نمی‌شود.':''),el('p',`${fa(p.added)} نتیجه و ${fa(p.addedSessions)} نشست افزوده؛ ${fa(p.deduplicated)} نتیجهٔ تکراری؛ ${fa(p.suppressed)} نتیجهٔ قدیمی به‌علت علامت حذف بازگردانده نمی‌شود.`),el('p',`پیشرفت: ${fa(p.before)}٪ ← ${fa(p.after)}٪. ${p.restoresProgress?'این فایل تکمیل فعالیت‌ها را بازمی‌گرداند؛ حتی اگر قبلاً ریست شده باشند.':''}`),el('p',fresh?'مرورگر تازه: تم و محل ادامه از فایل گرفته می‌شوند.':'تم و محل ادامهٔ فعلی حفظ می‌شوند.'));
       repository.setEditingDirty('records-import',true);importDialog.open(fileInput);setFeedback(status,'فایل معتبر است؛ پیش‌نمایش را بررسی و تأیید یا لغو کنید.');
     }catch(error){reportError(error);}finally {fileInput.value='';}
   });

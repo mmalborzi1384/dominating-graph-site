@@ -25,14 +25,13 @@ Show four APOS sections, overall progress 0/25/50/75/100, pass/lock states and r
 Provide previous/continue controls limited to unlocked stages, a stage selector and a
 confirmed inline start-over control. A passed stage stays unlocked even after a wrong review
 answer. Refresh restores the last visited unlocked stage and saved completion flags.
-Each activity shows context, target, selectable graph, check, inline diagnostics/hint and
+Each activity shows context, objective/rubric, stage-appropriate typed response, check, inline diagnostics/hint and
 separate reveal action. No teaching score table, attempt log or stored selected vertices.
 Records has a dedicated progress summary with continue and reset, not teaching score analytics.
 
 ## Practice / competition
 
-Randomization controls: Teaching activities display stage/exact difficulty and offer
-«سؤال تصادفی دیگر» from the compatible ready pool without changing progress. Practice's
+Randomization controls: Teaching displays cognitive stage and exact difficulty separately. Curriculum 2 redraws a complete compatible stage chain, not an isolated dependent card, without changing progress. Practice's
 question picker offers «تمرین با سؤال‌های تصادفی» for each exact difficulty and a next-random
 button; lesson/category constraints remain active. Competition describes different random
 questions at equal exact difficulty per round; insufficient capacity blocks start inline.
@@ -127,14 +126,23 @@ old/incompatible versions and conflicting active sessions explicitly. Export is 
 unsaved work when necessary; retry/reload/raw recovery remain inline. Cards share glass
 styles and token colors, mobile buttons fill width while desktop buttons remain intrinsic.
 
-## پیشنهاد PR#1.1 — غیرفعال تا تأیید طرح
+## PR#1.1 — قرارداد تأییدشدهٔ آموزش تازه
 
-مرجع: [طرح بازنویسی APOS](../amendments/pr-1-1-apos-redesign.md). این بخش قرارداد
-آیندهٔ پیشنهادی است و قواعد نسخهٔ اجراشده را در حال حاضر تغییر نمی‌دهد.
+مرجع: [طرح بازنویسی APOS](../amendments/pr-1-1-apos-redesign.md). این بخش قرارداد نسخهٔ تازهٔ آموزش پس از تأیید کاربر است.
 
 Action ابزار اتصال و پیمودن مسیر و انتخاب مرکز با زبان روزمره دارد. Process مدل
 ثابت و ورودی پیش‌بینی دارد؛ ابزار آزمون/نمایش زندهٔ پوشش خاموش است. Object درس‌نامهٔ
 رسمی خردشده با مثال/ضدمثال و پاسخ مفهومی دارد. Schema نگاشت/ساخت/حل/توجیه/نقد مدل
 تازه را در همان تب ترکیب می‌کند. هر کارت هدف و معیار موفقیت را پیش از پاسخ و راهنما
-را پیش از پاسخ نمونه نشان می‌دهد؛ جواب نمونه قبولی نیست. نشانهٔ اعتبار پیشرفت قبلی
-باید از تکمیل فعالیت‌های تازه قابل تشخیص باشد. هیچ پاپ‌آپ یا نمرهٔ آموزشی اضافه نمی‌شود.
+را پیش از پاسخ نمونه نشان می‌دهد؛ جواب نمونه قبولی نیست. آموزش قدیمی هیچ اعتباری در این مسیر ندارد؛ پیشرفت تازه با نسخهٔ ۲ مشخص است. هیچ پاپ‌آپ یا نمرهٔ آموزشی اضافه نمی‌شود.
+
+### اصلاح قطعی پس از تأیید کاربر — PR#1.1
+
+طرح دوازده‌فعالیتی تأیید شد؛ گیت طراحی باز است. هر بند پیشنهادیِ قبلی دربارهٔ انتقال
+اعتبار پیشرفت، legacyPassedStageIds یا بازماندن مراحل قدیمی لغو است. آموزش curriculum=2
+برای دادهٔ نسخهٔ ۱ از صفر و فقط Action باز آغاز می‌شود. دادهٔ قدیمی ابتدا با curriculum=1
+اعتبارسنجی و با تأیید مهاجرت در یک نوشتن به نسخهٔ ۲ تبدیل می‌شود؛ شکل envelope/schema=1
+ثابت است. سوابق سایر تب‌ها/نشست‌ها/تم/علامت‌های حذف حفظ می‌شوند. ورود بک‌آپ قدیمی نیز
+هیچ پیشرفت قدیمی را منتقل نمی‌کند؛ پیشرفت تازهٔ موجود نسخهٔ ۲ را کم نمی‌کند. واردکردن
+نسخهٔ ۲ پیشرفت تازه را ادغام می‌کند. هیچ پاسخ/امتیاز/راهنمای آموزش ذخیره نمی‌شود.
+قرارداد کاملِ فعال این بازنویسی در بخش ۵ ضمیمهٔ APOS آمده است. فاز ۸ مجوز اجرا ندارد.

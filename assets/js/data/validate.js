@@ -1,3 +1,4 @@
+import { teachingInstance, teachingWitness, assessTeaching } from '../domain/teaching.js';
 import { STAGE_IDS } from '../domain/progress.js';
 import { analyzeGraph } from '../domain/evaluate.js';
 const text = value => typeof value === 'string' && value.trim().length > 0;
@@ -5,6 +6,8 @@ const requireValue = (ok, message) => { if (!ok) throw new TypeError(message); }
 
 /** Phase-3 boundary: validate the teaching references, not release-readiness of all 150. */
 export function validateTeaching(curriculum, overrides, bank) {
+  if(curriculum?.curriculumVersion===2)return validateTeachingV2(curriculum,bank);
+
   requireValue(bank?.questions?.length === 150, 'بانک باید ۱۵۰ سؤال داشته باشد.');
   const questions = new Map(bank.questions.map(question => [question.id, question]));
   requireValue(questions.size === 150 && Array.from({ length: 150 }, (_, i) =>
@@ -66,4 +69,27 @@ export function validateTeaching(curriculum, overrides, bank) {
     }));
   }
   return { curriculum, models, teachingPools, questions: bank.questions, bankVersion: bank.meta.version };
+}
+
+function validateTeachingV2(curriculum, bank) {
+  requireValue(bank?.meta?.version==='1.2'&&bank.questions?.length===150&&new Set(bank.questions.map(q=>q.id)).size===150&&Array.from({length:150},(_,i)=>`Q${String(i+1).padStart(3,'0')}`).every(id=>bank.questions.some(q=>q.id===id)),'بانک مرجع معتبر نیست.');
+  requireValue(curriculum.stages?.length===4&&curriculum.activities?.length===12&&new Set(curriculum.activities.map(a=>a.id)).size===12,'چهار مرحله و دوازده فعالیت لازم است.');
+  const models=new Map();
+  curriculum.stages.forEach((stage,index)=>{
+    requireValue(stage.id===STAGE_IDS[index]&&stage.order===index&&stage.prerequisite===(index?STAGE_IDS[index-1]:null)&&text(stage.title)&&text(stage.goal)&&text(stage.bridge)&&stage.blocks?.length&&stage.blocks.every(b=>text(b.title)&&text(b.body)&&text(b.lesson)),'ساختار مرحله معتبر نیست.');
+    requireValue(stage.requiredActivityIds?.length===3&&new Set(stage.requiredActivityIds).size===3&&stage.variants?.length>=1,'فعالیت یا گونهٔ مرحله کامل نیست.');
+    requireValue(new Set(stage.variants.map(v=>v.id)).size===stage.variants.length,'شناسهٔ گونه تکراری است.');
+    for(const variant of stage.variants)requireValue(text(variant.scenario)&&variant.names?.length===6&&variant.names.every(text)&&variant.permutation?.length===6&&new Set(variant.permutation).size===6&&variant.permutation.every(n=>Number.isInteger(n)&&n>=0&&n<6),'گونهٔ مدل معتبر نیست.');
+    for(const id of stage.requiredActivityIds){const a=curriculum.activities.find(a=>a.id===id);
+      requireValue(a?.stageId===stage.id&&a.chainId===stage.id&&text(a.learningObjective)&&text(a.cognitiveOperation)&&text(a.prompt)&&text(a.rubric)&&text(a.solution)&&a.hints?.length===3&&a.hints.every(text)&&[1,2,3].includes(a.difficulty)&&a.parts?.length&&new Set(a.parts.map(p=>p.id)).size===a.parts.length,'قرارداد فعالیت کامل نیست.');
+      requireValue(a.sourceReferences?.length&&a.sourceReferences.every(r=>r.kind==='authored'&&text(r.basis))&&!a.questionId&&a.reviewStatus==='ready-for-user-review','منبع فعالیت تألیفی روشن نیست.');
+      requireValue(a.prerequisites.length===stage.requiredActivityIds.indexOf(id)&&a.prerequisites.every((p,i)=>p===stage.requiredActivityIds[i]),'ترتیب فعالیت معتبر نیست.');
+      requireValue(a.parts.every(p=>text(p.label)&&['number','choice','edges','route','vertices','centers'].includes(p.type)&&(!(p.type==='choice')||p.options?.some(o=>o.value===p.expected)&&new Set(p.options.map(o=>o.value)).size===p.options.length)),'نوع پاسخ معتبر نیست.');
+      for(const variant of stage.variants){const model=teachingInstance(a,variant);requireValue(assessTeaching(model,teachingWitness(model)).correct,'پاسخنامهٔ فعالیت ناسازگار است.');}
+      models.set(id,teachingInstance(a,stage.variants[0]));
+    }
+  });
+  const action=curriculum.stages[0],actionActivities=curriculum.activities.filter(a=>a.stageId==='Action');
+  requireValue(!/G=|\\gamma|\\sum|مینیمم|مینیمال|احاطه|رأس|یال/.test([action.goal,action.bridge,...action.blocks.map(b=>b.body),...actionActivities.flatMap(a=>[a.prompt,a.rubric,a.solution,...a.hints])].join(' ')),'آموزش رسمی نباید به Action نشت کند.');
+  return {curriculum,models,questions:bank.questions,bankVersion:bank.meta.version};
 }

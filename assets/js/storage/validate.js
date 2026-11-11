@@ -206,7 +206,7 @@ export function validateStoredEnvelope(value, curriculum, context = {}) {
   safeData(value);
   fields(value, ['schemaVersion', 'revision', 'curriculumVersion', 'teachingProgress', 'attempts', 'sessions', 'settings'], [], 'state');
   check(value.schemaVersion === 1, 'نسخهٔ ساختار ذخیره پشتیبانی نمی‌شود.', 'schemaVersion', 'unsupported-schema');
-  check(value.curriculumVersion === curriculum.curriculumVersion && value.curriculumVersion === 1,
+  check(value.curriculumVersion === curriculum.curriculumVersion && [1,2].includes(value.curriculumVersion),
     'نسخهٔ آموزش پشتیبانی نمی‌شود.', 'curriculumVersion', 'unsupported-curriculum');
   integer(value.revision, 0, Number.MAX_SAFE_INTEGER, 'revision');
   validateProgress(value.teachingProgress, curriculum);

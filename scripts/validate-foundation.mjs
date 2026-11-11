@@ -10,7 +10,7 @@ import { scoreSelection } from '../assets/js/domain/scoring.js';
 import { splitMathText } from '../assets/js/ui/math.js';
 import { selectionFeedback } from '../assets/js/ui/feedback.js';
 const read = path => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
-const curriculum = read('../content/teaching.json'), bank = read('../docs/question-bank.json');
+const curriculum = read('../content/teaching-v1.json'), bank = read('../docs/question-bank.json');
 const context = { questions: bank.questions, bankVersion: bank.meta.version, activityIds: ['lab:draw'] };
 const clone = structuredClone;
 let checks = 0;

@@ -199,12 +199,21 @@ The repository retains one-key commits; shared validation remains authoritative.
 1.1 policy is rejection, pending reviewed migration. Evidence: validation/us5.md. Stop for
 human review; phase 8 and its content/host/usability release gates remain unstarted.
 
-## PR#1.1 planning hold — APOS redesign
+## PR#1.1 approved implementation — APOS redesign
 
 The complete proposal lives in amendments/pr-1-1-apos-redesign.md. It introduces twelve
 activities with distinct cognitive operations, typed temporary responses, connected scenario
 chains and exact, stage-appropriate feedback. Teaching-only rendering/evaluation and necessary
 progress/backup compatibility are the implementation scope. Existing scored-tab behavior and
-phase-8 release work are outside it. APOS-G01 requires explicit human plan approval before any
-runtime/content/script change. Schema details must be finalized in APOS-D02, not silently
-introduced while planning. Historical implementation evidence is not evidence of this redesign.
+phase-8 release work are outside it. APOS-G01 was explicitly approved, with zero carry-over of old teaching progress. APOS-D02 uses curriculum=2 with unchanged schema=1 and a validated progress-only reset migration. Historical implementation evidence is not evidence of this redesign.
+
+### اصلاح قطعی پس از تأیید کاربر — PR#1.1
+
+طرح دوازده‌فعالیتی تأیید شد؛ گیت طراحی باز است. هر بند پیشنهادیِ قبلی دربارهٔ انتقال
+اعتبار پیشرفت، legacyPassedStageIds یا بازماندن مراحل قدیمی لغو است. آموزش curriculum=2
+برای دادهٔ نسخهٔ ۱ از صفر و فقط Action باز آغاز می‌شود. دادهٔ قدیمی ابتدا با curriculum=1
+اعتبارسنجی و با تأیید مهاجرت در یک نوشتن به نسخهٔ ۲ تبدیل می‌شود؛ شکل envelope/schema=1
+ثابت است. سوابق سایر تب‌ها/نشست‌ها/تم/علامت‌های حذف حفظ می‌شوند. ورود بک‌آپ قدیمی نیز
+هیچ پیشرفت قدیمی را منتقل نمی‌کند؛ پیشرفت تازهٔ موجود نسخهٔ ۲ را کم نمی‌کند. واردکردن
+نسخهٔ ۲ پیشرفت تازه را ادغام می‌کند. هیچ پاسخ/امتیاز/راهنمای آموزش ذخیره نمی‌شود.
+قرارداد کاملِ فعال این بازنویسی در بخش ۵ ضمیمهٔ APOS آمده است. فاز ۸ مجوز اجرا ندارد.

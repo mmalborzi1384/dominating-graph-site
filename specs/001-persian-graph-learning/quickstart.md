@@ -102,3 +102,20 @@ apply to merged totals as well. Change storage after preview: confirmation must 
 For quota failure, preserve disk and export current temporary work, then retry after recovery.
 Review 360px/1280px and both palettes. Actual evidence/limitations are in validation/us5.md;
 phase 8 release gates are not included in this phase.
+
+## APOS redesign / curriculum 2
+
+Run `node scripts/validate-apos.mjs`. The twelve current activities use typed temporary
+responses; old scripts keep their curriculum-1 fixtures for backward compatibility. Start
+fresh: 0%, Action only. Solve three activities in order per stage; expected sequence is
+25/50/75/100. Try an incomplete compound response, hint then reveal: reveal alone must not
+complete it. Process diagrams must not allow live coverage experiments. Randomize a whole
+stage chain: temporary responses clear and completed flags stay; every card uses the same
+variant. Verify keyboard/touch, both palettes and 360/1280 layouts.
+
+Load a valid old state with completed teaching and other results: no write until migration
+confirmation; cancel preserves raw bytes; confirm resets only old teaching progress to 0%
+and retains other records/tombstones/settings. Reload does not repeat the migration. Import
+an old curriculum-1 backup into curriculum 2: preview explains zero old-progress transfer;
+current new progress is not lowered. Test new backup round-trip, quota/retry, reset isolation
+and exact revision conflicts. Evidence: validation/apos-redesign.md. No phase-8 gate is claimed.
