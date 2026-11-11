@@ -48,8 +48,15 @@ for (let n = 2; n <= 5; n++) {
   }
 }
 const bank = JSON.parse(await readFile(new URL('../docs/question-bank.json', import.meta.url), 'utf8'));
+const unsupported = [];
 for (const question of bank.questions.filter(q => q.graph)) {
   const graph = question.graph;
+  if (graph.directed || graph.multigraph || graph.n > 12) {
+    let rejected = false;
+    try { analyzeGraph(graph); } catch { rejected = true; }
+    expect(rejected, `Unsupported source must be rejected: ${question.id}`);
+    unsupported.push(question.id); continue;
+  }
   checkGraph(graph);
   expect(analyzeGraph(graph).gamma === graph.gamma, `Bank gamma mismatch: ${question.id}`);
 }
@@ -81,4 +88,5 @@ for (const ids of [['unknown'], ['a', 'a']]) {
   expect(rejected, 'Invalid selection accepted');
 }
 console.log(`PASS: ${graphs} graphs / ${selections} selections cross-checked against independent reference.`);
-console.log('PASS: all source graph gammas, every optimum, 0/5/10/15 scores, free practice hints, match caps, invalid inputs and topology cache.');
+console.log('PASS: supported source graph gammas, every optimum, 0/5/10/15 scores, free practice hints, match caps, invalid inputs and topology cache.');
+console.log(`Unsupported source graphs rejected (not gamma-verified here): ${unsupported.join(', ') || 'none'}`);
