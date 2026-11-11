@@ -111,3 +111,18 @@ rgba(26,43,36,0.84) and 12px blur; all bead/hatch tokens come verbatim from the 
 Vertex identity is zero-based graph.vertices index modulo 10. Selected=solid own bead;
 nonselected=equal wedge per owner in N[v] intersect S, each with owner's 7x7/45-degree/2.2px
 hatch on sheet. Empty=sheet. After assessment only, missed vertices get 3.2px error rings.
+
+## Phase-7 Records controls
+
+Progress/continue/reset is separate from scored history. Outcomes include explicit text
+self-assessment; response details are collapsed, formulas use KaTeX/LTR spans, timestamps
+are bidi-isolated. Filter history by recorded tab; row checkboxes select exact Attempt IDs.
+Delete preview states count and affected spent turns, with inline confirm/cancel. Deleted
+rows have no response/score or replay control. Analyses update from remaining records.
+
+Import uses a labeled JSON file input, <=5 MiB byte guard, validation message and a preview
+of added/deduplicated/suppressed results, sessions, progress and settings policy. Preview is
+not a save. Confirmation checks the captured revision; cancel/Escape writes nothing. Reject
+old/incompatible versions and conflicting active sessions explicitly. Export is labeled as
+unsaved work when necessary; retry/reload/raw recovery remain inline. Cards share glass
+styles and token colors, mobile buttons fill width while desktop buttons remain intrinsic.

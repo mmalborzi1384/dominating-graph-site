@@ -84,3 +84,21 @@ Human educational review confirms lesson/page accuracy, all modeling contexts, m
 figures, APOS activity choices and text rubrics. Five-student usability check requires 4/5
 to locate/answer a practice item and find its report unaided. Human PR review verifies
 constitution compliance. Runtime, host and usability results remain pending implementation.
+
+## Phase-7 review walkthrough
+
+Run `node scripts/validate-records.mjs` for dependency-free transfer/coverage/deletion fixtures.
+Serve normally and open `#records`. Check 0%/no-data in a fresh browser; record a practice,
+competition and lab result and complete an APOS stage. Verify counts versus unique coverage,
+lesson/APOS breakdowns and text self-assessment labels. Select rows, cancel deletion, then
+confirm: only chosen results disappear, spent turns show «حذف‌شده», progress remains.
+
+Download JSON, import it in a fresh browser, inspect preview, cancel then confirm. Repeat:
+no duplicate outcomes. Import an older backup after turn-result deletion: preview suppresses
+that old result. Reset teaching, then import a pre-reset backup: restoration warning and
+completion union must appear. Try corrupt/oversized/1.1 files and conflicting IDs: no write.
+Check name 30/31, label 50/51, response 1000/1001, results 200/201, sessions 100/101; limits
+apply to merged totals as well. Change storage after preview: confirmation must be rejected.
+For quota failure, preserve disk and export current temporary work, then retry after recovery.
+Review 360px/1280px and both palettes. Actual evidence/limitations are in validation/us5.md;
+phase 8 release gates are not included in this phase.

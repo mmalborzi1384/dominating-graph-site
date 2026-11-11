@@ -44,7 +44,7 @@ Download a UTF-8 JSON file with MIME application/json. Envelope:
   "format": "persian-graph-learning-backup",
   "schemaVersion": 1,
   "curriculumVersion": 1,
-  "bankVersion": "1.1",
+  "bankVersion": "1.2",
   "exportedAt": "2026-11-10T00:00:00Z",
   "data": {
     "teachingProgress": {
@@ -60,10 +60,11 @@ Download a UTF-8 JSON file with MIME application/json. Envelope:
 ```
 
 This empty example is a valid initial state, not a question/attempt schema example.
-The illustrated bankVersion 1.1 predates the v1.2 source bank. It remains a historical
-contract example, not a decision to reject or reinterpret old backups. Before implementing
-transfer, define and test an explicit 1.1/1.2 compatibility or migration policy, including
-the changed source answers, while preserving existing progress and recorded results.
+Phase-7 compatibility decision: export and import bankVersion=1.2 only. Reject 1.1
+with a specific preservation/migration message before any mutation: v1.2 changed source
+answers and a safe mapping has not been reviewed. Never relabel, silently coerce or partially
+import a 1.1 backup. Preserve the original file for a separately reviewed migration. Unknown
+bank/schema/curriculum versions are also rejected. The JSON format/schema stays version 1.
 Do not export revision or derived report caches as authoritative data. Never export teaching
 responses, selected vertices, hint counts, score or attempt history.
 
@@ -214,3 +215,28 @@ active or remaining record capacity cannot accommodate the full restarted match.
 This explicit whole-match removal supersedes the no-session-removal rule only for this API.
 US5 selected-result deletion within a retained session still requires spent tombstones and
 never permits replay. No import or older-backup merge behavior is implemented by this action.
+
+## Phase-7 implementation boundary
+
+`transfer.js` validates the UTF-8 byte limit and exact top-level/data fields, then uses the
+same envelope validator before and after merge. Shared guards are exported from validate.js;
+there is no second permissive schema. Scores are recomputed and checked; reports derive
+optional absent scores. `exportBackup` includes recoverable unsaved memory and excludes
+revision/caches and all teaching responses. Malformed original disk bytes have a separate
+raw recovery download and are never offered as a validated backup.
+
+Same-session merge requires identical immutable metadata, ordered turn identities, question
+and group context. It unions compatible finalization, takes nondecreasing hint levels/current
+index/status, and rejects distinct finalized results. Matching deletion wins in both directions
+and removes linked old Attempts. Candidate validation rejects any resulting score/hint
+inconsistency. More than one unfinished competition or lab session rejects the entire import;
+finish the current activity and review the file again. No automatic winner or partial import.
+
+A fresh destination is an empty initial repository (revision <=1, no completion/results/
+sessions); it adopts imported theme/location. Otherwise valid local theme/location win.
+Union completion is ordered by curriculum and prefix recomputed. Preview explicitly warns
+when completion flags are restored, including pre-reset backups. Confirmation uses the exact
+preview revision; storage change requires a new preview. Cancellation performs no write.
+`repository.deleteResults(ids, expectedRevision)` deletes selected live Attempts across tabs
+in one commit, checks revision/readiness and retains sessions/spent markers. The existing
+lab-only delete remains supported. Quota failure retains old disk and recoverable memory.

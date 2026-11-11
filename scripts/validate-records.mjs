@@ -1,0 +1,55 @@
+// Dependency-free fixtures for transfer/deletion/coverage boundaries.
+import fs from 'node:fs';
+import {summarizeRecords,deleteResults} from '../assets/js/domain/coverage.js';
+import {exportBackup,parseBackup,mergeBackup} from '../assets/js/storage/transfer.js';
+import {validateStoredEnvelope,validateStateTransition,same} from '../assets/js/storage/validate.js';
+import {createRepository,storageKey} from '../assets/js/storage/repository.js';
+import {initialProgress,completeActivity} from '../assets/js/domain/progress.js';
+import {startLabSession,submitLabTurn,graphSnapshot,familyGraph} from '../assets/js/domain/lab.js';
+import {createAttempt} from '../assets/js/domain/attempts.js';
+const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url),'utf8')),c=read('../content/teaching.json'),bank=read('../docs/question-bank.json'),config=read('../content/lab.json'),context={questions:bank.questions,bankVersion:'1.2'},clone=structuredClone;
+const fresh=()=>({schemaVersion:1,revision:0,curriculumVersion:1,teachingProgress:initialProgress(),attempts:{},sessions:{},settings:{theme:'day'}});
+const text=(id='a')=>({id,tab:'practice',questionId:'Q001',recordedAt:'2026-11-11T00:00:00Z',responseMode:'self-assessed-text',target:'rubric',response:'پاسخ مدل‌سازی',hintLevel:0,evaluation:{satisfiesTarget:true,selfAssessed:true},baseScore:10,finalScore:10});
+let count=0;const check=(v,m)=>{count++;if(!v)throw Error(m);},reject=(f,m)=>{let bad=false;try{f();}catch{bad=true;}check(bad,m);};
+const dump=s=>exportBackup(s,c,context),parse=t=>parseBackup(t,c,context),merge=(a,b,options)=>mergeBackup(a,b,c,context,options),valid=s=>validateStoredEnvelope(s,c,context);
+const empty=fresh();check(same(parse(dump(empty)),empty),'Empty roundtrip');
+let state=fresh();state.attempts.a=text();state.attempts.b=text('b');state.teachingProgress=completeActivity(state.teachingProgress,c.activities[0].id,c);
+check(same(parse(dump(state)),state),'Unicode/results/progress roundtrip');check(!/"revision"|"answers"|"hintCounts"/.test(dump(state)),'No authoritative revision/teaching answers');
+let report=summarizeRecords(state,bank.questions);check(report.count===2&&report.unique===1&&report.score===20,'Attempt count separate from unique');check(report.sahat.length===6&&report.sahat.reduce((s,x)=>s+x.total,0)===150,'All six bank denominators');check(report.sahat.find(t=>t.code===bank.questions[0].sahat_code).count===1,'Unique tag coverage');
+const custom=createAttempt({tab:'lab',activityId:'lab:gamma',mode:'integer',target:'gamma',response:1,graph:familyGraph(3,'star'),graphSnapshot:graphSnapshot(familyGraph(3,'star'),config.model)});state.attempts[custom.id]=custom;check(summarizeRecords(state,bank.questions).unique===1,'Custom no sahat');
+check(same(merge(state,parse(dump(state))).candidate,state),'Repeat idempotent');check(merge(empty,state).preview.added===3,'Added preview');check(merge(state,empty).candidate.teachingProgress.completedActivityIds.length===1,'Never lower progress');check(merge(empty,state).preview.restoresProgress,'Old backup completion restoration explicit');
+let progress=fresh();for(const a of c.activities)progress.teachingProgress=completeActivity(progress.teachingProgress,a.id,c);progress.settings.theme='night';progress.teachingProgress.lastVisitedStageId='Schema';
+check(merge(empty,progress).candidate.settings.theme==='day','Local theme wins');check(merge(empty,progress,{fresh:true}).candidate.settings.theme==='night','Fresh profile adopts theme');check(merge(empty,progress,{fresh:true}).candidate.teachingProgress.lastVisitedStageId==='Schema','Fresh location');check(merge(progress,empty).candidate.teachingProgress.lastVisitedStageId==='Schema','Local location');
+const mutate=(change,seed=state)=>{let f=JSON.parse(dump(seed));change(f);reject(()=>parse(JSON.stringify(f)),'Invalid complete import');};
+for(const change of [f=>f.format='other',f=>f.schemaVersion=2,f=>f.curriculumVersion=2,f=>f.bankVersion='1.1',f=>f.bankVersion='9',f=>f.exportedAt='2026-02-30T00:00:00Z',f=>f.extra=1,f=>f.data.revision=9,f=>f.data.teachingProgress.answers=[],f=>f.data.teachingProgress.passedStageIds=['Schema'],f=>f.data.attempts.a.tab='teach',f=>f.data.attempts.a.finalScore=15,f=>f.data.attempts.a.response='<script>x</script>',f=>f.data.attempts.a.recordedAt='invalid',f=>f.data.settings.theme='bad'])mutate(change);
+reject(()=>parse('{'),'Corrupt JSON');reject(()=>parse(' '.repeat(5*1024*1024+1)),'Oversized text');reject(()=>parse(dump(state).replace('"theme": "day"','"theme": "day", "__proto__": {}')),'Unsafe key');
+const conflict=clone(state);conflict.attempts.a.response='متفاوت';reject(()=>merge(state,conflict),'Conflicting stable record');
+for(const length of [1000,1001]){const s=fresh();s.attempts.a=text();s.attempts.a.response='😀'.repeat(length);if(length===1000){check(valid(s).attempts.a.response.length===2000,'Local Unicode text bound');check(parse(dump(s)).attempts.a.id==='a','Import text bound');}else{reject(()=>valid(s),'Local text overflow');mutate(f=>f.data.attempts.a.response='😀'.repeat(length));}}
+const session=(id)=>({id,kind:'practice',status:'configured',questionIds:[],startedAt:'2026-11-11T00:00:00Z',currentIndex:0});
+for(const [kind,limit] of [['attempts',200],['sessions',100]]){
+ const s=fresh();for(let i=0;i<limit;i++)s[kind]['x'+i]=kind==='attempts'?text('x'+i):session('x'+i);
+ check(Object.keys(valid(s)[kind]).length===limit,`Local ${limit}`);check(Object.keys(parse(dump(s))[kind]).length===limit,`Import ${limit}`);
+ const over=clone(s);over[kind].overflow=kind==='attempts'?text('overflow'):session('overflow');reject(()=>valid(over),'Local one over');mutate(f=>f.data[kind].overflow=over[kind].overflow,s);
+ const other=fresh();other[kind].other=kind==='attempts'?text('other'):session('other');reject(()=>merge(s,other),'Merged capacity overflow');
+}
+const pool=config.questionIds.map(id=>bank.questions.find(q=>q.id===id));let game=startLabSession(fresh(),pool,'game',['الف','ب'],c,context),sid=Object.keys(game.sessions)[0],pending=clone(game);
+for(let i=0;i<2;i++)game=submitLabTurn(game,sid,[],c,context);const aid=game.sessions[sid].turns[0].finalizedAttemptId;
+const deleted=deleteResults(game,[aid]);valid(deleted);validateStateTransition(game,deleted);check(deleted.sessions[sid].turns[0].resultStatus==='finalized-deleted','Spent marker');check(deleted.sessions[sid].turns[0].finalizedAttemptId===null,'Null pointer');check(same(deleted.teachingProgress,game.teachingProgress),'Delete progress isolation');
+for(const [a,b] of [[deleted,game],[game,deleted],[deleted,pending],[pending,deleted]]){const result=merge(a,b);check(result.candidate.sessions[sid].turns[0].resultStatus==='finalized-deleted','Deletion wins both directions');check(!result.candidate.attempts[aid],'Old result suppressed');check(result.candidate.sessions[sid].status==='completed','Never reopen');}
+check(same(merge(deleted,parse(dump(deleted))).candidate,deleted),'Deleted roundtrip/idempotence');reject(()=>submitLabTurn(deleted,sid,[],c,context),'No replay');mutate(f=>f.data.sessions[sid].turns[0].finalizedAttemptId=aid,deleted);
+const mismatch=clone(deleted);mismatch.sessions[sid].turns[0].questionId=mismatch.sessions[sid].turns[1].questionId;reject(()=>merge(game,mismatch),'Deleted context mismatch');
+const another=startLabSession(fresh(),pool,'game',['الف','ب'],c,context);reject(()=>merge(pending,another),'Active conflict');
+for(const size of [30,31]){const s=clone(pending);s.sessions[sid].groups[0].name='ن'.repeat(size);if(size===30){valid(s);check(parse(dump(s)).sessions[sid].groups[0].name.length===30,'Name boundary');}else{reject(()=>valid(s),'Local name overflow');mutate(f=>f.data.sessions[sid].groups[0].name='ن'.repeat(size),pending);}}
+for(const size of [50,51]){const s=clone(state);s.attempts[custom.id].graphSnapshot.label='ل'.repeat(size);if(size===50){valid(s);check(parse(dump(s)).attempts[custom.id].graphSnapshot.label.length===50,'Label boundary');}else{reject(()=>valid(s),'Local label overflow');mutate(f=>f.data.attempts[custom.id].graphSnapshot.label='ل'.repeat(size));}}
+let raw=JSON.stringify(state),writes=0,fail=false;const storage={getItem:k=>k===storageKey?raw:null,setItem:(k,v)=>{if(fail)throw Error('quota');writes++;raw=v;},removeItem(){}};const repo=createRepository(c,storage,context),before=raw;
+reject(()=>repo.deleteResults(['a'],9),'Stale delete');check(raw===before&&writes===0,'Invalid delete unchanged');fail=true;check(!repo.deleteResults(['a'],0)&&raw===before,'Quota old disk');check(!parse(repo.recoveryJSON()).attempts.a,'Unsaved export');fail=false;check(repo.retry()&&writes===1,'Retry one write');repo.dispose();
+raw=JSON.stringify(empty);writes=0;const r=createRepository(c,storage,context),proposal=merge(r.snapshot().state,state).candidate;check(raw===JSON.stringify(empty)&&writes===0,'Preview/cancel no writes');check(r.commit(proposal,0)&&writes===1,'Confirm atomic');check(!r.commit(proposal,0)&&writes===1,'Stale confirm unchanged');r.dispose();
+check(deleteResults(state,['a']).attempts.b.id==='b','Selected isolation');reject(()=>deleteResults(state,['absent']),'Missing selection');
+console.log(`${count} records/transfer checks passed.`);
+const {createCompetition,competitionPool,addCompetition,consumeHint,finalizeTurn,advanceTurn}=await import('../assets/js/domain/sessions.js');
+const {analyzeGraph}=await import('../assets/js/domain/evaluate.js');
+let comp=fresh();const match=createCompetition(['یک','دو'],1,competitionPool(bank.questions,read('../content/competition.json')),comp);comp=addCompetition(comp,match,c,context);comp=consumeHint(comp,match.id,c,context);const q=bank.questions.find(q=>q.id===match.turns[0].questionId);comp=finalizeTurn(comp,match.id,analyzeGraph(q.graph).minimumSets[0],c,context);comp=advanceTurn(comp,match.id,c,context);comp=finalizeTurn(comp,match.id,[],c,context);comp=advanceTurn(comp,match.id,c,context);
+const compId=comp.sessions[match.id].turns[0].finalizedAttemptId;check(parse(dump(comp)).attempts[compId].finalScore===10,'Import preserves recomputed hint cap');const removed=deleteResults(comp,[compId]);check(merge(removed,comp).candidate.sessions[match.id].turns[0].resultStatus==='finalized-deleted','Competition tombstone merge');check(!merge(comp,removed).candidate.attempts[compId],'Competition no revival');reject(()=>finalizeTurn(removed,match.id,[],c,context),'Competition cannot replay');
+let noScores=clone(state);delete noScores.attempts.a.baseScore;delete noScores.attempts.a.finalScore;check(summarizeRecords(noScores,bank.questions).score===35,'Optional legacy scores derive correctly');
+const timed=startLabSession(fresh(),pool,'challenge',[],c,context,Date.now()-180001),timedId=Object.keys(timed.sessions)[0];const {expireLabSession}=await import('../assets/js/domain/lab.js');const timeout=expireLabSession(timed,timedId,c,context);check(parse(dump(timeout)).sessions[timedId].turns.every(t=>t.resultStatus==='pending'),'Timeout unanswered stays pending');
+console.log(`Final records/transfer total: ${count} checks passed.`);

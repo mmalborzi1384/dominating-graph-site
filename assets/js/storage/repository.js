@@ -3,6 +3,7 @@ import { validateStoredEnvelope, validateStateTransition } from './validate.js';
 import { decodeStoredState, migrateShellPreference } from './migrate.js';
 import { requireValid } from '../domain/limits.js';
 import { replaceCompetition } from '../domain/sessions.js';
+import { deleteResults } from '../domain/coverage.js';
 import { removeLabResult } from '../domain/lab.js';
 
 export const basePath = new URL('../../../', import.meta.url).pathname;
@@ -148,6 +149,10 @@ export function createRepository(curriculum, storage = browserStorage, context =
       requireValid(expectedRevision === state.revision && !dirty && !conflict && !blocked(), 'وضعیت ذخیره تغییر کرده است؛ عملیات را دوباره بررسی و تأیید کنید.', 'revision', 'revision-conflict');
       const next = replaceCompetition(state,id,restart,curriculum,context);
       return commit(next,expectedRevision,{removedCompetitionId:id});
+    },
+    deleteResults(ids, expectedRevision) {
+      requireValid(expectedRevision===state.revision && !dirty && !conflict && !blocked(), 'وضعیت ذخیره تغییر کرده است؛ حذف را دوباره بررسی کنید.', 'revision', 'revision-conflict');
+      return commit(deleteResults(state,ids),expectedRevision);
     },
     deleteLabResult(id, expectedRevision) {
       requireValid(expectedRevision===state.revision && !dirty && !conflict && !blocked(), 'وضعیت ذخیره تغییر کرده است؛ حذف را دوباره بررسی و تأیید کنید.', 'revision', 'revision-conflict');
