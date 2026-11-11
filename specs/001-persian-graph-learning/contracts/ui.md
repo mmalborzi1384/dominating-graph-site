@@ -46,6 +46,32 @@ survives refresh. Finalized turn disables scoring inputs and advances on explici
 
 ## Lab
 
+Saved-result rows reserve flexible width for title/metadata and intrinsic width for Delete
+on desktop; global full-width button styles must not collapse the text column. On mobile,
+stack metadata and action. Render title, score and isolated semantic time separately;
+verify populated rows, not just empty panels, in both themes.
+
+Second review: show station title/goal immediately under the selector and provide an in-page
+jump to its task heading. Common building/editing tools remain shared. Formula observations
+show family, n (vertices), gamma (minimum centers), session-only lifetime, deduplication and
+individual/clear-all removal. They are never presented as saved scores. Near Save, explain
+local persistence and link to a lab-only saved-results details panel. Every deletion requires
+inline confirm/cancel; list empty/deleted states truthfully. The shared lesson/page cards
+are labeled as noninteractive curriculum scope references, not navigation controls.
+
+Lab review amendment: distinguish custom builder, prepared-model loading and n/gamma target
+with separate labeled groups and an explicit current-model summary. Custom input changes
+apply only on Build. Target n is independent of prepared-model size. Use an equal-sized
+four-direction pad on mobile and desktop; vertex labels match board numbering.
+Replace all-pairs edge buttons with a two-select add/remove control and an opt-in board
+connection mode (two vertex clicks); clicking the first vertex again cancels. Existing
+edges remain removable in a collapsed list of touch-sized chips. Reject loops without change.
+Large prepared models remain usable for analysis; custom-draw submission over 10 vertices
+is refused before recording, with an actionable Persian message and no internal field paths.
+Gamma has an explicit numeric check, formula has transient family observations, bounds update
+after edge changes, minimality has a verified counterexample, and station 5 remains a real
+two-group session. Verify these behaviors and both layouts/themes during review.
+
 Five station selectors inside the Lab tab, never extra top-level tabs: gamma calculation;
 formula discovery; bounds/edge effects; minimal versus minimum; two-group game.
 Shared tools: modeled 2–10 vertex custom graph, add/remove edges, drag vertices, draw to n/gamma,

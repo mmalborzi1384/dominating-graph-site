@@ -53,6 +53,12 @@ blocker. Publication requires all 150 questions ready and reachable in an allowe
 
 ## Rendering and assessment
 
+Lab builder review: family topology and layout are distinct. Verify exact path endpoint/
+interior degrees, cycle regularity, star center/leaves, complete and edgeless edge counts.
+Layout expresses path/star structure and avoids overlapping circles at mobile projection.
+Observations name the built family, not unapplied selector settings; topology edits invalidate
+the family label. Prepared 11/12-vertex models must not become custom draw records.
+
 Plain text is rendered as text nodes. Parse $...$ and $$...$$ math segments and render with
 KaTeX in isolated LTR spans. Do not execute imported HTML, URLs or TeX trust commands.
 Malformed math leaves readable fallback plus an inline diagnostic. A text proof is a

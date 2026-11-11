@@ -2,7 +2,7 @@ import { validateProgress } from '../domain/progress.js';
 import { normalizeGraph, selectionMask, topologyKey } from '../domain/graph.js';
 import { analyzeGraph, evaluateSelection } from '../domain/evaluate.js';
 import { scoreSelection } from '../domain/scoring.js';
-import { normalizeUserText, requireValid as check, validateCapacity } from '../domain/limits.js';
+import { normalizeUserText, requireValid as check, validateCapacity, LAB_ACTIVITY_IDS } from '../domain/limits.js';
 
 const tabs = ['practice', 'competition', 'lab'];
 const targets = ['dominating', 'minimal', 'minimum'];
@@ -95,7 +95,7 @@ function validateAttempt(attempt, key, context) {
   }
   if (attempt.activityId !== undefined) {
     id(attempt.activityId, path);
-    check(attempt.tab === 'lab' && context.activityIds?.includes(attempt.activityId), 'فعالیت آزمایشگاه ثبت نشده است.', path);
+    check(attempt.tab === 'lab' && (context.activityIds ?? LAB_ACTIVITY_IDS).includes(attempt.activityId), 'فعالیت آزمایشگاه ثبت نشده است.', path);
   }
   if (attempt.durationMs !== undefined) check(Number.isFinite(attempt.durationMs) && attempt.durationMs >= 0, 'مدت معتبر نیست.', path);
   let model = source?.graph;
@@ -194,7 +194,9 @@ function validateSession(session, key, state, context, usedAttempts) {
     } else check(turn.finalizedAttemptId === null, 'نوبت بدون نتیجه باید ارجاع null داشته باشد.', path);
   }
   if (session.kind === 'competition' && session.status !== 'configured') check([...perGroup.values()].every(count => count === session.roundCount), 'نوبت‌های گروه‌ها برابر نیستند.', path);
-  if (session.status === 'completed') check(turns.every(turn => turn.resultStatus !== 'pending'), 'نشست پایان‌یافته نوبت باز دارد.', path);
+  if (session.status === 'completed') check(turns.every(turn => turn.resultStatus !== 'pending')
+    || session.kind === 'lab' && session.deadlineAt !== undefined && session.deadlineAt <= Date.now() && session.currentIndex === turns.length,
+    'نشست پایان‌یافته نوبت باز دارد.', path);
   integer(session.currentIndex, 0, turns.length || session.questionIds.length, path);
   if (session.graphDraft !== undefined) snapshot(session.graphDraft, `${path}.graphDraft`, 10);
 }

@@ -2,6 +2,15 @@
 
 ## Repository boundary
 
+Lab-review scoped deletion: `deleteLabResult(id, expectedRevision)` accepts only an existing
+lab Attempt, checks current revision/write readiness, constructs the complete candidate and
+commits once. It removes only that Attempt; a referencing game/challenge turn is atomically
+set to finalized-deleted with null attempt reference. Sessions and spent identities remain;
+scores derive from retained Attempts. Cancel/stale validation changes no stored data; failed
+writes preserve old disk state and recoverable temporary work. Other tabs/progress/settings
+are unaffected. This lab-only control does not implement the general Records/import UI.
+Family comparison observations are in-memory only and never enter snapshots or backups.
+
 Read returns validated state or an explicit absent/corrupt/unavailable result. Commit accepts
 a complete next state plus expected revision, validates/serializes in memory, checks current
 revision, then performs one localStorage.setItem. Unknown schema versions are never overwritten
@@ -14,6 +23,19 @@ and first stage location. Never call localStorage.clear(). Failure preserves old
 state and marks current work unsaved; an inline status must not claim successful reset/save.
 
 ## Export format
+
+Lab phase-6 details: registered custom activity IDs are lab:gamma, lab:formula, lab:bounds,
+lab:minimal and lab:draw. They carry modeled snapshots and do not imply a source question
+or sahat tag. Prepared unmodified models keep their permitted source ID. Editing alone
+creates no record. A source model beyond custom bounds remains viewable, but an edited
+custom snapshot must still satisfy 2–10 vertices.
+
+Timed lab sessions persist five question IDs and an absolute 180-second deadline before play.
+After the deadline no new Attempt can be finalized. Explicit expiration sets status=completed
+and currentIndex=turns.length; unanswered turns remain pending with null result references,
+and create no score/coverage. This is a narrowly validated exception to the all-turns-final
+completed-state rule, only for lab sessions whose deadline has elapsed. A completed session
+cannot be reopened. Future transfer must preserve this distinction from deleted results.
 
 Download a UTF-8 JSON file with MIME application/json. Envelope:
 
