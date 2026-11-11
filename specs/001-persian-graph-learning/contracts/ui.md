@@ -31,6 +31,13 @@ Records has a dedicated progress summary with continue and reset, not teaching s
 
 ## Practice / competition
 
+Randomization controls: Teaching activities display stage/exact difficulty and offer
+«سؤال تصادفی دیگر» from the compatible ready pool without changing progress. Practice's
+question picker offers «تمرین با سؤال‌های تصادفی» for each exact difficulty and a next-random
+button; lesson/category constraints remain active. Competition describes different random
+questions at equal exact difficulty per round; insufficient capacity blocks start inline.
+Legacy saved competitions retain their assignments; new draws never rewrite an active schedule.
+
 Practice: lesson/category/easy-hard filters, question selection, free sequential hints,
 feedback, final submission and retry. Text/proof response compares to an explicit rubric and
 records the student's self-assessment as such. Competition: group count/names, rounds, current

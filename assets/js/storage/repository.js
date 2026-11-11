@@ -2,6 +2,7 @@ import { initialProgress, validateProgress } from '../domain/progress.js';
 import { validateStoredEnvelope, validateStateTransition } from './validate.js';
 import { decodeStoredState, migrateShellPreference } from './migrate.js';
 import { requireValid } from '../domain/limits.js';
+import { replaceCompetition } from '../domain/sessions.js';
 
 export const basePath = new URL('../../../', import.meta.url).pathname;
 export const storageKey = `graph-learning:v1:${basePath}`;
@@ -61,20 +62,20 @@ export function createRepository(curriculum, storage = browserStorage, context =
     }
     return snapshot();
   }
-  function prepare(next, expectedRevision, allowTeachingReset = false) {
+  function prepare(next, expectedRevision, allowTeachingReset = false, removedCompetitionId = null) {
     try {
       requireValid(expectedRevision === state.revision && next.revision === expectedRevision,
         'نسخهٔ خوانده‌شده قدیمی است؛ ابتدا وضعیت ذخیره را بازخوانی کنید.', 'revision', 'revision-conflict');
       const normalized = validateStoredEnvelope(next, curriculum, context);
-      validateStateTransition(state, normalized, { allowTeachingReset });
+      validateStateTransition(state, normalized, { allowTeachingReset, removedCompetitionId });
       requireValid(state.revision < Number.MAX_SAFE_INTEGER, 'شمار نسخه به حد مجاز رسیده است.', 'revision');
       const candidate = { ...normalized, revision: expectedRevision + 1 };
       // Serialize before touching either live state or persistent storage.
       return { ok: true, candidate, serialized: JSON.stringify(candidate) };
     } catch (error) { return { ok: false, status: error.code === 'revision-conflict' ? 'conflict' : 'invalid', error: errorInfo(error) }; }
   }
-  function commit(next = state, expectedRevision = state.revision, { allowTeachingReset = false } = {}) {
-    const prepared = prepare(next, expectedRevision, allowTeachingReset);
+  function commit(next = state, expectedRevision = state.revision, { allowTeachingReset = false, removedCompetitionId = null } = {}) {
+    const prepared = prepare(next, expectedRevision, allowTeachingReset, removedCompetitionId);
     if (!prepared.ok) {
       lastResult = { status: prepared.status, error: prepared.error };
       // A malformed proposal cannot poison valid current memory or its recovery download.
@@ -141,6 +142,11 @@ export function createRepository(curriculum, storage = browserStorage, context =
     },
     resetTeaching() {
       return commit({ ...state, teachingProgress: initialProgress() }, state.revision, { allowTeachingReset: true });
+    },
+    manageCompetition(id, restart, expectedRevision) {
+      requireValid(expectedRevision === state.revision && !dirty && !conflict && !blocked(), 'وضعیت ذخیره تغییر کرده است؛ عملیات را دوباره بررسی و تأیید کنید.', 'revision', 'revision-conflict');
+      const next = replaceCompetition(state,id,restart,curriculum,context);
+      return commit(next,expectedRevision,{removedCompetitionId:id});
     },
     setTheme(theme) { return commit({ ...state, settings: { theme } }, state.revision); },
     setEditingDirty(token, value) {

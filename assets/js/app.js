@@ -1,6 +1,7 @@
 import { loadTeaching } from './data/load.js';
 import { createRepository } from './storage/repository.js';
 import { initPractice } from './tabs/practice.js';
+import { initCompetition } from './tabs/competition.js';
 import { initTeaching } from './tabs/teach.js';
 import { initTabs } from './ui/tabs.js';
 import { renderFormula } from './ui/math.js';
@@ -59,6 +60,8 @@ try {
   initTeaching(teaching, repository);
   try { await initPractice(teaching.questions, teaching.curriculum, repository); }
   catch { setFeedback(document.querySelector('#panel-practice .empty-note') ?? document.getElementById('panel-practice'), 'تمرین بارگیری نشد؛ فایل محتوای تمرین را بررسی کنید.', { tone: 'error' }); }
+  try { await initCompetition(teaching.questions, teaching.curriculum, repository); }
+  catch { setFeedback(document.getElementById('panel-competition'), 'مسابقه آماده نشد؛ محتوای مسابقه را بررسی کنید.', { tone: 'error' }); }
 } catch {
   const notice = document.getElementById('content-notice');
   notice.textContent = 'آموزش آماده نشد؛ فایل‌های بانک و محتوای آموزش را بررسی کنید. پیشرفت ذخیره‌شده تغییر نمی‌کند.';

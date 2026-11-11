@@ -173,18 +173,40 @@ Stop for human review.
 
 ## Phase 5: User Story 3 - مسابقهٔ گروهی (Priority: P2)
 
+Randomization amendment (same PR, user-requested): replace shared questions with random
+distinct IDs of the same exact difficulty per round; validate sufficient pool capacity and
+persist assignments before play. Add in-memory teaching pools constrained to original APOS/
+exact difficulty with stable target/completion IDs, and exact-difficulty random practice
+options respecting filters. Update T018/T026/T031–T036 implementations and their validation;
+verify no teaching responses/assignments are persisted, no within-round duplicates, retained
+competition assignments on reload/reset, empty/singleton pools and no record until finalize.
+This amendment supersedes the earlier same-question-per-round policy; other phase boundaries remain.
+
 **Purpose / Goal**: Deliver equal-turn local group competition with persisted hint caps and immutable results.
 
 **Independent Test**: Complete a match at each integer group count 2–10, verify caps and shared ranks, reload during an active hinted turn and ensure no score/cap reset.
 
-- [ ] T031 [P] [US3] Define round defaults, eligible question references and cap table in `content/competition.json`; enforce “rounds positive integer; eligible question types and tab permission enforced”, allowed types interactive_graph/compute_gamma and caps 15/10/5/0. Adapt numeric-gamma competition interaction to vertex selection without changing source IDs/type metadata.
-- [ ] T032 [P] [US3] Implement session/turn state in `assets/js/domain/sessions.js`: status “configured/active/completed”, stable group/turn IDs, “count 2–10 for competition and exactly 2 in lab station 5”, positive rounds and equal-turn allocation by difficulty. Persist question choices/hints before display, one finalized answer per turn, absolute deadline when present, and totals derived from attempts; deleted results leave a spent turn. Enforce <=30-character group names and <=100 stored sessions. Represent each turn with resultStatus=pending|finalized|finalized-deleted: pending/deleted has finalizedAttemptId=null, finalized requires a matching existing Attempt; both finalized states remain spent. Deleted state contains no response/score/evaluation copies.
-- [ ] T033 [US3] Implement group names/count, positive round setup, active-group/round UI and equal-level pool selection in `assets/js/tabs/competition.js` after config/session interfaces; reject 1/11/fractional counts, disclose pool-cycle repeats, show inline empty pool errors.
-- [ ] T034 [US3] Implement hint button, visible cap and final-answer commit in `assets/js/tabs/competition.js`; min(base,cap), not subtraction; persist consumedHintLevel before reveal, allow exactly one finalized attempt per turn, disable scoring inputs afterward and reset caps only on the next turn.
-- [ ] T035 [US3] Implement resume, final totals and shared-rank results in `assets/js/tabs/competition.js`; recompute totals from retained attempts, restore active turn/hint level on reload, handle storage conflicts without replaying finalized turns and never use a hidden tie-break.
-- [ ] T036 [US3] Execute US3 verification and record outcomes in `specs/001-persian-graph-learning/validation/us3.md`: every count 2–10, invalid boundaries, equal turns, eligible pool exhaustion, 0/5/10/15 quality by all caps, hinted-turn refresh, immutable finalization and shared ranks; later deletion checks reuse US5.
+- [X] T031 [P] [US3] Define round defaults, eligible question references and cap table in `content/competition.json`; enforce “rounds positive integer; eligible question types and tab permission enforced”, allowed types interactive_graph/compute_gamma and caps 15/10/5/0. Adapt numeric-gamma competition interaction to vertex selection without changing source IDs/type metadata.
+- [X] T032 [P] [US3] Implement session/turn state in `assets/js/domain/sessions.js`: status “configured/active/completed”, stable group/turn IDs, “count 2–10 for competition and exactly 2 in lab station 5”, positive rounds and equal-turn allocation by difficulty. Persist question choices/hints before display, one finalized answer per turn, absolute deadline when present, and totals derived from attempts; deleted results leave a spent turn. Enforce <=30-character group names and <=100 stored sessions. Represent each turn with resultStatus=pending|finalized|finalized-deleted: pending/deleted has finalizedAttemptId=null, finalized requires a matching existing Attempt; both finalized states remain spent. Deleted state contains no response/score/evaluation copies.
+- [X] T033 [US3] Implement group names/count, positive round setup, active-group/round UI and equal-level pool selection in `assets/js/tabs/competition.js` after config/session interfaces; reject 1/11/fractional counts, disclose pool-cycle repeats, show inline empty pool errors.
+- [X] T034 [US3] Implement hint button, visible cap and final-answer commit in `assets/js/tabs/competition.js`; min(base,cap), not subtraction; persist consumedHintLevel before reveal, allow exactly one finalized attempt per turn, disable scoring inputs afterward and reset caps only on the next turn.
+- [X] T035 [US3] Implement resume, final totals and shared-rank results in `assets/js/tabs/competition.js`; recompute totals from retained attempts, restore active turn/hint level on reload, handle storage conflicts without replaying finalized turns and never use a hidden tie-break.
+- [X] T036 [US3] Execute US3 verification and record outcomes in `specs/001-persian-graph-learning/validation/us3.md`: every count 2–10, invalid boundaries, equal turns, eligible pool exhaustion, 0/5/10/15 quality by all caps, hinted-turn refresh, immutable finalization and shared ranks; later deletion checks reuse US5.
 
 **Checkpoint**: Competition consumes the shared attempt/session model, not US1 teaching completion.
+
+Phase-5 slice (2026-11-11): T031–T036 implemented with seven modeled eligible questions,
+shared questions per round for equal difficulty, durable consumed hints, one-shot finalization,
+resume, spent deleted-turn handling and shared ranks. The latest user request authorizes only
+this phase; full-bank/human content gates remain open. Evidence: [validation/us3.md](validation/us3.md).
+Stop for human review before phase 6; do not merge automatically.
+
+User-requested phase-5 follow-up: add reset/delete controls with inline confirm/cancel for
+active and completed matches. Reset removes the chosen execution/results and starts a fresh
+identity with unchanged groups/rounds/questions and zero hints; delete removes that whole
+match/results. Use a narrow repository action, expected revision and one write; preserve
+other sessions/records and teaching progress. This explicit whole-match action is separate
+from future US5 selected-result deletion/tombstones. Verified in validation/us3.md.
 
 ---
 

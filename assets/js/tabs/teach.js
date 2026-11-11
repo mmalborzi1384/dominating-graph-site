@@ -3,6 +3,7 @@ import { analyzeGraph, evaluateSelection } from '../domain/evaluate.js';
 import { createGraphBoard } from '../ui/graph-editor.js';
 import { renderTextMath } from '../ui/math.js';
 import { createInlineConfirmation, setFeedback, selectionFeedback } from '../ui/feedback.js';
+import { pickRandom } from '../domain/random.js';
 
 const fa = number => number.toLocaleString('fa-IR');
 const targets = { dominating: 'یک مجموعهٔ احاطه‌گر', minimal: 'یک مجموعهٔ احاطه‌گر مینیمال', minimum: 'یک مجموعهٔ احاطه‌گر مینیمم' };
@@ -23,7 +24,8 @@ function download(text, name) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-export function initTeaching({ curriculum, models }, repository) {
+export function initTeaching({ curriculum, models, teachingPools }, repository) {
+  const assignments = new Map();
   const panel = document.getElementById('panel-teach');
   const root = element('div', 'teaching');
   const header = element('header', 'teaching-heading');
@@ -63,6 +65,7 @@ export function initTeaching({ curriculum, models }, repository) {
     confirmLabel: 'بله، پیشرفت آموزش صفر شود', id: 'reset-confirm',
     confirmId: 'confirm-reset-teaching', cancelId: 'cancel-reset-teaching',
     onConfirm() {
+      assignments.clear();
       currentStageId = null;
       repository.resetTeaching();
       sync(repository.snapshot()); stageHost.querySelector('h2')?.focus();
@@ -153,11 +156,15 @@ export function initTeaching({ curriculum, models }, repository) {
       blocks.append(card);
     }
     stageHost.append(blocks, element('p', 'required-note', `برای عبور، هر ${fa(stage.requiredActivityIds.length)} فعالیت زیر را درست بررسی کن. راهنما رایگان است.`));
-    for (const activityId of stage.requiredActivityIds) stageHost.append(activityCard(models.get(activityId)));
+    for (const activityId of stage.requiredActivityIds) {
+      if(!assignments.has(activityId)) assignments.set(activityId,pickRandom(teachingPools?.get(activityId)??[models.get(activityId)]));
+      stageHost.append(activityCard(assignments.get(activityId)));
+    }
   }
   function activityCard(model) {
     const { activity, question } = model, analysis = analyzeGraph(model.graph);
     const card = element('article', 'teaching-activity'); card.dataset.activityId = activity.id;
+    card.dataset.questionId=question.id;card.dataset.difficulty=question.difficulty;
     const questionCard = element('div', 'question-card glass-surface');
     const heading = element('h3'); renderTextMath(heading, `${question.id} · ${activity.title}`);
     const badge = element('p', 'activity-completion'); activityStatuses.set(activity.id, badge);
@@ -165,6 +172,12 @@ export function initTeaching({ curriculum, models }, repository) {
     questionCard.append(heading, badge, element('p', 'activity-context', model.scenario),
       element('p', 'model-key', `${model.vertexMeaning} ${model.edgeMeaning}`),
       element('p', 'activity-target', `خواسته: ${targets[activity.target]}`), prompt);
+    const candidates=teachingPools?.get(activity.id)??[model];
+    const redraw=button('سؤال تصادفی دیگر','secondary-button',()=>{
+      disposeBoard();assignments.set(activity.id,pickRandom(candidates,question.id));
+      card.replaceWith(activityCard(assignments.get(activity.id)));sync(repository.snapshot());
+    });redraw.dataset.randomActivity=activity.id;
+    questionCard.append(element('p','model-key',`سؤال تصادفی از ${activity.stageId} · درجهٔ ${fa(question.difficulty)} · ${fa(candidates.length)} سؤال آماده${candidates.length===1?'؛ فقط یک سؤال در این مجموعه آماده است':''}`),redraw);
     const source = element('details', 'activity-source');
     const original = element('p'); renderTextMath(original, `${question.title_fa} — ${question.question_fa}`);
     source.append(element('summary', '', 'متن اصلی بانک و توضیح فعالیت'), original,
@@ -186,9 +199,9 @@ export function initTeaching({ curriculum, models }, repository) {
     const board = createGraphBoard(boardHost, model, id => {
       selected = selected.includes(id) ? selected.filter(value => value !== id) : [...selected, id];
       invalidate();
-    }); boardCleanups.push(() => {
+    }); const disposeBoard=() => {
       board.destroy(); repository.setEditingDirty(`teaching:${activity.id}`, false);
-    });
+    };boardCleanups.push(disposeBoard);
     function updateBoard() {
       repository.setEditingDirty(`teaching:${activity.id}`, selected.length > 0 || hintLevel > 0);
       const evaluation = evaluate(); board.update(selected, { missed: checked?.uncoveredVertexIds ?? [] });
