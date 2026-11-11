@@ -38,6 +38,10 @@ Download a UTF-8 JSON file with MIME application/json. Envelope:
 ```
 
 This empty example is a valid initial state, not a question/attempt schema example.
+The illustrated bankVersion 1.1 predates the v1.2 source bank. It remains a historical
+contract example, not a decision to reject or reinterpret old backups. Before implementing
+transfer, define and test an explicit 1.1/1.2 compatibility or migration policy, including
+the changed source answers, while preserving existing progress and recorded results.
 Do not export revision or derived report caches as authoritative data. Never export teaching
 responses, selected vertices, hint counts, score or attempt history.
 

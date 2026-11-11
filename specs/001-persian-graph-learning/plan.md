@@ -137,11 +137,12 @@ Run `graphify update .` after each completed code slice. Plan-only documents do 
 
 ## Scheduling amendment — 2026-11-11
 
-The user deferred T006 and T015–T017 to before publication and requested completing T008,
-T011 and T012 before phase 4. The current slice completes those shared storage/math/feedback
-boundaries only. Feature controllers can consume individually validated source-backed models;
-whole-bank authoring, readiness and integrated foundation smoke checks remain release blockers.
-No scored Practice or other new tab flow is authorized by this foundation follow-up.
+T008, T011 and T012 were completed before the previously requested phase 4. The user has
+subsequently prioritized bank completion ahead of further feature phases, superseding the
+earlier pre-release deferral of T006 and T015–T017. The present slice only aligns documents;
+it does not implement those tasks or authorize a new tab workflow. The v1.2 bank and local
+book PDF are now available; assess compatibility, context, human review and full readiness
+as described in the content contract before treating any source item as usable.
 
 ## Phase Outputs and Validation
 

@@ -2,7 +2,10 @@
 
 ## Inputs
 
-- `docs/question-bank.json`: authoritative existing IDs/metadata, fetched as JSON.
+- `docs/question-bank.json`: authoritative existing IDs/metadata, currently v1.2, fetched as JSON.
+- `docs/گسسته-دوازدهم.pdf`: local book source; `docs/question-bank-v1.2-report.md`
+  describes v1.2 changes. `docs/content-gaps.md` is a historical v1.1 audit, not a
+  current outstanding-work list.
 - `content/question-overrides.json`: versioned reviewed supplements keyed by question ID.
 - `content/teaching.json`: curriculumVersion, ordered stages, lesson blocks and activities.
 - `content/lab.json`, `content/competition.json`: declarative activity settings.
@@ -43,3 +46,19 @@ Validator checks 150 unique IDs, six category counts, APOS/tab references, three
 sahat counts 60/25/20/15/15/15, graph endpoint integrity and gamma consistency.
 Human review verifies modeling meaning, book figures, rubrics, APOS fit and page coverage.
 Machine structure checks alone do not certify instructional correctness.
+
+## v1.2 baseline and outstanding decisions
+
+The bank contains 150 questions, 78 graph fields and 64 modeling fields. The report's
+47/126 practice-ready count uses only its own source-field rule: it does not establish
+runtime support, compliance with the modeling principle or human approval. All presented
+questions, including text/proof, require meaningful modeled context under the constitution;
+do not invent source figures or silently change a question's meaning to supply it.
+Q014 is directed with null gamma and must not enter the undirected evaluator; Q055 and Q114
+have 14 and 16 vertices respectively, exceeding the existing 12-vertex prepared-graph limit.
+Keep unsupported cases unavailable until a verified design supports them. Q141/Q146 obtain
+graphs at runtime; Q139 is a starter, and Q142/Q143 require families of graphs. A null graph
+alone is not an error for a textual, student-built or runtime activity. Verify the v1.2
+corrections and source figures against the local PDF and obtain human educational review.
+Do not conflate a source-bank version update with a storage/backup migration: define and
+test the compatibility policy before changing the existing transfer contract.
