@@ -113,3 +113,31 @@ source gammas match, while Q014/Q055/Q114 are explicitly rejected by this engine
 This is a layout/status follow-up in the same PR, not phase 8. Full-bank readiness is
 still pending; docs/content-status.md records actual field counts, tab pools and the limited
 two-variant teaching randomization without claiming a 150-question random teaching bank.
+
+## Single-activity flow follow-up — 2026-11-12
+
+Only one current activity card is instantiated, with future titles/inputs absent. Locked
+APOS navigation is hidden; passed/unlocked structures remain available for review. A small
+three-node route and finite completion pulse/wipe replace the card after a correct answer,
+including answers using hints. Incorrect answers and reveal alone stay on the current card.
+The third activity automatically moves to the next structure; the twelfth shows a finish
+scene. Reference definitions stay collapsed separately. Motion does not change graph opacity.
+
+Current checks: **245 APOS domain/progress/compatibility checks passed**, plus foundation 104.
+New position fixtures cover first incomplete activity, valid review, rejection of preferred
+future questions/locked stages, transitions across all four structures and the final boundary.
+
+**61 isolated-Chrome browser checks passed**, no runtime exceptions. All twelve activities
+were solved through their actual controls. Checks cover one-card DOM and no future card,
+hidden locked navigation, hint/reveal without completion, automatic advancement with and
+without hints, duplicate clicks, reload on each second activity, next-heading focus, 25%
+increments, final scene and 100% after reload, wrong review, previous/next review, guarded
+review transition, reset initiated from another tab, and reset to a single first question. Reduced-motion emulation verified no
+running animations. Normal-motion screenshots captured the success route before replacement.
+Screenshots at 360px and 1159px in both palettes were inspected with no horizontal overflow.
+
+Native DevTools/isolated test profile only; no framework/Playwright/build/runtime dependency.
+CSS URLs for teaching/timing have a static version query so an already-open preview fetches
+the new animation rules. Animation tokens and temporary cursors/timers do not enter storage.
+Human review, physical-device/cross-browser and release gates remain pending; phase 8 and
+bank completion are not part of this follow-up. The same PR remains unmerged for review.

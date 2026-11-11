@@ -1,3 +1,4 @@
+import { unlockedStages } from './progress.js';
 import { normalizeGraph } from './graph.js';
 import { analyzeGraph, evaluateSelection } from './evaluate.js';
 const canonical = edges => edges.map(e=>JSON.stringify([...e].sort())).sort().join('|');
@@ -47,4 +48,21 @@ export function teachingWitness(activity){
     }else if(p.test==='cover'||p.test==='minimum')result[p.id]=analyzeGraph(activity.graph).minimumSets[0];
     else result[p.id]=structuredClone(p.expected);
   }return result;
+}
+
+/** UI position is derived from saved completion; future activities are not renderable. */
+export function availableTeachingActivity(curriculum, progress, stageId, preferredId) {
+  const stage=curriculum.stages.find(s=>s.id===stageId);
+  if(!stage)throw new TypeError('مرحلهٔ آموزش موجود نیست.');
+  if(!unlockedStages(progress).includes(stageId))throw new TypeError('مرحله هنوز باز نشده است.');
+  const available=id=>curriculum.activities.find(a=>a.id===id)?.prerequisites.every(p=>progress.completedActivityIds.includes(p));
+  if(preferredId&&stage.requiredActivityIds.includes(preferredId)&&available(preferredId))return preferredId;
+  return stage.requiredActivityIds.find(id=>!progress.completedActivityIds.includes(id))??stage.requiredActivityIds[0];
+}
+export function followingTeachingActivity(curriculum, stageId, activityId) {
+  const index=curriculum.stages.findIndex(s=>s.id===stageId),stage=curriculum.stages[index];
+  const position=stage?.requiredActivityIds.indexOf(activityId);
+  if(index<0||position<0)throw new TypeError('جای فعالیت معتبر نیست.');
+  if(position+1<stage.requiredActivityIds.length)return {stageId,activityId:stage.requiredActivityIds[position+1]};
+  const next=curriculum.stages[index+1];return next?{stageId:next.id,activityId:next.requiredActivityIds[0]}:null;
 }

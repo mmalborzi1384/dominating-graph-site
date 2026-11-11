@@ -112,3 +112,40 @@
  .teaching-progress .progress-percent { grid-row: 1 / 3; font-size: 1.5rem; }
  .teaching-progress .save-state { grid-column: 2; margin: 0; }
 }
+/* A single learning card travels along a three-node route after a correct answer. */
+.stage-navigation { display: flex; flex-wrap: wrap; }
+.stage-navigation .stage-button { flex: 1 1 8rem; min-height: 56px; width: auto; }
+.learning-reference { margin-block: .7rem; }
+.learning-reference > summary { cursor: pointer; min-height: 44px; align-content: center; color: var(--heading); }
+.learning-reference .lesson-blocks { margin-block-start: .5rem; }
+.learning-step-header { display: flex; align-items: center; justify-content: space-between; gap: .65rem; margin-block: .75rem 0; }
+.learning-step-header strong { color: var(--heading); white-space: nowrap; }
+.learning-track { width: min(55%,230px); height: 44px; overflow: visible; }
+.learning-link { stroke: var(--line); stroke-width: 2; fill: none; }
+.learning-link.is-done { stroke: var(--heading); }
+.learning-link.is-bridging { stroke: var(--heading); stroke-dasharray: 1; animation: learning-trace var(--learning-celebrate) ease-out both; }
+.learning-node { fill: var(--surface); stroke: var(--line); stroke-width: 2; }
+.learning-node.is-done { fill: var(--heading); stroke: var(--heading); }
+.learning-node.is-current { stroke: var(--heading); stroke-width: 3; }
+.learning-node-label { text-anchor: middle; fill: var(--ink); font: inherit; font-size: var(--font-base); }
+.learning-node-label.is-done { fill: var(--surface); }
+#learning-flow-status:empty { display: none; }
+#learning-flow-status { color: var(--heading); font-weight: 700; margin-block: .5rem; }
+.learning-card-host { min-width: 0; scroll-margin-top: 1rem; }
+.learning-review-controls { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; }
+.learning-review-controls button { width: auto; margin: 0; }
+.learning-finish { border-radius: 1rem; padding: 1.5rem; text-align: center; }
+.learning-finish h3 { color: var(--heading); }
+.learning-finish p { margin-block: .75rem 1rem; }
+.learning-finish button { width: auto; margin-inline-end: .75rem; }
+.learning-finish-mark { display: inline-grid; place-items: center; width: 3rem; height: 3rem; border: 2px solid var(--heading); border-radius: 50%; color: var(--heading); font-size: var(--font-lg); }
+@keyframes learning-trace { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@media(prefers-reduced-motion:reduce) {
+ .learning-link.is-bridging { animation: none; stroke-dasharray: none; }
+ .learning-card-host { scroll-behavior: auto; }
+}
+.learning-step-header { scroll-margin-top: 1rem; }
+.learning-node.is-celebrating { transform-box: fill-box; transform-origin: center; animation: learning-node-complete var(--learning-celebrate) ease-out both; }
+@keyframes learning-node-complete { 0%,100% { transform: scale(1); } 45% { transform: scale(1.14); } }
+@media(prefers-reduced-motion:reduce) { .learning-node.is-celebrating { animation: none; } }
+.teaching.is-advancing .apos-answer:disabled { opacity: 1; }

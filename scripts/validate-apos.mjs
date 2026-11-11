@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import {validateTeaching} from '../assets/js/data/validate.js';
-import {teachingInstance,teachingWitness,assessTeaching,teachingNumber} from '../assets/js/domain/teaching.js';
+import {teachingInstance,teachingWitness,assessTeaching,teachingNumber,availableTeachingActivity,followingTeachingActivity} from '../assets/js/domain/teaching.js';
 import {initialProgress,completeActivity,progressPercent,validateProgress} from '../assets/js/domain/progress.js';
 import {validateStoredEnvelope,same} from '../assets/js/storage/validate.js';
 import {decodeStoredState,migrateCurriculum} from '../assets/js/storage/migrate.js';
@@ -35,4 +35,9 @@ let raw=JSON.stringify(old),writes=0,fail=false;const store={getItem:k=>k===stor
 let repo=createRepository(c,store,context);check(!repo.snapshot().needsMigration&&writes===1&&repo.snapshot().state.teachingProgress.completedActivityIds.length===0,'Automatic reset once, no migration UI');check(same(repo.snapshot().state.attempts,old.attempts)&&same(repo.snapshot().state.sessions,old.sessions),'Automatic conversion preserves other records');repo.dispose();
 raw=JSON.stringify(old);writes=0;fail=true;const before=raw;repo=createRepository(c,store,context);check(raw===before&&repo.snapshot().dirty,'Quota retains old disk and recoverable reset');check(JSON.parse(repo.recoveryJSON()).curriculumVersion===2,'Unsaved export v2');fail=false;check(repo.retry()&&writes===1,'Automatic conversion retry exactly one write');repo.dispose();
 repo=createRepository(c,store,context);check(!repo.snapshot().needsMigration&&repo.snapshot().state.curriculumVersion===2,'Migration only once');for(const id of c.stages[0].requiredActivityIds)repo.changeProgress(p=>completeActivity(p,id,c));repo.dispose();repo=createRepository(c,store,context);check(progressPercent(repo.snapshot().state.teachingProgress)===25,'Fresh progress survives reload');const data=repo.snapshot().state;repo.resetTeaching();check(progressPercent(repo.snapshot().state.teachingProgress)===0&&same(repo.snapshot().state.attempts,data.attempts)&&same(repo.snapshot().state.sessions,data.sessions),'Reset isolates teaching');check(!/"response"|"score"|"hint"/.test(JSON.stringify(repo.snapshot().state.teachingProgress)),'Teaching allowlist only');repo.dispose();
+for(const stage of c.stages){let stepProgress=initialProgress();for(const earlier of c.stages.slice(0,stage.order))for(const id of earlier.requiredActivityIds)stepProgress=completeActivity(stepProgress,id,c);
+ check(availableTeachingActivity(c,stepProgress,stage.id,stage.requiredActivityIds[2])===stage.requiredActivityIds[0],'Future preferred activity cannot render');
+ for(const [index,id]of stage.requiredActivityIds.entries()){check(availableTeachingActivity(c,stepProgress,stage.id)===id,'Resume first incomplete');const next=followingTeachingActivity(c,stage.id,id);check(next?.activityId===(stage.requiredActivityIds[index+1]??c.stages[stage.order+1]?.requiredActivityIds[0]),'Next step or structure');stepProgress=completeActivity(stepProgress,id,c);check(availableTeachingActivity(c,stepProgress,stage.id,id)===id,'Passed activity review remains available');}}
+reject(()=>availableTeachingActivity(c,initialProgress(),'Process'),'Hidden stage cannot render');
+reject(()=>followingTeachingActivity(c,'Action','unknown'),'Invalid position rejected');
 console.log(`${count} APOS typed-activity/progress/migration checks passed.`);

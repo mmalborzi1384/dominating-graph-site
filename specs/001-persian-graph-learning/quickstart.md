@@ -127,3 +127,18 @@ behavioral copy is inside an inline ⓘ disclosure, reachable by hover, click/to
 and Escape. Essential problem/rubric/error copy stays visible. A valid old test state silently
 starts the new teaching at zero, preserving other results; current progress is not repeatedly
 reset. No review of this layout should be counted as completing the full question bank.
+
+### Single-question walkthrough
+
+Fresh Teaching must contain exactly one `[data-activity-id]` element and only the unlocked
+APOS stage in the visible navigation. Future question text/controls must be absent. A wrong
+submission stays on the same activity, a hint/reveal alone does not complete it, and a correct
+answer with or without hints saves completion then automatically reveals the next activity.
+Double-click Check while the route/card transition runs: only one step may complete.
+
+Complete each of the three activities: the next APOS structure activates automatically. Reload
+on activity two: resume activity two without old answers. Complete all twelve: show 100% and
+the finish card, including after reload. Review passed steps using previous/next controls;
+a wrong review must not relock stages or advance. Check focus on the new heading, reduced
+motion (no card animation/celebration delay), both palettes and mobile/desktop. Reset returns
+to one first question. Timers and review cursors must not appear in storage/backup.

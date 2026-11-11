@@ -231,3 +231,19 @@ Escape پشتیبانی شوند؛ متن در جریان صفحه باز شود
 قبولی و هشدار واقعی ذخیره پنهان نشوند. دکمهٔ مسئلهٔ دیگر اندازهٔ محتوایی داشته باشد؛
 درس‌نامه‌های کوتاه بازشونده و فاصله/پدینگ مشترک پنج تب کمتر شوند. قلم/کنتراست، برد و
 هدف لمسی ۴۴ پیکسل حفظ شوند. این تغییر چیدمان است، نه شروع فاز ۸ یا تکمیل بانک سؤال.
+
+## Single-activity teaching flow
+
+Only the current activity is instantiated. domain/teaching.js derives the first incomplete
+activity, rejects positions in locked structures, and resolves the next activity/structure.
+The controller keeps review cursors and transition state in memory. Correct completion and
+next-structure navigation are committed before visual replacement; reload resumes from saved
+completion, not an animation timer. Available past activities remain reviewable.
+
+A compact three-node route, a finite completion pulse and a directional card wipe communicate
+the learner's action. Motion timing lives in tokens.css; reduced motion removes the hold and
+card animation. Card content/graphs remain opaque (no blur/opacity animation). Keyboard focus
+moves to the new question heading, with the step route scrolled into view. Success freezes
+inputs/navigation during the change, including repeated review of already-completed activities.
+Future question cards are absent from DOM, not merely disabled; locked APOS navigation is hidden.
+Object definitions remain an optional collapsed reference. No storage schema or bank change.
