@@ -55,3 +55,13 @@ export function submitLabTurn(state,id,response,curriculum,context,now=Date.now(
  return checked(state,next,curriculum,context);
 }
 export function bounds(graph){const g=normalizeGraph(graph),degrees=g.vertices.map(v=>g.edges.filter(e=>e.includes(v)).length),delta=Math.max(...degrees);return {delta,lower:Math.ceil(g.n/(delta+1)),gamma:analyzeGraph(g).gamma};}
+
+/** Remove only one lab result; session turns stay spent and cannot be replayed. */
+export function removeLabResult(state,id,curriculum,context) {
+ requireValid(state.attempts[id]?.tab==='lab','نتیجهٔ آزمایشگاه پیدا نشد.');
+ const next=structuredClone(state);delete next.attempts[id];
+ for(const session of Object.values(next.sessions))for(const turn of session.turns??[]){
+  if(turn.finalizedAttemptId===id){turn.resultStatus='finalized-deleted';turn.finalizedAttemptId=null;}
+ }
+ return checked(state,next,curriculum,context);
+}

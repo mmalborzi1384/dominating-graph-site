@@ -46,6 +46,14 @@ survives refresh. Finalized turn disables scoring inputs and advances on explici
 
 ## Lab
 
+Second review: show station title/goal immediately under the selector and provide an in-page
+jump to its task heading. Common building/editing tools remain shared. Formula observations
+show family, n (vertices), gamma (minimum centers), session-only lifetime, deduplication and
+individual/clear-all removal. They are never presented as saved scores. Near Save, explain
+local persistence and link to a lab-only saved-results details panel. Every deletion requires
+inline confirm/cancel; list empty/deleted states truthfully. The shared lesson/page cards
+are labeled as noninteractive curriculum scope references, not navigation controls.
+
 Lab review amendment: distinguish custom builder, prepared-model loading and n/gamma target
 with separate labeled groups and an explicit current-model summary. Custom input changes
 apply only on Build. Target n is independent of prepared-model size. Use an equal-sized

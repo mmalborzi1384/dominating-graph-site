@@ -29,3 +29,14 @@
  .lab-edge-pair { grid-template-columns: repeat(2,minmax(0,1fr)); }
  .lab-edge-pair button { grid-column: 1 / -1; }
 }
+.lab-station-intro, .lab-observations, .lab-saved-results { padding: 1rem; border-radius: 12px; }
+.lab-station-intro { display: grid; gap: .7rem; }
+.lab-station-intro h2 { font-size: var(--font-lg); }
+.lab [id="lab-station-activity"] { scroll-margin-top: 1rem; }
+.lab-observation-list { list-style: none; padding: 0; display: grid; gap: .6rem; }
+.lab-observation-list li, .lab-saved-row { display: flex; align-items: center; justify-content: space-between; gap: .8rem; padding-block: .7rem; border-bottom: 1px solid var(--line); }
+.lab-observation-list li p, .lab-saved-row p { min-width: 0; overflow-wrap: anywhere; }
+.lab-observation-list button, .lab-saved-row button { flex-shrink: 0; min-height: 44px; }
+.lab-saved-results summary { cursor: pointer; color: var(--heading); font-weight: 700; }
+.lesson-reference-note { color: var(--muted); font-size: var(--font-xs); margin-top: 2rem; }
+@media(max-width:640px) { .lab-observation-list li, .lab-saved-row { flex-direction: column; align-items: stretch; } }

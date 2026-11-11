@@ -78,3 +78,26 @@ and no overflow at 360px and 1159px in day/night. No runtime exceptions were obs
 Screenshots of desktop tools and mobile movement/connections were visually inspected.
 These are emulated mobile browser checks; physical-device/Firefox/WebKit limits still apply.
 No new phase or merge was started. Graphify updated before review.
+
+## Second clarification review (five browser questions)
+
+- The observation button now explains its purpose and lifetime: a comparison of family,
+  vertex count and exact gamma in page memory. Samples deduplicate; each note and the entire
+  list can be removed. Formula math uses isolated KaTeX. Notes are never score records.
+- Active station title/goal updates immediately under the selector, with a jump/focus action
+  to its dedicated task. Numeric gamma input appears only where it is used. Shared model
+  tools remain common; game/task differences are explained in editable lab content.
+- Save explains persistent browser storage. Added a lab-only recorded-result list with inline
+  confirmed deletion. Ordinary lab Attempts disappear; referenced game/challenge results
+  atomically leave finalized-deleted/null spent markers. No replay is granted. Other Attempts,
+  progress, sessions and settings remain. This is a narrow precursor to general Records UI.
+- The global lesson/page cards are explicitly identified as noninteractive curriculum scope.
+
+Latest local lab script: 211 checks pass (including scoped deletion, unrelated record/progress
+preservation, stale revision rejection, quota preservation/retry and spent-marker/no-replay).
+Foundation 104, practice 37, competition 174, teaching 46 and randomization 136 pass.
+New Chrome isolated-profile flow: 20 observations pass: note add/deduplicate/remove/clear,
+all five title/task changes, save/list/delete/cancel/reload, explanatory lesson scope,
+360/1159 day/night without horizontal overflow and no runtime exceptions. Desktop station
+intro and mobile note/results screenshots visually inspected. No physical-phone, Firefox/
+WebKit or external-host claim. Spec/tasks/plan/contracts/README updated; Graphify refreshed.

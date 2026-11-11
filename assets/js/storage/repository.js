@@ -3,6 +3,7 @@ import { validateStoredEnvelope, validateStateTransition } from './validate.js';
 import { decodeStoredState, migrateShellPreference } from './migrate.js';
 import { requireValid } from '../domain/limits.js';
 import { replaceCompetition } from '../domain/sessions.js';
+import { removeLabResult } from '../domain/lab.js';
 
 export const basePath = new URL('../../../', import.meta.url).pathname;
 export const storageKey = `graph-learning:v1:${basePath}`;
@@ -147,6 +148,10 @@ export function createRepository(curriculum, storage = browserStorage, context =
       requireValid(expectedRevision === state.revision && !dirty && !conflict && !blocked(), 'وضعیت ذخیره تغییر کرده است؛ عملیات را دوباره بررسی و تأیید کنید.', 'revision', 'revision-conflict');
       const next = replaceCompetition(state,id,restart,curriculum,context);
       return commit(next,expectedRevision,{removedCompetitionId:id});
+    },
+    deleteLabResult(id, expectedRevision) {
+      requireValid(expectedRevision===state.revision && !dirty && !conflict && !blocked(), 'وضعیت ذخیره تغییر کرده است؛ حذف را دوباره بررسی و تأیید کنید.', 'revision', 'revision-conflict');
+      return commit(removeLabResult(state,id,curriculum,context),expectedRevision);
     },
     setTheme(theme) { return commit({ ...state, settings: { theme } }, state.revision); },
     setEditingDirty(token, value) {

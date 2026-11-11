@@ -2,6 +2,15 @@
 
 ## Repository boundary
 
+Lab-review scoped deletion: `deleteLabResult(id, expectedRevision)` accepts only an existing
+lab Attempt, checks current revision/write readiness, constructs the complete candidate and
+commits once. It removes only that Attempt; a referencing game/challenge turn is atomically
+set to finalized-deleted with null attempt reference. Sessions and spent identities remain;
+scores derive from retained Attempts. Cancel/stale validation changes no stored data; failed
+writes preserve old disk state and recoverable temporary work. Other tabs/progress/settings
+are unaffected. This lab-only control does not implement the general Records/import UI.
+Family comparison observations are in-memory only and never enter snapshots or backups.
+
 Read returns validated state or an explicit absent/corrupt/unavailable result. Commit accepts
 a complete next state plus expected revision, validates/serializes in memory, checks current
 revision, then performs one localStorage.setItem. Unknown schema versions are never overwritten

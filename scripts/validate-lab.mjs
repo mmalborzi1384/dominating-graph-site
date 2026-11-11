@@ -27,3 +27,16 @@ for(let n=2;n<=10;n++)for(const family of ['path','star','empty','complete',...(
 const {labPlaces}=await import('../assets/js/domain/lab.js');
 for(const n of [2,6,10])for(const f of ['path','star','complete','empty']){const g=familyGraph(n,f),positions=labPlaces(g,f);check(positions.every(p=>p.x>=40&&p.x<=560&&p.y>=45&&p.y<=275),'Position bounds');check(positions.every((p,i)=>positions.slice(i+1).every(q=>Math.hypot((p.x-q.x)/2,p.y-q.y)>=46)),'Mobile circles do not overlap');}
 console.log(`${count} lab checks passed.`);
+
+const {removeLabResult}=await import('../assets/js/domain/lab.js');
+const {createRepository,storageKey}=await import('../assets/js/storage/repository.js');
+const practice=createAttempt({tab:'practice',questionId:'Q001',mode:'self-assessed-text',target:'rubric',response:'ناحیه رأس است.',selfAssessed:true});
+const mixed=appendAttempt(state,practice,c,context),removed=removeLabResult(mixed,a.id,c,context);
+check(!removed.attempts[a.id]&&JSON.stringify(removed.attempts[practice.id])===JSON.stringify(practice),'Remove only chosen lab result');check(JSON.stringify(removed.teachingProgress)===JSON.stringify(mixed.teachingProgress),'Delete preserves progress');
+rejects(()=>removeLabResult(mixed,practice.id,c,context),'Cannot delete practice through lab action');rejects(()=>removeLabResult(mixed,'absent',c,context),'Missing result rejected');
+let game=startLabSession(fresh(),pool,'game',['الف','ب'],c,context),session=Object.values(game.sessions)[0];for(let i=0;i<2;i++)game=submitLabTurn(game,session.id,[],c,context);
+const first=game.sessions[session.id].turns[0].finalizedAttemptId,deletedGame=removeLabResult(game,first,c,context);
+check(deletedGame.sessions[session.id].turns[0].resultStatus==='finalized-deleted'&&deletedGame.sessions[session.id].turns[0].finalizedAttemptId===null,'Deleted game result keeps spent marker');rejects(()=>submitLabTurn(deletedGame,session.id,[],c,context),'Deletion cannot grant replay');
+let raw=JSON.stringify(mixed),fail=false,writes=0;const storage={getItem:key=>key===storageKey?raw:null,setItem:(key,value)=>{if(fail)throw Error('denied');raw=value;writes++;},removeItem:()=>{}};
+const repo=createRepository(c,storage,context);rejects(()=>repo.deleteLabResult(a.id,99),'Stale deletion confirmation rejected');check(writes===0,'Rejected delete no writes');const before=raw;fail=true;check(!repo.deleteLabResult(a.id,0)&&raw===before,'Failed delete preserves disk');fail=false;check(repo.retry()&&writes===1&&!JSON.parse(raw).attempts[a.id],'Retry deletes once');repo.dispose();
+console.log(`Lab review total: ${count} checks passed.`);

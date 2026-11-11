@@ -150,6 +150,9 @@ Lab review implementation: dedicated assets/css/lab.css supplies grouped tools, 
 connection controls and a symmetric direction pad without changing shared palette/font tokens.
 familyGraph owns topology; labPlaces owns family-aware layout. Draw targets are independent
 from builder controls and prepared models; preflight prevents unsupported custom snapshots.
+Follow-up clarifies station-specific tasks and transient observations. A lab-only saved-result
+panel uses the existing Attempt schema and a narrow one-write deletion API; game/challenge
+turn tombstones preserve replay prevention. General Records analytics/transfer remains later work.
 
 Phase 0 decisions: [research.md](research.md). Phase 1: [data-model.md](data-model.md),
 [contracts](contracts/), [quickstart.md](quickstart.md). All 25 FRs are assigned below.

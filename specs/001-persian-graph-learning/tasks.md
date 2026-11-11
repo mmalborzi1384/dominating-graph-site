@@ -240,6 +240,13 @@ separate builder/prepared/target panels with explicit applied model; independent
 family topology and functional station-specific checks/observations/game. Record mobile/
 desktop and day/night results under validation/us4.md and update the same phase-6 PR.
 
+Second lab review: explain/deduplicate transient family observations and add remove/clear
+controls; show active station title, goal and a jump to its dedicated task; distinguish
+temporary notes from recorded Attempts. Add lab-only result list and revision-checked
+confirmed deletion, with spent turn markers for game/challenge results. Explain the global
+lesson/page footer as reference-only. This limited precursor does not complete T049–T052
+or authorize the phase-7 analytics/transfer UI. Record mobile/desktop evidence in us4.md.
+
 ---
 
 ## Phase 7: User Story 5 - تحلیل و مالکیت سوابق (Priority: P2)
