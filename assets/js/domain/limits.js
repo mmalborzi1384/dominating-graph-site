@@ -1,6 +1,7 @@
 /** Shared by local writes and future import validation; never truncate or evict. */
 export const LIMITS = Object.freeze({ groupName: 30, label: 50, textResponse: 1000,
   attempts: 200, sessions: 100, importBytes: 5 * 1024 * 1024 });
+export const LAB_ACTIVITY_IDS = Object.freeze(['lab:gamma','lab:formula','lab:bounds','lab:minimal','lab:draw']);
 export class ValidationError extends TypeError {
   constructor(message, path = '', code = 'invalid-data') {
     super(path ? `${message} (${path})` : message);

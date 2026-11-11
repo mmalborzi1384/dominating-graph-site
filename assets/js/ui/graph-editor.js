@@ -118,6 +118,7 @@ export function createGraphBoard(host, model, onToggle) {
   media.addEventListener('change', layout);
   layout(); host.replaceChildren(svg, buttons);
   return {
+    relayout: layout,
     destroy() { media.removeEventListener('change', layout); },
     update(selected, { missed = [], hinted = [] } = {}) {
       const selectedIds = new Set(selected), missedIds = new Set(missed), hintIds = new Set(hinted);
@@ -149,4 +150,26 @@ export function createGraphBoard(host, model, onToggle) {
       }
     },
   };
+}
+
+/** Position editing is opt-in; topology and selected IDs stay independent. */
+export function createEditableGraphBoard(host,model,onToggle,onPositionsChange=()=>{}) {
+  const board=createGraphBoard(host,model,onToggle),svg=host.querySelector('svg');
+  let drag=null,suppressClick=false;
+  const compact=()=>window.matchMedia('(max-width: 640px)').matches;
+  const screenPoint=p=>({x:compact()?40+(p.x-40)/2:p.x,y:p.y});
+  function move(id,x,y){
+    x=Math.max(40,Math.min(560,x));y=Math.max(45,Math.min(275,y));
+    const p=model.places.find(p=>p.id===id),proposed=screenPoint({x,y});
+    if(model.places.some(other=>other.id!==id&&Math.hypot(screenPoint(other).x-proposed.x,other.y-y)<50))return;
+    p.x=x;p.y=y;// Refresh geometry without rebuilding the graph.
+    board.relayout();onPositionsChange(model.places);
+  }
+  const down=e=>{const g=e.target.closest('.board-vertex');if(!g)return;drag={id:g.dataset.vertexId,x:e.clientX,y:e.clientY,moved:false};g.setPointerCapture?.(e.pointerId);};
+  const moving=e=>{if(!drag)return;if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)<5&&!drag.moved)return;drag.moved=true;const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(svg.getScreenCTM().inverse());move(drag.id,compact()?40+(p.x-40)*2:p.x,p.y);};
+  const up=()=>{if(drag?.moved)suppressClick=true;drag=null;};
+  const click=e=>{if(suppressClick){e.preventDefault();e.stopPropagation();suppressClick=false;}};
+  const key=e=>{const g=e.target.closest('.board-vertex');if(!g||!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();const p=model.places.find(p=>p.id===g.dataset.vertexId);move(p.id,p.x+({ArrowLeft:-20,ArrowRight:20}[e.key]??0),p.y+({ArrowUp:-15,ArrowDown:15}[e.key]??0));};
+  svg.style.touchAction='none';svg.addEventListener('pointerdown',down);svg.addEventListener('pointermove',moving);svg.addEventListener('pointerup',up);svg.addEventListener('pointercancel',up);svg.addEventListener('click',click,true);svg.addEventListener('keydown',key);
+  return {...board,moveVertex:(id,dx,dy)=>{const p=model.places.find(p=>p.id===id);if(p)move(id,p.x+dx,p.y+dy);},destroy(){board.destroy();for(const [event,handler,capture] of [['pointerdown',down],['pointermove',moving],['pointerup',up],['pointercancel',up],['click',click,true],['keydown',key]])svg.removeEventListener(event,handler,capture);}};
 }
