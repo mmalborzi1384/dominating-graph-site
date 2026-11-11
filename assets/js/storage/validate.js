@@ -127,13 +127,17 @@ function validateAttempt(attempt, key, context) {
     base = evaluation.satisfiesTarget ? 10 : 0; final = base;
   } else if (attempt.responseMode === 'graph-construction') {
     check(attempt.tab !== 'competition', 'ساخت گراف در مسابقه مجاز نیست.', path);
-    fields(attempt.target, ['n', 'gamma'], [], `${path}.target`);
+    fields(attempt.target, ['n', 'gamma'], ['minimumSetCountMin', 'minimumSetCountMax'], `${path}.target`);
+    if (attempt.target.minimumSetCountMin !== undefined) integer(attempt.target.minimumSetCountMin, 1, 1024, path);
+    if (attempt.target.minimumSetCountMax !== undefined) integer(attempt.target.minimumSetCountMax, attempt.target.minimumSetCountMin ?? 1, 1024, path);
     integer(attempt.target.n, 2, 10, path); integer(attempt.target.gamma, 1, attempt.target.n, path);
     const response = graph(attempt.response, `${path}.response`, 10);
     check(model && topologyKey(response) === topologyKey(normalizeGraph(model)), 'مدل پاسخ با تصویر ذخیره‌شده ناسازگار است.', path);
     fields(evaluation, ['satisfiesTarget', 'n', 'gamma'], [], `${path}.evaluation`);
     check(evaluation.n === response.n && evaluation.gamma === analyzeGraph(response).gamma
-      && evaluation.satisfiesTarget === (response.n === attempt.target.n && evaluation.gamma === attempt.target.gamma), 'نتیجهٔ ساخت گراف ناسازگار است.', path);
+      && evaluation.satisfiesTarget === (response.n === attempt.target.n && evaluation.gamma === attempt.target.gamma
+        && analyzeGraph(response).minimumSets.length >= (attempt.target.minimumSetCountMin ?? 1)
+        && analyzeGraph(response).minimumSets.length <= (attempt.target.minimumSetCountMax ?? Infinity)), 'نتیجهٔ ساخت گراف ناسازگار است.', path);
     base = evaluation.satisfiesTarget ? 15 : 0; final = base;
   } else check(false, 'نوع پاسخ شناخته‌شده نیست.', path);
   check([0, 5, 10, 15].includes(base), 'امتیاز مرجع معتبر نیست.', path);

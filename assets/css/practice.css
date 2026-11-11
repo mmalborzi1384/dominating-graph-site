@@ -1,0 +1,10 @@
+.practice-filters { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; margin-block: 1.5rem; }
+.practice-filters label:last-child { grid-column: 1 / -1; }
+.practice-filters label, .practice-activity label { display: flex; flex-direction: column; gap: .5rem; }
+.practice-filters select, .practice-activity input, .practice-activity textarea, .practice-activity select { min-height: 44px; max-width: 100%; width: 100%; padding: .6rem; font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.practice-activity > * { margin-block: 1rem; }
+.practice-activity .question-card p { margin-block: .7rem; }
+.practice-actions, .edge-choices { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+.edge-choices button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--heading); }
+.practice-activity textarea { resize: vertical; }
+@media(max-width:640px) { .practice-filters, .practice-actions { grid-template-columns: 1fr; } }
