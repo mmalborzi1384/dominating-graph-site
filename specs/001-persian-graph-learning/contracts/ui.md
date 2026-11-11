@@ -46,6 +46,19 @@ survives refresh. Finalized turn disables scoring inputs and advances on explici
 
 ## Lab
 
+Lab review amendment: distinguish custom builder, prepared-model loading and n/gamma target
+with separate labeled groups and an explicit current-model summary. Custom input changes
+apply only on Build. Target n is independent of prepared-model size. Use an equal-sized
+four-direction pad on mobile and desktop; vertex labels match board numbering.
+Replace all-pairs edge buttons with a two-select add/remove control and an opt-in board
+connection mode (two vertex clicks); clicking the first vertex again cancels. Existing
+edges remain removable in a collapsed list of touch-sized chips. Reject loops without change.
+Large prepared models remain usable for analysis; custom-draw submission over 10 vertices
+is refused before recording, with an actionable Persian message and no internal field paths.
+Gamma has an explicit numeric check, formula has transient family observations, bounds update
+after edge changes, minimality has a verified counterexample, and station 5 remains a real
+two-group session. Verify these behaviors and both layouts/themes during review.
+
 Five station selectors inside the Lab tab, never extra top-level tabs: gamma calculation;
 formula discovery; bounds/edge effects; minimal versus minimum; two-group game.
 Shared tools: modeled 2–10 vertex custom graph, add/remove edges, drag vertices, draw to n/gamma,

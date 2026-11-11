@@ -1,0 +1,31 @@
+.lab { --lab-gap: .85rem; }
+.lab h3 { color: var(--heading); font-size: var(--font-base); margin: 0; }
+.lab-tools { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--lab-gap); align-items: start; }
+.lab-tool-group { min-width: 0; margin: 0; padding: 1rem; border: 1px solid var(--line); border-radius: 12px; display: grid; gap: var(--lab-gap); }
+.lab-tool-group legend { color: var(--heading); font-weight: 700; padding-inline: .35rem; }
+.lab-tool-group .model-key { font-size: var(--font-xs); margin: 0; }
+.lab-tool-group button { width: 100%; }
+.lab-workspace > * { margin-block: 1rem; }
+.lab-model-summary { font-weight: 700; color: var(--heading); }
+.lab-movement, .lab-connections { padding: 1rem; display: grid; gap: var(--lab-gap); border-radius: 12px; }
+.lab-movement { grid-template-columns: minmax(0,1fr) minmax(200px,320px); align-items: center; }
+.lab-movement h3, .lab-movement > p { grid-column: 1 / -1; }
+.lab-direction-pad { direction: ltr; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); grid-template-rows: repeat(3,48px); gap: .35rem; }
+.lab-direction-pad button { width: 100%; padding: .35rem; min-height: 44px; }
+.lab-direction-pad [data-direction="up"] { grid-area: 1 / 2; }
+.lab-direction-pad [data-direction="left"] { grid-area: 2 / 1; }
+.lab-direction-pad [data-direction="right"] { grid-area: 2 / 3; }
+.lab-direction-pad [data-direction="down"] { grid-area: 3 / 2; }
+.lab-edge-pair { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr) auto; align-items: end; gap: .65rem; }
+.lab-edge-pair button { min-height: 48px; }
+.lab-existing-edges summary { cursor: pointer; color: var(--heading); }
+.lab-edge-chips { display: flex; flex-wrap: wrap; gap: .4rem; padding-top: .6rem; }
+.lab-edge-chips button { min-height: 44px; padding: .3rem .7rem; }
+.lab #lab-notice { overflow-wrap: anywhere; }
+@media(max-width:1000px) { .lab-tools { grid-template-columns: 1fr; } }
+@media(max-width:640px) {
+ .lab-movement { grid-template-columns: minmax(0,1fr); }
+ .lab-direction-pad { width: min(100%,300px); justify-self: center; }
+ .lab-edge-pair { grid-template-columns: repeat(2,minmax(0,1fr)); }
+ .lab-edge-pair button { grid-column: 1 / -1; }
+}

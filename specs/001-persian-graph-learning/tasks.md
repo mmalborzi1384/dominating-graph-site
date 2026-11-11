@@ -234,6 +234,12 @@ minimum diagnostics, a two-group lab game and persistent 5-model/180-second chal
 T014's remaining editor portion is now supplied through the opt-in editable-board wrapper.
 Evidence: [validation/us4.md](validation/us4.md). Stop for human review; phase 7 is not started.
 
+Lab browser-review follow-up (comments 1–5): symmetric movement pad; compact pair-based and
+board-click edge editing; actionable preflight for large prepared/custom-draw mismatch;
+separate builder/prepared/target panels with explicit applied model; independently verify
+family topology and functional station-specific checks/observations/game. Record mobile/
+desktop and day/night results under validation/us4.md and update the same phase-6 PR.
+
 ---
 
 ## Phase 7: User Story 5 - تحلیل و مالکیت سوابق (Priority: P2)

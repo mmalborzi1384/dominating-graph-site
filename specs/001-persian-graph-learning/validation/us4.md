@@ -48,3 +48,33 @@ Details of unanswered timeout turns and registered activities are in persistence
 Physical-device and Firefox/WebKit validation, external host verification and human educational
 review are not claimed. New contexts/examples await human review. Full-bank content readiness
 and Records analytics/import/deletion remain separately tracked work.
+
+## Browser comments 1–5 follow-up
+
+1. Replaced the uneven five-item two-column movement layout with a labeled vertex picker
+   and a four-button directional cross. All buttons have equal dimensions in both widths.
+2. Replaced the quadratic all-pairs list with two labeled vertex selectors and one add/remove
+   action. Opt-in connection mode supports two clicks on board vertices or their buttons;
+   selecting the same first vertex cancels, and same-vertex dropdown pairs reject loops.
+   Existing paths appear as touch-sized removal chips inside a collapsed details element.
+3. Reproduced the cause of the reported internal error: Q037 has 11 vertices and was sent
+   as a custom draw snapshot, whose limit is 10. Preflight now explains the size mismatch
+   and creates no Attempt. Edited large-source activity saves receive the same clear guard.
+   Normal prepared-source analysis remains supported; internal storage paths are hidden.
+4. Split custom construction, prepared source and draw targets into labeled fieldsets with
+   a separate target-n input. Display current actual vertex/edge counts; unapplied selector
+   changes do not claim to modify the board. Added path/star-aware layouts, exact topology/
+   degree checks and mobile nonoverlap checks. Family observations use the built family.
+5. Rechecked real station behavior. Added a direct numeric gamma check and transient family
+   observations; verified bounds after an edge change and the minimal/nonminimum example.
+   The two-group game and challenge workflow were rerun successfully.
+
+Latest validation: 201 local lab checks pass; existing foundation 104, teaching 46, practice
+37, competition 174 and randomization 136 pass. Original 20 lab browser observations pass
+again. A further 42 Chrome observations pass, checking rendered topology for all five
+families across n=2/3/6/10 where valid, pair and board connections, loop rejection, large-
+source message/no write, gamma/formula/bounds/minimal station results, movement symmetry
+and no overflow at 360px and 1159px in day/night. No runtime exceptions were observed.
+Screenshots of desktop tools and mobile movement/connections were visually inspected.
+These are emulated mobile browser checks; physical-device/Firefox/WebKit limits still apply.
+No new phase or merge was started. Graphify updated before review.

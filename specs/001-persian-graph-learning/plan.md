@@ -146,6 +146,11 @@ as described in the content contract before treating any source item as usable.
 
 ## Phase Outputs and Validation
 
+Lab review implementation: dedicated assets/css/lab.css supplies grouped tools, compact
+connection controls and a symmetric direction pad without changing shared palette/font tokens.
+familyGraph owns topology; labPlaces owns family-aware layout. Draw targets are independent
+from builder controls and prepared models; preflight prevents unsupported custom snapshots.
+
 Phase 0 decisions: [research.md](research.md). Phase 1: [data-model.md](data-model.md),
 [contracts](contracts/), [quickstart.md](quickstart.md). All 25 FRs are assigned below.
 

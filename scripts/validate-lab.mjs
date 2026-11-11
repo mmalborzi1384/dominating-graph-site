@@ -16,4 +16,14 @@ const pool=config.questionIds.map(id=>bank.questions.find(q=>q.id===id));for(con
 for(let i=0;i<s.turns.length;i++){const q=bank.questions.find(q=>q.id===state.sessions[s.id].turns[i].questionId);state=submitLabTurn(state,s.id,analyzeGraph(q.graph).minimumSets[0],c,context);}
 check(state.sessions[s.id].status==='completed','Session completion');rejects(()=>submitLabTurn(state,s.id,[],c,context),'No replay');check(Object.values(state.attempts).every(a=>a.tab==='lab'&&a.finalScore===15),'Lab scores and isolation');}
 let expired=startLabSession(fresh(),pool,'challenge',[],c,context,Date.now()-180001),s=Object.values(expired.sessions)[0];expired=JSON.parse(JSON.stringify(expired));rejects(()=>submitLabTurn(expired,s.id,[],c,context),'Deadline after reload');expired=expireLabSession(expired,s.id,c,context);check(expired.sessions[s.id].status==='completed'&&Object.keys(expired.attempts).length===0,'No invented timeout results');validateStoredEnvelope(expired,c,context);rejects(()=>submitLabTurn(expired,s.id,[],c,context),'Expired no replay');
+for(let n=2;n<=10;n++)for(const family of ['path','star','empty','complete',...(n>=3?['cycle']:[])]){
+ const g=familyGraph(n,family),degree=v=>g.edges.filter(e=>e.includes(v)).length;
+ const expected=family==='empty'?0:family==='complete'?n*(n-1)/2:family==='cycle'?n:n-1;
+ check(g.edges.length===expected,'Exact edge count');
+ if(family==='star')check(degree('a')===n-1&&g.vertices.slice(1).every(v=>degree(v)===1),'Star center/leaves');
+ if(family==='cycle')check(g.vertices.every(v=>degree(v)===2),'Cycle regularity');
+ if(family==='path')check(degree(g.vertices[0])===1&&degree(g.vertices.at(-1))===1&&g.vertices.slice(1,-1).every(v=>degree(v)===2),'Path endpoints/interior');
+}
+const {labPlaces}=await import('../assets/js/domain/lab.js');
+for(const n of [2,6,10])for(const f of ['path','star','complete','empty']){const g=familyGraph(n,f),positions=labPlaces(g,f);check(positions.every(p=>p.x>=40&&p.x<=560&&p.y>=45&&p.y<=275),'Position bounds');check(positions.every((p,i)=>positions.slice(i+1).every(q=>Math.hypot((p.x-q.x)/2,p.y-q.y)>=46)),'Mobile circles do not overlap');}
 console.log(`${count} lab checks passed.`);

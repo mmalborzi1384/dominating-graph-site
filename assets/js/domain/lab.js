@@ -15,6 +15,19 @@ export function familyGraph(n,family='path') {
 export function graphSnapshot(graph,model,places) {
  return {graph:normalizeGraph(graph),modeling:{scenario_fa:model.scenario,vertex_means_fa:model.vertexMeaning,edge_means_fa:model.edgeMeaning,question_in_model_fa:'انتخاب مراکز برای پوشش همهٔ مکان‌ها با ارتباط مستقیم'},...(places?{places:places.map(p=>({...p,x:(p.x-40)/520,y:(p.y-45)/230}))}:{})};
 }
+/** Layout expresses the family without changing its topology. */
+export function labPlaces(graph,family) {
+ return graph.vertices.map((id,i)=>{
+  let x,y;
+  if(family==='star'&&i===0){x=300;y=160;}
+  else if(family==='star'){const angle=(i-1)*2*Math.PI/(graph.n-1);x=300+220*Math.cos(angle);y=160+105*Math.sin(angle);}
+  else if(['path','empty'].includes(family)){
+   const columns=Math.min(5,graph.n),row=Math.floor(i/columns),col=row%2?columns-1-i%columns:i%columns;
+   x=columns===1?300:60+480*col/(columns-1);y=graph.n<=5?160:90+140*row;
+  }else{const angle=i*2*Math.PI/graph.n;x=300+220*Math.cos(angle);y=160+105*Math.sin(angle);}
+  return {id,label:`محل ${(i+1).toLocaleString('fa-IR')}`,x,y};
+ });
+}
 function checked(before,next,curriculum,context){const result=validateStoredEnvelope(next,curriculum,context);validateStateTransition(before,result);return result;}
 export function startLabSession(state,questions,kind,groups,curriculum,context,now=Date.now()) {
  requireValid(['challenge','game'].includes(kind),'نوع فعالیت معتبر نیست.');
