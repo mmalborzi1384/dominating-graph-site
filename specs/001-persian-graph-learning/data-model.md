@@ -149,4 +149,4 @@ No new persistent fields or new storage engine are introduced.
 
 ## APOS curriculum 2
 
-Envelope schema remains 1; curriculumVersion is 2. TeachingProgress retains exactly its three allowlisted fields. Valid curriculum-1 state is validated against content/teaching-v1.json and migrated by replacing only teachingProgress with initialProgress and curriculumVersion with 2. No legacy credit field. Curriculum-1 backup imports reset incoming old progress, while retaining existing curriculum-2 completion. Other records and tombstones are unchanged.
+Envelope schema remains 1; curriculumVersion is 2. TeachingProgress retains exactly its three allowlisted fields. Valid curriculum-1 state is validated against content/teaching-v1.json and automatically converted by replacing only teachingProgress with initialProgress and curriculumVersion with 2. No legacy credit field. Curriculum-1 backup imports reset incoming old progress, while retaining existing curriculum-2 completion. Other records and tombstones are unchanged.

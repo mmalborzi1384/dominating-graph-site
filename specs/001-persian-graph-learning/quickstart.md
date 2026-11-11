@@ -113,9 +113,17 @@ complete it. Process diagrams must not allow live coverage experiments. Randomiz
 stage chain: temporary responses clear and completed flags stay; every card uses the same
 variant. Verify keyboard/touch, both palettes and 360/1280 layouts.
 
-Load a valid old state with completed teaching and other results: no write until migration
-confirmation; cancel preserves raw bytes; confirm resets only old teaching progress to 0%
-and retains other records/tombstones/settings. Reload does not repeat the migration. Import
+Load a valid old state with completed teaching and other results: automatic one-write conversion resets only old teaching progress to 0%
+and retains other records/tombstones/settings; no legacy-version flow is shown. Reload does not repeat the migration. Import
 an old curriculum-1 backup into curriculum 2: preview explains zero old-progress transfer;
 current new progress is not lowered. Test new backup round-trip, quota/retry, reset isolation
 and exact revision conflicts. Evidence: validation/apos-redesign.md. No phase-8 gate is claimed.
+
+### Compact-layout review
+
+Check all five tabs at 360px and desktop in day/night. The random-question button has
+intrinsic width, stage labels are short, and the mission card starts collapsed. Secondary
+behavioral copy is inside an inline ⓘ disclosure, reachable by hover, click/touch, keyboard
+and Escape. Essential problem/rubric/error copy stays visible. A valid old test state silently
+starts the new teaching at zero, preserving other results; current progress is not repeatedly
+reset. No review of this layout should be counted as completing the full question bank.

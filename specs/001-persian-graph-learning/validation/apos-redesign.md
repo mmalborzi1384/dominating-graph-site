@@ -25,9 +25,9 @@ amended explicitly by the user: **carry over no old teaching progress or stage c
   are free, wrong answers show one automatically, full answers require a separate action after
   a hint, and reveal alone never grants completion. Only completion/navigation persist.
 - Curriculum 2 retains envelope schema 1 and the same storage key. Legacy curriculum is frozen
-  at content/teaching-v1.json solely for strict old-state validation. Old disk remains intact
-  until inline migration confirmation; the migration controls appear before the activities.
-  Confirmation resets only teachingProgress and updates curriculumVersion; there is no legacy
+  at content/teaching-v1.json solely for strict old-state validation. After strict old-state validation, automatic local conversion
+  resets only teachingProgress and updates curriculumVersion; no legacy-version controls or
+  explanatory success banners are shown. There is no legacy
   credit field. Other Attempts, Sessions, settings and deletion markers are preserved exactly.
 - Old bank-1.2 curriculum-1 backup import validates first, then zeros incoming old progress;
   it cannot unlock a new stage or lower existing new completion. New backup round-trip/merge
@@ -50,7 +50,7 @@ readiness, independent instructional review and the phase-8 release audit remain
 
 ## Dependency-free local checks
 
-`node scripts/validate-apos.mjs`: **205 checks passed**.
+`node scripts/validate-apos.mjs`: **203 current checks passed**.
 
 - All 12 activities × both variants; correct witnesses, missing/wrong required parts, unordered
   set/edge equivalence, loop rejection, route order/teleport errors, Persian/Arabic numerals.
@@ -58,7 +58,7 @@ readiness, independent instructional review and the phase-8 release audit remain
 - Complete and partial old progress reset to zero; old data validated before reset; all other
   results/settings/sessions/tombstones preserved, no legacy credit or teaching-answer fields.
 - Legacy import cannot unlock stages or lower new completion; new round-trip retains it;
-  downgrade rejection; migration preview/cancel/stale revision, blocked accidental writes,
+  downgrade rejection; automatic one-write conversion without a legacy-version UI,
   injected quota failure, old-disk preservation, unsaved export/retry and exactly-once migration.
 - New progress survives repository reload; reset remains isolated to teaching.
 
@@ -81,7 +81,7 @@ DevTools protocol. No Playwright, framework, browser-driver package or build add
   overflow. Screenshots of stage headers, lesson cards and populated boards were inspected.
   Follow-up made typed controls at least 44px tall with inherited font/token colors and
   reduced nested padding on mobile; node labels, edge controls and answers remain readable.
-- **13 migration/import/integration checks passed**: old progress preview is 0%, activity inputs
+- **Initial migration/import/integration evidence (13 checks; confirmation UI later removed)**: old progress preview is 0%, activity inputs
   wait for migration, cancellation preserves old disk, confirmation removes all old completion,
   other results/deletion markers persist and display in Records, old-backup preview warns of
   no progress transfer, confirmed import unlocks nothing, reload does not migrate again, other
@@ -91,3 +91,25 @@ Temporary fixtures/screenshots stay outside the repository. Existing user/browse
 not used as a test fixture. Physical phones, Firefox/WebKit, participant/usability testing,
 external hosting of this unmerged change and independent educational review were not performed.
 The public GitHub Pages site remains on main until separately authorized merge/deployment.
+
+## Compact interface follow-up — 2026-11-12
+
+The user explicitly removed the legacy-version product flow because the site is not yet
+public. Local conversion is now automatic; valid other records/tombstones survive and quota
+failure still preserves old disk/recoverable memory. Actual errors, file import confirmation
+and teaching reset confirmation are retained. Operational copy moved behind an inline ⓘ
+with hover/click/touch/keyboard/Escape; random action has intrinsic width, mission cards start
+collapsed and stage labels are shortened. Shared panel/card/header spacing is reduced across
+all five tabs, with unchanged font families/palettes and touch targets >=44px.
+
+Current evidence: 203 APOS checks, foundation 104 and records 90 pass. Full typed-activity
+browser flow rechecked (55 checks). 40 compact/help/automatic-reset browser checks passed and cover all
+five tabs at 360px and 1159px in both palettes, with screenshots inspected and no horizontal
+overflow. Secondary explanation stays hidden until disclosure; hover/click and keyboard
+open/dismiss work. Old test data converts to zero without a prompt and other results/markers
+remain. Source mathematics check also passes: 1173 graphs / 57672 selections; supported
+source gammas match, while Q014/Q055/Q114 are explicitly rejected by this engine.
+
+This is a layout/status follow-up in the same PR, not phase 8. Full-bank readiness is
+still pending; docs/content-status.md records actual field counts, tab pools and the limited
+two-variant teaching randomization without claiming a 150-question random teaching bank.

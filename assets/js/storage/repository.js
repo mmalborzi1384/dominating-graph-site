@@ -56,8 +56,8 @@ export function createRepository(curriculum, storage = browserStorage, context =
         return snapshot();
       }
       dirty = false; conflict = false; warning = ''; unsavedReset = false; editing.clear();
-      if(migrationPending)warning='نسخهٔ تازهٔ آموزش از صفر شروع می‌شود؛ پیش از ذخیره، مهاجرت را تأیید کنید. سوابق سایر تب‌ها حفظ می‌شوند.';
-      lastResult = { status: migrationPending?'migration-required':readStatus };
+
+      lastResult = { status: readStatus };
     } catch (error) {
       // Parse errors in the legacy setting are corrupt data; storage access errors are unavailable.
       readStatus = error instanceof SyntaxError || error.code === 'invalid-data' ? 'corrupt' : 'unavailable';
@@ -65,6 +65,7 @@ export function createRepository(curriculum, storage = browserStorage, context =
       warning = 'ذخیرهٔ قبلی خوانده نشد؛ داده‌ها را تغییر نمی‌دهیم. کار فعلی موقت است؛ فایل بازیابی بگیرید.';
       lastResult = { status: readStatus, error: errorInfo(error) };
     }
+    if(migrationPending){migrationPending=false;commit(state,state.revision);}
     return snapshot();
   }
   function prepare(next, expectedRevision, allowTeachingReset = false, removedCompetitionId = null) {
@@ -135,11 +136,6 @@ export function createRepository(curriculum, storage = browserStorage, context =
   globalThis.window?.addEventListener('storage', storageChanged);
   return {
     snapshot,
-    confirmMigration(expectedRevision) {
-      requireValid(migrationPending && expectedRevision===state.revision && !conflict, 'وضعیت مهاجرت تغییر کرده است؛ ذخیره را بازخوانی کنید.');
-      migrationPending=false;
-      return commit(state,expectedRevision);
-    },
     subscribe(listener) { listeners.add(listener); listener(snapshot()); return () => listeners.delete(listener); },
     prepare(next, expectedRevision) {
       const result = prepare(next, expectedRevision);

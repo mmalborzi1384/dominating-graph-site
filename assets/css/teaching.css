@@ -83,3 +83,32 @@
   .apos-answer { padding-inline: .5rem; }
   .apos-answer .board-panel { padding-inline: 0; }
 }
+/* Review follow-up: compact teaching header, optional explanations, no legacy-version flow. */
+.teaching-heading { gap: 1rem; margin-bottom: 1rem; }
+.stage-navigation { gap: .5rem; margin-bottom: 1rem; }
+.stage-button { min-height: 72px; padding: .6rem; }
+#teaching-stage > h2 { margin-block: .5rem; }
+.stage-goal, .stage-bridge { margin-block: .4rem; }
+.apos-scenario { padding-inline-start: .65rem; margin-block: .5rem; }
+.teaching-toolbar { display: flex; flex-wrap: wrap; align-items: start; gap: .5rem; margin-block: .65rem; }
+.teaching-toolbar > .secondary-button { width: auto; min-height: 44px; padding: .5rem 1rem; margin: 0; }
+.context-help { min-width: 44px; max-width: min(100%,32rem); }
+.context-help summary { display: grid; place-items: center; width: 44px; min-height: 44px; cursor: pointer; font-size: var(--font-lg); border: 1px solid var(--line); border-radius: .6rem; color: var(--heading); list-style: none; }
+.context-help summary::-webkit-details-marker { display: none; }
+.context-help:hover summary, .context-help:focus-within summary { background: var(--accent-soft); }
+.context-help > p { padding: .65rem; margin-block: .5rem 0; border-inline-start: 2px solid var(--line); font-size: var(--font-sm); }
+.lesson-blocks { gap: .6rem; }
+.lesson-block { padding: .65rem .8rem; }
+.lesson-block summary { cursor: pointer; color: var(--heading); font-weight: 700; min-height: 44px; }
+.lesson-block[open] > p { margin-block: .6rem; }
+.teaching-activity { padding: clamp(.8rem,2vw,1.15rem); margin-block: 1rem; }
+.teaching-activity > p { margin-block: .5rem; }
+.required-note { margin-block: .65rem; }
+.apos-part { margin-block: .65rem; padding-block: .25rem; }
+@media (max-width: 640px) { .stage-button { min-height: 84px; } }
+@media (max-width:640px) {
+ .teaching-heading { gap: .65rem; }
+ .teaching-progress { padding: .5rem .75rem; grid-template-columns: 3rem minmax(0,1fr); row-gap: .1rem; }
+ .teaching-progress .progress-percent { grid-row: 1 / 3; font-size: 1.5rem; }
+ .teaching-progress .save-state { grid-column: 2; margin: 0; }
+}
