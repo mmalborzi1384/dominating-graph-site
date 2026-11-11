@@ -34,3 +34,30 @@ let hinted=fresh();const hs=createCompetition(['الف','ب'],1,pool,hinted);hin
 const deleted=structuredClone(hinted);deleted.sessions[hs.id].turns[0].resultStatus='finalized-deleted';const advanced=advanceTurn(deleted,hs.id,c,context);check(advanced.sessions[hs.id].currentIndex===1,'Deleted turn stays spent');check(competitionRanks(deleted.sessions[hs.id],deleted.attempts).every(g=>g.total===0),'Deleted results excluded');
 const crowded=fresh();for(let i=0;i<100;i++)crowded.sessions['s'+i]={};rejects(()=>createCompetition(['الف','ب'],1,pool,crowded),'100-session bound');
 console.log(`Final count: ${checks} checks passed.`);
+
+// Whole-match reset/delete must be explicit, scoped and durable through the repository.
+const {replaceCompetition}=await import('../assets/js/domain/sessions.js');
+const {createRepository,storageKey}=await import('../assets/js/storage/repository.js');
+const {createAttempt}=await import('../assets/js/domain/attempts.js');
+let seed=fresh();const match=createCompetition(['الف','ب'],1,pool,seed);seed=addCompetition(seed,match,c,context);
+seed=consumeHint(seed,match.id,c,context);seed=finalizeTurn(seed,match.id,[],c,context);
+const practice=createAttempt({questionId:'Q001',mode:'self-assessed-text',target:'rubric',response:'ناحیه رأس است.',selfAssessed:true});seed.attempts[practice.id]=practice;
+const past=structuredClone(seed.sessions[match.id]);past.id='other-match';past.status='completed';past.currentIndex=past.turns.length;past.turns=past.turns.map(t=>({...t,id:crypto.randomUUID(),resultStatus:'finalized-deleted',finalizedAttemptId:null}));seed.sessions[past.id]=past;
+const reset=replaceCompetition(seed,match.id,true,c,context),freshMatch=Object.values(reset.sessions).find(s=>s.id!==past.id);
+check(!reset.sessions[match.id]&&freshMatch.id!==match.id,'Reset fresh session identity');
+check(freshMatch.currentIndex===0&&freshMatch.status==='active'&&freshMatch.turns.every(t=>t.resultStatus==='pending'&&t.consumedHintLevel===0),'Reset clears results and hints');
+check(freshMatch.turns.every((t,i)=>t.id!==match.turns[i].id&&t.questionId===match.turns[i].questionId),'New turns preserve questions');
+check(freshMatch.groups.every((g,i)=>g.name===match.groups[i].name),'Reset preserves names');
+check(JSON.stringify(reset.sessions[past.id])===JSON.stringify(seed.sessions[past.id])&&JSON.stringify(reset.attempts[practice.id])===JSON.stringify(practice),'Other records unchanged');
+check(JSON.stringify(reset.teachingProgress)===JSON.stringify(seed.teachingProgress),'Progress unchanged');
+rejects(()=>validateStateTransition(seed,reset),'Generic commit cannot reopen/delete spent session');
+const removed=replaceCompetition(seed,match.id,false,c,context);check(!removed.sessions[match.id]&&!Object.values(removed.attempts).some(a=>a.sessionId===match.id),'Delete removes complete match and results');
+rejects(()=>replaceCompetition(seed,'missing',false,c,context),'Missing session rejected');
+let raw=JSON.stringify(seed),fail=false,writes=0;const storage={getItem:key=>key===storageKey?raw:null,setItem:(key,value)=>{if(fail)throw Object.assign(Error('quota'),{name:'QuotaExceededError'});raw=value;writes++;},removeItem:()=>{}};
+const repo=createRepository(c,storage,context);const before=raw;
+rejects(()=>repo.manageCompetition(match.id,false,seed.revision+1),'Stale confirmation rejected');check(raw===before&&writes===0,'Rejected action does not write');
+fail=true;check(!repo.manageCompetition(match.id,true,seed.revision)&&raw===before,'Quota preserves original persisted match');
+fail=false;check(repo.retry()&&writes===1,'Retry atomically saves reset');
+const restarted=Object.values(repo.snapshot().state.sessions).find(s=>s.id!==past.id);check(repo.manageCompetition(restarted.id,false,repo.snapshot().state.revision)&&writes===2,'Explicit deletion one write');
+check(Object.keys(JSON.parse(raw).sessions).join()===past.id&&JSON.parse(raw).attempts[practice.id],'Reloaded delete preserves other data');repo.dispose();
+console.log(`Reset/delete total: ${checks} checks passed.`);

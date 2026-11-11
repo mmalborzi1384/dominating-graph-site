@@ -40,3 +40,19 @@ Physical mobile, Firefox/WebKit, quota simulation in this particular UI and exte
 were not checked here. Shared repository quota/conflict boundaries remain covered by the
 foundation script. Full-bank readiness and human instructional review remain separate gates.
 No PR merge or production deployment is authorized in this slice.
+
+## Reset/delete follow-up — 2026-11-11
+
+The requested buttons were absent. Added both for the currently displayed active/completed
+match, each with inline impact description, explicit confirm/cancel and shared focus/Escape
+handling. Reset uses fresh identities, retains names/rounds/questions and clears results,
+hints and selections. Delete removes the chosen session and all associated Attempts. A narrow
+repository action permits just this explicit removal; generic commits still reject it.
+
+`node scripts/validate-competition.mjs`: 148 checks pass, including isolation, fresh identities,
+spent-turn safeguards, stale confirmation, quota-preserved disk state, retry and one-write
+delete. Foundation 104, practice 37 and teaching 46 also pass. Chrome isolated-profile follow-up:
+14 observations pass (both cancellations leave state unchanged, active/completed reset,
+cleared selections, full delete, reload persistence, both widths/themes and no runtime errors).
+Mobile/night confirmation screenshot visually inspected. Physical-device/other-browser and
+external-host limitations above still apply. Graphify updated before the review boundary.

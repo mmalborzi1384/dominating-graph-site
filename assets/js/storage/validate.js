@@ -227,14 +227,19 @@ export function validateStoredEnvelope(value, curriculum, context = {}) {
 }
 
 /** Enforce immutability/spent turns across ordinary commits, independent of UI controllers. */
-export function validateStateTransition(previous, next, { allowTeachingReset = false } = {}) {
+export function validateStateTransition(previous, next, { allowTeachingReset = false, removedCompetitionId = null } = {}) {
+  if (removedCompetitionId !== null) {
+    check(previous.sessions[removedCompetitionId]?.kind === 'competition' && !next.sessions[removedCompetitionId], 'حذف صریح باید به یک مسابقهٔ موجود محدود باشد.', 'sessions');
+    check(!Object.values(next.attempts).some(a => a.sessionId === removedCompetitionId), 'نتایج وابسته به مسابقه باید همراه آن حذف شوند.', 'attempts');
+  }
   if (!allowTeachingReset) check(previous.teachingProgress.completedActivityIds.every(id => next.teachingProgress.completedActivityIds.includes(id)), 'کاهش پیشرفت فقط با ریست صریح مجاز است.', 'teachingProgress');
   for (const [id, attempt] of Object.entries(previous.attempts)) {
     if (next.attempts[id]) check(same(attempt, next.attempts[id]), 'نتیجهٔ نهایی قابل ویرایش نیست.', `attempts.${id}`);
   }
   for (const [id, session] of Object.entries(previous.sessions)) {
     const later = next.sessions[id];
-    // Session deletion belongs to the explicit later selective-deletion feature.
+    if (id === removedCompetitionId) continue;
+    // Only the scoped whole-competition action above may remove a session here.
     check(later, 'نشست دارای وضعیت مصرف‌شده نباید بی‌علامت حذف شود.', `sessions.${id}`);
     check(session.kind === later.kind && (session.status !== 'completed' || later.status === 'completed'), 'نشست پایان‌یافته قابل بازگشایی نیست.', `sessions.${id}`);
     for (const turn of session.turns ?? []) {

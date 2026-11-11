@@ -65,3 +65,27 @@ export function competitionRanks(session, attempts) {
     .reduce((sum,t) => sum + (attempts[t.finalizedAttemptId]?.finalScore ?? 0),0)})).sort((a,b) => b.total-a.total || a.order-b.order);
   return rows.map(row => ({...row,rank:1+rows.filter(other => other.total>row.total).length}));
 }
+
+/** Explicit whole-match action; a restart creates fresh identities, never reopens spent turns. */
+export function replaceCompetition(state, id, restart, curriculum, context) {
+  const previous = state.sessions[id];
+  requireValid(previous?.kind === 'competition', 'مسابقهٔ انتخاب‌شده موجود نیست.');
+  requireValid(typeof restart === 'boolean', 'نوع عملیات مسابقه معتبر نیست.');
+  requireValid(!restart || !Object.values(state.sessions).some(s => s.id !== id && s.kind === 'competition' && s.status !== 'completed'), 'ابتدا مسابقهٔ جاری را تمام کنید.');
+  const next = structuredClone(state);
+  delete next.sessions[id];
+  for (const [key, attempt] of Object.entries(next.attempts)) if (attempt.sessionId === id) delete next.attempts[key];
+  if (restart) {
+    requireValid(previous.turns.length <= 200 - Object.keys(next.attempts).length, 'ظرفیت کافی برای شروع دوبارهٔ تمام نوبت‌ها وجود ندارد.');
+    const groups = previous.groups.map(g => ({...g,id:crypto.randomUUID()}));
+    const turns = previous.turns.map(t => ({id:crypto.randomUUID(),questionId:t.questionId,
+      groupId:groups[previous.groups.findIndex(g => g.id === t.groupId)].id,
+      consumedHintLevel:0,resultStatus:'pending',finalizedAttemptId:null}));
+    const fresh = {id:crypto.randomUUID(),kind:'competition',status:'active',groups,turns,
+      roundCount:previous.roundCount,questionIds:[...previous.questionIds],currentIndex:0,startedAt:new Date().toISOString()};
+    next.sessions[fresh.id] = fresh;
+  }
+  const result = validateStoredEnvelope(next,curriculum,context);
+  validateStateTransition(state,result,{removedCompetitionId:id});
+  return result;
+}

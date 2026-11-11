@@ -171,3 +171,20 @@ minimumSetCountMax (integers 1–1024, max >= min). Both constrain the exact cou
 minimum sets: Q074 requires exactly one; Q075 requires at least two. Existing targets with
 neither field keep their original n/gamma behavior. These constraints are validated during
 local recording and are part of the shared validation boundary for future imports.
+
+## Explicit whole-competition reset/delete (user amendment)
+
+`repository.manageCompetition(id, restart, expectedRevision)` is the narrow confirmed action.
+It validates a complete candidate and commits once, using the same revision/conflict/quota
+boundary. Generic commit still cannot remove a session or reopen spent turns. Delete removes
+only the selected competition and all Attempts referencing its ID. Reset performs that removal
+and creates a new active session, fresh group/turn/session IDs, the same names/order/rounds/
+question choices, index zero and no consumed hints/results. It may restart a completed match;
+no old finalized turn is reopened. Other sessions/results/settings/progress are preserved.
+A failed write retains old disk state and clearly marked temporary memory with retry/recovery.
+Confirmation against an outdated revision is rejected. Reset is refused if another match is
+active or remaining record capacity cannot accommodate the full restarted match.
+
+This explicit whole-match removal supersedes the no-session-removal rule only for this API.
+US5 selected-result deletion within a retained session still requires spent tombstones and
+never permits replay. No import or older-backup merge behavior is implemented by this action.

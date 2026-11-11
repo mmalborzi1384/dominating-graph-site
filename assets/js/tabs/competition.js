@@ -2,7 +2,7 @@ import { practiceCatalog } from '../data/practice.js';
 import { competitionPool, createCompetition, addCompetition, consumeHint, finalizeTurn, advanceTurn, competitionRanks } from '../domain/sessions.js';
 import { createGraphBoard } from '../ui/graph-editor.js';
 import { renderTextMath } from '../ui/math.js';
-import { setFeedback, selectionFeedback } from '../ui/feedback.js';
+import { setFeedback, selectionFeedback, createInlineConfirmation } from '../ui/feedback.js';
 
 const el=(tag,text='',cls='')=>{const n=document.createElement(tag);n.textContent=text;n.className=cls;return n;};
 const fa=n=>n.toLocaleString('fa-IR');
@@ -34,6 +34,34 @@ export async function initCompetition(questions,curriculum,repository) {
   const status=el('p'),history=el('select');history.id='competition-history';
   const host=el('section','','practice-activity');root.append(setup,label('مسابقه‌های ذخیره‌شده',history),status,host);
   let viewId=null,selected=[],turnId=null,board;
+  function managementConfirmation(restart) {
+    let request;
+    const key=restart?'reset':'delete';
+    const confirmation=createInlineConfirmation({id:`competition-${key}-confirmation`,
+      confirmId:`competition-${key}-confirm`,cancelId:`competition-${key}-cancel`,
+      message:'',confirmLabel:restart?'تأیید ریست مسابقه':'تأیید حذف مسابقه',
+      onConfirm:()=>{
+        try {
+          const saved=repository.manageCompetition(request.id,restart,request.revision);
+          repository.setEditingDirty('competition',false);
+          setFeedback(status,saved?(restart?'مسابقه از ابتدا شروع شد.':'مسابقه و نتایج وابسته حذف شدند.'):repository.snapshot().warning,{tone:saved?'success':'error'});
+          return true;
+        } catch(error) {setFeedback(status,error.message,{tone:'error'});return false;}
+      }});
+    root.insertBefore(confirmation.element,host);
+    return {close:confirmation.close,open:(session,source)=>{
+      resetConfirmation?.close();deleteConfirmation?.close();
+      const snapshot=repository.snapshot();request={id:session.id,revision:snapshot.state.revision};
+      const results=Object.values(snapshot.state.attempts).filter(a=>a.sessionId===session.id).length;
+      confirmation.element.querySelector('p').textContent=restart
+        ?`با ریست، ${fa(results)} نتیجه و همهٔ پاسخ‌ها و راهنماهای این مسابقه پاک می‌شوند؛ همان گروه‌ها، دورها و سؤال‌ها از نوبت اول با امتیاز صفر آغاز می‌شوند. تأیید می‌کنید؟`
+        :`این مسابقه و ${fa(results)} نتیجهٔ وابسته به آن کامل از این مرورگر حذف می‌شوند. تأیید می‌کنید؟`;
+      confirmation.open(source);
+    }};
+  }
+  // Store close handles separately so opening either confirmation cancels the other.
+  let resetConfirmation,deleteConfirmation;
+  resetConfirmation=managementConfirmation(true);deleteConfirmation=managementConfirmation(false);
   const safe=s=>s.persisted&&!s.dirty&&!s.conflict&&!['corrupt','unsupported','unavailable'].includes(s.readStatus);
   history.addEventListener('change',()=>{viewId=history.value;render(repository.snapshot());});
   function act(fn){try{const s=repository.snapshot();if(!safe(s))throw Error('ذخیره‌سازی آماده نیست؛ دوباره ذخیره کنید یا با تأیید بازخوانی کنید.');const next=fn(s.state);repository.commit(next,s.state.revision);}catch(e){setFeedback(status,e.message,{tone:'error'});}}
@@ -49,6 +77,10 @@ export async function initCompetition(questions,curriculum,repository) {
     host.replaceChildren();
     if(!safe(s)){const box=el('div','','question-card glass-surface');box.append(el('p','کار فعلی موقت یا دارای تعارض است؛ تا ذخیرهٔ موفق، راهنمای تازه و ثبت پاسخ بسته‌اند.'),button('ذخیرهٔ دوباره',()=>repository.retry()));host.append(box);return;}
     if(!session)return;
+    const management=el('div','','practice-actions');
+    const reset=button('ریست مسابقه',event=>resetConfirmation.open(session,event.currentTarget));reset.id='competition-reset';
+    const remove=button('حذف مسابقه',event=>deleteConfirmation.open(session,event.currentTarget));remove.id='competition-delete';
+    management.append(reset,remove);host.append(management);
     const table=el('table','','competition-results');table.append(el('caption',session.status==='completed'?'نتیجهٔ نهایی؛ رتبه‌های برابر مشترک‌اند':'امتیازهای فعلی'));
     const head=el('tr');for(const t of ['رتبه','گروه','امتیاز'])head.append(el('th',t));table.append(head);
     for(const row of competitionRanks(session,s.state.attempts)){const tr=el('tr');for(const t of [fa(row.rank),row.name,fa(row.total)])tr.append(el('td',t));table.append(tr);}host.append(table);

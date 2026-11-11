@@ -192,6 +192,13 @@ resume, spent deleted-turn handling and shared ranks. The latest user request au
 this phase; full-bank/human content gates remain open. Evidence: [validation/us3.md](validation/us3.md).
 Stop for human review before phase 6; do not merge automatically.
 
+User-requested phase-5 follow-up: add reset/delete controls with inline confirm/cancel for
+active and completed matches. Reset removes the chosen execution/results and starts a fresh
+identity with unchanged groups/rounds/questions and zero hints; delete removes that whole
+match/results. Use a narrow repository action, expected revision and one write; preserve
+other sessions/records and teaching progress. This explicit whole-match action is separate
+from future US5 selected-result deletion/tombstones. Verified in validation/us3.md.
+
 ---
 
 ## Phase 6: User Story 4 - کاوش در آزمایشگاه (Priority: P2)
