@@ -240,3 +240,17 @@ preview revision; storage change requires a new preview. Cancellation performs n
 `repository.deleteResults(ids, expectedRevision)` deletes selected live Attempts across tabs
 in one commit, checks revision/readiness and retains sessions/spent markers. The existing
 lab-only delete remains supported. Quota failure retains old disk and recoverable memory.
+
+## پیشنهاد PR#1.1 — غیرفعال تا تأیید طرح
+
+مرجع: [طرح بازنویسی APOS](../amendments/pr-1-1-apos-redesign.md). این بخش قرارداد
+آیندهٔ پیشنهادی است و قواعد نسخهٔ اجراشده را در حال حاضر تغییر نمی‌دهد.
+
+پیشنهاد تفصیلی: curriculumVersion جدید با مهاجرت نسخه‌دار، پیش‌نمایش/تأیید و امکان
+خروجی قبلی. اعتبار مراحل قبلاً پاس‌شده با legacyPassedStageIds از قبولی فعالیت‌های
+تازه جدا بماند؛ مراحل قبلاً باز قفل نشوند. پرچم جزئیِ بدون معادل به فعالیت جدید
+تبدیل نشود و اثر آن قبل از تأیید اعلام شود. reset این اعتبار را هم فقط در آموزش
+پاک کند. سایر نتایج/نشست‌ها/تم/علامت‌های حذف حفظ شوند. نسخهٔ دقیق schema/بک‌آپ و
+نمونه‌های رفت‌وبرگشت در APOS-D02 نهایی می‌شوند؛ قرارداد فعال schema/curriculum=1
+و bankVersion=1.2-only تا تأیید و اجرای مهاجرت تغییری ندارد. هیچ پاسخ/راهنما/نمرهٔ
+آموزشی حتی برای مهاجرت ذخیره نمی‌شود.

@@ -91,3 +91,15 @@ alone is not an error for a textual, student-built or runtime activity. Verify t
 corrections and source figures against the local PDF and obtain human educational review.
 Do not conflate a source-bank version update with a storage/backup migration: define and
 test the compatibility policy before changing the existing transfer contract.
+
+## پیشنهاد PR#1.1 — غیرفعال تا تأیید طرح
+
+مرجع: [طرح بازنویسی APOS](../amendments/pr-1-1-apos-redesign.md). این بخش قرارداد
+آیندهٔ پیشنهادی است و قواعد نسخهٔ اجراشده را در حال حاضر تغییر نمی‌دهد.
+
+الگوی محتوای آینده سه فعالیت در هر مرحله با learningObjective، cognitiveOperation،
+صورت، زمینه، responseMode، پاسخ/قیود، معیار و سه راهنماست. نوع پاسخ لزوماً انتخاب
+رأس نیست. Action باید از تعریف رسمی حتی در متن منبع قابل نمایش خالی باشد؛ Object
+تعریف و نماد رسمی را با مثال/ضدمثال ارائه می‌کند. درس‌های تألیفی با شناسهٔ فعالیت
+آموزشی مستقل‌اند و تعداد/شناسه‌های بانک تغییر نمی‌کند. منابع بانک باید واقعاً مجاز
+و هم‌مرحله/هم‌سختی باشند؛ هدف شناختی و نوع پاسخ و وابستگی مدل نیز شرط تصادفی‌سازی‌اند.

@@ -126,3 +126,15 @@ not a save. Confirmation checks the captured revision; cancel/Escape writes noth
 old/incompatible versions and conflicting active sessions explicitly. Export is labeled as
 unsaved work when necessary; retry/reload/raw recovery remain inline. Cards share glass
 styles and token colors, mobile buttons fill width while desktop buttons remain intrinsic.
+
+## پیشنهاد PR#1.1 — غیرفعال تا تأیید طرح
+
+مرجع: [طرح بازنویسی APOS](../amendments/pr-1-1-apos-redesign.md). این بخش قرارداد
+آیندهٔ پیشنهادی است و قواعد نسخهٔ اجراشده را در حال حاضر تغییر نمی‌دهد.
+
+Action ابزار اتصال و پیمودن مسیر و انتخاب مرکز با زبان روزمره دارد. Process مدل
+ثابت و ورودی پیش‌بینی دارد؛ ابزار آزمون/نمایش زندهٔ پوشش خاموش است. Object درس‌نامهٔ
+رسمی خردشده با مثال/ضدمثال و پاسخ مفهومی دارد. Schema نگاشت/ساخت/حل/توجیه/نقد مدل
+تازه را در همان تب ترکیب می‌کند. هر کارت هدف و معیار موفقیت را پیش از پاسخ و راهنما
+را پیش از پاسخ نمونه نشان می‌دهد؛ جواب نمونه قبولی نیست. نشانهٔ اعتبار پیشرفت قبلی
+باید از تکمیل فعالیت‌های تازه قابل تشخیص باشد. هیچ پاپ‌آپ یا نمرهٔ آموزشی اضافه نمی‌شود.

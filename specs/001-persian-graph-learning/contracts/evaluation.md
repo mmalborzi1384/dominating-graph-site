@@ -55,3 +55,14 @@ At timeout, reject new answers even when the timer callback was throttled in a h
 Equal positive round count gives each of 2–10 groups the same turn count, with same-difficulty
 question allocation from the eligible pool. Pool exhaustion repeats only across completed
 cycles and is disclosed. Equal totals have shared rank; no hidden tie-break rule.
+
+## پیشنهاد PR#1.1 — غیرفعال تا تأیید طرح
+
+مرجع: [طرح بازنویسی APOS](../amendments/pr-1-1-apos-redesign.md). این بخش قرارداد
+آیندهٔ پیشنهادی است و قواعد نسخهٔ اجراشده را در حال حاضر تغییر نمی‌دهد.
+
+علاوه بر انتخاب رأس، پاسخ موقت آموزش می‌تواند مجموعهٔ یال، توالی مسیر، پیش‌بینی
+مجموعه، پاسخ‌های عددی و دسته‌بندی/توجیه ساخت‌یافته باشد. هرکدام ارزیاب متناسب خود
+را دارد؛ ترتیب نمایش مجموعه‌ها/دو سر یال مؤثر نیست، ولی ترتیب گام‌های مسیر مؤثر است.
+قبولیِ کارت چندجزئی به درستی تمام اجزای الزامی وابسته است. متن آزاد اختیاری قفل را
+باز نمی‌کند و تصحیح زبانی خودکار ادعا نمی‌شود. قواعد امتیاز تمرین/مسابقه تغییر نمی‌کند.

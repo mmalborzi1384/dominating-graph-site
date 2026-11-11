@@ -198,3 +198,13 @@ transfer controls. Copy lives in content/records.json and responsive styling in 
 The repository retains one-key commits; shared validation remains authoritative. The tested
 1.1 policy is rejection, pending reviewed migration. Evidence: validation/us5.md. Stop for
 human review; phase 8 and its content/host/usability release gates remain unstarted.
+
+## PR#1.1 planning hold — APOS redesign
+
+The complete proposal lives in amendments/pr-1-1-apos-redesign.md. It introduces twelve
+activities with distinct cognitive operations, typed temporary responses, connected scenario
+chains and exact, stage-appropriate feedback. Teaching-only rendering/evaluation and necessary
+progress/backup compatibility are the implementation scope. Existing scored-tab behavior and
+phase-8 release work are outside it. APOS-G01 requires explicit human plan approval before any
+runtime/content/script change. Schema details must be finalized in APOS-D02, not silently
+introduced while planning. Historical implementation evidence is not evidence of this redesign.
