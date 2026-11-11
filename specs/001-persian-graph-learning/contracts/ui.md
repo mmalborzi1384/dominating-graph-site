@@ -46,6 +46,11 @@ survives refresh. Finalized turn disables scoring inputs and advances on explici
 
 ## Lab
 
+Saved-result rows reserve flexible width for title/metadata and intrinsic width for Delete
+on desktop; global full-width button styles must not collapse the text column. On mobile,
+stack metadata and action. Render title, score and isolated semantic time separately;
+verify populated rows, not just empty panels, in both themes.
+
 Second review: show station title/goal immediately under the selector and provide an in-page
 jump to its task heading. Common building/editing tools remain shared. Formula observations
 show family, n (vertices), gamma (minimum centers), session-only lifetime, deduplication and

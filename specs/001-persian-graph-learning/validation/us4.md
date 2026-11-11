@@ -101,3 +101,16 @@ all five title/task changes, save/list/delete/cancel/reload, explanatory lesson 
 360/1159 day/night without horizontal overflow and no runtime exceptions. Desktop station
 intro and mobile note/results screenshots visually inspected. No physical-phone, Firefox/
 WebKit or external-host claim. Spec/tasks/plan/contracts/README updated; Graphify refreshed.
+
+## Populated saved-row text collapse correction
+
+Reproduced with three saved draw results: global secondary-button width:100% plus flex-shrink:0
+consumed the desktop row. At viewport 1159, text width was 0px and row height 1261px. Changed
+saved rows to flexible-text/intrinsic-action grid and explicitly overrode action width. Title,
+score and isolated semantic time now have separate elements. Observation row buttons received
+an equivalent width override; mobile rows remain stacked with full-width actions.
+
+After correction: at 1159 text width 806px, action width 116px, row height 80px; at 360 text
+width 250px and row height 141px. Both themes had no page overflow or runtime exceptions.
+Populated desktop/night and mobile/day screenshots visually inspected. No records/schema
+changed. UI contract/tasks note updated; Graphify refreshed before review.

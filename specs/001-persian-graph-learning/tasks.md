@@ -247,6 +247,10 @@ confirmed deletion, with spent turn markers for game/challenge results. Explain 
 lesson/page footer as reference-only. This limited precursor does not complete T049–T052
 or authorize the phase-7 analytics/transfer UI. Record mobile/desktop evidence in us4.md.
 
+Populated-result layout correction: override the global full-width button style in rows,
+reserve a flexible text column, separate title/score/time, and verify populated results in
+mobile/desktop and both themes. This does not change stored data or the storage schema.
+
 ---
 
 ## Phase 7: User Story 5 - تحلیل و مالکیت سوابق (Priority: P2)

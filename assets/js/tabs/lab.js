@@ -59,7 +59,12 @@ export async function initLab(questions,curriculum,repository){
  function renderSaved(){const snapshot=repository.snapshot(),results=Object.values(snapshot.state.attempts).filter(a=>a.tab==='lab');savedSummary.textContent=`نتایج ثبت‌شدهٔ آزمایشگاه (${fa(results.length)}) · مشاهده و حذف`;
   savedList.replaceChildren();if(!results.length)savedList.append(el('p','نتیجهٔ ذخیره‌شده‌ای نداریم.'));
   const activityNames={'lab:gamma':'محاسبهٔ گاما','lab:formula':'کشف فرمول','lab:bounds':'کران‌ها و اثر یال','lab:minimal':'مینیمال و مینیمم','lab:draw':'رسم با n و گاما'};
-  for(const [index,a]of results.entries()){const row=el('div','','lab-saved-row');row.append(el('p',`${fa(index+1)}. ${a.questionId??activityNames[a.activityId]??'فعالیت آزمایشگاه'} · امتیاز ${fa(a.finalScore??0)} · ${new Date(a.recordedAt).toLocaleString('fa-IR')}`));
+  for(const [index,a]of results.entries()){
+   const row=el('div','','lab-saved-row'),copy=el('div','','lab-result-copy');
+   const title=el('strong',`${fa(index+1)}. ${a.questionId??activityNames[a.activityId]??'فعالیت آزمایشگاه'}`);
+   const meta=el('div','','lab-result-meta'),date=new Date(a.recordedAt);
+   const time=el('time',`${date.toLocaleDateString('fa-IR')} — ساعت ${date.toLocaleTimeString('fa-IR')}`);time.dateTime=a.recordedAt;
+   meta.append(el('span',`امتیاز ${fa(a.finalScore??0)}`),time);copy.append(title,meta);row.append(copy);
    const remove=button('حذف این نتیجه',()=>{deletionRequest={id:a.id,revision:repository.snapshot().state.revision};deleteConfirmation.open(remove);});remove.dataset.deleteLabResult=a.id;remove.disabled=!safe();row.append(remove);savedList.append(row);}
   const spent=Object.values(snapshot.state.sessions).filter(s=>s.kind==='lab').flatMap(s=>s.turns??[]).filter(t=>t.resultStatus==='finalized-deleted');
   if(spent.length)savedList.append(el('p',`${fa(spent.length)} نتیجهٔ بازی/چالش حذف‌شده است؛ نوبت‌ها مصرف‌شده‌اند و قابل تکرار نیستند.`,'model-key'));
