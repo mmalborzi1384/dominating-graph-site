@@ -17,6 +17,29 @@ relative to entry/module base and work from GitHub Pages project subpaths.
 
 ## Eligibility and readiness
 
+### Random selection amendment
+
+Competition: each round draws distinct question IDs without replacement for its groups,
+all at the same exact source difficulty (1/2/3). A difficulty needs at least as many ready
+questions as groups; otherwise it is excluded. If none qualifies, starting is blocked with
+an inline explanation. Repetition across different rounds is allowed. Persist all choices
+before play; reload never rerolls them. Reset retains the chosen questions as already agreed.
+
+Teaching: each stable activity draws from ready, teach-permitted selection models matching
+its APOS stage and its original source question's exact difficulty. Preserve the activity's
+target and completion ID; use context, graph and hints belonging to the drawn question.
+Choices stay in memory during the page session and may be redrawn on explicit request or
+reload. Only completion/navigation persist; no teaching question assignment or answer is saved.
+
+Practice: each exact difficulty 1/2/3 offers «تمرین با سؤال‌های تصادفی» under the existing
+easy/hard filter. Draw only ready practice items matching that difficulty and active lesson/
+category filters. Redraw avoids the current ID when alternatives exist; a singleton remains
+usable with an explicit message, and an empty pool produces an inline empty state. Selecting
+or redrawing does not finalize or save an attempt. Existing explicit finalization rules apply.
+
+All draws use shuffled ready pools with no metadata relabeling or unsupported graph types.
+New contextual adapters require human educational review; randomization is not that review.
+
 A question is ready if required context, response mode, hints and every answer-dependent
 figure/graph are present and reviewed. A purely textual question need not have a graph.
 Teach requires its tab permission, matching APOS stage and selection-capable simple graph.

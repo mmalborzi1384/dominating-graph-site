@@ -13,7 +13,7 @@ export async function initCompetition(questions,curriculum,repository) {
   practiceCatalog(questions,config); // Same modeled-content/graph boundary as practice.
   const pool=competitionPool(questions,config),context={questions};
   const root=document.getElementById('panel-competition');root.replaceChildren();
-  root.append(el('h1','مسابقهٔ گروهی؛ یک مدل، چند راه‌حل'),el('p','۲ تا ۱۰ گروه · در هر دور یک سؤال مشترک و هم‌سطح برای تمام گروه‌ها · پس از پایان مجموعه، سؤال‌ها تکرار می‌شوند.','model-key'));
+  root.append(el('h1','مسابقهٔ گروهی؛ یک مدل، چند راه‌حل'),el('p','۲ تا ۱۰ گروه · سؤال‌های متفاوت و تصادفی با درجهٔ سختی یکسان در هر دور · تکرار سؤال در دورهای بعد ممکن است.','model-key'));
   const setup=el('form','','question-card glass-surface practice-activity');
   const count=el('input');count.type='number';count.min=2;count.max=10;count.step=1;count.value=2;count.id='competition-count';
   const rounds=el('input');rounds.type='number';rounds.min=1;rounds.step=1;rounds.value=config.defaultRounds;rounds.id='competition-rounds';

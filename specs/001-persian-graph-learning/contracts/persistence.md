@@ -174,6 +174,10 @@ local recording and are part of the shared validation boundary for future import
 
 ## Explicit whole-competition reset/delete (user amendment)
 
+Randomization follow-up: persist the full distinct-question turn schedule before the first
+turn; reloading keeps it. Reset continues to retain those question choices with fresh IDs.
+Teaching draws are transient and add no fields to teachingProgress or backup payloads.
+
 `repository.manageCompetition(id, restart, expectedRevision)` is the narrow confirmed action.
 It validates a complete candidate and commits once, using the same revision/conflict/quota
 boundary. Generic commit still cannot remove a session or reopen spent turns. Delete removes

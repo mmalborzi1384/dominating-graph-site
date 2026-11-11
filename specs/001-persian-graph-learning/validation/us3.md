@@ -56,3 +56,25 @@ delete. Foundation 104, practice 37 and teaching 46 also pass. Chrome isolated-p
 cleared selections, full delete, reload persistence, both widths/themes and no runtime errors).
 Mobile/night confirmation screenshot visually inspected. Physical-device/other-browser and
 external-host limitations above still apply. Graphify updated before the review boundary.
+
+## Randomization amendment — same PR
+
+Spec, tasks and content/persistence contracts were amended before implementation. The new
+rule supersedes shared-question rounds: draw distinct IDs without replacement at one exact
+difficulty per round, rejecting insufficient ready pools. The competition config now has 26
+modeled eligible IDs, sufficient for up to 10 groups. New service-network supplements preserve
+source topology/IDs/APOS/difficulty; human educational review remains pending.
+
+Teaching has 40 candidate IDs and per-activity compatible pools, retaining the original
+activity target, APOS and exact difficulty. Assignments remain only in memory and explicit
+redraw changes only that activity's card. Stable completion IDs/storage schema are unchanged.
+Practice adds exact-level 1/2/3 random options, filter-respecting redraw, singleton/empty-pool
+handling and no immediate-repeat where alternatives exist. No attempt is stored by a draw.
+Existing competitions retain their previously stored assignments; reset retains the schedule.
+
+Evidence: random-selection script 136 checks, competition 174, foundation 104, teaching 46
+and practice 37 all pass. Chrome isolated-profile randomization flow: 23 observations pass,
+including teaching redraw/stable progress, all practice levels, no attempts on draw, 10 unique
+same-difficulty assignments per round, reload/reset schedule preservation and all three tabs
+at 360/1280 in both themes without page overflow or runtime exceptions. Mobile/night screenshot
+visually inspected. Graphify updated. No merge, next phase or physical-device validation.

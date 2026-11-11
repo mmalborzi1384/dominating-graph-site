@@ -1,6 +1,7 @@
 import { normalizeUserText, requireValid } from './limits.js';
 import { validateStoredEnvelope, validateStateTransition } from '../storage/validate.js';
 import { createAttempt } from './attempts.js';
+import { shuffled } from './random.js';
 
 export function competitionPool(questions, config) {
   requireValid(config.version === 1 && JSON.stringify(config.caps) === '[15,10,5,0]', 'تنظیم مسابقه معتبر نیست.');
@@ -13,17 +14,21 @@ export function competitionPool(questions, config) {
     seen.add(q.id); return { ...item, question: q };
   });
 }
-export function createCompetition(names, rounds, pool, state) {
+export function createCompetition(names, rounds, pool, state, random = Math.random) {
   requireValid(Array.isArray(names) && names.length >= 2 && names.length <= 10, 'تعداد گروه باید ۲ تا ۱۰ باشد.');
   requireValid(Number.isSafeInteger(rounds) && rounds > 0, 'تعداد دور باید عدد صحیح مثبت باشد.');
   requireValid(pool.length > 0, 'سؤال آماده برای مسابقه نداریم.');
+  const byDifficulty=[1,2,3].map(level=>pool.filter(item=>item.question.difficulty===level))
+    .filter(items=>new Set(items.map(item=>item.question.id)).size>=names.length);
+  requireValid(byDifficulty.length>0, 'برای این تعداد گروه، سؤال‌های متفاوت و آمادهٔ هم‌درجه کافی نداریم.');
   requireValid(!Object.values(state.sessions).some(s => s.kind === 'competition' && s.status !== 'completed'), 'ابتدا مسابقهٔ جاری را تمام کنید.');
   requireValid(Object.keys(state.sessions).length < 100 && rounds <= Math.floor((200 - Object.keys(state.attempts).length) / names.length), 'ظرفیت کافی برای نشست و تمام نوبت‌ها وجود ندارد.');
   const groups = names.map((name, order) => ({ id: crypto.randomUUID(), name: normalizeUserText(name, 'groupName'), order }));
   const turns = [];
   for (let round = 0; round < rounds; round++) {
-    const questionId = pool[round % pool.length].question.id;
-    for (const group of groups) turns.push({id:crypto.randomUUID(),groupId:group.id,questionId,consumedHintLevel:0,resultStatus:'pending',finalizedAttemptId:null});
+    const candidates=shuffled(byDifficulty,random)[0];
+    const chosen=shuffled(candidates,random).slice(0,groups.length);
+    for (const [index,group] of groups.entries()) turns.push({id:crypto.randomUUID(),groupId:group.id,questionId:chosen[index].question.id,consumedHintLevel:0,resultStatus:'pending',finalizedAttemptId:null});
   }
   return {id:crypto.randomUUID(),kind:'competition',status:'active',groups,roundCount:rounds,
     questionIds:[...new Set(turns.map(t => t.questionId))],turns,currentIndex:0,startedAt:new Date().toISOString()};

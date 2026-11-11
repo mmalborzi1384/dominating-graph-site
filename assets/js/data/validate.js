@@ -46,5 +46,24 @@ export function validateTeaching(curriculum, overrides, bank) {
         && Number.isFinite(place.y) && place.y >= 45 && place.y <= 275), 'چیدمان سؤال معتبر نیست.');
     models.set(activity.id, { ...extra, graph: question.graph, question, activity });
   }
-  return { curriculum, models, questions: bank.questions, bankVersion: bank.meta.version };
+  const teachingPools = new Map();
+  for (const activity of curriculum.activities) {
+    const original=questions.get(activity.questionId);
+    const candidates=(curriculum.randomQuestionIds ?? [activity.questionId]).map(id=>questions.get(id))
+      .filter(q=>q?.tabs.includes('teach') && q.apos_stage===activity.stageId && q.difficulty===original.difficulty);
+    requireValue(candidates.length>0,'مجموعهٔ تصادفی این فعالیت خالی است.');
+    teachingPools.set(activity.id,candidates.map(question=>{
+      const extra=overrides.questions[question.id];
+      requireValue(extra && text(extra.adaptationReason) && text(extra.review?.basis)
+        && ['ready-for-user-review','approved'].includes(extra.review?.status)
+        && ['scenario','vertexMeaning','edgeMeaning'].every(key=>text(extra[key]))
+        && extra.hints?.length===3 && extra.hints.every(text),'زمینهٔ سؤال تصادفی آماده نیست.');
+      requireValue(analyzeGraph(question.graph).gamma===question.graph.gamma
+        && extra.places?.length===question.graph.n && new Set(extra.places.map(p=>p.id)).size===question.graph.n
+        && extra.places.every(p=>question.graph.vertices.includes(p.id)&&text(p.label)&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&p.x>=40&&p.x<=560&&p.y>=45&&p.y<=275),'مدل تصادفی معتبر نیست.');
+      return {...extra,graph:question.graph,question,activity:{...activity,title:question.title_fa,
+        prompt:'با انتخاب رأس‌ها، خواستهٔ این فعالیت را در مدل زیر برآورده کن.'}};
+    }));
+  }
+  return { curriculum, models, teachingPools, questions: bank.questions, bankVersion: bank.meta.version };
 }

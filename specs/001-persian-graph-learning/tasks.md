@@ -173,6 +173,15 @@ Stop for human review.
 
 ## Phase 5: User Story 3 - مسابقهٔ گروهی (Priority: P2)
 
+Randomization amendment (same PR, user-requested): replace shared questions with random
+distinct IDs of the same exact difficulty per round; validate sufficient pool capacity and
+persist assignments before play. Add in-memory teaching pools constrained to original APOS/
+exact difficulty with stable target/completion IDs, and exact-difficulty random practice
+options respecting filters. Update T018/T026/T031–T036 implementations and their validation;
+verify no teaching responses/assignments are persisted, no within-round duplicates, retained
+competition assignments on reload/reset, empty/singleton pools and no record until finalize.
+This amendment supersedes the earlier same-question-per-round policy; other phase boundaries remain.
+
 **Purpose / Goal**: Deliver equal-turn local group competition with persisted hint caps and immutable results.
 
 **Independent Test**: Complete a match at each integer group count 2–10, verify caps and shared ranks, reload during an active hinted turn and ensure no score/cap reset.

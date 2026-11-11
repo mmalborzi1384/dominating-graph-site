@@ -4,6 +4,7 @@ import { createGraphBoard } from '../ui/graph-editor.js';
 import { renderTextMath } from '../ui/math.js';
 import { setFeedback, selectionFeedback } from '../ui/feedback.js';
 import { analyzeGraph } from '../domain/evaluate.js';
+import { pickRandom } from '../domain/random.js';
 
 const el = (tag, text = '', className = '') => { const n = document.createElement(tag); n.textContent = text; n.className = className; return n; };
 const fa = n => n.toLocaleString('fa-IR');
@@ -24,12 +25,29 @@ export async function initPractice(questions, curriculum, repository) {
   const difficulty = select('دشواری',[['easy','آسان'],['hard','سخت']],'practice-difficulty');
   const picker = select('سؤال',[],'practice-question');
   const availability = el('p','','model-key'), host = el('section','','practice-activity');
-  root.append(filters,availability,host);
+  const redraw=el('button','سؤال تصادفی بعدی','secondary-button');redraw.type='button';redraw.id='practice-random-next';redraw.hidden=true;
+  root.append(filters,redraw,availability,host);
   let destroy = () => {};
+  let randomLevel=null,lastRandomId=null;
+  const currentList=()=>filterPractice(catalog,{lesson:lesson.value,category:category.value,difficulty:difficulty.value});
+  function drawRandom(){
+    destroy();repository.setEditingDirty('practice',false);
+    const candidates=currentList().filter(i=>!i.unavailable&&i.question.difficulty===randomLevel);
+    const item=pickRandom(candidates,lastRandomId);
+    if(!item){host.replaceChildren(el('p','سؤال آماده برای این درجه و فیلتر نداریم.','notice'));return;}
+    lastRandomId=item.question.id;render(item);
+    availability.textContent=`درجهٔ ${fa(randomLevel)} · ${fa(candidates.length)} سؤال آماده${candidates.length===1?'؛ فقط همین سؤال آماده است.':''}`;
+  }
+  redraw.addEventListener('click',drawRandom);
   function refresh() {
     destroy(); repository.setEditingDirty('practice',false);
     const list = filterPractice(catalog,{lesson:lesson.value, category:category.value, difficulty:difficulty.value});
     picker.replaceChildren();
+    randomLevel=null;lastRandomId=null;redraw.hidden=true;
+    for(const level of difficulty.value==='easy'?[1]:[2,3]){
+      const option=el('option',`تمرین با سؤال‌های تصادفی · درجهٔ ${fa(level)}`);option.value=`random:${level}`;
+      option.disabled=!list.some(i=>!i.unavailable&&i.question.difficulty===level);picker.append(option);
+    }
     for (const item of list) {
       const option = el('option',`${item.question.id} · ${item.unavailable ? 'نیازمند تکمیل محتوا' : item.title}`);
       option.value = item.question.id; option.disabled = Boolean(item.unavailable); picker.append(option);
@@ -41,13 +59,18 @@ export async function initPractice(questions, curriculum, repository) {
     else host.replaceChildren(el('p','برای این ترکیب سؤال آماده نداریم. درس، موضوع یا دشواری دیگری انتخاب کنید.','notice'));
   }
   for (const control of [lesson,category,difficulty]) control.addEventListener('change',refresh);
-  picker.addEventListener('change',()=> { destroy(); repository.setEditingDirty('practice',false); render(catalog.find(item=>item.question.id===picker.value)); });
+  picker.addEventListener('change',()=> {
+    randomLevel=picker.value.startsWith('random:')?Number(picker.value.split(':')[1]):null;redraw.hidden=randomLevel===null;
+    if(randomLevel!==null){lastRandomId=null;drawRandom();return;}
+    destroy();repository.setEditingDirty('practice',false);render(catalog.find(item=>item.question.id===picker.value));
+  });
   function render(item) {
     if (!item || item.unavailable) return;
     const q = item.question;
     let selected = [], hintLevel = 0, finalized = null, board, unsubscribe;
     let graph = item.mode === 'graph-construction' ? {n:item.target.n,vertices:Array.from({length:item.target.n},(_,i)=>String.fromCharCode(97+i)),edges:[]} : q.graph;
     const card = el('article','','question-card glass-surface');
+    card.dataset.questionId=q.id;card.dataset.difficulty=q.difficulty;
     const title=el('h2');renderTextMath(title,`${q.id} · ${item.title}`);
     card.append(title,el('p',`${q.lesson==='lesson1'?'درس ۱':'درس ۲'} · سطح ${fa(q.difficulty)} · ${q.apos_stage}`,'model-key'));
     for (const text of [item.model.scenario,item.model.vertexMeaning,item.model.edgeMeaning,item.prompt]) {const p=el('p');renderTextMath(p,text);card.append(p);}
