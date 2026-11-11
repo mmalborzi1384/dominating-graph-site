@@ -1,0 +1,22 @@
+#panel-records { display: grid; gap: 1.25rem; }
+#panel-records[hidden] { display: none; }
+.records-card { padding: clamp(1rem, 3vw, 1.75rem); min-width: 0; border-radius: var(--radius-lg, 1rem); }
+.records-card > * + * { margin-block-start: 1rem; }
+.records-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 1rem; }
+.records-coverage { padding: .75rem; border: 1px solid var(--line); border-radius: .75rem; }
+.records-card progress { display: block; width: 100%; max-width: 28rem; accent-color: var(--accent); }
+.records-list { display: grid; gap: 1rem; }
+.records-row { min-width: 0; padding: 1rem; border-block-end: 1px solid var(--line); overflow-wrap: anywhere; }
+.records-row label { display: flex; align-items: start; gap: .75rem; cursor: pointer; }
+.records-row input[type=checkbox] { flex: 0 0 auto; width: 1.4rem; height: 1.4rem; margin-block-start: .2rem; }
+.records-row label > span { min-width: 0; }
+.records-metrics { display: flex; flex-wrap: wrap; gap: .35rem 1rem; }
+.records-metrics > span { white-space: nowrap; }
+.records-row time { display: inline-block; direction: rtl; unicode-bidi: isolate; }
+.records-card .secondary-button, .records-card .text-button { width: auto; margin-inline-end: .5rem; }
+.records-card input[type=file], .records-card select { max-width: 100%; }
+.records-deleted { border-inline-start: .2rem solid var(--accent); padding: .75rem; }
+@media (max-width: 600px) {
+  .records-row { padding-inline: 0; }
+  .records-card .secondary-button, .records-card .text-button { width: 100%; margin-inline: 0; }
+}

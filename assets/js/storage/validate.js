@@ -8,12 +8,12 @@ const tabs = ['practice', 'competition', 'lab'];
 const targets = ['dominating', 'minimal', 'minimum'];
 const isObject = value => value !== null && typeof value === 'object' && !Array.isArray(value)
   && [Object.prototype, null].includes(Object.getPrototypeOf(value));
-function fields(value, required, optional, path) {
+export function fields(value, required, optional, path) {
   check(isObject(value), 'ساختار شیء معتبر نیست.', path);
   check(required.every(key => Object.hasOwn(value, key))
     && Object.keys(value).every(key => [...required, ...optional].includes(key)), 'فیلد الزامی غایب یا فیلد ناشناخته است.', path);
 }
-function safeData(value, path = '', depth = 0, budget = { count: 0 }) {
+export function safeData(value, path = '', depth = 0, budget = { count: 0 }) {
   check(depth <= 30 && ++budget.count <= 150000, 'ساختار ذخیره بیش از حد بزرگ یا تو در تو است.', path);
   if (value === null || typeof value === 'boolean' || typeof value === 'string') return;
   if (typeof value === 'number') { check(Number.isFinite(value), 'عدد باید متناهی باشد.', path); return; }
@@ -30,7 +30,7 @@ function id(value, path) {
 }
 function questionId(value, path) { check(/^Q(?:00[1-9]|0[1-9]\d|1[0-4]\d|150)$/.test(value), 'شناسهٔ سؤال در بانک نیست.', path); }
 function integer(value, min, max, path) { check(Number.isSafeInteger(value) && value >= min && value <= max, 'عدد صحیح خارج از بازه است.', path); }
-function timestamp(value, path) {
+export function timestamp(value, path) {
   const match = typeof value === 'string' && /^(\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d)(?:\.(\d{1,3}))?Z$/.exec(value);
   check(match && Number.isFinite(Date.parse(value))
     && new Date(value).toISOString() === `${match[1]}.${(match[2] ?? '').padEnd(3, '0')}Z`,
@@ -40,7 +40,7 @@ function ids(values, path) {
   check(Array.isArray(values) && new Set(values).size === values.length, 'فهرست شناسه باید یکتا باشد.', path);
   values.forEach(value => id(value, path));
 }
-function same(a, b) {
+export function same(a, b) {
   if (Array.isArray(a)) return Array.isArray(b) && a.length === b.length && a.every((item, i) => same(item, b[i]));
   if (isObject(a)) return isObject(b) && Object.keys(a).length === Object.keys(b).length
     && Object.keys(a).every(key => Object.hasOwn(b, key) && same(a[key], b[key]));

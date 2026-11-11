@@ -2,6 +2,7 @@ import { loadTeaching } from './data/load.js';
 import { createRepository } from './storage/repository.js';
 import { initPractice } from './tabs/practice.js';
 import { initCompetition } from './tabs/competition.js';
+import { initRecords } from './tabs/records.js';
 import { initLab } from './tabs/lab.js';
 import { initTeaching } from './tabs/teach.js';
 import { initTabs } from './ui/tabs.js';
@@ -59,6 +60,8 @@ try {
     updateThemeControl();
   });
   initTeaching(teaching, repository);
+  try { await initRecords(teaching, repository); }
+  catch { setFeedback(document.getElementById('panel-records'), 'سوابق آماده نشد؛ فایل‌های محتوا را بررسی کنید.', {tone:'error'}); }
   try { await initPractice(teaching.questions, teaching.curriculum, repository); }
   catch { setFeedback(document.querySelector('#panel-practice .empty-note') ?? document.getElementById('panel-practice'), 'تمرین بارگیری نشد؛ فایل محتوای تمرین را بررسی کنید.', { tone: 'error' }); }
   try { await initCompetition(teaching.questions, teaching.curriculum, repository); }

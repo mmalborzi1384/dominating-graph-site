@@ -137,3 +137,12 @@ when quota is reached; offer selective deletion/export. Same-origin storage even
 clean views; a dirty active form/turn pauses commits and asks for inline reload/reconciliation.
 Re-read revision before write to detect stale state. localStorage is not a multi-tab transaction
 service: one active writer is supported and simultaneous-tab use is explained to users.
+
+## Phase-7 derived data and version policy
+
+Report objects are never persisted: per-tab/lesson/APOS attempt/correctness/score/hint
+aggregates, distinct question count and six {code,label,count,total,percent} coverage rows.
+Teaching flags and untagged custom activities do not contribute question coverage. Optional
+absent scores are derived by the same scoring rubric. Import/export stays schema/curriculum
+1 and requires bank 1.2; bank 1.1 is rejected without mutation pending a reviewed migration.
+No new persistent fields or new storage engine are introduced.

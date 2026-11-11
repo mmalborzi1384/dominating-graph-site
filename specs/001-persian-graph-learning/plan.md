@@ -188,3 +188,13 @@ workflows merely to demonstrate their container styles.
 ## Complexity Tracking
 
 No violations or additional infrastructure to justify.
+
+## Phase 7 delivered slice
+
+Pure coverage/report derivation is in domain/coverage.js; strict UTF-8 backup parse/export
+and deterministic whole-candidate merge are in storage/transfer.js. tabs/records.js combines
+progress, outcomes, lesson/APOS reports, six coverage cards, selected deletion and inline
+transfer controls. Copy lives in content/records.json and responsive styling in records.css.
+The repository retains one-key commits; shared validation remains authoritative. The tested
+1.1 policy is rejection, pending reviewed migration. Evidence: validation/us5.md. Stop for
+human review; phase 8 and its content/host/usability release gates remain unstarted.
