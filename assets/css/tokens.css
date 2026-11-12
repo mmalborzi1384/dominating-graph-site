@@ -99,3 +99,8 @@
   --glass-shine: #d8ffe512;
   color-scheme: dark;
 }
+:root {
+  --learning-celebrate: 650ms;
+  --learning-exit: 160ms;
+  --learning-enter: 260ms;
+}

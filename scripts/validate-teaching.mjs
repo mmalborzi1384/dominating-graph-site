@@ -4,7 +4,7 @@ import { validateTeaching } from '../assets/js/data/validate.js';
 import { initialProgress, completeActivity, visitStage, validateProgress, progressPercent, unlockedStages } from '../assets/js/domain/progress.js';
 import { createRepository, storageKey } from '../assets/js/storage/repository.js';
 const read = path => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
-const { curriculum, models } = validateTeaching(read('../content/teaching.json'),
+const { curriculum, models } = validateTeaching(read('../content/teaching-v1.json'),
   read('../content/question-overrides.json'), read('../docs/question-bank.json'));
 let checks = 0;
 const expect = (ok, message) => { checks++; if (!ok) throw Error(message); };

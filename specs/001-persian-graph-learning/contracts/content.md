@@ -25,7 +25,7 @@ questions as groups; otherwise it is excluded. If none qualifies, starting is bl
 an inline explanation. Repetition across different rounds is allowed. Persist all choices
 before play; reload never rerolls them. Reset retains the chosen questions as already agreed.
 
-Teaching: each stable activity draws from ready, teach-permitted selection models matching
+Legacy curriculum 1 only: each stable activity draws from ready, teach-permitted selection models matching
 its APOS stage and its original source question's exact difficulty. Preserve the activity's
 target and completion ID; use context, graph and hints belonging to the drawn question.
 Choices stay in memory during the page session and may be redrawn on explicit request or
@@ -42,7 +42,7 @@ New contextual adapters require human educational review; randomization is not t
 
 A question is ready if required context, response mode, hints and every answer-dependent
 figure/graph are present and reviewed. A purely textual question need not have a graph.
-Teach requires its tab permission, matching APOS stage and selection-capable simple graph.
+Bank-backed legacy teaching requires its tab permission, matching APOS stage and selection-capable simple graph. Curriculum 2 uses the authored typed-activity/chain contract below; a source-bank reference, if added, must still obey its permissions and meaning.
 Competition requires its tab permission and interactive_graph or compute_gamma type.
 Practice maps difficulty 1 to easy, 2/3 to hard. Lab respects question permissions; custom
 activities are identified separately and do not expand the 150 source question count.
@@ -64,7 +64,7 @@ KaTeX in isolated LTR spans. Do not execute imported HTML, URLs or TeX trust com
 Malformed math leaves readable fallback plus an inline diagnostic. A text proof is a
 self-assessed rubric activity outside teaching; no claim of automated natural-language grading.
 
-Every teaching activity explicitly declares target=dominating|minimal|minimum. Choose source
+A domination-selection teaching part explicitly declares target=dominating|minimal|minimum. Other current typed responses declare the appropriate expected values/constraints instead. Choose source
 questions whose reviewed semantics support selection; do not relabel unrelated foundational
 questions as domination exercises just to populate a stage. Explanatory APOS content still
 covers the prescribed lessons/pages. Release review verifies this instructional mapping.
@@ -91,3 +91,25 @@ alone is not an error for a textual, student-built or runtime activity. Verify t
 corrections and source figures against the local PDF and obtain human educational review.
 Do not conflate a source-bank version update with a storage/backup migration: define and
 test the compatibility policy before changing the existing transfer contract.
+
+## PR#1.1 — قرارداد تأییدشدهٔ آموزش تازه
+
+مرجع: [طرح بازنویسی APOS](../amendments/pr-1-1-apos-redesign.md). این بخش قرارداد نسخهٔ تازهٔ آموزش پس از تأیید کاربر است.
+
+الگوی محتوای آموزش تازه سه فعالیت در هر مرحله با learningObjective، cognitiveOperation،
+صورت، زمینه، responseMode، پاسخ/قیود، معیار و سه راهنماست. نوع پاسخ لزوماً انتخاب
+رأس نیست. Action باید از تعریف رسمی حتی در متن منبع قابل نمایش خالی باشد؛ Object
+تعریف و نماد رسمی را با مثال/ضدمثال ارائه می‌کند. درس‌های تألیفی با شناسهٔ فعالیت
+آموزشی مستقل‌اند و تعداد/شناسه‌های بانک تغییر نمی‌کند. منابع بانک باید واقعاً مجاز
+و هم‌مرحله/هم‌سختی باشند؛ هدف شناختی و نوع پاسخ و وابستگی مدل نیز شرط تصادفی‌سازی‌اند.
+
+### اصلاح قطعی پس از تأیید کاربر — PR#1.1
+
+طرح دوازده‌فعالیتی تأیید شد؛ گیت طراحی باز است. هر بند پیشنهادیِ قبلی دربارهٔ انتقال
+اعتبار پیشرفت، legacyPassedStageIds یا بازماندن مراحل قدیمی لغو است. آموزش curriculum=2
+برای دادهٔ نسخهٔ ۱ از صفر و فقط Action باز آغاز می‌شود. دادهٔ قدیمی ابتدا با curriculum=1
+اعتبارسنجی و با تأیید مهاجرت در یک نوشتن به نسخهٔ ۲ تبدیل می‌شود؛ شکل envelope/schema=1
+ثابت است. سوابق سایر تب‌ها/نشست‌ها/تم/علامت‌های حذف حفظ می‌شوند. ورود بک‌آپ قدیمی نیز
+هیچ پیشرفت قدیمی را منتقل نمی‌کند؛ پیشرفت تازهٔ موجود نسخهٔ ۲ را کم نمی‌کند. واردکردن
+نسخهٔ ۲ پیشرفت تازه را ادغام می‌کند. هیچ پاسخ/امتیاز/راهنمای آموزش ذخیره نمی‌شود.
+قرارداد کاملِ فعال این بازنویسی در بخش ۵ ضمیمهٔ APOS آمده است. فاز ۸ مجوز اجرا ندارد.

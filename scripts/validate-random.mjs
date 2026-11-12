@@ -5,7 +5,7 @@ import {competitionPool,createCompetition} from '../assets/js/domain/sessions.js
 import {practiceCatalog,filterPractice} from '../assets/js/data/practice.js';
 import {initialProgress} from '../assets/js/domain/progress.js';
 const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url)));
-const bank=read('../docs/question-bank.json'),curriculum=read('../content/teaching.json');
+const bank=read('../docs/question-bank.json'),curriculum=read('../content/teaching-v1.json');
 const teaching=validateTeaching(curriculum,read('../content/question-overrides.json'),bank);
 const config=read('../content/competition.json'),pool=competitionPool(bank.questions,config);
 practiceCatalog(bank.questions,config);

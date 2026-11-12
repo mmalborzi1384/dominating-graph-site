@@ -5,7 +5,7 @@ import {analyzeGraph} from '../assets/js/domain/evaluate.js';
 import {initialProgress} from '../assets/js/domain/progress.js';
 import {validateStateTransition} from '../assets/js/storage/validate.js';
 const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url)));
-const bank=read('../docs/question-bank.json'),c=read('../content/teaching.json'),config=read('../content/competition.json'),context={questions:bank.questions};
+const bank=read('../docs/question-bank.json'),c=read('../content/teaching-v1.json'),config=read('../content/competition.json'),context={questions:bank.questions};
 practiceCatalog(bank.questions,config);const pool=competitionPool(bank.questions,config);
 const fresh=()=>({schemaVersion:1,curriculumVersion:1,revision:0,teachingProgress:initialProgress(),attempts:{},sessions:{},settings:{theme:'day'}});
 let checks=0;const check=(v,m)=>{checks++;if(!v)throw Error(m);};const rejects=(f,m)=>{let bad=false;try{f();}catch{bad=true;}check(bad,m);};

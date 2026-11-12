@@ -12,7 +12,7 @@ separate from user state. Schema version starts at 1; curriculum version starts 
 | ModelingContext | scenario_fa, vertex_means_fa, edge_means_fa, question_in_model_fa, optional visual asset | nonempty context/mapping/goal before publication |
 | QuestionOverride | questionId, context/graph supplement, responseMode, target, review metadata | existing ID only; no silent source replacement; human-approved semantic adaptation |
 | TeachingStage | id Action/Process/Object/Schema, order 0–3, lesson blocks, requiredActivityIds | exactly four, nonempty required list; prerequisites sequential |
-| TeachingActivity | id, questionId, stageId, target | source tab includes teach; APOS matches; graph supports target evaluator |
+| TeachingActivity | id, stageId, chainId, learningObjective, cognitiveOperation, difficulty, context, prompt, graph, parts, rubric, hints, prerequisites, sourceReferences, reviewStatus | 12 authored typed activities; 3 per stage; 2 compatible variants; no fabricated questionId; legacy source references retain permission/APOS constraints |
 | GraphModel | vertex IDs, labeled positions, edges, directed, multigraph, optional gamma | unique IDs; edge endpoints exist; count matches n; simple evaluator rejects loops/direction/parallel edges |
 | LabStation | id, title, instruction blocks, template/question references | exactly five; valid references and modeling contexts |
 | CompetitionConfig | default rounds, eligible IDs, hint cap table | rounds positive integer; eligible question types and tab permission enforced |
@@ -36,7 +36,7 @@ entry/module base, not a current hash. This separates sites sharing the same ori
 | --- | --- | --- |
 | schemaVersion | 1 | unsupported versions rejected without overwriting |
 | revision | nonnegative integer | increments on successful local commit |
-| curriculumVersion | 1 | incompatible curricula rejected pending explicit migration |
+| curriculumVersion | 2 (legacy 1 read only for migration) | legacy progress resets; other records preserved after validation |
 | teachingProgress | object below | completion only, never answers or scores |
 | attempts | map from attemptId to Attempt | excludes teach entirely |
 | sessions | map from sessionId to Session | practice/competition/lab only |
@@ -146,3 +146,7 @@ Teaching flags and untagged custom activities do not contribute question coverag
 absent scores are derived by the same scoring rubric. Import/export stays schema/curriculum
 1 and requires bank 1.2; bank 1.1 is rejected without mutation pending a reviewed migration.
 No new persistent fields or new storage engine are introduced.
+
+## APOS curriculum 2
+
+Envelope schema remains 1; curriculumVersion is 2. TeachingProgress retains exactly its three allowlisted fields. Valid curriculum-1 state is validated against content/teaching-v1.json and automatically converted by replacing only teachingProgress with initialProgress and curriculumVersion with 2. No legacy credit field. Curriculum-1 backup imports reset incoming old progress, while retaining existing curriculum-2 completion. Other records and tombstones are unchanged.

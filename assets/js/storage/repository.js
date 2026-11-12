@@ -23,12 +23,13 @@ export function createRepository(curriculum, storage = browserStorage, context =
     teachingProgress: initialProgress(), attempts: {}, sessions: {},
     settings: { theme: globalThis.document?.documentElement.dataset.theme === 'night' ? 'night' : 'day' } });
   let state = fresh(), baseline = null, legacyRaw = null;
+  let migrationPending = false;
   let readStatus = 'absent', dirty = false, conflict = false, warning = '', persisted = false;
   let lastResult = { status: 'absent' }, unsavedReset = false;
   const listeners = new Set(), editing = new Set();
-  const blocked = () => ['corrupt', 'unsupported', 'unavailable'].includes(readStatus);
+  const blocked = () => migrationPending || ['corrupt', 'unsupported', 'unavailable'].includes(readStatus);
   const snapshot = () => ({ state: structuredClone(state), warning, dirty, conflict, persisted,
-    readStatus, editing: editing.size > 0, lastResult: structuredClone(lastResult) });
+    readStatus, needsMigration: migrationPending, editing: editing.size > 0, lastResult: structuredClone(lastResult) });
   function notify() {
     // One consumer's rendering exception must not turn a successful write into a quota error.
     for (const listener of listeners) listener(snapshot());
@@ -38,8 +39,9 @@ export function createRepository(curriculum, storage = browserStorage, context =
       const raw = storage.getItem(storageKey);
       baseline = raw;
       const decoded = decodeStoredState(raw, curriculum, context);
-      readStatus = decoded.status;
-      if (decoded.state) { state = decoded.state; persisted = true; }
+      migrationPending=decoded.status==='migration-required';
+      readStatus=migrationPending?'ready':decoded.status;
+      if (decoded.state) { state = decoded.state; persisted = !migrationPending; }
       else if (decoded.status === 'absent') {
         const next = fresh();
         legacyRaw = storage.getItem(legacyKey);
@@ -54,6 +56,7 @@ export function createRepository(curriculum, storage = browserStorage, context =
         return snapshot();
       }
       dirty = false; conflict = false; warning = ''; unsavedReset = false; editing.clear();
+
       lastResult = { status: readStatus };
     } catch (error) {
       // Parse errors in the legacy setting are corrupt data; storage access errors are unavailable.
@@ -62,6 +65,7 @@ export function createRepository(curriculum, storage = browserStorage, context =
       warning = 'ذخیرهٔ قبلی خوانده نشد؛ داده‌ها را تغییر نمی‌دهیم. کار فعلی موقت است؛ فایل بازیابی بگیرید.';
       lastResult = { status: readStatus, error: errorInfo(error) };
     }
+    if(migrationPending){migrationPending=false;commit(state,state.revision);}
     return snapshot();
   }
   function prepare(next, expectedRevision, allowTeachingReset = false, removedCompetitionId = null) {
@@ -77,6 +81,7 @@ export function createRepository(curriculum, storage = browserStorage, context =
     } catch (error) { return { ok: false, status: error.code === 'revision-conflict' ? 'conflict' : 'invalid', error: errorInfo(error) }; }
   }
   function commit(next = state, expectedRevision = state.revision, { allowTeachingReset = false, removedCompetitionId = null } = {}) {
+    if(migrationPending){lastResult={status:'migration-required'};notify();return false;}
     const prepared = prepare(next, expectedRevision, allowTeachingReset, removedCompetitionId);
     if (!prepared.ok) {
       lastResult = { status: prepared.status, error: prepared.error };

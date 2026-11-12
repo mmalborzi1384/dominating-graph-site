@@ -1,10 +1,11 @@
 import { validateStoredEnvelope, validateStateTransition, safeData, fields, timestamp, same } from './validate.js';
+import { migrateCurriculum } from './migrate.js';
 import { passedPrefix, unlockedStages } from '../domain/progress.js';
 import { LIMITS, requireValid as check } from '../domain/limits.js';
 export const BACKUP_FORMAT = 'persian-graph-learning-backup';
 export function exportBackup(state, curriculum, context) {
   const valid = validateStoredEnvelope(state,curriculum,context);
-  return JSON.stringify({format:BACKUP_FORMAT,schemaVersion:1,curriculumVersion:1,bankVersion:context.bankVersion,
+  return JSON.stringify({format:BACKUP_FORMAT,schemaVersion:1,curriculumVersion:curriculum.curriculumVersion,bankVersion:context.bankVersion,
     exportedAt:new Date().toISOString(),data:{teachingProgress:valid.teachingProgress,attempts:valid.attempts,sessions:valid.sessions,settings:valid.settings}},null,2);
 }
 export function parseBackup(text, curriculum, context) {
@@ -12,12 +13,12 @@ export function parseBackup(text, curriculum, context) {
   let file; try { file=JSON.parse(text); } catch { throw Error('فایل JSON معتبر نیست.'); }
   safeData(file);
   fields(file,['format','schemaVersion','curriculumVersion','bankVersion','exportedAt','data'],[],'backup');
-  check(file.format===BACKUP_FORMAT && file.schemaVersion===1 && file.curriculumVersion===1,'ساختار یا نسخهٔ آموزش فایل سازگار نیست.');
+  check(file.format===BACKUP_FORMAT && file.schemaVersion===1 && [1,2].includes(file.curriculumVersion),'ساختار یا نسخهٔ آموزش فایل سازگار نیست.');
   check(file.bankVersion===context.bankVersion && file.bankVersion==='1.2',file.bankVersion==='1.1'
     ? 'بک‌آپ بانک ۱٫۱ مستقیماً وارد نمی‌شود؛ پاسخ‌های مرجع در ۱٫۲ تغییر کرده‌اند. فایل اصلی را برای مهاجرت بازبینی‌شده نگه دارید.' : 'نسخهٔ بانک سؤال فایل پشتیبانی نمی‌شود.');
   timestamp(file.exportedAt,'exportedAt');
   fields(file.data,['teachingProgress','attempts','sessions','settings'],[],'data');
-  return validateStoredEnvelope({schemaVersion:1,curriculumVersion:1,revision:0,...file.data},curriculum,context);
+  return migrateCurriculum({schemaVersion:1,curriculumVersion:file.curriculumVersion,revision:0,...file.data},curriculum,context);
 }
 /** Same identity and schedule may advance, never rewind. Deletion wins only for a matching turn. */
 export function mergeBackup(local, incoming, curriculum, context, {fresh=false}={}) {

@@ -1,7 +1,7 @@
 body { background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 28px 28px; }
 .page-width { width: min(var(--content-width), calc(100% - 5rem)); margin-inline: auto; }
 .site-header { background: var(--surface); border-bottom: 1px solid var(--line); }
-.header-inner { min-height: 104px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+.header-inner { min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
 .brand { display: flex; align-items: center; gap: .8rem; }
 .brand-mark { width: 46px; height: 46px; color: var(--heading); }
 .brand-name { font-weight: 850; font-size: 1.65rem; color: var(--heading); letter-spacing: -.05em; line-height: 1.4; }
@@ -11,7 +11,7 @@ body { background-image: linear-gradient(var(--grid) 1px, transparent 1px), line
 .theme-toggle { display: flex; align-items: center; gap: .6rem; background: transparent; border: 1px solid var(--line); border-radius: 100px; padding: .4rem .9rem; min-height: 44px; font-size: var(--font-sm); }
 .theme-toggle svg { width: 20px; height: 20px; }
 [data-theme="day"] .sun-icon, [data-theme="night"] .moon-icon { display: none; }
-.course-intro { display: flex; align-items: center; justify-content: space-between; padding-block: 2.1rem 1.6rem; gap: 1rem; }
+.course-intro { display: flex; align-items: center; justify-content: space-between; padding-block: 1rem .8rem; gap: 1rem; }
 .course-intro p { font-size: var(--font-sm); color: var(--muted); }
 .course-name { color: var(--heading); font-weight: 750; font-size: var(--font-lg); }
 .chapter-marker { display: inline-flex; align-items: center; gap: .7rem; }
@@ -21,7 +21,7 @@ body { background-image: linear-gradient(var(--grid) 1px, transparent 1px), line
 .tab svg { width: 21px; height: 21px; flex: none; }
 .tab[aria-selected="true"] { background: var(--heading); color: var(--surface); }
 .tab:not([aria-selected="true"]):hover { background: var(--accent-soft); color: var(--heading); }
-.workspace { margin-block: 1.75rem 2rem; padding: clamp(1.5rem, 4vw, 3.25rem); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 14px 40px var(--shade); }
+.workspace { margin-block: 1rem 1.25rem; padding: clamp(1rem, 2.5vw, 1.75rem); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 14px 40px var(--shade); }
 .panel-layout { display: grid; grid-template-columns: 1.12fr 1fr; gap: 3.25rem; align-items: center; min-height: 370px; }
 .panel-copy { max-width: 34rem; }
 .panel-heading { font-size: var(--font-display); font-weight: 850; line-height: 1.55; letter-spacing: -.045em; margin-block: .75rem 1.1rem; text-wrap: balance; }
@@ -29,7 +29,7 @@ body { background-image: linear-gradient(var(--grid) 1px, transparent 1px), line
 .availability { display: inline-flex; align-items: center; gap: .5rem; font-size: var(--font-xs); color: var(--heading); background: var(--accent-soft); border-radius: 5px; padding: .15rem .6rem; }
 .availability svg { width: 14px; height: 14px; }
 .empty-note { margin-top: 1.7rem; padding-inline-start: 1rem; border-inline-start: 2px solid var(--gold); font-size: var(--font-sm); color: var(--muted); }
-.lesson-overview { border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.lesson-overview { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.25rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 .lesson { display: flex; gap: .9rem; align-items: flex-start; }
 .lesson-id { color: var(--muted); font-size: var(--font-sm); border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; width: 34px; height: 34px; flex: none; }
 .lesson h2 { font-weight: 700; font-size: var(--font-base); }
@@ -40,7 +40,10 @@ body { background-image: linear-gradient(var(--grid) 1px, transparent 1px), line
 @media (max-width: 850px) { .page-width { width: calc(100% - 2.5rem); } .panel-layout { gap: 1.5rem; } .course-label { display: none; } .panel-heading { font-size: 2.5rem; } }
 @media (max-width: 640px) {
  .page-width { width: calc(100% - 2rem); } .header-inner { min-height: 88px; gap: .7rem; } .brand-mark { width: 36px; height: 36px; } .brand { gap: .5rem; } .brand-name { font-size: 1.35rem; } .brand-subtitle { font-size: .65rem; } .theme-toggle { padding-inline: .7rem; gap: .4rem; }
- .course-intro { align-items: flex-start; flex-direction: column; gap: .25rem; padding-block: 1.4rem 1.1rem; } .course-name { font-size: var(--font-base); }
+ .course-intro { align-items: flex-start; flex-direction: column; gap: .25rem; padding-block: .8rem .65rem; } .course-name { font-size: var(--font-base); }
  .tab-list { padding: .25rem; gap: .1rem; border-radius: 10px; } .tab { flex-direction: column; gap: .25rem; font-size: var(--font-xs); padding: .6rem .1rem; min-height: 64px; } .tab svg { width: 20px; height: 20px; }
- .workspace { padding: 1.3rem; margin-top: 1rem; border-radius: 12px; } .panel-layout { grid-template-columns: 1fr; gap: 1.7rem; } .panel-heading { font-size: 2.05rem; margin-block: .75rem; } .panel-lead { font-size: var(--font-base); } .empty-note { margin-top: 1.1rem; } .lesson-overview { grid-template-columns: 1fr; margin-top: 1.5rem; gap: 1rem; } .site-footer { flex-direction: column; align-items: flex-start; gap: .35rem; }
+ .workspace { padding: .9rem; margin-top: .75rem; border-radius: 12px; } .panel-layout { grid-template-columns: 1fr; gap: 1.7rem; } .panel-heading { font-size: 2.05rem; margin-block: .75rem; } .panel-lead { font-size: var(--font-base); } .empty-note { margin-top: 1.1rem; } .lesson-overview { grid-template-columns: 1fr; margin-top: 1.5rem; gap: 1rem; } .site-footer { flex-direction: column; align-items: flex-start; gap: .35rem; }
 }
+/* Shared compact rhythm for all five functional panels. */
+.workspace [role=tabpanel] h1 { font-size: clamp(1.35rem,2.5vw,1.9rem); line-height: 1.5; margin-block: 0 .6rem; }
+@media (max-width:640px) { .course-intro p { display: none; } }

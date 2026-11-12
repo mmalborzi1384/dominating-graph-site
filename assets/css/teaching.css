@@ -51,3 +51,101 @@
   .stage-controls { grid-template-columns: 1fr; gap: .4rem; }
 }
 .teaching .primary-button:disabled { background: var(--surface); border-color: var(--line); color: var(--muted); }
+/* Typed APOS activities: shared palette/font tokens, stage-specific interaction. */
+.apos-scenario { border-inline-start: 3px solid var(--accent); padding-inline-start: 1rem; }
+.apos-answer { min-width: 0; border: 1px solid var(--line); padding: 1rem; border-radius: .75rem; }
+.apos-answer:disabled { opacity: .7; }
+.apos-part { min-width: 0; margin-block: 1rem; padding-block: .5rem; }
+.apos-part > label { display: block; font-weight: 600; margin-block-end: .5rem; }
+.apos-part input[type=text], .apos-part select { width: 100%; max-width: 32rem; }
+.apos-choices { display: grid; grid-template-columns: repeat(auto-fit,minmax(8rem,1fr)); gap: .75rem; }
+.apos-choices label { display: flex; align-items: center; gap: .5rem; min-height: 44px; }
+.apos-choices input { width: 1.25rem; height: 1.25rem; }
+.apos-current { overflow-wrap: anywhere; margin-block: .75rem; }
+.apos-part[data-correct=false] { border-inline-start: 3px solid var(--error); padding-inline-start: .5rem; }
+.teaching-activity > .board-panel { margin-block: 1rem; }
+.teaching-activity .apos-answer .secondary-button { margin-block: .4rem; }
+.teaching-activity { padding: clamp(1rem,3vw,1.75rem); border-radius: 1rem; margin-block: 1.5rem; min-width: 0; }
+.teaching-activity > p { margin-block: .75rem; }
+.lesson-blocks > :only-child { grid-column: 1 / -1; }
+.apos-answer legend { padding-inline: .5rem; }
+.apos-part input[type=text], .apos-part select {
+  min-height: 44px;
+  padding: .65rem .75rem;
+  font: inherit;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: .6rem;
+}
+@media (max-width: 640px) {
+  .apos-answer { padding-inline: .5rem; }
+  .apos-answer .board-panel { padding-inline: 0; }
+}
+/* Review follow-up: compact teaching header, optional explanations, no legacy-version flow. */
+.teaching-heading { gap: 1rem; margin-bottom: 1rem; }
+.stage-navigation { gap: .5rem; margin-bottom: 1rem; }
+.stage-button { min-height: 72px; padding: .6rem; }
+#teaching-stage > h2 { margin-block: .5rem; }
+.stage-goal, .stage-bridge { margin-block: .4rem; }
+.apos-scenario { padding-inline-start: .65rem; margin-block: .5rem; }
+.teaching-toolbar { display: flex; flex-wrap: wrap; align-items: start; gap: .5rem; margin-block: .65rem; }
+.teaching-toolbar > .secondary-button { width: auto; min-height: 44px; padding: .5rem 1rem; margin: 0; }
+.context-help { min-width: 44px; max-width: min(100%,32rem); }
+.context-help summary { display: grid; place-items: center; width: 44px; min-height: 44px; cursor: pointer; font-size: var(--font-lg); border: 1px solid var(--line); border-radius: .6rem; color: var(--heading); list-style: none; }
+.context-help summary::-webkit-details-marker { display: none; }
+.context-help:hover summary, .context-help:focus-within summary { background: var(--accent-soft); }
+.context-help > p { padding: .65rem; margin-block: .5rem 0; border-inline-start: 2px solid var(--line); font-size: var(--font-sm); }
+.lesson-blocks { gap: .6rem; }
+.lesson-block { padding: .65rem .8rem; }
+.lesson-block summary { cursor: pointer; color: var(--heading); font-weight: 700; min-height: 44px; }
+.lesson-block[open] > p { margin-block: .6rem; }
+.teaching-activity { padding: clamp(.8rem,2vw,1.15rem); margin-block: 1rem; }
+.teaching-activity > p { margin-block: .5rem; }
+.required-note { margin-block: .65rem; }
+.apos-part { margin-block: .65rem; padding-block: .25rem; }
+@media (max-width: 640px) { .stage-button { min-height: 84px; } }
+@media (max-width:640px) {
+ .teaching-heading { gap: .65rem; }
+ .teaching-progress { padding: .5rem .75rem; grid-template-columns: 3rem minmax(0,1fr); row-gap: .1rem; }
+ .teaching-progress .progress-percent { grid-row: 1 / 3; font-size: 1.5rem; }
+ .teaching-progress .save-state { grid-column: 2; margin: 0; }
+}
+/* A single learning card travels along a three-node route after a correct answer. */
+.stage-navigation { display: flex; flex-wrap: wrap; }
+.stage-navigation .stage-button { flex: 1 1 8rem; min-height: 56px; width: auto; }
+.learning-reference { margin-block: .7rem; }
+.learning-reference > summary { cursor: pointer; min-height: 44px; align-content: center; color: var(--heading); }
+.learning-reference .lesson-blocks { margin-block-start: .5rem; }
+.learning-step-header { display: flex; align-items: center; justify-content: space-between; gap: .65rem; margin-block: .75rem 0; }
+.learning-step-header strong { color: var(--heading); white-space: nowrap; }
+.learning-track { width: min(55%,230px); height: 44px; overflow: visible; }
+.learning-link { stroke: var(--line); stroke-width: 2; fill: none; }
+.learning-link.is-done { stroke: var(--heading); }
+.learning-link.is-bridging { stroke: var(--heading); stroke-dasharray: 1; animation: learning-trace var(--learning-celebrate) ease-out both; }
+.learning-node { fill: var(--surface); stroke: var(--line); stroke-width: 2; }
+.learning-node.is-done { fill: var(--heading); stroke: var(--heading); }
+.learning-node.is-current { stroke: var(--heading); stroke-width: 3; }
+.learning-node-label { text-anchor: middle; fill: var(--ink); font: inherit; font-size: var(--font-base); }
+.learning-node-label.is-done { fill: var(--surface); }
+#learning-flow-status:empty { display: none; }
+#learning-flow-status { color: var(--heading); font-weight: 700; margin-block: .5rem; }
+.learning-card-host { min-width: 0; scroll-margin-top: 1rem; }
+.learning-review-controls { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; }
+.learning-review-controls button { width: auto; margin: 0; }
+.learning-finish { border-radius: 1rem; padding: 1.5rem; text-align: center; }
+.learning-finish h3 { color: var(--heading); }
+.learning-finish p { margin-block: .75rem 1rem; }
+.learning-finish button { width: auto; margin-inline-end: .75rem; }
+.learning-finish-mark { display: inline-grid; place-items: center; width: 3rem; height: 3rem; border: 2px solid var(--heading); border-radius: 50%; color: var(--heading); font-size: var(--font-lg); }
+@keyframes learning-trace { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@media(prefers-reduced-motion:reduce) {
+ .learning-link.is-bridging { animation: none; stroke-dasharray: none; }
+ .learning-card-host { scroll-behavior: auto; }
+}
+.learning-step-header { scroll-margin-top: 1rem; }
+.learning-node.is-celebrating { transform-box: fill-box; transform-origin: center; animation: learning-node-complete var(--learning-celebrate) ease-out both; }
+@keyframes learning-node-complete { 0%,100% { transform: scale(1); } 45% { transform: scale(1.14); } }
+@media(prefers-reduced-motion:reduce) { .learning-node.is-celebrating { animation: none; } }
+.teaching.is-advancing .apos-answer:disabled { opacity: 1; }

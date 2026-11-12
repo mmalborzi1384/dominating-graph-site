@@ -102,3 +102,43 @@ apply to merged totals as well. Change storage after preview: confirmation must 
 For quota failure, preserve disk and export current temporary work, then retry after recovery.
 Review 360px/1280px and both palettes. Actual evidence/limitations are in validation/us5.md;
 phase 8 release gates are not included in this phase.
+
+## APOS redesign / curriculum 2
+
+Run `node scripts/validate-apos.mjs`. The twelve current activities use typed temporary
+responses; old scripts keep their curriculum-1 fixtures for backward compatibility. Start
+fresh: 0%, Action only. Solve three activities in order per stage; expected sequence is
+25/50/75/100. Try an incomplete compound response, hint then reveal: reveal alone must not
+complete it. Process diagrams must not allow live coverage experiments. Randomize a whole
+stage chain: temporary responses clear and completed flags stay; every card uses the same
+variant. Verify keyboard/touch, both palettes and 360/1280 layouts.
+
+Load a valid old state with completed teaching and other results: automatic one-write conversion resets only old teaching progress to 0%
+and retains other records/tombstones/settings; no legacy-version flow is shown. Reload does not repeat the migration. Import
+an old curriculum-1 backup into curriculum 2: preview explains zero old-progress transfer;
+current new progress is not lowered. Test new backup round-trip, quota/retry, reset isolation
+and exact revision conflicts. Evidence: validation/apos-redesign.md. No phase-8 gate is claimed.
+
+### Compact-layout review
+
+Check all five tabs at 360px and desktop in day/night. The random-question button has
+intrinsic width, stage labels are short, and the mission card starts collapsed. Secondary
+behavioral copy is inside an inline ⓘ disclosure, reachable by hover, click/touch, keyboard
+and Escape. Essential problem/rubric/error copy stays visible. A valid old test state silently
+starts the new teaching at zero, preserving other results; current progress is not repeatedly
+reset. No review of this layout should be counted as completing the full question bank.
+
+### Single-question walkthrough
+
+Fresh Teaching must contain exactly one `[data-activity-id]` element and only the unlocked
+APOS stage in the visible navigation. Future question text/controls must be absent. A wrong
+submission stays on the same activity, a hint/reveal alone does not complete it, and a correct
+answer with or without hints saves completion then automatically reveals the next activity.
+Double-click Check while the route/card transition runs: only one step may complete.
+
+Complete each of the three activities: the next APOS structure activates automatically. Reload
+on activity two: resume activity two without old answers. Complete all twelve: show 100% and
+the finish card, including after reload. Review passed steps using previous/next controls;
+a wrong review must not relock stages or advance. Check focus on the new heading, reduced
+motion (no card animation/celebration delay), both palettes and mobile/desktop. Reset returns
+to one first question. Timers and review cursors must not appear in storage/backup.

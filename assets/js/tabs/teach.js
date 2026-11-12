@@ -1,257 +1,127 @@
 import { completeActivity, progressPercent, unlockedStages, visitStage } from '../domain/progress.js';
-import { analyzeGraph, evaluateSelection } from '../domain/evaluate.js';
+import { teachingInstance, assessTeaching, availableTeachingActivity, followingTeachingActivity } from '../domain/teaching.js';
+import { pickRandom } from '../domain/random.js';
 import { createGraphBoard } from '../ui/graph-editor.js';
 import { renderTextMath } from '../ui/math.js';
-import { createInlineConfirmation, setFeedback, selectionFeedback } from '../ui/feedback.js';
-import { pickRandom } from '../domain/random.js';
+import { setFeedback, createInlineConfirmation } from '../ui/feedback.js';
+const fa=n=>n.toLocaleString('fa-IR');
+const el=(tag,text,cls='')=>{const node=document.createElement(tag);node.className=cls;if(text!==undefined)node.textContent=text;return node;};
+const math=(tag,text,cls='')=>{const node=el(tag,undefined,cls);renderTextMath(node,text);return node;};
+const button=(text,action,cls='secondary-button')=>{const node=el('button',text,cls);node.type='button';node.addEventListener('click',action);return node;};
+function download(text,name){if(text===null)return;const url=URL.createObjectURL(new Blob([text],{type:'application/json;charset=utf-8'})),a=el('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+export function initTeaching({curriculum},repository){
+  const panel=document.getElementById('panel-teach'),root=el('div',undefined,'teaching'),header=el('header',undefined,'teaching-heading'),intro=el('div'),progress=el('div',undefined,'teaching-progress glass-surface'),percent=el('strong',undefined,'progress-percent'),meter=el('progress'),save=el('p',undefined,'save-state');
+  percent.id='teaching-percent';save.id='teaching-save-state';meter.max=100;meter.setAttribute('aria-label','پیشرفت آموزش تازه');progress.append(percent,meter,save);intro.append(el('h1',curriculum.title),el('p','تجربه کن، پیش‌بینی کن، مفهوم را بشناس و مدل بساز.'));header.append(intro,progress);
+  const nav=el('nav',undefined,'stage-navigation');nav.setAttribute('aria-label','ساختارهای APOS');const stageButtons=new Map();
+  for(const stage of curriculum.stages){const b=button(stage.title,()=>navigate(stage.id),'stage-button');b.dataset.stageId=stage.id;nav.append(b);stageButtons.set(stage.id,b);}
+  const notice=el('p');notice.id='teaching-notice';const host=el('section');host.id='teaching-stage';const controls=el('div',undefined,'stage-controls');
+  const previous=button('مرحلهٔ قبل',()=>step(-1)),next=button('مرحلهٔ بعد',()=>step(1),'primary-button');previous.id='previous-stage';next.id='next-stage';controls.append(previous,next);
+  const reset=createInlineConfirmation({message:'فقط پیشرفت آموزش تازه صفر شود؟ نتایج سایر تب‌ها حفظ می‌شوند.',id:'reset-confirm',confirmId:'confirm-reset-teaching',cancelId:'cancel-reset-teaching',onConfirm(){clearStage();variants.clear();cursors.clear();repository.resetTeaching();}});
+  const resetButton=button('شروع از اول',()=>reset.open(resetButton),'text-button');resetButton.id='reset-teaching';
+  const recovery=el('section',undefined,'teaching-recovery glass-surface');
+  const recoveryCopy=el('p');recovery.append(recoveryCopy,button('خروجی بازیابی',()=>download(repository.recoveryJSON(),'graph-learning-backup.json')),button('خروجی خام ذخیره',()=>download(repository.originalJSON(),'graph-learning-original.json')),button('تلاش دوباره برای ذخیره',()=>repository.retry()));
+  root.append(header,nav,notice,recovery,host,controls,el('p','فقط تکمیل فعالیت و محل ادامه ذخیره می‌شود؛ پاسخ، امتیاز و راهنما در آموزش ثبت نمی‌شود.','teaching-privacy'),resetButton,reset.element);panel.replaceChildren(root);
+  let current=null,cleanups=[],cardStates=[],advancing=false,flowGeneration=0,activityHost=null,stepCount=null,flowStatus=null;const variants=new Map(),cursors=new Map(),animations=new Set();
+  function clearStage(){flowGeneration++;advancing=false;for(const animation of animations)animation.cancel();animations.clear();root.classList.remove('is-advancing');for(const stop of cleanups)stop();cleanups=[];cardStates=[];current=null;}
+  function navigate(id){if(advancing)return;const p=repository.snapshot().state.teachingProgress;if(!unlockedStages(p).includes(id)){setFeedback(notice,'این مرحله قفل است؛ فعالیت‌های مرحلهٔ قبل را کامل کن.');return;}const before=current;cursors.set(id,availableTeachingActivity(curriculum,p,id));repository.changeProgress(p=>visitStage(p,id,curriculum));if(before===id){renderStage(id);sync(repository.snapshot());}if(location.hash!=='#teach')location.hash='#teach';host.querySelector('h2')?.focus();}
+  function step(offset){const stage=curriculum.stages[curriculum.stages.findIndex(s=>s.id===current)+offset];if(stage)navigate(stage.id);}
+  function drawStatic(parent,model,places=model.places,graph=model.graph){const wrap=el('div',undefined,'board-panel glass-surface');const board=createGraphBoard(wrap,{graph,places},()=>{});wrap.querySelector('.vertex-buttons').remove();for(const g of wrap.querySelectorAll('.board-vertex')){g.setAttribute('role','img');g.setAttribute('tabindex','-1');g.setAttribute('aria-label',places.find(p=>p.id===g.dataset.vertexId).label);}parent.append(wrap);cleanups.push(()=>board.destroy());}
+  function renderStage(id){
+    clearStage();current=id;const stage=curriculum.stages.find(s=>s.id===id);if(!variants.has(id)){const prior=curriculum.stages[stage.order-1],inherited=prior&&variants.get(prior.id);variants.set(id,stage.id!=='Schema'&&inherited?stage.variants.find(v=>v.id===inherited.id)??pickRandom(stage.variants):pickRandom(stage.variants));}const variant=variants.get(id);
+    host.dataset.variantId=variant.id;const title=el('h2',stage.title);title.tabIndex=-1;title.id='stage-heading';host.setAttribute('aria-labelledby',title.id);
+    const redraw=button('مسئلهٔ دیگر',()=>{variants.set(id,pickRandom(stage.variants,variant.id));renderStage(id);sync(repository.snapshot());});redraw.id='teaching-random-chain';
+    const toolbar=el('div',undefined,'teaching-toolbar');
+    const help=el('details',undefined,'context-help'),helpTitle=el('summary','ⓘ');helpTitle.setAttribute('aria-label','دربارهٔ مسئلهٔ دیگر');helpTitle.title='دربارهٔ مسئلهٔ دیگر';
+    const helpCopy=el('p','دو گونهٔ هم‌هدف برای هر مرحله داریم. مسئلهٔ دیگر، نمونهٔ متفاوت همین فعالیت‌ها را می‌آورد؛ پاسخ‌های موقت پاک می‌شوند و تکمیل فعالیت‌ها باقی می‌ماند.');
+    help.append(helpTitle,helpCopy);help.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')help.open=true;});help.addEventListener('pointerleave',()=>{if(!help.contains(document.activeElement))help.open=false;});help.addEventListener('keydown',event=>{if(event.key==='Escape'){help.open=false;helpTitle.focus();}});toolbar.append(redraw,help);
+    host.replaceChildren(title,el('p',`هدف: ${stage.goal}`,'stage-goal'),el('p',stage.bridge,'stage-bridge'),el('p',variant.scenario,'apos-scenario'),toolbar);
+    const lessons=el('div',undefined,'lesson-blocks');for(const block of stage.blocks){const card=el('details',undefined,'lesson-block glass-surface');card.append(el('summary',block.title),math('p',block.body),el('small',block.lesson));if(stage.id==='Object'&&lessons.childElementCount===0)card.open=true;lessons.append(card);}if(stage.id!=='Object')host.append(lessons);
+    if(stage.id==='Object'){const reference=el('details',undefined,'learning-reference');reference.append(el('summary','مرجع مفاهیم این بخش'),lessons);host.append(reference);}
+    const stepHeader=el('div',undefined,'learning-step-header');stepCount=el('strong');stepCount.id='learning-step-count';
+    const track=document.createElementNS('http://www.w3.org/2000/svg','svg');track.setAttribute('viewBox','0 0 360 48');track.setAttribute('aria-hidden','true');track.classList.add('learning-track');
+    const p=repository.snapshot().state.teachingProgress;let selected=cursors.get(id);if(!selected&&stage.id==='Schema'&&p.passedStageIds.length===4)selected='finished';
+    if(selected!=='finished')selected=availableTeachingActivity(curriculum,p,id,selected);
+    if(selected==='finished'&&p.passedStageIds.length!==4)selected=availableTeachingActivity(curriculum,p,id);
+    cursors.set(id,selected);const index=selected==='finished'?2:stage.requiredActivityIds.indexOf(selected);
+    stage.requiredActivityIds.forEach((activityId,i)=>{const done=p.completedActivityIds.includes(activityId),x=310-i*130;if(i<2){const line=document.createElementNS(track.namespaceURI,'path');line.setAttribute('d',`M${x-17},24 H${x-113}`);line.setAttribute('pathLength','1');line.classList.add('learning-link');if(done)line.classList.add('is-done');track.append(line);}const node=document.createElementNS(track.namespaceURI,'circle');node.setAttribute('cx',x);node.setAttribute('cy','24');node.setAttribute('r','17');node.classList.add('learning-node');if(done)node.classList.add('is-done');if(i===index)node.classList.add('is-current');track.append(node);const text=document.createElementNS(track.namespaceURI,'text');text.setAttribute('x',x);text.setAttribute('y','30');text.classList.add('learning-node-label');if(done)text.classList.add('is-done');text.textContent=done?'✓':fa(i+1);track.append(text);});
+    stepCount.textContent=selected==='finished'?'مسیر کامل شد':`قدم ${fa(index+1)} از ${fa(stage.requiredActivityIds.length)}`;stepHeader.append(stepCount,track);flowStatus=el('p');flowStatus.id='learning-flow-status';flowStatus.setAttribute('role','status');flowStatus.setAttribute('aria-live','polite');
+    activityHost=el('div',undefined,'learning-card-host');activityHost.id='learning-card-host';host.append(stepHeader,flowStatus,activityHost);
+    if(selected==='finished'){const finish=el('article',undefined,'learning-finish glass-surface'),finishTitle=el('h3','مسیرت را ساختی!');finishTitle.tabIndex=-1;finishTitle.id='learning-finish-heading';finish.append(el('span','✓','learning-finish-mark'),finishTitle,el('p','دوازده فعالیت را پشت سر گذاشتی؛ حالا تجربه، تحلیل، تعریف و مدل‌سازی را به هم وصل کرده‌ای.'),button('مرور از کنش',()=>navigate('Action')));const practice=el('a','رفتن به تمرین');practice.href='#practice';finish.append(practice);activityHost.append(finish);return;}
+    const activity=curriculum.activities.find(a=>a.id===selected);activityHost.append(activityCard(teachingInstance(activity,variant)));
+    const review=el('div',undefined,'learning-review-controls');const back=button('قدم قبلی',()=>showActivity(id,stage.requiredActivityIds[index-1]));back.id='learning-prev';back.hidden=index===0;const ahead=button('قدم بعدی',()=>showActivity(id,stage.requiredActivityIds[index+1]));ahead.id='learning-next';ahead.hidden=!p.completedActivityIds.includes(selected)||index===stage.requiredActivityIds.length-1;review.append(back,ahead);host.append(review);
 
-const fa = number => number.toLocaleString('fa-IR');
-const targets = { dominating: 'یک مجموعهٔ احاطه‌گر', minimal: 'یک مجموعهٔ احاطه‌گر مینیمال', minimum: 'یک مجموعهٔ احاطه‌گر مینیمم' };
-function element(tag, className, text) {
-  const node = document.createElement(tag);
-  if (className) node.className = className;
-  if (text !== undefined) node.textContent = text;
-  return node;
-}
-function button(label, className, action) {
-  const node = element('button', className, label); node.type = 'button';
-  node.addEventListener('click', action); return node;
-}
-function download(text, name) {
-  if (text === null) return;
-  const url = URL.createObjectURL(new Blob([text], { type: 'application/json;charset=utf-8' }));
-  const link = element('a'); link.href = url; link.download = name; link.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
-
-export function initTeaching({ curriculum, models, teachingPools }, repository) {
-  const assignments = new Map();
-  const panel = document.getElementById('panel-teach');
-  const root = element('div', 'teaching');
-  const header = element('header', 'teaching-heading');
-  const intro = element('div');
-  intro.append(element('span', 'availability', 'آموزش · چهار مرحلهٔ APOS'),
-    element('h1', '', curriculum.title),
-    element('p', 'model-key', 'خودارزیابی بدون نمره؛ فقط تکمیل فعالیت‌ها و مسیر ادامه ذخیره می‌شود.'));
-  const progressBox = element('div', 'teaching-progress glass-surface');
-  const percent = element('strong', 'progress-percent'); percent.id = 'teaching-percent';
-  const meter = element('progress'); meter.max = 100; meter.setAttribute('aria-label', 'پیشرفت کل آموزش');
-  const saved = element('p', 'save-state'); saved.id = 'teaching-save-state';
-  progressBox.append(percent, meter, saved); header.append(intro, progressBox);
-  const nav = element('nav', 'stage-navigation'); nav.setAttribute('aria-label', 'مراحل آموزش APOS');
-  const stageButtons = new Map();
-  for (const stage of curriculum.stages) {
-    const item = element('div', 'stage-item');
-    const go = button('', 'stage-button', () => navigate(stage.id));
-    go.dataset.stageId = stage.id;
-    const label = element('strong', '', `${fa(stage.order + 1)}. ${stage.title}`);
-    const state = element('span', 'stage-state');
-    go.append(label, state); item.append(go); nav.append(item);
-    stageButtons.set(stage.id, { go, state });
   }
-  const stageHost = element('section', 'teaching-stage'); stageHost.id = 'teaching-stage';
-  const stageNotice = element('p', 'stage-notice'); stageNotice.setAttribute('role', 'status');
-  stageNotice.hidden = true;
-  const controls = element('div', 'stage-controls');
-  const previous = button('مرحلهٔ قبل', 'secondary-button', () => step(-1)); previous.id = 'previous-stage';
-  const next = button('مرحلهٔ بعد', 'primary-button', () => step(1)); next.id = 'next-stage';
-  controls.append(previous, next);
-  const privacy = element('p', 'teaching-privacy', 'انتخاب رأس‌ها، پاسخ‌ها، راهنماها و امتیاز آموزشی ذخیره نمی‌شوند. مراحل پاس‌شده تا «شروع از اول» باز می‌مانند.');
-  const reset = element('section', 'reset-section');
-  const resetOpen = button('شروع از اول', 'text-button', () => resetDialog.open(resetOpen));
-  resetOpen.id = 'reset-teaching';
-  const resetDialog = createInlineConfirmation({
-    message: 'فقط پیشرفت آموزش صفر شود؟ مراحل دوباره از کنش آغاز می‌شوند. داده‌ها و تنظیمات بخش‌های دیگر حفظ می‌شوند.',
-    confirmLabel: 'بله، پیشرفت آموزش صفر شود', id: 'reset-confirm',
-    confirmId: 'confirm-reset-teaching', cancelId: 'cancel-reset-teaching',
-    onConfirm() {
-      assignments.clear();
-      currentStageId = null;
-      repository.resetTeaching();
-      sync(repository.snapshot()); stageHost.querySelector('h2')?.focus();
-    },
-  });
-  reset.append(resetOpen, resetDialog.element);
-  const recovery = element('section', 'teaching-recovery glass-surface'); recovery.hidden = true;
-  recovery.append(element('h2', '', 'ذخیرهٔ پیشرفت نیاز به بررسی دارد'),
-    element('p', 'model-key', 'کار فعلی در همین صفحه ادامه دارد. پیش از بازخوانی یا تازه‌سازی، فایل بازیابی را نگه دارید؛ ورود فایل در این فاز فعال نیست.'));
-  const retry = button('تلاش دوباره برای ذخیره', 'secondary-button', () => repository.retry());
-  const exportMemory = button('دریافت فایل بازیابیِ وضعیت فعلی', 'secondary-button', () => download(repository.recoveryJSON(), 'graph-learning-recovery.json'));
-  const exportOriginal = button('دریافت دادهٔ قبلی بدون تغییر', 'secondary-button', () => download(repository.originalJSON(), 'graph-learning-original.json'));
-  const reloadOpen = button('بازخوانی وضعیت ذخیره‌شده', 'text-button', () => reloadDialog.open(reloadOpen));
-  const reloadDialog = createInlineConfirmation({
-    message: 'تغییرات ذخیره‌نشدهٔ این صفحه کنار گذاشته و ذخیرهٔ مرورگر دوباره خوانده شود؟',
-    confirmLabel: 'بله، بازخوانی شود',
-    onConfirm() { currentStageId = null; repository.reload({ discardUnsaved: true }); },
-  });
-  recovery.append(retry, exportMemory, exportOriginal, reloadOpen, reloadDialog.element);
-  root.append(header, nav, stageNotice, stageHost, controls, privacy, reset, recovery);
-  panel.replaceChildren(root);
-  let currentStageId = null, boardCleanups = [], activityStatuses = new Map();
-  function navigate(id) {
-    const progress = repository.snapshot().state.teachingProgress;
-    if (!unlockedStages(progress).includes(id)) { showLocked(); return; }
-    repository.changeProgress(value => visitStage(value, id, curriculum));
-    if (location.hash !== '#teach') location.hash = '#teach';
-    stageHost.querySelector('h2')?.focus();
+  const reduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const milliseconds=name=>reduced()?0:Math.max(0,parseFloat(getComputedStyle(root).getPropertyValue(name))||0);
+  const pause=duration=>duration?new Promise(resolve=>setTimeout(resolve,duration)):Promise.resolve();
+  async function animateCard(node,enter){
+    const duration=milliseconds(enter?'--learning-enter':'--learning-exit');if(!duration||!node?.animate)return;
+    const frames=enter?[{transform:'translateX(-12px)',clipPath:'inset(0 100% 0 0)'},{transform:'translateX(0)',clipPath:'inset(0 0 0 0)'}]:[{transform:'translateX(0)',clipPath:'inset(0 0 0 0)'},{transform:'translateX(12px)',clipPath:'inset(0 0 0 100%)'}];
+    const animation=node.animate(frames,{duration,easing:'cubic-bezier(.2,.7,.2,1)',fill:'both'});animations.add(animation);try{await animation.finished;}catch{/* Navigation can cancel a finite transition. */}finally{animations.delete(animation);animation.cancel();}
   }
-  function step(offset) {
-    const index = curriculum.stages.findIndex(stage => stage.id === currentStageId);
-    const stage = curriculum.stages[index + offset];
-    if (stage) navigate(stage.id);
+  function focusActivity(){const title=activityHost.querySelector('h3');if(!title||location.hash.split('/')[0]!=='#teach')return;title.focus({preventScroll:true});(stepCount?.closest('.learning-step-header')??activityHost).scrollIntoView({block:'start',behavior:reduced()?'instant':'smooth'});}
+  function showActivity(stageId,activityId){if(advancing)return;const p=repository.snapshot().state.teachingProgress;if(availableTeachingActivity(curriculum,p,stageId,activityId)!==activityId)return;cursors.set(stageId,activityId);renderStage(stageId);sync(repository.snapshot());focusActivity();}
+  async function advanceActivity(model){
+    if(advancing)return;advancing=true;const generation=++flowGeneration,nextStep=followingTeachingActivity(curriculum,model.stageId,model.id),oldCard=activityHost.firstElementChild;
+    root.classList.add('is-advancing');flowStatus.textContent=nextStep?'✓ حل شد؛ قدم بعدی در راه است…':'✓ آخرین قدم هم کامل شد!';
+    repository.changeProgress(p=>{const completed=completeActivity(p,model.id,curriculum);return nextStep?visitStage(completed,nextStep.stageId,curriculum):completed;});
+    sync(repository.snapshot());
+    if(!repository.snapshot().state.teachingProgress.completedActivityIds.includes(model.id)){advancing=false;root.classList.remove('is-advancing');sync(repository.snapshot());return;}
+    if(stepCount)stepCount.textContent='✓ قدم کامل شد';const position=curriculum.stages.find(s=>s.id===model.stageId).requiredActivityIds.indexOf(model.id),node=host.querySelectorAll('.learning-node')[position],label=host.querySelectorAll('.learning-node-label')[position];node?.classList.add('is-done','is-celebrating');if(label){label.classList.add('is-done');label.textContent='✓';}host.querySelectorAll('.learning-link')[position]?.classList.add('is-bridging');if(location.hash.split('/')[0]==='#teach')stepCount.closest('.learning-step-header').scrollIntoView({block:'start',behavior:reduced()?'instant':'smooth'});
+    await pause(milliseconds('--learning-celebrate'));if(generation!==flowGeneration)return;
+    await animateCard(oldCard,false);if(generation!==flowGeneration)return;
+    const latest=repository.snapshot().state.teachingProgress;if(nextStep)cursors.set(nextStep.stageId,nextStep.activityId);else cursors.set('Schema','finished');
+    renderStage(latest.lastVisitedStageId);sync(repository.snapshot());focusActivity();await animateCard(activityHost.firstElementChild,true);
   }
-  function showLocked() {
-    stageNotice.textContent = 'این مرحله قفل است؛ ابتدا همهٔ خودارزیابی‌های الزامی مرحلهٔ قبل را درست بررسی کن.';
-    stageNotice.hidden = false;
-  }
-  function stageLink() {
-    const match = /^#teach\/([^/]+)$/.exec(location.hash);
-    if (!match) return;
-    let id;
-    try { id = decodeURIComponent(match[1]); } catch { id = ''; }
-    const progress = repository.snapshot().state.teachingProgress;
-    if (unlockedStages(progress).includes(id)) navigate(id); else showLocked();
-    history.replaceState(null, '', '#teach');
-  }
-  function sync(snapshot) {
-    const progress = snapshot.state.teachingProgress, unlocked = unlockedStages(progress);
-    percent.textContent = `${fa(progressPercent(progress))}٪`;
-    meter.value = progressPercent(progress);
-    saved.textContent = snapshot.warning || snapshot.dirty ? 'پیشرفت فعلی ذخیره نشده است'
-      : snapshot.persisted ? 'پیشرفت در این مرورگر ذخیره است' : 'هنوز پیشرفتی در این مرورگر ذخیره نشده است';
-    saved.dataset.unsaved = String(Boolean(snapshot.warning || snapshot.dirty || !snapshot.persisted));
-    recovery.hidden = !snapshot.warning;
-    retry.disabled = snapshot.conflict;
-    exportOriginal.hidden = repository.originalJSON() === null;
-    for (const stage of curriculum.stages) {
-      const { go, state } = stageButtons.get(stage.id);
-      go.disabled = !unlocked.includes(stage.id);
-      go.setAttribute('aria-current', stage.id === progress.lastVisitedStageId ? 'step' : 'false');
-      const passed = progress.passedStageIds.includes(stage.id);
-      state.textContent = passed ? '✓ پاس‌شده · ۲۵٪' : unlocked.includes(stage.id) ? 'باز · خودارزیابی‌های مرحله را کامل کن'
-        : `قفل · پس از ${curriculum.stages[stage.order - 1].title}`;
+  function activityCard(model){
+    const card=el('article',undefined,'teaching-activity glass-surface');card.dataset.activityId=model.id;const badge=el('p',undefined,'activity-status');const fields=el('fieldset',undefined,'apos-answer');fields.append(el('legend','پاسخ خودت را بساز'));const feedback=el('p'),hintHost=el('ol'),solution=math('p',model.solution,'teaching-solution');solution.hidden=true;
+    const answers={},token=`teaching:${model.id}`;let hintLevel=0;
+    const changed=()=>{setFeedback(feedback,'پاسخ تغییر کرد؛ دوباره بررسی کن.');solution.hidden=true;repository.setEditingDirty(token,true);};
+    const partHosts=new Map();
+    const cardTitle=el('h3',model.title);cardTitle.tabIndex=-1;cardTitle.id='learning-activity-heading';card.append(cardTitle,badge,el('p',`هدف: ${model.learningObjective}`),el('p',`نوع فعالیت: ${model.cognitiveOperation} · درجهٔ ${fa(model.difficulty)}`,'model-key'),math('p',model.prompt),el('p',`معیار قبولی: ${model.rubric}`,'required-note'));
+    if(['Process','Object'].includes(model.stageId)&&model.id!=='apos2-p2'){
+      drawStatic(card,model);
+      if(model.id==='apos2-o2'){card.append(el('p','همان رابطه با چیدمان دیگر:'));drawStatic(card,model,model.places.map(p=>({...p,x:600-p.x})));card.append(el('p','مدل مسیر بستهٔ پیک‌ها؛ راهِ مکان آخر به اول اضافه شده است:'));drawStatic(card,model,model.places,{...model.graph,edges:[...model.graph.edges,[model.graph.vertices.at(-1),model.graph.vertices[0]]]});}
     }
-    if (currentStageId !== progress.lastVisitedStageId) renderStage(progress.lastVisitedStageId);
-    for (const [id, badge] of activityStatuses) {
-      badge.textContent = progress.completedActivityIds.includes(id) ? '✓ تکمیل‌شده؛ قبولی محفوظ است' : 'الزامی · هنوز تکمیل نشده';
-    }
-    const index = curriculum.stages.findIndex(stage => stage.id === currentStageId);
-    previous.disabled = index === 0;
-    next.disabled = index === 3 || !unlocked.includes(curriculum.stages[index + 1]?.id);
-    next.textContent = index === 3 ? progressPercent(progress) === 100 ? 'آموزش کامل شد · ۱۰۰٪' : 'پایان مسیر؛ خودارزیابی‌ها را کامل کن'
-      : next.disabled ? 'مرحلهٔ بعد؛ پس از قبولی همهٔ فعالیت‌ها' : 'ادامه به مرحلهٔ بعد';
-  }
-  function renderStage(id) {
-    boardCleanups.forEach(destroy => destroy()); boardCleanups = []; activityStatuses = new Map();
-    currentStageId = id; stageNotice.hidden = true;
-    const stage = curriculum.stages.find(item => item.id === id);
-    const heading = element('h2', '', stage.title); heading.tabIndex = -1; heading.id = 'stage-heading';
-    stageHost.setAttribute('aria-labelledby', heading.id);
-    stageHost.replaceChildren(heading, element('p', 'stage-goal', stage.goal));
-    const blocks = element('div', 'lesson-blocks');
-    for (const block of stage.blocks) {
-      const card = element('article', 'lesson-block glass-surface');
-      const body = element('p'); renderTextMath(body, block.body);
-      card.append(element('span', 'lesson-source', block.lesson), element('h3', '', block.title), body);
-      blocks.append(card);
-    }
-    stageHost.append(blocks, element('p', 'required-note', `برای عبور، هر ${fa(stage.requiredActivityIds.length)} فعالیت زیر را درست بررسی کن. راهنما رایگان است.`));
-    for (const activityId of stage.requiredActivityIds) {
-      if(!assignments.has(activityId)) assignments.set(activityId,pickRandom(teachingPools?.get(activityId)??[models.get(activityId)]));
-      stageHost.append(activityCard(assignments.get(activityId)));
-    }
-  }
-  function activityCard(model) {
-    const { activity, question } = model, analysis = analyzeGraph(model.graph);
-    const card = element('article', 'teaching-activity'); card.dataset.activityId = activity.id;
-    card.dataset.questionId=question.id;card.dataset.difficulty=question.difficulty;
-    const questionCard = element('div', 'question-card glass-surface');
-    const heading = element('h3'); renderTextMath(heading, `${question.id} · ${activity.title}`);
-    const badge = element('p', 'activity-completion'); activityStatuses.set(activity.id, badge);
-    const prompt = element('p', 'activity-prompt'); renderTextMath(prompt, activity.prompt);
-    questionCard.append(heading, badge, element('p', 'activity-context', model.scenario),
-      element('p', 'model-key', `${model.vertexMeaning} ${model.edgeMeaning}`),
-      element('p', 'activity-target', `خواسته: ${targets[activity.target]}`), prompt);
-    const candidates=teachingPools?.get(activity.id)??[model];
-    const redraw=button('سؤال تصادفی دیگر','secondary-button',()=>{
-      disposeBoard();assignments.set(activity.id,pickRandom(candidates,question.id));
-      card.replaceWith(activityCard(assignments.get(activity.id)));sync(repository.snapshot());
-    });redraw.dataset.randomActivity=activity.id;
-    questionCard.append(element('p','model-key',`سؤال تصادفی از ${activity.stageId} · درجهٔ ${fa(question.difficulty)} · ${fa(candidates.length)} سؤال آماده${candidates.length===1?'؛ فقط یک سؤال در این مجموعه آماده است':''}`),redraw);
-    const source = element('details', 'activity-source');
-    const original = element('p'); renderTextMath(original, `${question.title_fa} — ${question.question_fa}`);
-    source.append(element('summary', '', 'متن اصلی بانک و توضیح فعالیت'), original,
-      element('p', 'model-key', model.adaptationReason)); questionCard.append(source);
-    const workspace = element('div', 'board-workspace');
-    const boardPanel = element('div', 'board-panel glass-surface');
-    const summary = element('p', 'board-status'); summary.setAttribute('role', 'status');
-    const boardHost = element('div'); boardPanel.append(summary, boardHost,
-      element('p', 'board-legend', 'یکدست: انتخاب شما · هاشور: پوشش همسایه · خالی: بی‌پوشش · دور قرمز: جاافتاده پس از بررسی'));
-    const feedbackPanel = element('div', 'board-feedback-panel');
-    const feedback = element('p', 'teaching-feedback'); feedback.setAttribute('role', 'status');
-    feedback.textContent = 'رأس‌ها را روی مدل یا با دکمه‌های زیر آن انتخاب کن، سپس بررسی کن.';
-    const hintList = element('ol', 'hint-list'); hintList.setAttribute('aria-live', 'polite');
-    const contextualHint = element('p', 'contextual-hint'); contextualHint.hidden = true;
-    const solution = element('p', 'teaching-solution'); solution.hidden = true;
-    let selected = [], checked = null, hintLevel = 0;
-    const names = ids => ids.map(id => model.places.find(place => place.id === id).label).join('، ');
-    const evaluate = () => evaluateSelection(model.graph, selected, activity.target);
-    const board = createGraphBoard(boardHost, model, id => {
-      selected = selected.includes(id) ? selected.filter(value => value !== id) : [...selected, id];
-      invalidate();
-    }); const disposeBoard=() => {
-      board.destroy(); repository.setEditingDirty(`teaching:${activity.id}`, false);
-    };boardCleanups.push(disposeBoard);
-    function updateBoard() {
-      repository.setEditingDirty(`teaching:${activity.id}`, selected.length > 0 || hintLevel > 0);
-      const evaluation = evaluate(); board.update(selected, { missed: checked?.uncoveredVertexIds ?? [] });
-      summary.textContent = `${fa(evaluation.coveredVertexIds.length)} از ${fa(model.graph.n)} رأس پوشش دارد؛ ${fa(selected.length)} رأس انتخاب‌شده`;
-      hintButton.disabled = hintLevel === 3;
-      hintButton.textContent = hintLevel === 3 ? 'هر سه راهنما نمایش داده شد' : `راهنمای ${fa(hintLevel + 1)} · رایگان`;
-      reveal.disabled = hintLevel === 0;
-    }
-    function invalidate() {
-      checked = null;
-      setFeedback(feedback, 'انتخاب تغییر کرد؛ برای خودارزیابی دوباره بررسی کن.');
-      contextualHint.hidden = true; solution.hidden = true; updateBoard();
-    }
-    const firstHint = evaluation => selectionFeedback(evaluation, activity.target, names).hint;
-    function addHint() {
-      if (hintLevel >= 3) return;
-      hintLevel++;
-      const item = element('li');
-      const text = hintLevel === 1 ? firstHint(evaluate()) : hintLevel === 2 ? model.hints[1]
-        : activity.target === 'minimum' ? `کمترین تعداد برای این مدل ${fa(analysis.gamma)} است. ${model.hints[2]}`
-          : model.hints[2];
-      renderTextMath(item, text); hintList.append(item); updateBoard();
-    }
-    const check = button('بررسی انتخاب', 'primary-button', () => {
-      checked = evaluate();
-      const result = selectionFeedback(checked, activity.target, names);
-      setFeedback(feedback, result.message, { tone: result.tone });
-      if (checked.satisfiesTarget) {
-        contextualHint.hidden = true;
-        repository.changeProgress(progress => completeActivity(progress, activity.id, curriculum));
-      } else {
-        if (hintLevel === 0) addHint();
-        setFeedback(contextualHint, `راهنمای متناسب با انتخاب فعلی: ${result.hint}`, { tone: 'hint' });
+    function showList(part,container){const list=el('p');list.className='apos-current';list.setAttribute('aria-live','polite');container.append(list);return()=>{const value=answers[part.id]??[];list.textContent=part.type==='edges'?`راه‌های فعلی: ${value.map(e=>e.map(v=>model.places.find(p=>p.id===v).label).join(' ↔ ')).join('؛ ')||'هنوز راهی ساخته نشده'}`:`ترتیب فعلی: ${value.map(v=>model.places.find(p=>p.id===v).label).join(' ← ')||'هنوز انتخابی نشده'}`;};}
+    for(const part of model.parts){const section=el('div',undefined,'apos-part');section.dataset.partId=part.id;partHosts.set(part.id,section);const label=el('label',part.label);label.id=`${model.id}-${part.id}-label`;section.setAttribute('role','group');section.setAttribute('aria-labelledby',label.id);section.append(label);
+      if(part.type==='number'||part.type==='choice'){
+        const input=el(part.type==='number'?'input':'select');input.id=`${model.id}-${part.id}`;input.dataset.partInput=part.id;label.htmlFor=input.id;
+        if(part.type==='number'){input.type='text';input.inputMode='numeric';input.maxLength=2;input.setAttribute('aria-label',part.label);}else{const placeholder=el('option','انتخاب کن');placeholder.value='';input.append(placeholder);for(const o of part.options){const option=el('option',o.label);option.value=o.value;input.append(option);}}
+        input.addEventListener('input',()=>{answers[part.id]=input.value;changed();});input.addEventListener('change',()=>{answers[part.id]=input.value;changed();});section.append(input);
+      }else if(part.type==='vertices'){
+        answers[part.id]=[];const group=el('div',undefined,'apos-choices');for(const place of model.places){const item=el('label'),check=el('input');check.type='checkbox';check.dataset.vertex=place.id;check.addEventListener('change',()=>{answers[part.id]=check.checked?[...answers[part.id],place.id]:answers[part.id].filter(v=>v!==place.id);changed();});item.append(check,document.createTextNode(place.label));group.append(item);}section.append(group);
+      }else{
+        answers[part.id]=[];const boardHost=el('div',undefined,'board-panel glass-surface');let board=null,pending=null,display=()=>{};
+        const mark=()=>{for(const g of boardHost.querySelectorAll('[data-vertex-id]')){const active=part.type==='route'?answers[part.id].at(-1)===g.dataset.vertexId:pending===g.dataset.vertexId;g.classList.toggle('is-selected',active);g.setAttribute('aria-pressed',String(active));}};
+        function redraw(){board?.destroy();const graph=part.type==='edges'?{...model.graph,edges:answers[part.id]}:model.graph;
+          board=createGraphBoard(boardHost,{...model,graph},hit);if(part.type==='centers')board.update(answers[part.id]);else mark();}
+        function hit(vertex){
+          if(fields.disabled)return;
+          if(part.type==='edges'){
+            if(pending===null)pending=vertex;else if(pending===vertex)pending=null;else{const pair=[pending,vertex].sort(),key=JSON.stringify(pair);answers[part.id]=answers[part.id].some(e=>JSON.stringify([...e].sort())===key)?answers[part.id].filter(e=>JSON.stringify([...e].sort())!==key):[...answers[part.id],pair];pending=null;changed();}
+            redraw();boardHost.querySelector(`button[data-vertex-id="${vertex}"]`)?.focus({preventScroll:true});
+          }else if(part.type==='route'){answers[part.id].push(vertex);changed();mark();}
+          else{answers[part.id]=answers[part.id].includes(vertex)?answers[part.id].filter(v=>v!==vertex):[...answers[part.id],vertex];changed();board.update(answers[part.id]);}
+          display();}
+        section.append(boardHost);redraw();cleanups.push(()=>board.destroy());
+        if(part.type==='edges'||part.type==='route'){display=showList(part,section);section.append(button(part.type==='route'?'برگشت یک گام':'برداشتن آخرین راه',()=>{answers[part.id].pop();pending=null;changed();redraw();display();}),button('پاک‌کردن این پاسخ',()=>{answers[part.id]=[];pending=null;changed();redraw();display();}));display();}
       }
-      updateBoard();
-    }); check.dataset.action = 'check';
-    const clear = button('پاک‌کردن انتخاب', 'secondary-button', () => { selected = []; invalidate(); }); clear.dataset.action = 'clear';
-    const hintButton = button('', 'secondary-button', addHint); hintButton.dataset.action = 'hint';
-    const reveal = button('دیدن یک پاسخ نمونه؛ پس از راهنما', 'text-button', () => {
-      if (!hintLevel) return;
-      const sample = analysis.minimumSets[0];
-      solution.textContent = `یک پاسخ برای این خواسته: ${names(sample)}. این انتخاب احاطه‌گر، مینیمال و مینیمم است (${fa(sample.length)} رأس). دیدن پاسخ قبولی نیست؛ خودت انتخاب و بررسی کن.`;
-      solution.hidden = false;
-    }); reveal.dataset.action = 'reveal';
-    // Hint and reveal follow feedback in reading order, directly below this question.
-    feedbackPanel.append(check, clear, feedback, contextualHint, hintButton, hintList, reveal, solution);
-    workspace.append(boardPanel, feedbackPanel); card.append(questionCard, workspace); updateBoard();
-    return card;
+      fields.append(section);
+    }
+    const showHint=()=>{if(hintLevel>=3)return;repository.setEditingDirty(token,true);hintHost.append(math('li',model.hints[hintLevel++]));reveal.disabled=false;hint.disabled=hintLevel>=3;hint.textContent=hintLevel>=3?'هر سه راهنما نمایش داده شد':'راهنمای بعدی؛ رایگان';};
+    const check=button('بررسی پاسخ',()=>{const result=assessTeaching(model,answers);for(const [id,partHost]of partHosts)partHost.dataset.correct=String(!result.issues.some(i=>i.partId===id));if(result.correct){if(advancing)return;setFeedback(feedback,'درست است؛ تمام بخش‌های این فعالیت مطابق معیارند.',{tone:'success'});repository.setEditingDirty(token,false);advanceActivity(model).catch(()=>{advancing=false;root.classList.remove('is-advancing');sync(repository.snapshot());setFeedback(notice,'تعویض قدم انجام نشد؛ می‌توانی دوباره بررسی کنی.',{tone:'error'});});}else{setFeedback(feedback,result.issues.map(i=>i.message).join(' '),{tone:'error'});if(!hintLevel)showHint();}},'primary-button');check.dataset.action='check';
+    const hint=button('راهنما؛ رایگان',showHint);hint.dataset.action='hint';const reveal=button('پاسخ نمونه؛ پس از راهنما',()=>{if(hintLevel)solution.hidden=false;},'text-button');reveal.dataset.action='reveal';reveal.disabled=true;
+    fields.append(check,feedback,hint,hintHost,reveal,solution);card.append(fields);cardStates.push({id:model.id,model,fields,badge});cleanups.push(()=>repository.setEditingDirty(token,false));return card;
+  }
+  function sync(snapshot){const {state}=snapshot,p=state.teachingProgress,unlocked=unlockedStages(p);percent.textContent=`${fa(progressPercent(p))}٪`;meter.value=progressPercent(p);save.textContent=snapshot.dirty||!snapshot.persisted?'ذخیره نشده':'ذخیره شده';
+    recovery.hidden=!snapshot.warning;recoveryCopy.textContent=snapshot.warning;
+    for(const stage of curriculum.stages){const b=stageButtons.get(stage.id);b.hidden=!unlocked.includes(stage.id);b.disabled=advancing||!unlocked.includes(stage.id);const short={Action:'کنش',Process:'فرایند',Object:'شیء',Schema:'طرحواره'}[stage.id],stateLabel=p.passedStageIds.includes(stage.id)?'✓ تکمیل‌شده':unlocked.includes(stage.id)?'آماده':'قفل';b.replaceChildren(el('strong',`${fa(stage.order+1)}. ${short}`),el('span',stateLabel,'stage-state'));b.title=stage.goal;b.setAttribute('aria-label',`${stage.title}؛ ${stateLabel}`);b.setAttribute('aria-current',stage.id===p.lastVisitedStageId?'step':'false');}
+    if(current!==p.lastVisitedStageId&&!advancing)renderStage(p.lastVisitedStageId);
+    if(!advancing&&cardStates[0]&&!cardStates[0].model.prerequisites.every(id=>p.completedActivityIds.includes(id))){cursors.delete(current);renderStage(p.lastVisitedStageId);}
+    for(const c of cardStates){const done=p.completedActivityIds.includes(c.id),available=c.model.prerequisites.every(id=>p.completedActivityIds.includes(id));c.fields.disabled=advancing||!available;c.badge.textContent=done?'✓ تکمیل‌شده':available?'آمادهٔ پاسخ':'قفل؛ پس از فعالیت قبلی';}
+    const index=curriculum.stages.findIndex(s=>s.id===current);previous.disabled=advancing||index===0;previous.hidden=index===0;next.disabled=advancing||index===3||!unlocked.includes(curriculum.stages[index+1]?.id);next.hidden=index===3||!unlocked.includes(curriculum.stages[index+1]?.id);resetButton.disabled=advancing;host.querySelector('#teaching-random-chain').disabled=advancing;host.querySelectorAll('.learning-review-controls button').forEach(b=>b.disabled=advancing);next.textContent=index===3?'پایان مسیر آموزش':'ادامه به مرحلهٔ بعد';
   }
   repository.subscribe(sync);
-  window.addEventListener('hashchange', stageLink);
-  stageLink();
+  const deepLink=()=>{const match=/^#teach\/([^/]+)$/.exec(location.hash);if(!match)return;let id='';try{id=decodeURIComponent(match[1]);}catch{/* invalid hash */}navigate(id);history.replaceState(null,'','#teach');};window.addEventListener('hashchange',deepLink);deepLink();
 }

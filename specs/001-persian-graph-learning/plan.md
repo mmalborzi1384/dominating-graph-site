@@ -198,3 +198,52 @@ transfer controls. Copy lives in content/records.json and responsive styling in 
 The repository retains one-key commits; shared validation remains authoritative. The tested
 1.1 policy is rejection, pending reviewed migration. Evidence: validation/us5.md. Stop for
 human review; phase 8 and its content/host/usability release gates remain unstarted.
+
+## PR#1.1 approved implementation — APOS redesign
+
+The complete proposal lives in amendments/pr-1-1-apos-redesign.md. It introduces twelve
+activities with distinct cognitive operations, typed temporary responses, connected scenario
+chains and exact, stage-appropriate feedback. Teaching-only rendering/evaluation and necessary
+progress/backup compatibility are the implementation scope. Existing scored-tab behavior and
+phase-8 release work are outside it. APOS-G01 was explicitly approved, with zero carry-over of old teaching progress. APOS-D02 uses curriculum=2 with unchanged schema=1 and a validated progress-only reset migration. Historical implementation evidence is not evidence of this redesign.
+
+### اصلاح قطعی پس از تأیید کاربر — PR#1.1
+
+طرح دوازده‌فعالیتی تأیید شد؛ گیت طراحی باز است. هر بند پیشنهادیِ قبلی دربارهٔ انتقال
+اعتبار پیشرفت، legacyPassedStageIds یا بازماندن مراحل قدیمی لغو است. آموزش curriculum=2
+برای دادهٔ نسخهٔ ۱ از صفر و فقط Action باز آغاز می‌شود. دادهٔ قدیمی ابتدا با curriculum=1
+اعتبارسنجی و با تأیید مهاجرت در یک نوشتن به نسخهٔ ۲ تبدیل می‌شود؛ شکل envelope/schema=1
+ثابت است. سوابق سایر تب‌ها/نشست‌ها/تم/علامت‌های حذف حفظ می‌شوند. ورود بک‌آپ قدیمی نیز
+هیچ پیشرفت قدیمی را منتقل نمی‌کند؛ پیشرفت تازهٔ موجود نسخهٔ ۲ را کم نمی‌کند. واردکردن
+نسخهٔ ۲ پیشرفت تازه را ادغام می‌کند. هیچ پاسخ/امتیاز/راهنمای آموزش ذخیره نمی‌شود.
+قرارداد کاملِ فعال این بازنویسی در بخش ۵ ضمیمهٔ APOS آمده است. فاز ۸ مجوز اجرا ندارد.
+
+## اصلاح بازبینی رابط — ۲۰۲۶-۱۱-۱۲
+
+کاربر اعلام کرد سایت هنوز انتشار عمومی نداشته و نمایش/جریان نسخهٔ قبلی لازم نیست.
+تبدیل معتبر نسخهٔ آزمایشی قدیمی به آموزش صفر، در مخزن خودکار و یک‌بار انجام می‌شود؛
+هیچ دکمه یا پیام مهاجرت و هیچ پیام موفقیت نسخهٔ قبلی در رابط معمول وجود ندارد.
+حفظ داده‌های دیگر و بازیابی شکست ذخیره پابرجاست. این تصمیم جایگزین نیاز قبلی به
+پیش‌نمایش/تأیید مهاجرت محلی است؛ ورود فایل پشتیبان همچنان پیش‌نمایش/تأیید مستقل دارد.
+
+توضیح‌های فرعیِ رفتار برنامه به کمک اختیاری ⓘ منتقل شوند: ماوس، لمس، فوکوس/Enter و
+Escape پشتیبانی شوند؛ متن در جریان صفحه باز شود، نه مودال. صورت مسئله، هدف، معیار
+قبولی و هشدار واقعی ذخیره پنهان نشوند. دکمهٔ مسئلهٔ دیگر اندازهٔ محتوایی داشته باشد؛
+درس‌نامه‌های کوتاه بازشونده و فاصله/پدینگ مشترک پنج تب کمتر شوند. قلم/کنتراست، برد و
+هدف لمسی ۴۴ پیکسل حفظ شوند. این تغییر چیدمان است، نه شروع فاز ۸ یا تکمیل بانک سؤال.
+
+## Single-activity teaching flow
+
+Only the current activity is instantiated. domain/teaching.js derives the first incomplete
+activity, rejects positions in locked structures, and resolves the next activity/structure.
+The controller keeps review cursors and transition state in memory. Correct completion and
+next-structure navigation are committed before visual replacement; reload resumes from saved
+completion, not an animation timer. Available past activities remain reviewable.
+
+A compact three-node route, a finite completion pulse and a directional card wipe communicate
+the learner's action. Motion timing lives in tokens.css; reduced motion removes the hold and
+card animation. Card content/graphs remain opaque (no blur/opacity animation). Keyboard focus
+moves to the new question heading, with the step route scrolled into view. Success freezes
+inputs/navigation during the change, including repeated review of already-completed activities.
+Future question cards are absent from DOM, not merely disabled; locked APOS navigation is hidden.
+Object definitions remain an optional collapsed reference. No storage schema or bank change.

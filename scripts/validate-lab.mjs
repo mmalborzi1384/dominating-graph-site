@@ -4,7 +4,7 @@ import {analyzeGraph,evaluateSelection} from '../assets/js/domain/evaluate.js';
 import {initialProgress} from '../assets/js/domain/progress.js';
 import {createAttempt,appendAttempt} from '../assets/js/domain/attempts.js';
 import {validateStoredEnvelope} from '../assets/js/storage/validate.js';
-const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url))),config=read('../content/lab.json'),bank=read('../docs/question-bank.json'),c=read('../content/teaching.json'),context={questions:bank.questions};
+const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url))),config=read('../content/lab.json'),bank=read('../docs/question-bank.json'),c=read('../content/teaching-v1.json'),context={questions:bank.questions};
 const fresh=()=>({schemaVersion:1,curriculumVersion:1,revision:0,teachingProgress:initialProgress(),attempts:{},sessions:{},settings:{theme:'day'}});
 let count=0;const check=(v,m)=>{count++;if(!v)throw Error(m);},rejects=(f,m)=>{let bad=false;try{f();}catch{bad=true;}check(bad,m);};
 check(config.stations.length===5,'Five stations');

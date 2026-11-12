@@ -7,7 +7,7 @@ import {createRepository,storageKey} from '../assets/js/storage/repository.js';
 import {initialProgress,completeActivity} from '../assets/js/domain/progress.js';
 import {startLabSession,submitLabTurn,graphSnapshot,familyGraph} from '../assets/js/domain/lab.js';
 import {createAttempt} from '../assets/js/domain/attempts.js';
-const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url),'utf8')),c=read('../content/teaching.json'),bank=read('../docs/question-bank.json'),config=read('../content/lab.json'),context={questions:bank.questions,bankVersion:'1.2'},clone=structuredClone;
+const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url),'utf8')),c=read('../content/teaching-v1.json'),bank=read('../docs/question-bank.json'),config=read('../content/lab.json'),context={questions:bank.questions,bankVersion:'1.2'},clone=structuredClone;
 const fresh=()=>({schemaVersion:1,revision:0,curriculumVersion:1,teachingProgress:initialProgress(),attempts:{},sessions:{},settings:{theme:'day'}});
 const text=(id='a')=>({id,tab:'practice',questionId:'Q001',recordedAt:'2026-11-11T00:00:00Z',responseMode:'self-assessed-text',target:'rubric',response:'پاسخ مدل‌سازی',hintLevel:0,evaluation:{satisfiesTarget:true,selfAssessed:true},baseScore:10,finalScore:10});
 let count=0;const check=(v,m)=>{count++;if(!v)throw Error(m);},reject=(f,m)=>{let bad=false;try{f();}catch{bad=true;}check(bad,m);};

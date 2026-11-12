@@ -5,9 +5,9 @@ async function read(relative) {
   return response.json();
 }
 export async function loadTeaching() {
-  const [curriculum, overrides, bank] = await Promise.all([
+  const [curriculum, overrides, bank, legacyCurriculum] = await Promise.all([
     read('../../../content/teaching.json'), read('../../../content/question-overrides.json'),
-    read('../../../docs/question-bank.json'),
+    read('../../../docs/question-bank.json'), read('../../../content/teaching-v1.json'),
   ]);
-  return validateTeaching(curriculum, overrides, bank);
+  return {...validateTeaching(curriculum, overrides, bank),legacyCurriculum};
 }

@@ -1,13 +1,13 @@
-.lab { --lab-gap: .85rem; }
+.lab { --lab-gap: .65rem; }
 .lab h3 { color: var(--heading); font-size: var(--font-base); margin: 0; }
 .lab-tools { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--lab-gap); align-items: start; }
-.lab-tool-group { min-width: 0; margin: 0; padding: 1rem; border: 1px solid var(--line); border-radius: 12px; display: grid; gap: var(--lab-gap); }
+.lab-tool-group { min-width: 0; margin: 0; padding: .8rem; border: 1px solid var(--line); border-radius: 12px; display: grid; gap: var(--lab-gap); }
 .lab-tool-group legend { color: var(--heading); font-weight: 700; padding-inline: .35rem; }
 .lab-tool-group .model-key { font-size: var(--font-xs); margin: 0; }
 .lab-tool-group button { width: 100%; }
-.lab-workspace > * { margin-block: 1rem; }
+.lab-workspace > * { margin-block: .65rem; }
 .lab-model-summary { font-weight: 700; color: var(--heading); }
-.lab-movement, .lab-connections { padding: 1rem; display: grid; gap: var(--lab-gap); border-radius: 12px; }
+.lab-movement, .lab-connections { padding: .8rem; display: grid; gap: var(--lab-gap); border-radius: 12px; }
 .lab-movement { grid-template-columns: minmax(0,1fr) minmax(200px,320px); align-items: center; }
 .lab-movement h3, .lab-movement > p { grid-column: 1 / -1; }
 .lab-direction-pad { direction: ltr; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); grid-template-rows: repeat(3,48px); gap: .35rem; }
@@ -29,7 +29,7 @@
  .lab-edge-pair { grid-template-columns: repeat(2,minmax(0,1fr)); }
  .lab-edge-pair button { grid-column: 1 / -1; }
 }
-.lab-station-intro, .lab-observations, .lab-saved-results { padding: 1rem; border-radius: 12px; }
+.lab-station-intro, .lab-observations, .lab-saved-results { padding: .8rem; border-radius: 12px; }
 .lab-station-intro { display: grid; gap: .7rem; }
 .lab-station-intro h2 { font-size: var(--font-lg); }
 .lab [id="lab-station-activity"] { scroll-margin-top: 1rem; }
