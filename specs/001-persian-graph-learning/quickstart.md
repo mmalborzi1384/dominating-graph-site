@@ -165,7 +165,10 @@ then reload. Inspect stored flags only. Export a current1.4 backup and import vi
 confirm, repeat: valid and idempotent; old-bank files rejected without mutation.
 
 Run the dependency-free scripts in README, including validate-polish.mjs. Run
-`node scripts/validate-content.mjs --write`; **exit1 is expected while release content gates
-remain open**. Check the per-ID report, not just source field counts. Inspect presentation,
+`node scripts/validate-content.mjs --write`; current result is **exit0:150 connected, no missing runtime figures/context**; human gates
+remain separate. Check the per-ID report, not just source field counts. Inspect presentation,
 performance, deployment, usability and release evidence. Do not equate local Chrome checks
 with physical-device/Firefox/WebKit/server/student review. No Playwright dependency is needed.
+
+
+Current full-bank evidence supersedes prior40-ID counts: see validation/bank-integration.md. Serve assets/book including WebP images and content/bank-lab.json.

@@ -104,7 +104,10 @@ export async function initLandings() {
       svg.append(make('path',{d:'M29 48q15-22 30 0M61 48q15-22 30 0M93 48q15-22 30 0',class:'landing-path'}));
       const count=make('text',{x:75,y:66,class:'landing-group-count'});count.textContent='۲–۱۰';svg.append(count);
     }
-    landing.append(words,svg);
+    const eyebrow=document.createElement('span');eyebrow.className='landing-eyebrow';eyebrow.textContent={teach:'تجربه ← تحلیل ← مفهوم ← مدل',practice:'بانک تمرین · ۱۲۶ سؤال',competition:'حل گروهی · فرصت برابر',lab:'کارگاه مدل · پنج ایستگاه و ۲۴ کاوش',records:'مسیر یادگیری · شش ساحت'}[id];words.prepend(eyebrow);
+    const scene=document.createElement('div');scene.className='landing-scene';scene.append(svg);
+    for(let i=0;i<3;i++){const orbit=document.createElement('span');orbit.className='scene-orbit';orbit.style.setProperty('--orbit-index',i);scene.append(orbit);}
+    const caption=document.createElement('span');caption.className='scene-caption-label';caption.textContent={teach:'کشف رابطه‌ها',practice:'فکر کن؛ امتحان کن',competition:'با هم بهتر حل می‌کنیم',lab:'یک تغییر، یک کشف',records:'هر تجربه یک قدم'}[id];scene.append(caption);landing.append(words,scene);
   }
   function enter(id) {
     const landing=document.querySelector(`#panel-${id} .tab-landing`);

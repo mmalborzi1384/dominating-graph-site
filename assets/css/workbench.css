@@ -1,0 +1,24 @@
+.bank-library { margin-block: 1.5rem; padding-top: 1rem; border-top: 2px solid var(--heading); min-width: 0; }
+.bank-jump { width: auto; }
+.source-workbench { margin-block: .8rem; min-width: 0; }
+.workbench-tools { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .5rem; }
+.workbench-tools input,.workbench-tools select { width: 100%; min-width: 0; min-height: 44px; padding: .5rem; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: .6rem; font: inherit; }
+.source-graph { width: 100%; max-height: 420px; background: var(--sheet); border-radius: 1rem; touch-action: pan-y; }
+.source-graph:has([data-source-id]:active) { touch-action: none; }
+.source-graph text { font-family: var(--font-body); font-size: 20px; }
+.source-graph [role=button] { cursor: pointer; }
+.source-graph [role=button]:focus-visible circle { stroke: var(--focus); stroke-width: 4; stroke-dasharray: 4 3; }
+.workbench-status { overflow-wrap: anywhere; font-size: var(--font-sm); }
+.assessment-policy { border-inline-start: 3px solid var(--hint); padding-inline-start: .7rem; font-size: var(--font-sm); }
+.book-figure { border: 1px solid var(--line); border-radius: .7rem; padding: .6rem; margin-block: .8rem; }
+.book-figure img { width: 100%; height: auto; display: block; background: var(--sheet); }
+.book-figure summary { cursor: pointer; min-height: 44px; }
+.queen-board { display: grid; grid-template-columns: repeat(8,minmax(0,1fr)); max-width: 440px; margin-inline: auto; direction: ltr; }
+.queen-board button { aspect-ratio: 1; min-width: 0; padding: 0; background: var(--sheet); color: var(--ink); border: 1px solid var(--line); font-size: var(--font-xl); }
+.queen-board [data-dark="1"] { background: var(--accent-soft); }
+.queen-board .queen-covered { background: var(--heading); color: var(--surface); }
+@media(max-width:640px){.workbench-tools{grid-template-columns:minmax(0,1fr)}.source-workbench .vertex-choice{min-height:44px}.bank-jump{width:100%}}
+.source-graph text { direction: ltr; unicode-bidi: isolate; }
+.queen-board { grid-template-columns: repeat(8,minmax(44px,1fr)); overflow-x: auto; }
+.source-workbench .vertex-buttons > button { width: auto; min-width: 44px; margin: 0; flex: 0 0 auto; }
+.source-workbench details > button { width: auto; display: inline-flex; margin: .25rem; }

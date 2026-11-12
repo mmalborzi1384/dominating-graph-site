@@ -1,3 +1,4 @@
+import { createWorkbench } from '../ui/model-workbench.js';
 import { animateNumber } from '../ui/motion.js';
 import { practiceCatalog, filterPractice } from '../data/practice.js';
 import { createAttempt, appendAttempt } from '../domain/attempts.js';
@@ -9,15 +10,15 @@ import { pickRandom } from '../domain/random.js';
 
 const el = (tag, text = '', className = '') => { const n = document.createElement(tag); n.textContent = text; n.className = className; return n; };
 const fa = n => n.toLocaleString('fa-IR');
-export async function initPractice(questions, curriculum, repository) {
-  const response = await fetch(new URL('../../../content/practice.json', import.meta.url));
+export async function initPractice(questions, curriculum, repository, {tab = 'practice', mount = null, source = 'practice.json'} = {}) {
+  const response = await fetch(new URL('../../../content/'+source, import.meta.url));
   if (!response.ok) throw new Error('محتوای تمرین بارگیری نشد.');
-  const catalog = practiceCatalog(questions, await response.json());
-  const root = document.getElementById('panel-practice'); root.replaceChildren();
-  root.append(el('h1','تمرین؛ راه‌های بیشتر برای مدل‌سازی'), el('p','مستقل از آموزش · راهنمای رایگان · نتیجه فقط با ثبت نهایی ذخیره می‌شود.','model-key'));
+  const catalog = practiceCatalog(questions, await response.json(), tab).filter(item=>!mount||!item.unavailable);
+  const root = mount ?? document.getElementById('panel-practice'); root.replaceChildren();
+  root.append(el(mount?'h2':'h1',mount?'کاوش‌های بانک؛ رسم، تحلیل و تجربه':'تمرین؛ راه‌های بیشتر برای مدل‌سازی'), el('p','مستقل از آموزش · راهنمای رایگان · نتیجه فقط با ثبت نهایی ذخیره می‌شود.','model-key'));
   const filters = el('div','','practice-filters');
   function select(label, options, id) {
-    const wrapper = el('label',label), control = el('select'); control.id = id;
+    const wrapper = el('label',label), control = el('select'); control.id = mount?'bank-'+id:id;
     for (const [value, title] of options) { const option = el('option',title); option.value = value; control.append(option); }
     wrapper.append(control); filters.append(wrapper); return control;
   }
@@ -54,7 +55,7 @@ export async function initPractice(questions, curriculum, repository) {
       option.value = item.question.id; option.disabled = Boolean(item.unavailable); picker.append(option);
     }
     const ready = list.filter(item => !item.unavailable);
-    availability.textContent = `${fa(ready.length)} سؤال آماده؛ ${fa(list.length-ready.length)} سؤال نیازمند تکمیل محتوا پیش از انتشار.`;
+    availability.textContent = `${fa(ready.length)} سؤال در این فیلتر · ${fa(catalog.length)} سؤال متصل در این بخش`;
     picker.disabled = !ready.length;
     if (ready.length) { picker.value = ready[0].question.id; render(ready[0]); }
     else host.replaceChildren(el('p','برای این ترکیب سؤال آماده نداریم. درس، موضوع یا دشواری دیگری انتخاب کنید.','notice'));
@@ -73,10 +74,11 @@ export async function initPractice(questions, curriculum, repository) {
     const card = el('article','','question-card glass-surface');
     const scoreBox=el('p','','live-score'),score=el('output','۰');let lastScore=0;
     scoreBox.append(document.createTextNode('امتیاز پاسخ: '),score);scoreBox.hidden=true;
-    card.dataset.questionId=q.id;card.dataset.difficulty=q.difficulty;
-    const title=el('h2');renderTextMath(title,`${q.id} · ${item.title}`);
+    card.dataset.questionId=q.id;card.dataset.bankTab=tab;card.dataset.difficulty=q.difficulty;
+    const title=el(mount?'h3':'h2');renderTextMath(title,`${q.id} · ${item.title}`);
     card.append(title,el('p',`${q.lesson==='lesson1'?'درس ۱':'درس ۲'} · سطح ${fa(q.difficulty)} · ${q.apos_stage}`,'model-key'));
     for (const text of [item.model.scenario,item.model.vertexMeaning,item.model.edgeMeaning,item.prompt]) {const p=el('p');renderTextMath(p,text);card.append(p);}
+    const workbench = createWorkbench(card,q,item,()=>repository.setEditingDirty(tab+'-bank',true));
     const original=el('details'),originalText=el('p');renderTextMath(originalText,q.question_fa);original.append(el('summary','متن اصلی بانک'),originalText);card.append(original);
     const work=el('div','','board-panel glass-surface'),actions=el('div','','practice-actions'),feedback=el('p'),hintList=el('ol','','hint-list');
     const answer=el('input');answer.type='number';answer.min='0';answer.max='12';answer.step='1';answer.id='practice-number';
@@ -97,7 +99,7 @@ export async function initPractice(questions, curriculum, repository) {
     if (['vertex-selection','integer','graph-construction'].includes(item.mode)) {work.append(boardHost);draw();}
     if(item.mode==='integer') {const label=el('label','عدد احاطه‌گری: ');label.append(answer);work.append(label);answer.addEventListener('input',changed);}
     if(item.mode==='self-assessed-text') {
-      const label=el('label','پاسخ تو (حداکثر ۱۰۰۰ حرف): ');label.append(text);work.append(label);
+      const label=el('label','پاسخ تو (متن و خلاصهٔ مدل، مجموعاً حداکثر ۱۰۰۰ حرف): ');label.append(text);work.append(label);
       const show=button('نمایش معیار و خودارزیابی',()=>{rubric.hidden=false;});work.append(show,rubric);text.addEventListener('input',changed);self.addEventListener('change',changed);
     }
     if(item.mode==='graph-construction') {
@@ -117,7 +119,7 @@ export async function initPractice(questions, curriculum, repository) {
       if(item.mode==='integer' && answer.value.trim()==='')throw new Error('عدد پاسخ را وارد کن.');
       if(item.mode==='self-assessed-text' && !self.value)throw new Error('پاسخ را با معیار مقایسه و ارزیابی خود را انتخاب کن.');
       const graphSnapshot=item.mode==='graph-construction'?{graph,modeling:{scenario_fa:item.model.scenario,vertex_means_fa:item.model.vertexMeaning,edge_means_fa:item.model.edgeMeaning,question_in_model_fa:item.prompt}}:undefined;
-      return createAttempt({questionId:q.id,mode:item.mode,target:item.target,response:item.mode==='vertex-selection'?selected:item.mode==='integer'?Number(answer.value):item.mode==='self-assessed-text'?text.value:graph,
+      return createAttempt({questionId:q.id,mode:item.mode,target:item.target,tab,response:item.mode==='vertex-selection'?selected:item.mode==='integer'?Number(answer.value):item.mode==='self-assessed-text'?text.value + workbench.summary():graph,
         graph,graphSnapshot,hintLevel,selfAssessed:self.value==='yes',points:q.scoring.points});
     }
     function preview() {
@@ -143,7 +145,7 @@ export async function initPractice(questions, curriculum, repository) {
         const next=appendAttempt(snapshot.state,a,curriculum,{questions});
         repository.commit(next,snapshot.state.revision);
         if(!repository.snapshot().state.attempts[a.id])throw new Error(repository.snapshot().warning||'ثبت پاسخ انجام نشد.');
-        finalized=a;
+        finalized=a;workbench.lock?.();
         for(const control of work.querySelectorAll('button,input,textarea,select'))control.disabled=true;
         for(const vertex of work.querySelectorAll('.board-vertex')){vertex.setAttribute('aria-disabled','true');vertex.setAttribute('tabindex','-1');}
         check.disabled=true;hint.disabled=true;submit.disabled=true;
@@ -156,8 +158,8 @@ export async function initPractice(questions, curriculum, repository) {
     const saveAgain=button('ذخیرهٔ دوبارهٔ کار موقت',()=>{repository.retry();status();});
     unsubscribe=repository.subscribe(s=>{saveAgain.hidden=!s.warning;status();});
     actions.append(check,hint,submit,retry,saveAgain);
-    host.replaceChildren(card,work,actions,feedback,hintList);
-    destroy=()=>{board?.destroy();unsubscribe?.();};
+    host.replaceChildren(card,work,actions,feedback,hintList);if(mount)for(const n of host.querySelectorAll('[id]'))n.id='bank-'+n.id;
+    destroy=()=>{board?.destroy();workbench.destroy();unsubscribe?.();repository.setEditingDirty(tab+'-bank',false);};
   }
-  refresh();
+  refresh();if(mount)for(const n of root.querySelectorAll('[id]'))if(!n.id.startsWith('bank-'))n.id='bank-'+n.id;
 }

@@ -1,3 +1,5 @@
+> Historical phase-8 snapshot before the full-bank follow-up. **Current status: [bank-integration.md](bank-integration.md)**. Previous counts of40/150 and missing figure mappings are superseded.
+
 # Phase 8 — content audit / T053
 
 2026-11-12. Source: question-bank.json **1.4**, active APOS curriculum **2**.

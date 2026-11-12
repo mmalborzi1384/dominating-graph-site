@@ -1,10 +1,10 @@
 import { analyzeGraph } from '../domain/evaluate.js';
-export function practiceCatalog(questions, config) {
+export function practiceCatalog(questions, config, tab = 'practice') {
   if (config.version !== 1 || !Array.isArray(config.activities)) throw new Error('نسخهٔ محتوای تمرین معتبر نیست.');
   const entries = new Map();
   for (const activity of config.activities) {
     const question = questions.find(q => q.id === activity.questionId);
-    if (!question?.tabs.includes('practice') || entries.has(question.id)) throw new Error('مجوز یا شناسهٔ تمرین معتبر نیست.');
+    if (!question?.tabs.includes(tab) || entries.has(question.id)) throw new Error('مجوز یا شناسهٔ تمرین معتبر نیست.');
     if (!['vertex-selection','integer','graph-construction','self-assessed-text'].includes(activity.mode)
       || !activity.prompt || !activity.model?.scenario || !activity.model.vertexMeaning || !activity.model.edgeMeaning
       || activity.hints?.length !== 3 || activity.hints.some(h => typeof h !== 'string' || !h.trim())) throw new Error('زمینه یا راهنمای تمرین کامل نیست.');
@@ -27,7 +27,7 @@ export function practiceCatalog(questions, config) {
     if (activity.mode === 'self-assessed-text' && !activity.rubric) throw new Error('معیار خودارزیابی وجود ندارد.');
     entries.set(question.id, { ...activity, question });
   }
-  return questions.filter(q => q.tabs.includes('practice')).map(question => entries.get(question.id)
+  return questions.filter(q => q.tabs.includes(tab)).map(question => entries.get(question.id)
     ?? { question, unavailable: true });
 }
 export function filterPractice(catalog, { lesson = '', category = '', difficulty = 'easy' } = {}) {

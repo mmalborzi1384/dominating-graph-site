@@ -1,0 +1,576 @@
+{
+  "version": 1,
+  "bankVersion": "1.4",
+  "activities": [
+    {
+      "questionId": "Q003",
+      "title": "کونیگسبرگ: گراف را از روی نقشه بساز",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "نقشه کونیگسبرگ را به گراف تبدیل کن: رأس‌ها را $x,y,z,w$ بگذار و یال‌ها را طوری بکش که گراف حاصل همان گراف اویلر باشد. مرتبه و اندازه گراف چند است؟",
+      "hints": [
+        "رأس‌ها را اول بگذار.",
+        "پل‌ها را یکی‌یکی وصل کن.",
+        "رسم گراف یکتا نیست."
+      ],
+      "rubric": "مرتبه $p=4$ و اندازه $q=7$ است. مهم نیست یال‌ها را مستقیم یا خمیده بکشی؛ مهم این است که کدام رأس‌ها به هم وصل‌اند.",
+      "model": {
+        "scenario": "نقشه کونیگسبرگ",
+        "vertexMeaning": "ناحیه",
+        "edgeMeaning": "پل"
+      },
+      "sourceMode": "text",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": 32,
+      "sourceModeByTab": {
+        "teach": "text",
+        "lab": "multigraph_draw"
+      }
+    },
+    {
+      "questionId": "Q006",
+      "title": "شیخ بهایی: چرا نشدنی است؟",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "چرا نمی‌توان کانال‌ها را طوری کشید که هیچ دو کانالی هم را قطع نکنند؟ به زبان گراف بگو.",
+      "hints": [
+        "گراف را روی کاغذ بکش.",
+        "یال‌ها را جابه‌جا کن.",
+        "همیشه یک تقاطع می‌ماند."
+      ],
+      "rubric": "چون $K_{3,3}$ گرافی نامسطح است؛ در هر رسم مسطح آن حداقل دو یال هم را قطع می‌کنند. این همان محتوای نامسطح بودن $K_{3,3}$ است.",
+      "model": {
+        "scenario": "خانه‌ها و چاه‌ها",
+        "vertexMeaning": "خانه یا چاه",
+        "edgeMeaning": "کانال"
+      },
+      "sourceMode": "text",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q014",
+      "title": "گراف جهت‌دار: $V=\\{a,b,c,d\\}$ و $E=\\{(a,b),(a,c),(c,a),(d,b)\\}$",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "مجموعه‌های $V$ و $E$ بالا داده شده‌اند. شکل گراف جهت‌دار را بکش و بگو رأس $a$ به کدام رأس‌ها یال خروجی دارد و از کدام رأس یال ورودی می‌گیرد.",
+      "hints": [
+        "زوج مرتب اول مبدأ است.",
+        "پیکان را از مبدأ به مقصد بکش.",
+        "یال $(c,a)$ با $(a,c)$ فرق دارد."
+      ],
+      "rubric": "رأس $a$ به $b$ و $c$ یال خروجی دارد و از $c$ یال ورودی می‌گیرد. رأس $d$ فقط به $b$ یال دارد.",
+      "model": {
+        "scenario": "گراف جهت‌دار چهار رأسی",
+        "vertexMeaning": "رأس",
+        "edgeMeaning": "یال جهت‌دار"
+      },
+      "sourceMode": "draw",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q024",
+      "title": "زیرگراف و مکمل",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "زیرگراف چیست؟ مکمل گراف $G$ را تعریف کن و بگو در مکمل، کدام رأس‌ها به هم وصل‌اند.",
+      "hints": [
+        "چند رأس و یال را حذف کن.",
+        "یال‌های غایب را بکش.",
+        " $G$ و $\\bar G$ را کنار هم ببین."
+      ],
+      "rubric": "زیرگراف گرافی است که رأس‌ها و یال‌هایش زیرمجموعه رأس‌ها و یال‌های G باشند. در مکمل $\\bar G$ دو رأس متمایز دقیقاً وقتی به هم وصل‌اند که در G به هم وصل نباشند. در گراف شکل ۱۶، مکمل Ḡ دقیقاً چهار یال دارد: ae و bc و bd و be.",
+      "model": {
+        "scenario": "گراف G شکل ۱۶ درس ۱ و مکملش",
+        "vertexMeaning": "رأس",
+        "edgeMeaning": "یال"
+      },
+      "sourceMode": "draw",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q041",
+      "title": "وزیر شطرنج: وزیر کجا می‌تواند برود؟",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "در مدل گرافی صفحه شطرنج، یک وزیر در یک خانه چه خانه‌هایی را احاطه می‌کند؟",
+      "hints": [
+        "سطر وزیر را رنگ کن.",
+        "ستون را رنگ کن.",
+        "قطرها را اضافه کن."
+      ],
+      "rubric": "وزیر خانه خودش و همه خانه‌های هم‌سطر، هم‌ستون و هم‌قطر خودش را احاطه می‌کند؛ یعنی $N[v]$ وزیر در گراف صفحه شطرنج همین خانه‌هاست.",
+      "model": {
+        "scenario": "صفحه شطرنج",
+        "vertexMeaning": "خانه",
+        "edgeMeaning": "تهدید وزیر"
+      },
+      "sourceMode": "text",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {
+        "teach": "text",
+        "lab": "board"
+      }
+    },
+    {
+      "questionId": "Q132",
+      "title": "رسم گراف $2$-منتظم $12$ رأسی با کمترین $\\gamma$",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "یک گراف $2$-منتظم $12$ رأسی بکش که عدد احاطه‌گری آن کمترین مقدار ممکن باشد (تمرین ۷ درس ۲).",
+      "hints": [
+        "دورها را جدا کن.",
+        " $\\gamma$ هر دور را حساب کن.",
+        "جمع بزن."
+      ],
+      "rubric": "گراف ۲-منتظم، اجتماع دورهای جداست. مثلاً دور C12 با γ=⌈12/3⌉=4 جواب می‌دهد و این کمترین مقدار ممکن است، چون هر دور دست‌کم ⌈طول دور/3⌉ به γ می‌افزاید و مجموع آن‌ها دست‌کم ۴ است. توجه کن که C12 تنها جواب نیست؛ مثلاً C6∪C6 با γ=2+2=4 و C3∪C9 با γ=1+3=4 هم کمترین مقدار را می‌دهند.",
+      "model": {
+        "scenario": "۱۲ مکان در یک حلقه (دور C12)؛ گراف ۲-منتظم با کمترین γ ممکن",
+        "vertexMeaning": "هر مکان یک رأس",
+        "edgeMeaning": "جاده مستقیم بین دو مکان همسایه در حلقه"
+      },
+      "sourceMode": "draw",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q133",
+      "title": "گراف $n$ رأسی با $\\gamma=2$ و $\\gamma$-مجموعه یکتا (تعمیم)",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "برای هر $n \\le 4$ دلخواه توضیح دهید چگونه می‌توان یک گراف $n$ رأسی با عدد احاطه‌گری $2$ رسم کرد که یک $\\gamma$-مجموعه یکتا با اندازه $2$ داشته باشد (تمرین ۱۰-الف درس ۲).",
+      "hints": [
+        "همه جفت‌ها را لیست کن.",
+        "فقط یک جفت باید کار کند.",
+        "یکتایی را بررسی کن."
+      ],
+      "rubric": "برای $n=1$ ناممکن است چون $\\gamma$ حداکثر $1$ است. برای $n=2$ گراف بدون یال جواب می‌دهد: تنها $\\gamma$-مجموعه $\\{a,b\\}$ است. برای $n=3$ ناممکن است: اگر $\\{x,y\\}$ احاطه‌گر باشد، رأس سوم به $x$ یا $y$ وصل است؛ آنگاه جفت دیگر هم احاطه‌گر می‌شود، پس $\\gamma$-مجموعه یکتا نداریم. برای $n=4$ مسیر $P_3$ روی $a$ و $b$ و $c$ به‌علاوه رأس تنهای $d$ جواب می‌دهد: تنها $\\gamma$-مجموعه $\\{b,d\\}$ است. در آزمایشگاه با شمارش همه $\\gamma$-مجموعه‌ها یکتایی را بررسی کن.",
+      "model": {
+        "scenario": "تمرین ۱۰-الف درس ۲؛ رسم گراف با γ-مجموعه یکتا",
+        "vertexMeaning": "رأس",
+        "edgeMeaning": "یال"
+      },
+      "sourceMode": "draw",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q134",
+      "title": "گراف n رأسی با γ=2 و بیش از یک γ-مجموعه (n=3 و n=4)",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "برای n=3 و n=4 توضیح دهید چگونه می‌توان یک گراف n رأسی با عدد احاطه‌گری ۲ رسم کرد که بیش از یک γ-مجموعه با اندازه ۲ داشته باشد؛ و بگویید چرا برای n=1 و n=2 چنین گرافی وجود ندارد (تمرین ۱۰-ب درس ۲، با تصحیح دامنه n).",
+      "hints": [
+        "برای n=4 جفت‌های مقابل دور C4 را امتحان کن.",
+        "برای n=3 یک رأس منزوی لازم است؛ چرا؟",
+        "برای n=2 فقط یک زیرمجموعه ۲ عضوی وجود دارد."
+      ],
+      "rubric": "برای n=4 دور C4 را بگیر: جفت‌های مقابل {a,c} و {b,d} هر دو γ-مجموعه‌اند (در واقع C4 شش γ-مجموعه ۲ عضوی دارد). برای n=3 گرافی بگیر با سه رأس a و b و c و تنها یک یال ab (رأس c منزوی): آنگاه {a,c} و {b,c} هر دو γ-مجموعه‌اند، پس بیش از یک γ-مجموعه داریم و γ=2 است. برای n=1 چنین گرافی وجود ندارد، چون تنها گراف ۱ رأسی γ=1 دارد. برای n=2 هم وجود ندارد، چون γ=2 فقط وقتی ممکن است که دو رأس یالی نداشته باشند، و آن گراف فقط یک زیرمجموعه ۲ عضوی دارد، پس نمی‌تواند بیش از یک γ-مجموعه داشته باشد.",
+      "model": {
+        "scenario": "۴ مکان دور یک میدان (دور C4)؛ و برای n=3: دو مکان وصل و یک مکان تنها",
+        "vertexMeaning": "هر مکان یک رأس",
+        "edgeMeaning": "جاده مستقیم بین دو مکان همسایه در حلقه"
+      },
+      "sourceMode": "draw",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q135",
+      "title": "اثر اضافه کردن یال بر $\\gamma$",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "اگر به یک گراف یک یال اضافه کنیم، عدد احاطه‌گری آن چه تغییری می‌کند؟ زیاد می‌شود، کم می‌شود یا ثابت می‌ماند؟",
+      "hints": [
+        "یک یال اضافه کن.",
+        "مجموعه قبلی را چک کن.",
+        " $\\gamma$ جدید را حساب کن."
+      ],
+      "rubric": "عدد احاطه‌گری نمی‌تواند زیاد شود؛ چون هر مجموعه احاطه‌گر قبلی هنوز احاطه‌گر است. می‌تواند کم شود یا ثابت بماند؛ مثلاً در گراف P₃ به‌علاوه رأس تنها (γ=2)، با اضافه کردن یال bd رأس b همه را می‌پوشاند و γ=1 می‌شود، ولی با اضافه کردن یال ad عدد γ همان ۲ می‌ماند.",
+      "model": {
+        "scenario": "اثر اضافه کردن یال بر γ",
+        "vertexMeaning": "رأس",
+        "edgeMeaning": "یال"
+      },
+      "sourceMode": "interactive_graph",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q136",
+      "title": "اثر حذف یال بر $\\gamma$",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "اگر از یک گراف یک یال حذف کنیم، عدد احاطه‌گری آن چه تغییری می‌کند؟",
+      "hints": [
+        "یک یال حذف کن.",
+        "مجموعه قبلی را چک کن.",
+        " $\\gamma$ جدید را حساب کن."
+      ],
+      "rubric": "عدد احاطه‌گری نمی‌تواند کم شود؛ چون پوشش سخت‌تر می‌شود. می‌تواند زیاد شود یا ثابت بماند.",
+      "model": {
+        "scenario": "اثر حذف یال بر γ",
+        "vertexMeaning": "رأس",
+        "edgeMeaning": "یال"
+      },
+      "sourceMode": "interactive_graph",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q137",
+      "title": "اگر $\\gamma(G)=1$، یال‌ها چندتاست؟",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "اگر برای گراف $G$ داشته باشیم $\\gamma(G)=1$، در این صورت به چه ویژگی‌هایی از گراف $G$ می‌توان پی برد؟ $\\Delta(G)$ و حداقل و حداکثر تعداد یال‌هایی که گراف $G$ می‌تواند داشته باشد را مشخص کن (تمرین ۴ درس ۲).",
+      "hints": [
+        "رأس فراگیر را پیدا کن.",
+        "کمترین یال را بساز.",
+        "بیشترین یال را بساز."
+      ],
+      "rubric": "رأس فراگیر با درجه $n-1$ وجود دارد، پس $\\Delta(G)=n-1$. تعداد یال‌ها حداقل $n-1$ (ستاره) و حداکثر $\\binom{n}{2}$ (گراف کامل) است.",
+      "model": {
+        "scenario": "در شبکهٔ خدماتی با یک مرکز کافی، ویژگی مکان مرکزی و حدهای تعداد خیابان‌ها را تحلیل کن.",
+        "vertexMeaning": "مکان‌ها رأس‌های مدل‌اند.",
+        "edgeMeaning": "راه ارتباط یا امکان خدمت‌رسانی مستقیم، رابطهٔ مدل است."
+      },
+      "sourceMode": "proof_text",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q138",
+      "title": "رسم بر اساس $n$ و $\\gamma$",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "در بخش «رسم بر اساس $n$ و $\\gamma$» آزمایشگاه، $n=8$ و $\\gamma=3$ را وارد کن. گرافی با همان مشخصات رسم کن و یک $\\gamma$-مجموعه‌اش را نشان بده.",
+      "hints": [
+        " $n$ و $\\gamma$ را وارد کن.",
+        "گراف را بساز.",
+        " $\\gamma$ را بررسی کن."
+      ],
+      "rubric": "مثلاً مسیر $P_8$ با $\\gamma=\\lceil 8/3 \\rceil = 3$ جواب می‌دهد. در آزمایشگاه، سایت با $n$ و $\\gamma$ داده‌شده گراف می‌سازد و $\\gamma$ آن را با جستجوی فراگیر بررسی می‌کند.",
+      "model": {
+        "scenario": "۸ ایستگاه در یک خط (مسیر P8)؛ در آزمایشگاه گرافی با n=8 و γ=3 رسم کن",
+        "vertexMeaning": "هر ایستگاه یک رأس",
+        "edgeMeaning": "جاده مستقیم بین دو ایستگاه همسایه"
+      },
+      "sourceMode": "interactive_graph",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q139",
+      "title": "ساخت گراف سفارشی ۲ تا ۱۰ رأسی",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "در ویرایشگر کشیدنی آزمایشگاه، یک گراف سفارشی با $7$ رأس بساز: رأس‌ها را بکش، با «حالت یال» دو رأس را بزن تا یال ساخته یا حذف شود، بعد $\\gamma$ آن را پیدا کن.",
+      "hints": [
+        "رأس‌ها را بکش.",
+        "یال‌ها را بساز.",
+        "مهره‌گذاری کن."
+      ],
+      "rubric": "گراف را بساز، بعد با مهره‌گذاری $\\gamma$ را پیدا کن. سایت با جستجوی فراگیر روی همه زیرمجموعه‌ها ($2^7=128$ حالت) $\\gamma$ دقیق را حساب می‌کند.",
+      "model": {
+        "scenario": "ویرایشگر کشیدنی آزمایشگاه؛ گراف ۷ رأسی بساز",
+        "vertexMeaning": "رأس",
+        "edgeMeaning": "یال"
+      },
+      "sourceMode": "draw",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q140",
+      "title": "همه $\\gamma$-مجموعه‌ها را پیدا کن",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "برای گراف پترسن، همه $\\gamma$-مجموعه‌ها را پیدا کن. چندتا هستند؟",
+      "hints": [
+        "همه زیرمجموعه‌های $3$ عضوی را امتحان کن.",
+        "کدام‌ها احاطه‌گرند؟",
+        "بشمار."
+      ],
+      "rubric": "عدد احاطه‌گری پترسن ۳ است و دقیقاً ۱۰ γ-مجموعه دارد: {a,c,g}، {a,d,j}، {a,h,i}، {b,d,h}، {b,e,f}، {b,i,j}، {c,e,i}، {c,f,j}، {d,f,g}، {e,g,h}.",
+      "model": {
+        "scenario": "۱۰ ایستگاه در شبکه پترسن: پنج‌ضلعی بیرونی و ستاره درونی که با هم وصل‌اند",
+        "vertexMeaning": "هر ایستگاه یک رأس",
+        "edgeMeaning": "راه مستقیم بین دو ایستگاه مجاور در شبکه پترسن"
+      },
+      "sourceMode": "interactive_graph",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q141",
+      "title": "چالش زمان‌دار: ۵ گراف در ۳ دقیقه",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "در چالش زمان‌دار ریپو، $5$ گراف در $3$ دقیقه داده می‌شود. امتیاز هر گراف از چه چیزی می‌آید؟ امتیاز این چالش در کارنامه ثبت می‌شود؟",
+      "hints": [
+        "سریع و دقیق بازی کن.",
+        "تایمر را ببین.",
+        "امتیاز را چک کن."
+      ],
+      "rubric": "امتیاز هر گراف از امتیاز دور و پاداش سرعت می‌آید. امتیاز چالش زمان‌دار در کارنامه ثبت نمی‌شود.",
+      "model": {
+        "scenario": "چالش شبکهٔ خدمات در ریپوی مرجع را با چالش این سایت مقایسه کن: پاسخ منبع دربارهٔ ریپوی مرجع است؛ این سایت نتیجه را با امتیاز عادی ذخیره می‌کند و پاداش سرعت ندارد.",
+        "vertexMeaning": "مکان‌ها رأس‌های مدل‌اند.",
+        "edgeMeaning": "راه ارتباط یا امکان خدمت‌رسانی مستقیم، رابطهٔ مدل است."
+      },
+      "sourceMode": "text",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {
+        "teach": "text",
+        "lab": "runtime_library"
+      }
+    },
+    {
+      "questionId": "Q142",
+      "title": "ایستگاه ۱: محاسبه مستقیم $\\gamma$",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "در ایستگاه ۱ آزمایشگاه، $\\gamma$ گراف‌های $P_3$، $C_4$، $K_4$ و $S_4$ را با جدول محاسبه کن.",
+      "hints": [
+        "ایستگاه را باز کن.",
+        "گراف را بساز.",
+        "جواب را بررسی کن."
+      ],
+      "rubric": " $\\gamma(P_3)=1$، $\\gamma(C_4)=2$، $\\gamma(K_4)=1$، $\\gamma(S_4)=1$.",
+      "model": {
+        "scenario": "ایستگاه ۱ آزمایشگاه: محاسبه مستقیم γ",
+        "vertexMeaning": "رأس",
+        "edgeMeaning": "یال"
+      },
+      "sourceMode": "interactive_graph",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {
+        "teach": "text",
+        "lab": "runtime_library"
+      }
+    },
+    {
+      "questionId": "Q143",
+      "title": "ایستگاه ۲: کشف فرمول",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "در ایستگاه ۲، $\\gamma(P_n)$ و $\\gamma(C_n)$ را برای $n=1$ تا $7$ حساب کن و فرمول $\\lceil n/3 \\rceil$ را کشف کن.",
+      "hints": [
+        "ایستگاه را باز کن.",
+        "گراف را بساز.",
+        "جواب را بررسی کن."
+      ],
+      "rubric": "با جدول $n$ و $\\gamma$، الگوی $\\lceil n/3 \\rceil$ دیده می‌شود.",
+      "model": {
+        "scenario": "ایستگاه ۲ آزمایشگاه: کشف فرمول ⌈n/3⌉",
+        "vertexMeaning": "رأس",
+        "edgeMeaning": "یال"
+      },
+      "sourceMode": "interactive_graph",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {
+        "teach": "text",
+        "lab": "runtime_library"
+      }
+    },
+    {
+      "questionId": "Q144",
+      "title": "ایستگاه ۳: کران‌ها",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "در ایستگاه ۳، کران پایین $\\lceil n/(\\Delta+1) \\rceil$ و قضیه اور را به‌صورت عددی روی چند گراف بررسی کن.",
+      "hints": [
+        "ایستگاه را باز کن.",
+        "گراف را بساز.",
+        "جواب را بررسی کن."
+      ],
+      "rubric": "روی این گراف: n=6 و Δ=3 است، پس کران پایین ⌈6/4⌉=2 است ولی γ=3 است؛ یعنی کران پایین برقرار است ولی تیز نیست. قضیه اور هم برقرار است: γ=3 ≤ n/2=3.",
+      "model": {
+        "scenario": "ایستگاه ۳ آزمایشگاه: کران‌ها",
+        "vertexMeaning": "رأس",
+        "edgeMeaning": "یال"
+      },
+      "sourceMode": "interactive_graph",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q145",
+      "title": "ایستگاه ۴: مینیمال در برابر مینیمم",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "در ایستگاه ۴، روی $P_6$ و مجموعه $\\{2,4,6\\}$ نشان بده مینیمال با مینیمم فرق دارد.",
+      "hints": [
+        "ایستگاه را باز کن.",
+        "گراف را بساز.",
+        "جواب را بررسی کن."
+      ],
+      "rubric": " $\\{2,4,6\\}$ مینیمال ولی غیرمینیمم است؛ $\\gamma=2$.",
+      "model": {
+        "scenario": "ایستگاه ۴ آزمایشگاه: مینیمال در برابر مینیمم",
+        "vertexMeaning": "رأس",
+        "edgeMeaning": "یال"
+      },
+      "sourceMode": "interactive_graph",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q146",
+      "title": "ایستگاه ۵: بازی دو گروهی",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "در ایستگاه ۵، بازی رقابتی «چالش $\\gamma$» را با دو گروه انجام بده و برنده را بر اساس امتیاز مشخص کن.",
+      "hints": [
+        "ایستگاه را باز کن.",
+        "گراف را بساز.",
+        "جواب را بررسی کن."
+      ],
+      "rubric": "هر گروه به‌نوبت گراف را حل می‌کند؛ امتیاز بالاتر برنده است.",
+      "model": {
+        "scenario": "دو گروه روی مدل پوشش محله رقابت کنند؛ تعداد مراکز، کیفیت پوشش و امتیاز هر گروه را گزارش کن.",
+        "vertexMeaning": "مکان‌ها رأس‌های مدل‌اند.",
+        "edgeMeaning": "راه ارتباط یا امکان خدمت‌رسانی مستقیم، رابطهٔ مدل است."
+      },
+      "sourceMode": "text",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {
+        "teach": "text",
+        "lab": "lab_activity"
+      }
+    },
+    {
+      "questionId": "Q147",
+      "title": "گراف $n$ رأسی با $\\gamma=k$ بساز",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "در آزمایشگاه، برای $n=9$ و $k=3$ گرافی بساز که $\\gamma$ آن $3$ باشد.",
+      "hints": [
+        "ایستگاه را باز کن.",
+        "گراف را بساز.",
+        "جواب را بررسی کن."
+      ],
+      "rubric": "مثلاً $P_9$ با $\\gamma=3$ جواب می‌دهد.",
+      "model": {
+        "scenario": "رسم گراف n رأسی با γ=k",
+        "vertexMeaning": "رأس",
+        "edgeMeaning": "یال"
+      },
+      "sourceMode": "interactive_graph",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q148",
+      "title": "همه مینیمم‌ها را لیست کن",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "برای گراف $C_6$ همه $\\gamma$-مجموعه‌ها را لیست کن. چندتا هستند؟",
+      "hints": [
+        "ایستگاه را باز کن.",
+        "گراف را بساز.",
+        "جواب را بررسی کن."
+      ],
+      "rubric": " $\\{v_1,v_4\\}$، $\\{v_2,v_5\\}$، $\\{v_3,v_6\\}$؛ سه‌تا.",
+      "model": {
+        "scenario": "همه γ-مجموعه‌ها را لیست کن",
+        "vertexMeaning": "رأس",
+        "edgeMeaning": "یال"
+      },
+      "sourceMode": "interactive_graph",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q149",
+      "title": "اثر یال بر $\\gamma$ را تجربه کن",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "یک یال به $P_5$ اضافه کن و ببین $\\gamma$ چه می‌شود. بعد یک یال حذف کن و دوباره ببین.",
+      "hints": [
+        "ایستگاه را باز کن.",
+        "گراف را بساز.",
+        "جواب را بررسی کن."
+      ],
+      "rubric": "اضافه کردن یال γ را زیاد نمی‌کند؛ حذف یال آن را کم نمی‌کند. روی P₅: با اضافه کردن هر یال، γ همان ۲ می‌ماند؛ با حذف یال ab یا de عدد γ به ۳ می‌رسد و با حذف bc یا cd همان ۲ می‌ماند. برای دیدن کاهش γ با اضافه کردن یال، گراف P₃ به‌علاوه رأس تنها را امتحان کن: با اضافه کردن یال bd عدد γ از ۲ به ۱ می‌رسد.",
+      "model": {
+        "scenario": "اثر یال بر γ را تجربه کن",
+        "vertexMeaning": "رأس",
+        "edgeMeaning": "یال"
+      },
+      "sourceMode": "interactive_graph",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    },
+    {
+      "questionId": "Q150",
+      "title": "مسیر و دور به طول ۵",
+      "mode": "self-assessed-text",
+      "target": "rubric",
+      "prompt": "در گراف شکل ۱۷ درس ۱، دوری به طول $5$ بیاب.",
+      "hints": [
+        "ایستگاه را باز کن.",
+        "گراف را بساز.",
+        "جواب را بررسی کن."
+      ],
+      "rubric": "مثلاً دور u–v–w–y–z–u به طول ۵ است: یال‌های uv و vw و wy و yz و zu.",
+      "model": {
+        "scenario": "مسیر و دور به طول ۵ در شکل ۱۷ درس ۱",
+        "vertexMeaning": "رأس",
+        "edgeMeaning": "یال"
+      },
+      "sourceMode": "interactive_graph",
+      "assessmentPolicy": "پاسخ کامل و استدلال/رسم را با معیار منبع مقایسه کن؛ خودارزیابی صریح ۱۰/۰ است، نه تصحیح خودکار متن یا اثبات.",
+      "reviewStatus": "machine-checked; human educational review pending",
+      "figurePage": null,
+      "sourceModeByTab": {}
+    }
+  ]
+}

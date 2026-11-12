@@ -68,7 +68,11 @@ try {
   catch { setFeedback(document.querySelector('#panel-practice .empty-note') ?? document.getElementById('panel-practice'), 'تمرین بارگیری نشد؛ فایل محتوای تمرین را بررسی کنید.', { tone: 'error' }); }
   try { await initCompetition(teaching.questions, teaching.curriculum, repository); }
   catch { setFeedback(document.getElementById('panel-competition'), 'مسابقه آماده نشد؛ محتوای مسابقه را بررسی کنید.', { tone: 'error' }); }
-  try { await initLab(teaching.questions, teaching.curriculum, repository); }
+  try { await initLab(teaching.questions, teaching.curriculum, repository);
+    const bank=document.createElement('section');bank.id='lab-bank';bank.className='bank-library';document.getElementById('panel-lab').append(bank);
+    await initPractice(teaching.questions, teaching.curriculum, repository,{tab:'lab',mount:bank,source:'bank-lab.json'});
+    const jump=document.createElement('button');jump.className='bank-jump secondary-button';jump.textContent='کاوش ۲۴ سؤال رسم و تحلیل بانک';jump.addEventListener('click',()=>{bank.scrollIntoView({behavior:document.documentElement.dataset.motion==='off'?'instant':'smooth'});bank.querySelector('h2').tabIndex=-1;bank.querySelector('h2').focus({preventScroll:true});});document.querySelector('#panel-lab > h1').after(jump);
+  }
   catch { setFeedback(document.getElementById('panel-lab'), 'آزمایشگاه آماده نشد؛ فایل محتوای آن را بررسی کنید.', {tone:'error'}); }
   await initLandings();
 } catch {

@@ -1,0 +1,51 @@
+/* A neighborhood map is the site's visual language; all paint still comes from tokens. */
+.site-landing { margin-block: 1rem; border-radius: var(--hero-radius); padding: clamp(1rem,3vw,2.5rem); display: grid; grid-template-columns: 1.15fr 1fr; gap: 2rem; align-items: center; overflow: hidden; position: relative; }
+.site-landing h1 { font-size: clamp(2rem,4vw,3.6rem); line-height: 1.55; font-weight: 850; letter-spacing: -.04em; margin-block: .4rem .65rem; text-wrap: balance; }
+.site-landing-copy > p:not(.landing-eyebrow) { color: var(--muted); max-width: 36rem; }
+.landing-eyebrow { display: block; font-size: var(--font-xs); color: var(--heading); font-weight: 700; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1rem; }
+.hero-actions a { min-height: 44px; display: inline-flex; align-items: center; }
+.hero-start { background: var(--heading); color: var(--surface); text-decoration: none; border-radius: 100px; padding: .45rem 1.3rem; font-weight: 750; }
+.hero-map { min-width: 0; position: relative; padding: 1rem; border: 1px solid var(--line); border-radius: 45% 45% 1rem 1rem; background: var(--paper); background-image: radial-gradient(var(--grid) 1px,transparent 1px); background-size: 14px 14px; }
+.hero-map svg { width: 100%; overflow: visible; }
+.hero-roads { stroke: var(--graph-line); stroke-width: 3; fill: none; }
+.hero-places circle { fill: var(--sheet); stroke: var(--heading); stroke-width: 2; }
+.hero-places g:nth-child(2) circle { fill: var(--bead-0); }
+.hero-places g:nth-child(4) circle { fill: var(--bead-2); }
+.hero-places text { fill: var(--ink); font-family: var(--font-body); font-size: 13px; text-anchor: middle; }
+.hero-traveler { fill: var(--heading); stroke: var(--sheet); stroke-width: 3; }
+.hero-map-note { display: block; margin-top: 1rem; text-align: center; color: var(--muted); font-size: var(--font-xs); }
+.tab-landing { min-height: 130px; border-bottom: 1px solid var(--line); padding-bottom: .8rem; margin-bottom: 1rem; }
+.landing-scene { width: 210px; height: 126px; flex: none; display: grid; place-items: center; position: relative; isolation: isolate; }
+.landing-art { width: 180px; height: 90px; z-index: 1; }
+.scene-orbit { position: absolute; width: calc(76px + var(--orbit-index) * 35px); height: calc(76px + var(--orbit-index) * 14px); border: 1px solid var(--line); border-radius: 50%; transform: rotate(calc(var(--orbit-index) * 28deg)); z-index: -1; }
+.scene-caption-label { position: absolute; bottom: 0; padding-inline: .5rem; font-size: var(--font-xs); color: var(--muted); background: var(--panel); }
+.landing-caption { max-width: 36rem; margin-top: .4rem; }
+:root[data-motion=full] .site-landing-copy > * { animation: editorial-reveal var(--text-reveal) cubic-bezier(.2,.8,.2,1) both; }
+:root[data-motion=full] .site-landing-copy h1 { animation-delay: 100ms; }
+:root[data-motion=full] .site-landing-copy > p:not(.landing-eyebrow) { animation-delay: 200ms; }
+:root[data-motion=full] .hero-actions { animation-delay: 300ms; }
+:root[data-motion=full] .hero-roads path { stroke-dasharray: 1; animation: map-connect var(--scene-duration) ease-out both; }
+:root[data-motion=full] .hero-places g { animation: place-arrive var(--text-reveal) ease-out both; transform-box: fill-box; transform-origin: center; }
+:root[data-motion=full] .hero-places g:nth-child(2) { animation-delay: 140ms; }
+:root[data-motion=full] .hero-places g:nth-child(3) { animation-delay: 280ms; }
+:root[data-motion=full] .hero-places g:nth-child(4) { animation-delay: 420ms; }
+:root[data-motion=full] .hero-places g:nth-child(5) { animation-delay: 560ms; }
+:root[data-motion=full] .hero-traveler { animation: map-travel var(--scene-duration) ease-in-out both; }
+:root[data-motion=full] .is-entering .landing-eyebrow,:root[data-motion=full] .is-entering h1,:root[data-motion=full] .is-entering .landing-caption { animation: editorial-reveal var(--text-reveal) ease-out both; }
+:root[data-motion=full] .is-entering h1 { animation-delay: 100ms; }
+:root[data-motion=full] .is-entering .landing-caption { animation-delay: 220ms; }
+:root[data-motion=full] .is-entering .scene-orbit { animation: orbit-open var(--scene-duration) ease-out both; }
+:root[data-motion=full] .is-entering .scene-caption-label { animation: editorial-reveal var(--text-reveal) ease-out 300ms both; }
+@keyframes editorial-reveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes map-connect { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes place-arrive { from { opacity: 0; } to { opacity: 1; } }
+@keyframes map-travel { 0% { transform: translate(0,0); } 30% { transform: translate(75px,-95px); } 65% { transform: translate(190px,-75px); } 100% { transform: translate(285px,5px); } }
+@keyframes orbit-open { from { opacity: 0; scale: .6; } to { opacity: 1; scale: 1; } }
+h1,h2,h3 { scroll-margin-top: 1rem; }
+.competition-results,.live-score,.progress-percent { font-variant-numeric: tabular-nums; }
+@media(max-width:640px){.site-landing{grid-template-columns:minmax(0,1fr);gap:1rem;border-radius:20px}.site-landing h1{font-size:2rem}.hero-map{max-width:320px;width:100%;margin-inline:auto}.tab-landing{min-height:112px;gap:.5rem}.landing-scene{width:94px;height:110px}.landing-art{width:90px;height:70px}.scene-orbit{width:80px!important;height:65px!important}.scene-caption-label{font-size:.62rem;text-align:center;line-height:1.5}.landing-eyebrow{line-height:1.7}.workspace{padding-inline:.6rem}.tab-landing h1{font-size:1.35rem!important}}
+@media(prefers-reduced-motion:reduce){.site-landing-copy > *,.hero-places g,.hero-roads path,.hero-traveler,.landing-scene *{animation:none!important}}
+:root[data-motion=full] .practice-activity > .question-card { animation: editorial-reveal var(--text-reveal) ease-out both; }
+.source-node-enter { animation: source-node-arrive var(--motion-enter) ease-out backwards; animation-delay: calc(var(--vertex-order) * var(--motion-stagger)); }
+@keyframes source-node-arrive { from { opacity: 0; } to { opacity: 1; } }

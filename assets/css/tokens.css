@@ -145,3 +145,4 @@
   --learning-exit: 0ms;
   --learning-enter: 0ms;
 }
+:root { --hero-radius: 28px; --scene-duration: 3400ms; --text-reveal: 650ms; }

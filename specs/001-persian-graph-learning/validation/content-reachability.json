@@ -2,126 +2,13 @@
   "bankVersion": "1.4",
   "total": 150,
   "structuralErrors": [],
-  "metadataWarnings": [
-    "meta.counts.by_type.text: stated 30, actual 31",
-    "meta.counts.by_type.compute_gamma: stated 40, actual 39"
-  ],
+  "metadataWarnings": [],
   "gammaErrors": [],
   "verifiedGamma": 82,
-  "reachable": 40,
-  "unreachable": [
-    "Q002",
-    "Q003",
-    "Q005",
-    "Q006",
-    "Q008",
-    "Q009",
-    "Q010",
-    "Q011",
-    "Q012",
-    "Q013",
-    "Q014",
-    "Q015",
-    "Q016",
-    "Q017",
-    "Q018",
-    "Q019",
-    "Q020",
-    "Q021",
-    "Q022",
-    "Q023",
-    "Q024",
-    "Q025",
-    "Q026",
-    "Q027",
-    "Q028",
-    "Q029",
-    "Q030",
-    "Q031",
-    "Q032",
-    "Q033",
-    "Q034",
-    "Q035",
-    "Q036",
-    "Q038",
-    "Q039",
-    "Q040",
-    "Q041",
-    "Q042",
-    "Q043",
-    "Q044",
-    "Q045",
-    "Q046",
-    "Q047",
-    "Q052",
-    "Q053",
-    "Q054",
-    "Q055",
-    "Q056",
-    "Q059",
-    "Q060",
-    "Q061",
-    "Q063",
-    "Q064",
-    "Q065",
-    "Q066",
-    "Q068",
-    "Q076",
-    "Q077",
-    "Q078",
-    "Q093",
-    "Q094",
-    "Q095",
-    "Q096",
-    "Q097",
-    "Q098",
-    "Q106",
-    "Q107",
-    "Q108",
-    "Q109",
-    "Q110",
-    "Q111",
-    "Q112",
-    "Q113",
-    "Q114",
-    "Q115",
-    "Q116",
-    "Q117",
-    "Q118",
-    "Q119",
-    "Q120",
-    "Q121",
-    "Q122",
-    "Q123",
-    "Q124",
-    "Q125",
-    "Q126",
-    "Q127",
-    "Q128",
-    "Q129",
-    "Q130",
-    "Q131",
-    "Q132",
-    "Q133",
-    "Q134",
-    "Q135",
-    "Q136",
-    "Q137",
-    "Q138",
-    "Q139",
-    "Q140",
-    "Q141",
-    "Q142",
-    "Q143",
-    "Q144",
-    "Q145",
-    "Q146",
-    "Q147",
-    "Q148",
-    "Q149",
-    "Q150"
-  ],
-  "missingModeledContext": [
+  "reachable": 150,
+  "unreachable": [],
+  "runtimeMissingContext": [],
+  "sourceWithoutModeling": [
     "Q016",
     "Q018",
     "Q021",
@@ -138,22 +25,11 @@
     "Q141",
     "Q146"
   ],
-  "figureMappingsPending": [
-    "Q001",
-    "Q002",
-    "Q003",
-    "Q022",
-    "Q023",
-    "Q025",
-    "Q028",
-    "Q107",
-    "Q112",
-    "Q113"
-  ],
+  "figureMappingsPending": [],
   "catalogs": {
-    "practice": 14,
+    "practice": 126,
     "competition": 26,
-    "lab": 27
+    "lab": 51
   },
   "aposActivities": 12,
   "releaseReady": false,
@@ -166,30 +42,34 @@
       "mode": "figure_text",
       "byTab": {},
       "modeled": true,
-      "figure": "book-reference-only; no mapped runtime figure",
+      "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q002",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "figure_text",
       "byTab": {},
       "modeled": true,
-      "figure": "book-reference-only; no mapped runtime figure",
+      "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q003",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "text",
       "byTab": {
         "teach": "text",
         "lab": "multigraph_draw"
       },
       "modeled": true,
-      "figure": "book-reference-only; no mapped runtime figure",
+      "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
@@ -207,7 +87,9 @@
     },
     {
       "id": "Q005",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -217,7 +99,9 @@
     },
     {
       "id": "Q006",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -239,7 +123,9 @@
     },
     {
       "id": "Q008",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -249,7 +135,9 @@
     },
     {
       "id": "Q009",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -259,7 +147,9 @@
     },
     {
       "id": "Q010",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -269,7 +159,9 @@
     },
     {
       "id": "Q011",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -279,7 +171,9 @@
     },
     {
       "id": "Q012",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -289,7 +183,9 @@
     },
     {
       "id": "Q013",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -299,7 +195,9 @@
     },
     {
       "id": "Q014",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "draw",
       "byTab": {},
       "modeled": true,
@@ -309,7 +207,9 @@
     },
     {
       "id": "Q015",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "draw",
       "byTab": {},
       "modeled": true,
@@ -319,17 +219,21 @@
     },
     {
       "id": "Q016",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
-      "modeled": false,
+      "modeled": true,
       "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q017",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -339,17 +243,21 @@
     },
     {
       "id": "Q018",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
-      "modeled": false,
+      "modeled": true,
       "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q019",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -359,7 +267,9 @@
     },
     {
       "id": "Q020",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "proof_text",
       "byTab": {},
       "modeled": true,
@@ -369,37 +279,45 @@
     },
     {
       "id": "Q021",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
-      "modeled": false,
+      "modeled": true,
       "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q022",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "figure_text",
       "byTab": {},
       "modeled": true,
-      "figure": "book-reference-only; no mapped runtime figure",
+      "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q023",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "figure_text",
       "byTab": {},
       "modeled": true,
-      "figure": "book-reference-only; no mapped runtime figure",
+      "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q024",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "draw",
       "byTab": {},
       "modeled": true,
@@ -409,17 +327,21 @@
     },
     {
       "id": "Q025",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "figure_text",
       "byTab": {},
       "modeled": true,
-      "figure": "book-reference-only; no mapped runtime figure",
+      "figure": "",
       "gamma": "verified",
       "educationalReview": "pending"
     },
     {
       "id": "Q026",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -429,7 +351,9 @@
     },
     {
       "id": "Q027",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -439,27 +363,33 @@
     },
     {
       "id": "Q028",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "figure_text",
       "byTab": {},
       "modeled": true,
-      "figure": "book-reference-only; no mapped runtime figure",
+      "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q029",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "proof_text",
       "byTab": {},
-      "modeled": false,
+      "modeled": true,
       "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q030",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -469,7 +399,9 @@
     },
     {
       "id": "Q031",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -479,7 +411,9 @@
     },
     {
       "id": "Q032",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -489,7 +423,9 @@
     },
     {
       "id": "Q033",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -499,7 +435,9 @@
     },
     {
       "id": "Q034",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -509,7 +447,9 @@
     },
     {
       "id": "Q035",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -519,7 +459,9 @@
     },
     {
       "id": "Q036",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -542,7 +484,9 @@
     },
     {
       "id": "Q038",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -552,7 +496,9 @@
     },
     {
       "id": "Q039",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -562,7 +508,9 @@
     },
     {
       "id": "Q040",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -572,7 +520,9 @@
     },
     {
       "id": "Q041",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "text",
       "byTab": {
         "teach": "text",
@@ -585,7 +535,9 @@
     },
     {
       "id": "Q042",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -595,7 +547,9 @@
     },
     {
       "id": "Q043",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -605,7 +559,9 @@
     },
     {
       "id": "Q044",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -615,7 +571,9 @@
     },
     {
       "id": "Q045",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -625,7 +583,9 @@
     },
     {
       "id": "Q046",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -635,7 +595,9 @@
     },
     {
       "id": "Q047",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -660,6 +622,7 @@
     {
       "id": "Q049",
       "reachable": [
+        "practice",
         "competition",
         "lab"
       ],
@@ -673,6 +636,7 @@
     {
       "id": "Q050",
       "reachable": [
+        "practice",
         "competition",
         "lab"
       ],
@@ -686,6 +650,7 @@
     {
       "id": "Q051",
       "reachable": [
+        "practice",
         "competition",
         "lab"
       ],
@@ -698,7 +663,9 @@
     },
     {
       "id": "Q052",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -708,7 +675,9 @@
     },
     {
       "id": "Q053",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -718,7 +687,9 @@
     },
     {
       "id": "Q054",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -728,7 +699,9 @@
     },
     {
       "id": "Q055",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -738,10 +711,12 @@
     },
     {
       "id": "Q056",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
-      "modeled": false,
+      "modeled": true,
       "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
@@ -749,6 +724,7 @@
     {
       "id": "Q057",
       "reachable": [
+        "practice",
         "lab"
       ],
       "mode": "compute_gamma",
@@ -761,6 +737,7 @@
     {
       "id": "Q058",
       "reachable": [
+        "practice",
         "lab"
       ],
       "mode": "compute_gamma",
@@ -772,17 +749,21 @@
     },
     {
       "id": "Q059",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
-      "modeled": false,
+      "modeled": true,
       "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q060",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -792,10 +773,12 @@
     },
     {
       "id": "Q061",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
-      "modeled": false,
+      "modeled": true,
       "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
@@ -803,6 +786,7 @@
     {
       "id": "Q062",
       "reachable": [
+        "practice",
         "lab"
       ],
       "mode": "compute_gamma",
@@ -814,7 +798,9 @@
     },
     {
       "id": "Q063",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -824,7 +810,9 @@
     },
     {
       "id": "Q064",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -834,7 +822,9 @@
     },
     {
       "id": "Q065",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -844,10 +834,12 @@
     },
     {
       "id": "Q066",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
-      "modeled": false,
+      "modeled": true,
       "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
@@ -867,7 +859,9 @@
     },
     {
       "id": "Q068",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -878,6 +872,7 @@
     {
       "id": "Q069",
       "reachable": [
+        "practice",
         "competition",
         "lab"
       ],
@@ -905,6 +900,7 @@
     {
       "id": "Q071",
       "reachable": [
+        "practice",
         "competition",
         "lab"
       ],
@@ -918,6 +914,7 @@
     {
       "id": "Q072",
       "reachable": [
+        "practice",
         "competition",
         "lab"
       ],
@@ -931,6 +928,7 @@
     {
       "id": "Q073",
       "reachable": [
+        "practice",
         "competition",
         "lab"
       ],
@@ -967,17 +965,21 @@
     },
     {
       "id": "Q076",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "proof_text",
       "byTab": {},
-      "modeled": false,
+      "modeled": true,
       "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q077",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -987,7 +989,9 @@
     },
     {
       "id": "Q078",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -1011,6 +1015,7 @@
     {
       "id": "Q080",
       "reachable": [
+        "practice",
         "competition"
       ],
       "mode": "compute_gamma",
@@ -1049,6 +1054,7 @@
     {
       "id": "Q083",
       "reachable": [
+        "practice",
         "competition"
       ],
       "mode": "compute_gamma",
@@ -1061,6 +1067,7 @@
     {
       "id": "Q084",
       "reachable": [
+        "practice",
         "competition"
       ],
       "mode": "compute_gamma",
@@ -1073,6 +1080,7 @@
     {
       "id": "Q085",
       "reachable": [
+        "practice",
         "competition"
       ],
       "mode": "compute_gamma",
@@ -1085,6 +1093,7 @@
     {
       "id": "Q086",
       "reachable": [
+        "practice",
         "competition"
       ],
       "mode": "compute_gamma",
@@ -1125,6 +1134,7 @@
     {
       "id": "Q089",
       "reachable": [
+        "practice",
         "competition",
         "lab"
       ],
@@ -1138,6 +1148,7 @@
     {
       "id": "Q090",
       "reachable": [
+        "practice",
         "competition",
         "lab"
       ],
@@ -1151,6 +1162,7 @@
     {
       "id": "Q091",
       "reachable": [
+        "practice",
         "competition",
         "lab"
       ],
@@ -1164,6 +1176,7 @@
     {
       "id": "Q092",
       "reachable": [
+        "practice",
         "competition",
         "lab"
       ],
@@ -1176,27 +1189,33 @@
     },
     {
       "id": "Q093",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "proof_text",
       "byTab": {},
-      "modeled": false,
+      "modeled": true,
       "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q094",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "proof_text",
       "byTab": {},
-      "modeled": false,
+      "modeled": true,
       "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q095",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "compute_gamma",
       "byTab": {},
       "modeled": true,
@@ -1206,7 +1225,9 @@
     },
     {
       "id": "Q096",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "compute_gamma",
       "byTab": {},
       "modeled": true,
@@ -1216,7 +1237,9 @@
     },
     {
       "id": "Q097",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "compute_gamma",
       "byTab": {},
       "modeled": true,
@@ -1226,7 +1249,9 @@
     },
     {
       "id": "Q098",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "compute_gamma",
       "byTab": {},
       "modeled": true,
@@ -1237,6 +1262,7 @@
     {
       "id": "Q099",
       "reachable": [
+        "practice",
         "lab"
       ],
       "mode": "compute_gamma",
@@ -1249,6 +1275,7 @@
     {
       "id": "Q100",
       "reachable": [
+        "practice",
         "lab"
       ],
       "mode": "compute_gamma",
@@ -1261,6 +1288,7 @@
     {
       "id": "Q101",
       "reachable": [
+        "practice",
         "lab"
       ],
       "mode": "compute_gamma",
@@ -1273,6 +1301,7 @@
     {
       "id": "Q102",
       "reachable": [
+        "practice",
         "lab"
       ],
       "mode": "compute_gamma",
@@ -1285,6 +1314,7 @@
     {
       "id": "Q103",
       "reachable": [
+        "practice",
         "competition",
         "lab"
       ],
@@ -1298,6 +1328,7 @@
     {
       "id": "Q104",
       "reachable": [
+        "practice",
         "competition",
         "lab"
       ],
@@ -1311,6 +1342,7 @@
     {
       "id": "Q105",
       "reachable": [
+        "practice",
         "competition",
         "lab"
       ],
@@ -1323,7 +1355,9 @@
     },
     {
       "id": "Q106",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1333,27 +1367,33 @@
     },
     {
       "id": "Q107",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "figure_text",
       "byTab": {},
       "modeled": true,
-      "figure": "book-reference-only; no mapped runtime figure",
+      "figure": "",
       "gamma": "verified",
       "educationalReview": "pending"
     },
     {
       "id": "Q108",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "proof_text",
       "byTab": {},
-      "modeled": false,
+      "modeled": true,
       "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q109",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1363,7 +1403,9 @@
     },
     {
       "id": "Q110",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "draw",
       "byTab": {},
       "modeled": true,
@@ -1373,7 +1415,9 @@
     },
     {
       "id": "Q111",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "draw",
       "byTab": {},
       "modeled": true,
@@ -1383,27 +1427,33 @@
     },
     {
       "id": "Q112",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "figure_text",
       "byTab": {},
       "modeled": true,
-      "figure": "book-reference-only; no mapped runtime figure",
+      "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q113",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "figure_text",
       "byTab": {},
       "modeled": true,
-      "figure": "book-reference-only; no mapped runtime figure",
+      "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q114",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1413,7 +1463,9 @@
     },
     {
       "id": "Q115",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1423,7 +1475,9 @@
     },
     {
       "id": "Q116",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1433,7 +1487,9 @@
     },
     {
       "id": "Q117",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1443,7 +1499,9 @@
     },
     {
       "id": "Q118",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1453,7 +1511,9 @@
     },
     {
       "id": "Q119",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1463,7 +1523,9 @@
     },
     {
       "id": "Q120",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1473,7 +1535,9 @@
     },
     {
       "id": "Q121",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1483,7 +1547,9 @@
     },
     {
       "id": "Q122",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1493,7 +1559,9 @@
     },
     {
       "id": "Q123",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1503,7 +1571,9 @@
     },
     {
       "id": "Q124",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1513,7 +1583,9 @@
     },
     {
       "id": "Q125",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1523,7 +1595,9 @@
     },
     {
       "id": "Q126",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1533,7 +1607,9 @@
     },
     {
       "id": "Q127",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1543,7 +1619,9 @@
     },
     {
       "id": "Q128",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1553,7 +1631,9 @@
     },
     {
       "id": "Q129",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1563,7 +1643,9 @@
     },
     {
       "id": "Q130",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1573,7 +1655,9 @@
     },
     {
       "id": "Q131",
-      "reachable": [],
+      "reachable": [
+        "practice"
+      ],
       "mode": "text",
       "byTab": {},
       "modeled": true,
@@ -1583,7 +1667,9 @@
     },
     {
       "id": "Q132",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "draw",
       "byTab": {},
       "modeled": true,
@@ -1593,7 +1679,9 @@
     },
     {
       "id": "Q133",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "draw",
       "byTab": {},
       "modeled": true,
@@ -1603,7 +1691,9 @@
     },
     {
       "id": "Q134",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "draw",
       "byTab": {},
       "modeled": true,
@@ -1613,7 +1703,9 @@
     },
     {
       "id": "Q135",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -1623,7 +1715,9 @@
     },
     {
       "id": "Q136",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -1633,17 +1727,21 @@
     },
     {
       "id": "Q137",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "proof_text",
       "byTab": {},
-      "modeled": false,
+      "modeled": true,
       "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q138",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -1653,7 +1751,9 @@
     },
     {
       "id": "Q139",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "draw",
       "byTab": {},
       "modeled": true,
@@ -1663,7 +1763,9 @@
     },
     {
       "id": "Q140",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -1673,20 +1775,24 @@
     },
     {
       "id": "Q141",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "text",
       "byTab": {
         "teach": "text",
         "lab": "runtime_library"
       },
-      "modeled": false,
+      "modeled": true,
       "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q142",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "interactive_graph",
       "byTab": {
         "teach": "text",
@@ -1699,7 +1805,9 @@
     },
     {
       "id": "Q143",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "interactive_graph",
       "byTab": {
         "teach": "text",
@@ -1712,7 +1820,9 @@
     },
     {
       "id": "Q144",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -1722,7 +1832,9 @@
     },
     {
       "id": "Q145",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -1732,20 +1844,24 @@
     },
     {
       "id": "Q146",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "text",
       "byTab": {
         "teach": "text",
         "lab": "lab_activity"
       },
-      "modeled": false,
+      "modeled": true,
       "figure": "",
       "gamma": "not-applicable",
       "educationalReview": "pending"
     },
     {
       "id": "Q147",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -1755,7 +1871,9 @@
     },
     {
       "id": "Q148",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -1765,7 +1883,9 @@
     },
     {
       "id": "Q149",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,
@@ -1775,7 +1895,9 @@
     },
     {
       "id": "Q150",
-      "reachable": [],
+      "reachable": [
+        "lab"
+      ],
       "mode": "interactive_graph",
       "byTab": {},
       "modeled": true,

@@ -1,3 +1,5 @@
+> Historical phase-8 snapshot before the full-bank follow-up. **Current status: [bank-integration.md](bank-integration.md)**. Previous counts of40/150 and missing figure mappings are superseded.
+
 # Phase 8 — presentation and interaction / T054, T059–T062
 
 2026-11-12, Linux x86_64, Chrome 157 headless (native DevTools Protocol), DPR 1.
