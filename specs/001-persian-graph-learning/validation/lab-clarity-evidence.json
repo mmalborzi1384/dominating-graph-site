@@ -1,0 +1,323 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "name": "360/day heading"
+    },
+    {
+      "ok": true,
+      "name": "360/day visible labels"
+    },
+    {
+      "ok": true,
+      "name": "360/day pre-gesture selection/touch policy"
+    },
+    {
+      "ok": true,
+      "name": "360/day real touch drag tracks SVG without selecting text"
+    },
+    {
+      "ok": true,
+      "name": "360/day keyboard movement"
+    },
+    {
+      "ok": true,
+      "name": "360/day labeled dropdown opens"
+    },
+    {
+      "ok": true,
+      "name": "360/day first selection after dragging"
+    },
+    {
+      "ok": true,
+      "name": "360/day/teach no overflow"
+    },
+    {
+      "ok": true,
+      "name": "360/day/practice no overflow"
+    },
+    {
+      "ok": true,
+      "name": "360/day/competition no overflow"
+    },
+    {
+      "ok": true,
+      "name": "360/day/records no overflow"
+    },
+    {
+      "ok": true,
+      "name": "360/day/lab no overflow"
+    },
+    {
+      "ok": true,
+      "name": "360/night heading"
+    },
+    {
+      "ok": true,
+      "name": "360/night visible labels"
+    },
+    {
+      "ok": true,
+      "name": "360/night pre-gesture selection/touch policy"
+    },
+    {
+      "ok": true,
+      "name": "360/night real touch drag tracks SVG without selecting text"
+    },
+    {
+      "ok": true,
+      "name": "360/night keyboard movement"
+    },
+    {
+      "ok": true,
+      "name": "360/night labeled dropdown opens"
+    },
+    {
+      "ok": true,
+      "name": "360/night first selection after dragging"
+    },
+    {
+      "ok": true,
+      "name": "360/night/teach no overflow"
+    },
+    {
+      "ok": true,
+      "name": "360/night/practice no overflow"
+    },
+    {
+      "ok": true,
+      "name": "360/night/competition no overflow"
+    },
+    {
+      "ok": true,
+      "name": "360/night/records no overflow"
+    },
+    {
+      "ok": true,
+      "name": "360/night/lab no overflow"
+    },
+    {
+      "ok": true,
+      "name": "1280/day heading"
+    },
+    {
+      "ok": true,
+      "name": "1280/day visible labels"
+    },
+    {
+      "ok": true,
+      "name": "1280/day pre-gesture selection/touch policy"
+    },
+    {
+      "ok": true,
+      "name": "1280/day real mouse drag tracks SVG without selecting text"
+    },
+    {
+      "ok": true,
+      "name": "1280/day keyboard movement"
+    },
+    {
+      "ok": true,
+      "name": "1280/day labeled dropdown opens"
+    },
+    {
+      "ok": true,
+      "name": "1280/day first selection after dragging"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/teach no overflow"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/practice no overflow"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/competition no overflow"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/records no overflow"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/lab no overflow"
+    },
+    {
+      "ok": true,
+      "name": "1280/night heading"
+    },
+    {
+      "ok": true,
+      "name": "1280/night visible labels"
+    },
+    {
+      "ok": true,
+      "name": "1280/night pre-gesture selection/touch policy"
+    },
+    {
+      "ok": true,
+      "name": "1280/night real mouse drag tracks SVG without selecting text"
+    },
+    {
+      "ok": true,
+      "name": "1280/night keyboard movement"
+    },
+    {
+      "ok": true,
+      "name": "1280/night labeled dropdown opens"
+    },
+    {
+      "ok": true,
+      "name": "1280/night first selection after dragging"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/teach no overflow"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/practice no overflow"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/competition no overflow"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/records no overflow"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/lab no overflow"
+    },
+    {
+      "ok": true,
+      "name": "No browser exceptions"
+    }
+  ],
+  "views": [
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "teach",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "practice",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "competition",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "records",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "lab",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "teach",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "practice",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "competition",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "records",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "lab",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "teach",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "practice",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "competition",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "records",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "lab",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "teach",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "practice",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "competition",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "records",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "lab",
+      "overflow": false
+    }
+  ],
+  "errors": []
+}

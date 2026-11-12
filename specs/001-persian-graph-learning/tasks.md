@@ -568,3 +568,16 @@ PR مرج و SHA/استقرار Pages واقعاً بررسی شود؛ هیچ ش
 - [x] T068 Add user-authorized continuous sun rays/night shimmer with motion controls; verify phone/desktop, merge PR9 at reviewed head and verify Pages deployment.
 
 Final execution completed: PR9 merged67c0328; Pages built that exact SHA and13 asset hashes/20 public browser views passed. No further phase. Final evidence is in validation/finalization.md.
+
+
+## وضوح کارگاه و جابه‌جایی رأس — ۲۰۲۶-۱۱-۱۲
+
+عنوان بخش بانک آزمایشگاه «کاوش در سرزمین سوالات» باشد. کنترل‌های کارگاه در تمام
+محل‌های استفاده برچسب دیداری و متصل داشته باشند: «تعداد رأس»، «انواع گراف» و
+«رفتار انتخاب». کشیدن رأس با ماوس و لمس نباید متن SVG را انتخاب یا صفحه را به‌جای
+رأس جابه‌جا کند؛ تبدیل مختصات از ماتریس واقعی SVG باشد تا حاشیهٔ نسبت تصویر خطا
+نسازد. لغو اشاره‌گر/از دست رفتن capture حرکت را پایان دهد؛ کیبورد و قفل پاسخ حفظ
+شوند. بررسی در عرض۳۶۰ و۱۲۸۰، دو تم و آزمون‌های موجود؛ PR مستقل و مرج/Pages با
+مجوز صریح همین درخواست کاربر انجام شود.
+
+- [x] T069 Clarify lab heading/workbench labels, prevent drag text selection and verify pointer geometry, responsive UI and publication.
