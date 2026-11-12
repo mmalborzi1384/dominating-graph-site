@@ -130,3 +130,6 @@ node scripts/validate-random.mjs
 سوییچ تم در سطح متوسط/کامل پرتوهای چرخان خورشید و در شب درخشش آرام ستاره‌ها دارد؛
 سطح کم/خاموش یا کاهش حرکت سیستم آن را متوقف می‌کند. وضعیت نهایی انتشار در
 [گزارش نهایی](specs/001-persian-graph-learning/validation/finalization.md) ثبت شده است.
+
+آخرین اصلاح کارگاه آزمایشگاه: عنوان کاوش، برچسب کنترل‌ها و جابه‌جایی بدون انتخاب متن؛
+[گزارش بررسی](specs/001-persian-graph-learning/validation/lab-clarity.md).

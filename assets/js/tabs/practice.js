@@ -15,7 +15,7 @@ export async function initPractice(questions, curriculum, repository, {tab = 'pr
   if (!response.ok) throw new Error('محتوای تمرین بارگیری نشد.');
   const catalog = practiceCatalog(questions, await response.json(), tab).filter(item=>!mount||!item.unavailable);
   const root = mount ?? document.getElementById('panel-practice'); root.replaceChildren();
-  root.append(el(mount?'h2':'h1',mount?'کاوش‌های بانک؛ رسم، تحلیل و تجربه':'تمرین؛ راه‌های بیشتر برای مدل‌سازی'), el('p','مستقل از آموزش · راهنمای رایگان · نتیجه فقط با ثبت نهایی ذخیره می‌شود.','model-key'));
+  root.append(el(mount?'h2':'h1',mount?'کاوش در سرزمین سوالات':'تمرین؛ راه‌های بیشتر برای مدل‌سازی'), el('p','مستقل از آموزش · راهنمای رایگان · نتیجه فقط با ثبت نهایی ذخیره می‌شود.','model-key'));
   const filters = el('div','','practice-filters');
   function select(label, options, id) {
     const wrapper = el('label',label), control = el('select'); control.id = mount?'bank-'+id:id;

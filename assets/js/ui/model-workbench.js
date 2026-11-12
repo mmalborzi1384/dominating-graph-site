@@ -25,7 +25,8 @@ export function createWorkbench(host,q,item,onChange){
  for(const [value,title]of [['select','انتخاب مراکز / تجربهٔ پوشش'],['edge','ساخت / حذف یال با دو رأس'],['move','جابه‌جایی رأس']]){const o=node('option',title);o.value=value;action.append(o);}action.value=isDraw?'edge':'select';action.setAttribute('aria-label','حالت ابزار مدل');
  const button=(text,fn)=>{const b=node('button',text,'secondary-button');b.type='button';b.addEventListener('click',fn);return b;};
  const status=node('p',undefined,'workbench-status');status.setAttribute('role','status');
- tools.append(count,family,button('ساخت مدل خانواده',()=>{const n=Number(count.value);if(!Number.isInteger(n)||n<1||n>16){status.textContent='تعداد صحیح ۱ تا ۱۶ وارد کن.';return;}if(family.value==='cycle'&&n<3){status.textContent='دور ساده دست‌کم سه رأس دارد؛ برای n=1 و n=2 دور ساده تعریف نمی‌کنیم.';return;}graph={n,vertices:Array.from({length:n},(_,i)=>String.fromCharCode(97+i)),edges:[]};for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)if(family.value==='complete'||family.value==='path'&&j===i+1||family.value==='cycle'&&(j===i+1||i===0&&j===n-1)||family.value==='star'&&i===0)graph.edges.push([graph.vertices[i],graph.vertices[j]]);positions=[];selected=[];entering=true;render();onChange();}),action);
+ const field=(title,control)=>{const label=node('label',undefined,'workbench-field');label.append(node('span',title),control);return label;};
+ tools.append(field('تعداد رأس',count),field('انواع گراف',family),button('ساخت مدل خانواده',()=>{const n=Number(count.value);if(!Number.isInteger(n)||n<1||n>16){status.textContent='تعداد صحیح ۱ تا ۱۶ وارد کن.';return;}if(family.value==='cycle'&&n<3){status.textContent='دور ساده دست‌کم سه رأس دارد؛ برای n=1 و n=2 دور ساده تعریف نمی‌کنیم.';return;}graph={n,vertices:Array.from({length:n},(_,i)=>String.fromCharCode(97+i)),edges:[]};for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)if(family.value==='complete'||family.value==='path'&&j===i+1||family.value==='cycle'&&(j===i+1||i===0&&j===n-1)||family.value==='star'&&i===0)graph.edges.push([graph.vertices[i],graph.vertices[j]]);positions=[];selected=[];entering=true;render();onChange();}),field('رفتار انتخاب',action));
  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 480 340');svg.classList.add('source-graph');svg.setAttribute('role','group');svg.setAttribute('aria-label','کارگاه مدل سؤال؛ دکمه‌های رأس جایگزین لمس شکل‌اند');
  const choices=node('div',undefined,'vertex-buttons'),edgeList=node('details'),edgeSummary=node('summary','یال‌های مدل؛ حذف تکی');edgeList.append(edgeSummary);
  function hit(id){if(locked)return;if(moved){moved=false;return;}if(action.value==='edge'){if(pending===null){pending=id;status.textContent=`رأس ${id} انتخاب شد؛ رأس دوم را بزن.`;return;}const a=pending;pending=null;const index=graph.edges.findIndex(e=>e[0]===a&&e[1]===id||!graph.directed&&e[0]===id&&e[1]===a);if(a===id&&!graph.multigraph){status.textContent='برای طوقه باید مدل چندگراف باشد؛ دو رأس متفاوت انتخاب کن.';return;}if(graph.multigraph)graph.edges.push([a,id]);else if(index>=0)graph.edges.splice(index,1);else graph.edges.push([a,id]);render();onChange();}else if(action.value==='select'){selected=selected.includes(id)?selected.filter(v=>v!==id):[...selected,id];selection.update(selected);onChange();}}
@@ -40,7 +41,28 @@ export function createWorkbench(host,q,item,onChange){
   }selection.update(selected);
   entering=false;const degrees=graph.vertices.map(id=>`${id}: ${graph.edges.reduce((n,e)=>n+(e[0]===id?1:0)+(e[1]===id?1:0),0)}`).join('، ');status.textContent=`${graph.n} رأس؛ ${graph.edges.length} یال. درجه‌ها: ${degrees}${graph.directed?' (مجموع ورودی و خروجی)':''}`;
  }
- svg.addEventListener('pointerdown',e=>{if(locked||action.value!=='move')return;const n=e.target.closest('[data-source-id]');if(n){drag=n.dataset.sourceId;svg.setPointerCapture(e.pointerId);moved=false;}});svg.addEventListener('pointermove',e=>{if(!drag)return;const r=svg.getBoundingClientRect(),p=positions.find(p=>p.id===drag);p.x=Math.max(26,Math.min(454,(e.clientX-r.x)*480/r.width));p.y=Math.max(26,Math.min(314,(e.clientY-r.y)*340/r.height));moved=true;render();});svg.addEventListener('pointerup',()=>{if(drag)onChange();drag=null;});svg.addEventListener('pointercancel',()=>drag=null);
+ const syncInteraction=()=>{svg.dataset.interaction=action.value;pending=null;moved=false;};
+ action.addEventListener('change',syncInteraction);syncInteraction();
+ svg.addEventListener('pointerdown',e=>{
+  if(locked||action.value!=='move'||!e.isPrimary||e.button!==0)return;
+  const n=e.target.closest('[data-source-id]');if(!n)return;
+  e.preventDefault();drag={id:n.dataset.sourceId,pointerId:e.pointerId};
+  svg.setPointerCapture(e.pointerId);moved=false;
+ });
+ svg.addEventListener('pointermove',e=>{
+  if(!drag||e.pointerId!==drag.pointerId)return;e.preventDefault();
+  const matrix=svg.getScreenCTM();if(!matrix)return;
+  const point=new DOMPoint(e.clientX,e.clientY).matrixTransform(matrix.inverse());
+  const p=positions.find(p=>p.id===drag.id);
+  p.x=Math.max(26,Math.min(454,point.x));p.y=Math.max(26,Math.min(314,point.y));
+  moved=true;render();
+ });
+ const endDrag=e=>{if(!drag||e.pointerId!==drag.pointerId)return;const changed=moved;drag=null;
+  if(svg.hasPointerCapture(e.pointerId))svg.releasePointerCapture(e.pointerId);
+  if(changed)onChange();
+ };
+ for(const type of ['pointerup','pointercancel','lostpointercapture'])svg.addEventListener(type,endDrag);
+
  container.append(tools,node('p','در حالت یال، دو مکان را بزن. برای یال موازی این کار را تکرار کن؛ حذف هر نسخه از فهرست یال‌هاست. جابه‌جایی با حالت حرکت یا کلیدهای جهت‌دار انجام می‌شود.','model-key'),svg,choices,edgeList,status);
  container.append(button('تحلیل مدل فعلی',()=>{try{const a=analyzeGraph(graph);status.textContent=`گامای مدل فعلی ${a.gamma}؛ ${a.minimumSets.length} مجموعهٔ کمینه. نمونه‌ها: ${a.minimumSets.map(s=>s.join(',')).slice(0,12).join(' | ')}`;}catch{status.textContent=graph.n===1?'گراف تک‌مکانی با یک مرکز پوشش می‌گیرد.':'این مدل جهت‌دار، چندیالی یا بیش از ۱۲ رأس است؛ درجه/مسیر را بررسی کن و پاسخ کامل را با معیار منبع مقایسه کن. به موتور احاطه‌گری ساده فرستاده نمی‌شود.';}}));
  if(q.id==='Q146'){const jump=button('اجرای بازی واقعی دو گروهی',()=>{const s=document.getElementById('lab-station');s.value='game';s.dispatchEvent(new Event('change',{bubbles:true}));s.scrollIntoView({block:'start'});});container.append(jump);}
