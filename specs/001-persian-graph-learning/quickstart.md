@@ -1,7 +1,8 @@
 # Quickstart and Validation Guide
 
-This is a future implementation validation guide. At planning completion no website has
-been built. Commands referencing proposed files become runnable after implementation.
+Current local product: phases1–7 and the phase8 review slice are implemented. Historical
+walkthroughs below retain their phase context; current evidence is validation/release.md.
+Release gates (content integration, human review, engines/devices/hosts) remain open.
 
 ## Prerequisites and local serving
 
@@ -142,3 +143,29 @@ the finish card, including after reload. Review passed steps using previous/next
 a wrong review must not relock stages or advance. Check focus on the new heading, reduced
 motion (no card animation/celebration delay), both palettes and mobile/desktop. Reset returns
 to one first question. Timers and review cursors must not appear in storage/backup.
+
+
+## Phase 8 review walkthrough
+
+Start the static server, visit all five tabs at360px/1280px in both themes, and use real
+keyboard/touch (or label emulated checks explicitly). Set each of the four motion levels.
+Off has no delay/movement; low omits spatial effects/decorative headers; medium/full have
+finite distinct ornaments. Reload retains selection. Change theme without changing motion.
+Set system reduced-motion: effective off, stored preference retained, short status shown.
+Turn it off: chosen level returns. Change preference during a score/card transition:
+no hanging controls, final numeric value/next card correct. Tab arrows follow RTL; the
+native radio rail has arrow/Space behavior and visible focus/44px targets.
+
+Select graph vertices: fixed color, single/multi-owner hatches and red missed outlines
+stay mathematically correct while entering/tapping/fading. Dragging/arrow movement must
+preserve topology. Wrong answers show text/symbol/error shake and correct answers show a
+check/pulse. Practice free-hint minimum counts to15; tournament hint caps remain15/10/5/0.
+Teaching never gains a score. Complete a stage: animated ring25% and a new unlocked stage,
+then reload. Inspect stored flags only. Export a current1.4 backup and import via Records,
+confirm, repeat: valid and idempotent; old-bank files rejected without mutation.
+
+Run the dependency-free scripts in README, including validate-polish.mjs. Run
+`node scripts/validate-content.mjs --write`; **exit1 is expected while release content gates
+remain open**. Check the per-ID report, not just source field counts. Inspect presentation,
+performance, deployment, usability and release evidence. Do not equate local Chrome checks
+with physical-device/Firefox/WebKit/server/student review. No Playwright dependency is needed.

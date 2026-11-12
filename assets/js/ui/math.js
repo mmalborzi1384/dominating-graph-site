@@ -54,7 +54,12 @@ export function renderTextMath(host, value) {
   host.replaceChildren();
   const errors = [];
   for (const segment of splitMathText(value)) {
-    if (segment.type === 'text') host.append(document.createTextNode(segment.text));
+    if (segment.type === 'text') {
+      for (const part of segment.text.split(/([A-Za-z][A-Za-z0-9_]*(?:[=()]+[A-Za-z0-9_]+)*)/g)) {
+        if (/^[A-Za-z]/.test(part)) { const span=document.createElement('span');span.className='latin';span.dir='ltr';span.textContent=part;host.append(span); }
+        else if (part) host.append(document.createTextNode(part));
+      }
+    }
     else if (segment.type === 'invalid-math') {
       const span = document.createElement('span'); span.className = 'math'; span.dir = 'ltr'; span.textContent = segment.text;
       const note = document.createElement('span'); note.className = 'math-fallback-note';

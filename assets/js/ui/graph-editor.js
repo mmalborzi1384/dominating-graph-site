@@ -65,17 +65,19 @@ export function createGraphBoard(host, model, onToggle) {
     const group = svgElement('g', { class: 'board-vertex', role: 'button', tabindex: 0,
       'aria-pressed': 'false', 'data-vertex-id': place.id, 'data-color-index': color });
     group.style.setProperty('--vertex-color', `var(--bead-${color})`);
+    const paint = svgElement('g', {class:'vertex-paint'});
+    paint.style.setProperty('--vertex-order',index);
     // Large transparent hit area preserves touch selection around the 23px visible bead.
     group.append(svgElement('circle', { r: 29, fill: 'transparent', 'aria-hidden': 'true' }));
-    group.append(svgElement('circle', { r: RADIUS, class: 'vertex-base' }));
+    paint.append(svgElement('circle', { r: RADIUS, class: 'vertex-base' }));
     const coverage = svgElement('g', { class: 'vertex-coverage', 'aria-hidden': 'true' });
-    group.append(coverage);
-    group.append(svgElement('circle', { r: RADIUS, class: 'vertex-outline' }));
-    group.append(svgElement('text', { y: 8, class: 'vertex-number', 'aria-hidden': 'true' },
+    paint.append(coverage);
+    paint.append(svgElement('circle', { r: RADIUS, class: 'vertex-outline' }));
+    paint.append(svgElement('text', { y: 8, class: 'vertex-number', 'aria-hidden': 'true' },
       (index + 1).toLocaleString('fa-IR')));
     const label = svgElement('text', { x: 0, y: place.y < 150 ? -42 : 46,
       class: 'vertex-label', direction: 'rtl', 'aria-hidden': 'true' }, place.label);
-    group.append(label);
+    paint.append(label);
     const button = document.createElement('button');
     button.type = 'button'; button.dataset.vertexId = place.id;
     button.className = 'vertex-choice'; button.textContent = place.label;
@@ -86,7 +88,7 @@ export function createGraphBoard(host, model, onToggle) {
       if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggle(); }
     });
     button.addEventListener('click', toggle);
-    svg.append(group); buttons.append(button);
+    group.append(paint); svg.append(group); buttons.append(button);
     views.set(place.id, { group, coverage, button, label: place.label });
   }
   const media = window.matchMedia('(max-width: 640px)');
@@ -126,6 +128,11 @@ export function createGraphBoard(host, model, onToggle) {
       for (const [id, view] of views) {
         const owners = graph.vertices.filter(owner => selectedIds.has(owner) && neighbors.get(id).has(owner));
         const chosen = selectedIds.has(id), covered = owners.length > 0;
+        const ownership = (chosen ? 'selected:' : '') + owners.join(',');
+        const changed = view.coverage.dataset.ownership !== ownership;
+        view.coverage.dataset.ownership = ownership;
+        view.coverage.classList.remove('coverage-changed');
+        if (changed && owners.length) { void view.coverage.getBoundingClientRect(); view.coverage.classList.add('coverage-changed'); }
         view.coverage.replaceChildren();
         if (!chosen) {
           owners.forEach((owner, index) => {

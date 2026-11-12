@@ -10,9 +10,11 @@
     const raw = localStorage.getItem(key);
     if (raw !== null) {
       const saved = JSON.parse(raw);
-      if (saved?.schemaVersion !== 1 || saved.curriculumVersion !== 1
+      if (saved?.schemaVersion !== 1 || ![1, 2].includes(saved.curriculumVersion)
           || !['day', 'night'].includes(saved.settings?.theme)) throw new Error('Unsupported preference');
       theme = saved.settings.theme;
+      const motion = ['off','low','medium','full'].includes(saved.settings.motion) ? saved.settings.motion : 'medium';
+      document.documentElement.dataset.motion = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'off' : motion;
     } else {
       const legacyRaw = localStorage.getItem(legacyKey);
       if (legacyRaw !== null) {

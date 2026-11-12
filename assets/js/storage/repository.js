@@ -21,7 +21,7 @@ const errorInfo = error => ({ code: error.code ?? 'invalid-data', message: error
 export function createRepository(curriculum, storage = browserStorage, context = {}) {
   const fresh = () => ({ schemaVersion: 1, revision: 0, curriculumVersion: curriculum.curriculumVersion,
     teachingProgress: initialProgress(), attempts: {}, sessions: {},
-    settings: { theme: globalThis.document?.documentElement.dataset.theme === 'night' ? 'night' : 'day' } });
+    settings: { theme: globalThis.document?.documentElement.dataset.theme === 'night' ? 'night' : 'day', motion: 'medium' } });
   let state = fresh(), baseline = null, legacyRaw = null;
   let migrationPending = false;
   let readStatus = 'absent', dirty = false, conflict = false, warning = '', persisted = false;
@@ -163,7 +163,8 @@ export function createRepository(curriculum, storage = browserStorage, context =
       requireValid(expectedRevision===state.revision && !dirty && !conflict && !blocked(), 'وضعیت ذخیره تغییر کرده است؛ حذف را دوباره بررسی و تأیید کنید.', 'revision', 'revision-conflict');
       return commit(removeLabResult(state,id,curriculum,context),expectedRevision);
     },
-    setTheme(theme) { return commit({ ...state, settings: { theme } }, state.revision); },
+    setTheme(theme) { return commit({ ...state, settings: { ...state.settings, theme } }, state.revision); },
+    setMotion(motion) { return commit({ ...state, settings: { ...state.settings, motion } }, state.revision); },
     setEditingDirty(token, value) {
       requireValid(typeof token === 'string' && token.length > 0, 'شناسهٔ فرم معتبر نیست.');
       if (value) editing.add(token); else editing.delete(token);

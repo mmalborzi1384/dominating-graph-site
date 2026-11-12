@@ -176,3 +176,20 @@ Escape پشتیبانی شوند؛ متن در جریان صفحه باز شود
 نباید نوبت دیگری را خودکار پاس کند. بازگشت به فعالیت‌های باز و مرحله‌های قبلی ممکن است؛
 مرور نادرست قفل‌ها را برنمی‌گرداند. پس از refresh اولین فعالیت ناتمام مرحلهٔ جاری
 بازیابی می‌شود؛ فقط پیشرفت و محل مرحله ذخیره‌اند، نه پاسخ یا حالت انیمیشن.
+
+
+## Phase 8 — bounded motion
+
+Each mounted panel has one compact, decorative landing illustration with its own motif.
+Panels switch in <=180ms using opacity and small RTL-aware translation; same-tab hash changes
+must not replay transitions or steal focus. Tab semantics/inertness change immediately.
+Glass reveal animates backdrop blur only on containers, never graphs or descendants.
+Radio rail off/low/medium/full has native arrow/Space behavior and 44px targets. Effective
+motion is off under prefers-reduced-motion irrespective of saved preference; announce this.
+Off cancels active Web Animations, CSS movement, counters and APOS transition delays; low
+uses only short opacity/color responses; medium/full provide bounded progressive detail.
+Graph entrance affects a nested visual group, preserving geometric translate/hit targets;
+bead and coverage transitions do not change canonical colors, ownership or topology.
+Feedback uses an explicit symbol and text; numeric counters expose the final accessible value
+and never announce every frame. Progress rings have a final semantic percentage, with the
+native progress element retained accessibly. New unlocks alone receive a finite lock-open cue.

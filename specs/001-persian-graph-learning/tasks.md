@@ -312,10 +312,24 @@ Phase-7 implementation: T046–T052 complete; see validation/us5.md for exact sc
 
 - [ ] T053 [P] Run a complete content reachability/readiness audit with `scripts/validate-content.mjs` and record findings in `specs/001-persian-graph-learning/validation/content-audit.md`; require all 150 IDs accessible in an allowed tab, all APOS activities valid, modeling/context and required figures complete. Obtain and record human educational review of source pages 32–54/rubrics/figures; unresolved sources block release, never mark them approved automatically.
 - [ ] T054 [P] Verify both palettes, KaTeX math/Latin isolation, keyboard/touch use and 360px/1280px layouts across Chromium/Firefox/WebKit; correct issues in `assets/css/tokens.css`, `assets/css/layout.css`, `assets/css/graph.css` and `assets/js/ui/` and record actual results in `specs/001-persian-graph-learning/validation/presentation.md`. Check ordinary-text contrast >=4.5:1, visible focus and non-color-only status.
-- [ ] T055 Measure exact evaluation <=12 vertices (<100ms target), pointer redraw (16.7ms target) and loaded-tab transitions (<200ms target); correct justified bottlenecks in `assets/js/domain/evaluate.js`, `assets/js/ui/graph-editor.js` and `assets/js/ui/tabs.js`, and record hardware/browser/dataset/timings in `specs/001-persian-graph-learning/validation/performance.md`.
-- [ ] T056 Validate static project-subpath asset loading and hosting prerequisites for GitHub Pages, Linux Nginx/Apache and Windows IIS per `quickstart.md`; record actual host/browser outcomes or untested limitations in `specs/001-persian-graph-learning/validation/deployment.md`. Update `README.md` with copy-only deployment/MIME instructions; prepare deployable files but publish to external hosts only when separately authorized.
+- [x] T055 Measure exact evaluation <=12 vertices (<100ms target), pointer redraw (16.7ms target) and loaded-tab transitions (<200ms target); correct justified bottlenecks in `assets/js/domain/evaluate.js`, `assets/js/ui/graph-editor.js` and `assets/js/ui/tabs.js`, and record hardware/browser/dataset/timings in `specs/001-persian-graph-learning/validation/performance.md`.
+- [x] T056 Validate static project-subpath asset loading and hosting prerequisites for GitHub Pages, Linux Nginx/Apache and Windows IIS per `quickstart.md`; record actual host/browser outcomes or untested limitations in `specs/001-persian-graph-learning/validation/deployment.md`. Update `README.md` with copy-only deployment/MIME instructions; prepare deployable files but publish to external hosts only when separately authorized.
 - [ ] T057 Carry out the five-student usability protocol (4/5 locate/answer a practice question and find its result unaided), record observations in `specs/001-persian-graph-learning/validation/usability.md` and fix observed blockers; if participants are unavailable, record that pending release gate instead of fabricated results.
-- [ ] T058 Run the applicable end-to-end scenarios in `specs/001-persian-graph-learning/quickstart.md` and existing appropriate checks, inspect storage/export for teaching-data exclusion and validate no build/backend/storage drift; update `specs/001-persian-graph-learning/validation/release.md` with FR-001–025/SC-001–010 evidence, unresolved gates and each feature PR/human-review status. Complete the final code-slice Graphify update before requesting any merge/publication approval.
+- [x] T058 Run the applicable end-to-end scenarios in `specs/001-persian-graph-learning/quickstart.md` and existing appropriate checks, inspect storage/export for teaching-data exclusion and validate no build/backend/storage drift; update `specs/001-persian-graph-learning/validation/release.md` with FR-001–025/SC-001–010 evidence, unresolved gates and each feature PR/human-review status. Complete the final code-slice Graphify update before requesting any merge/publication approval.
+
+- [x] T059 Compact five-panel finite animated landings; preserve modeled content and editable copy.
+- [x] T060 Shared bounded tab/glass/board/feedback/score/progress/unlock motion, hover and pressed states.
+- [x] T061 Four-level glass radio rail; persisted/validated preference, reduced-motion precedence and immediate cancellation.
+- [x] T062 Verify touch/keyboard at 360px/1280px in both themes, all four levels, reload and current-bank backup round-trip; record evidence and limitations.
+
+**نتیجهٔ فاز ۸ — ۲۰۲۶-۱۱-۱۲**: پولیش‌های T059–T062 و بررسی‌های محلی/اندازه‌گیری/آماده‌سازی
+T055/T056/T058 انجام شدند. T053 باز است: فقط ۴۰/۱۵۰ شناسه مسیر دسترسی دارد، ۱۰ شکل نگاشت
+نشده و بازبینی آموزشی انسانی انجام نشده است. T054 برای Firefox/WebKit و دستگاه فیزیکی باز
+است؛ Chromium در ۸۰ ترکیب نمایش/لمس و ۲۰ نمای نهایی بررسی شد. T057 با صفر شرکت‌کننده باز
+است. فایل‌های validation/content-audit، presentation، performance، deployment، usability و
+release نتایج و محدودیت‌ها را ثبت می‌کنند. T006 و T015–T017 به‌سبب این پولیش کامل محسوب نشوند.
+آخرین `graphify update .` پس از تکهٔ نهایی کد موفق بود (تعداد گره/یال در لاگ ابزار)؛
+فایل‌های گراف ابزار توسعه‌اند و دارایی محصول نیستند. مرج/انتشار انجام نشده و کار در همین مرز بازبینی می‌ایستد.
 
 **Checkpoint**: Full release requires genuine human/content/host/usability evidence; local implementation success alone is not a completed external gate.
 

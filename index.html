@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fa" dir="rtl" data-theme="day">
+<html lang="fa" dir="rtl" data-theme="day" data-motion="medium">
 <head>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,6 +17,7 @@
  <link rel="stylesheet" href="./assets/css/practice.css">
  <link rel="stylesheet" href="./assets/css/lab.css">
  <link rel="stylesheet" href="./assets/css/records.css">
+ <link rel="stylesheet" href="./assets/css/motion.css">
  <script defer src="./assets/vendor/katex/katex.min.js"></script>
  <script type="module" src="./assets/js/app.js"></script>
 </head>
@@ -25,6 +26,11 @@
  <header class="site-header"><div class="header-inner page-width">
  <div class="brand"><svg class="brand-mark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m10 11 29 1-7 27-25-6zM10 11l22 28M7 33l32-21"/><g fill="currentColor"><circle cx="10" cy="11" r="4"/><circle cx="39" cy="12" r="4"/><circle cx="32" cy="39" r="4"/><circle cx="7" cy="33" r="4"/></g></svg><div><div class="brand-name">گراف‌نامه</div><p class="brand-subtitle">ببین، فکر کن، مدل بساز.</p></div></div>
  <div class="header-controls"><span class="course-label">ریاضیات گسسته · پایهٔ دوازدهم</span>
+ <fieldset class="motion-rail glass-surface" aria-describedby="motion-note"><legend class="sr-only">سطح انیمیشن</legend>
+ <label><input type="radio" name="motion-level" value="off"><span>خاموش</span></label>
+ <label><input type="radio" name="motion-level" value="low"><span>کم</span></label>
+ <label><input type="radio" name="motion-level" value="medium" checked><span>متوسط</span></label>
+ <label><input type="radio" name="motion-level" value="full"><span>کامل</span></label></fieldset>
  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="تغییر به حالت شب">
  <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10Z"/></svg>
  <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4 4l2 2M18 18l2 2M4 20l2-2M18 6l2-2"/></svg><span id="theme-label">حالت شب</span></button></div>
@@ -37,6 +43,7 @@
 <a class="tab" id="tab-records" href="#records" role="tab" aria-controls="panel-records" aria-selected="false" tabindex="-1" data-title="سوابق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14v18H5zM9 15v2M12 11v6M15 7v10"/></svg><span>سوابق</span></a>
 <a class="tab" id="tab-lab" href="#lab" role="tab" aria-controls="panel-lab" aria-selected="false" tabindex="-1" data-title="آزمایشگاه"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v7L4 19a1 1 0 0 0 1 2h14a1 1 0 0 0 1-2l-6-9V3M7 15h10"/></svg><span>آزمایشگاه</span></a>
 </nav>
+ <p id="motion-note" class="motion-note" role="status" hidden></p>
  <p id="storage-notice" class="notice" role="status" hidden></p>
  <p id="content-notice" class="notice" role="status" hidden>متن‌های تکمیلی بارگیری نشدند؛ اتصال به فایل‌های سایت را بررسی کنید.</p>
  <p id="math-notice" class="notice" role="status" hidden>نمایش ریاضی بارگیری نشد؛ نمادها به شکل متنی نمایش داده می‌شوند.</p>

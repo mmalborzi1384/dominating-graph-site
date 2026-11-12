@@ -2,9 +2,9 @@
 
 ## Inputs
 
-- `docs/question-bank.json`: authoritative existing IDs/metadata, currently v1.2, fetched as JSON.
-- `docs/گسسته-دوازدهم.pdf`: local book source; `docs/question-bank-v1.2-report.md`
-  describes v1.2 changes. `docs/content-gaps.md` is a historical v1.1 audit, not a
+- `docs/question-bank.json`: authoritative existing IDs/metadata, currently v1.4, fetched as JSON.
+- `docs/گسسته-دوازدهم.pdf`: local book source; `docs/question-bank-v1.4-report.md`
+  describes v1.4 changes. `docs/content-gaps.md` is a historical v1.1 audit, not a
   current outstanding-work list.
 - `content/question-overrides.json`: versioned reviewed supplements keyed by question ID.
 - `content/teaching.json`: curriculumVersion, ordered stages, lesson blocks and activities.
@@ -76,7 +76,7 @@ sahat counts 60/25/20/15/15/15, graph endpoint integrity and gamma consistency.
 Human review verifies modeling meaning, book figures, rubrics, APOS fit and page coverage.
 Machine structure checks alone do not certify instructional correctness.
 
-## v1.2 baseline and outstanding decisions
+## Historical v1.2 baseline and outstanding decisions
 
 The bank contains 150 questions, 78 graph fields and 64 modeling fields. The report's
 47/126 practice-ready count uses only its own source-field rule: it does not establish
@@ -113,3 +113,16 @@ test the compatibility policy before changing the existing transfer contract.
 هیچ پیشرفت قدیمی را منتقل نمی‌کند؛ پیشرفت تازهٔ موجود نسخهٔ ۲ را کم نمی‌کند. واردکردن
 نسخهٔ ۲ پیشرفت تازه را ادغام می‌کند. هیچ پاسخ/امتیاز/راهنمای آموزش ذخیره نمی‌شود.
 قرارداد کاملِ فعال این بازنویسی در بخش ۵ ضمیمهٔ APOS آمده است. فاز ۸ مجوز اجرا ندارد.
+
+
+## Phase 8 actual content audit — v1.4
+
+Active source has 150 stable IDs, 93 graph fields and 135 modeling fields. The runtime
+catalogs expose 14 practice / 26 competition / 27 lab IDs, overlapping to 40 unique IDs.
+Authored APOS activities do not expand bank reachability. Source completeness is distinct
+from a supported/reviewed response adapter: response_mode_by_tab takes precedence, then
+response_mode, then legacy type. Special modes/figures must not be silently coerced.
+The audit script emits per-ID reachability and reports missing adapters, figure mappings
+and human review as release blockers. Its --write report is reproducible; it never stamps
+educational approval. Current v1.4 bank loading/current-bank backup round-trip is supported;
+legacy-bank semantic migration remains a separate uncompleted release prerequisite.

@@ -1,3 +1,4 @@
+import { createProgressRing, motionLevel } from '../ui/motion.js';
 import { completeActivity, progressPercent, unlockedStages, visitStage } from '../domain/progress.js';
 import { teachingInstance, assessTeaching, availableTeachingActivity, followingTeachingActivity } from '../domain/teaching.js';
 import { pickRandom } from '../domain/random.js';
@@ -11,9 +12,10 @@ const button=(text,action,cls='secondary-button')=>{const node=el('button',text,
 function download(text,name){if(text===null)return;const url=URL.createObjectURL(new Blob([text],{type:'application/json;charset=utf-8'})),a=el('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 export function initTeaching({curriculum},repository){
   const panel=document.getElementById('panel-teach'),root=el('div',undefined,'teaching'),header=el('header',undefined,'teaching-heading'),intro=el('div'),progress=el('div',undefined,'teaching-progress glass-surface'),percent=el('strong',undefined,'progress-percent'),meter=el('progress'),save=el('p',undefined,'save-state');
-  percent.id='teaching-percent';save.id='teaching-save-state';meter.max=100;meter.setAttribute('aria-label','پیشرفت آموزش تازه');progress.append(percent,meter,save);intro.append(el('h1',curriculum.title),el('p','تجربه کن، پیش‌بینی کن، مفهوم را بشناس و مدل بساز.'));header.append(intro,progress);
+  const ring=createProgressRing(percent);meter.className='sr-only';
+  percent.id='teaching-percent';save.id='teaching-save-state';meter.max=100;meter.setAttribute('aria-label','پیشرفت آموزش تازه');progress.append(ring.element,meter,save);intro.append(el('h1',curriculum.title),el('p','تجربه کن، پیش‌بینی کن، مفهوم را بشناس و مدل بساز.'));header.append(intro,progress);
   const nav=el('nav',undefined,'stage-navigation');nav.setAttribute('aria-label','ساختارهای APOS');const stageButtons=new Map();
-  for(const stage of curriculum.stages){const b=button(stage.title,()=>navigate(stage.id),'stage-button');b.dataset.stageId=stage.id;nav.append(b);stageButtons.set(stage.id,b);}
+  for(const stage of curriculum.stages){const b=button(stage.title,()=>navigate(stage.id),'stage-button');b.dataset.stageId=stage.id;nav.append(b);stageButtons.set(stage.id,b);b.addEventListener('animationend',()=>b.classList.remove('is-unlocking'));}
   const notice=el('p');notice.id='teaching-notice';const host=el('section');host.id='teaching-stage';const controls=el('div',undefined,'stage-controls');
   const previous=button('مرحلهٔ قبل',()=>step(-1)),next=button('مرحلهٔ بعد',()=>step(1),'primary-button');previous.id='previous-stage';next.id='next-stage';controls.append(previous,next);
   const reset=createInlineConfirmation({message:'فقط پیشرفت آموزش تازه صفر شود؟ نتایج سایر تب‌ها حفظ می‌شوند.',id:'reset-confirm',confirmId:'confirm-reset-teaching',cancelId:'cancel-reset-teaching',onConfirm(){clearStage();variants.clear();cursors.clear();repository.resetTeaching();}});
@@ -51,9 +53,10 @@ export function initTeaching({curriculum},repository){
     const review=el('div',undefined,'learning-review-controls');const back=button('قدم قبلی',()=>showActivity(id,stage.requiredActivityIds[index-1]));back.id='learning-prev';back.hidden=index===0;const ahead=button('قدم بعدی',()=>showActivity(id,stage.requiredActivityIds[index+1]));ahead.id='learning-next';ahead.hidden=!p.completedActivityIds.includes(selected)||index===stage.requiredActivityIds.length-1;review.append(back,ahead);host.append(review);
 
   }
-  const reduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduced=()=>motionLevel()==='off'||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener('motionchange',()=>{for(const a of animations)a.cancel();for(const b of stageButtons.values())b.classList.remove('is-unlocking');});
   const milliseconds=name=>reduced()?0:Math.max(0,parseFloat(getComputedStyle(root).getPropertyValue(name))||0);
-  const pause=duration=>duration?new Promise(resolve=>setTimeout(resolve,duration)):Promise.resolve();
+  const pause=duration=>duration?new Promise(resolve=>{let timer;const done=()=>{clearTimeout(timer);document.removeEventListener('motionchange',done);resolve();};timer=setTimeout(done,duration);document.addEventListener('motionchange',done,{once:true});}):Promise.resolve();
   async function animateCard(node,enter){
     const duration=milliseconds(enter?'--learning-enter':'--learning-exit');if(!duration||!node?.animate)return;
     const frames=enter?[{transform:'translateX(-12px)',clipPath:'inset(0 100% 0 0)'},{transform:'translateX(0)',clipPath:'inset(0 0 0 0)'}]:[{transform:'translateX(0)',clipPath:'inset(0 0 0 0)'},{transform:'translateX(12px)',clipPath:'inset(0 0 0 100%)'}];
@@ -114,9 +117,11 @@ export function initTeaching({curriculum},repository){
     const hint=button('راهنما؛ رایگان',showHint);hint.dataset.action='hint';const reveal=button('پاسخ نمونه؛ پس از راهنما',()=>{if(hintLevel)solution.hidden=false;},'text-button');reveal.dataset.action='reveal';reveal.disabled=true;
     fields.append(check,feedback,hint,hintHost,reveal,solution);card.append(fields);cardStates.push({id:model.id,model,fields,badge});cleanups.push(()=>repository.setEditingDirty(token,false));return card;
   }
-  function sync(snapshot){const {state}=snapshot,p=state.teachingProgress,unlocked=unlockedStages(p);percent.textContent=`${fa(progressPercent(p))}٪`;meter.value=progressPercent(p);save.textContent=snapshot.dirty||!snapshot.persisted?'ذخیره نشده':'ذخیره شده';
+  let previouslyUnlocked=null;
+  function sync(snapshot){const {state}=snapshot,p=state.teachingProgress,unlocked=unlockedStages(p);ring.update(progressPercent(p));meter.value=progressPercent(p);save.textContent=snapshot.dirty||!snapshot.persisted?'ذخیره نشده':'ذخیره شده';
     recovery.hidden=!snapshot.warning;recoveryCopy.textContent=snapshot.warning;
-    for(const stage of curriculum.stages){const b=stageButtons.get(stage.id);b.hidden=!unlocked.includes(stage.id);b.disabled=advancing||!unlocked.includes(stage.id);const short={Action:'کنش',Process:'فرایند',Object:'شیء',Schema:'طرحواره'}[stage.id],stateLabel=p.passedStageIds.includes(stage.id)?'✓ تکمیل‌شده':unlocked.includes(stage.id)?'آماده':'قفل';b.replaceChildren(el('strong',`${fa(stage.order+1)}. ${short}`),el('span',stateLabel,'stage-state'));b.title=stage.goal;b.setAttribute('aria-label',`${stage.title}؛ ${stateLabel}`);b.setAttribute('aria-current',stage.id===p.lastVisitedStageId?'step':'false');}
+    for(const stage of curriculum.stages){const b=stageButtons.get(stage.id);const newlyUnlocked=previouslyUnlocked&&!previouslyUnlocked.has(stage.id)&&unlocked.includes(stage.id);if(newlyUnlocked&&['medium','full'].includes(motionLevel()))b.classList.add('is-unlocking');if(!unlocked.includes(stage.id))b.classList.remove('is-unlocking');b.hidden=!unlocked.includes(stage.id);b.disabled=advancing||!unlocked.includes(stage.id);const short={Action:'کنش',Process:'فرایند',Object:'شیء',Schema:'طرحواره'}[stage.id],stateLabel=p.passedStageIds.includes(stage.id)?'✓ تکمیل‌شده':unlocked.includes(stage.id)?'آماده':'قفل';b.replaceChildren(el('strong',`${fa(stage.order+1)}. ${short}`),el('span',stateLabel,'stage-state'));const icon=el('span','🔓','stage-unlock-icon');icon.setAttribute('aria-hidden','true');if(b.classList.contains('is-unlocking'))b.querySelector('.stage-state').prepend(icon);b.title=stage.goal;b.setAttribute('aria-label',`${stage.title}؛ ${stateLabel}`);b.setAttribute('aria-current',stage.id===p.lastVisitedStageId?'step':'false');}
+    previouslyUnlocked=new Set(unlocked);
     if(current!==p.lastVisitedStageId&&!advancing)renderStage(p.lastVisitedStageId);
     if(!advancing&&cardStates[0]&&!cardStates[0].model.prerequisites.every(id=>p.completedActivityIds.includes(id))){cursors.delete(current);renderStage(p.lastVisitedStageId);}
     for(const c of cardStates){const done=p.completedActivityIds.includes(c.id),available=c.model.prerequisites.every(id=>p.completedActivityIds.includes(id));c.fields.disabled=advancing||!available;c.badge.textContent=done?'✓ تکمیل‌شده':available?'آمادهٔ پاسخ':'قفل؛ پس از فعالیت قبلی';}

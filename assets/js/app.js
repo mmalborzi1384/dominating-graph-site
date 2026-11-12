@@ -1,3 +1,4 @@
+import { initMotion, initLandings } from './ui/motion.js';
 import { loadTeaching } from './data/load.js';
 import { createRepository } from './storage/repository.js';
 import { initPractice } from './tabs/practice.js';
@@ -55,6 +56,7 @@ try {
   const repository = createRepository(teaching.curriculum, undefined,
     { questions: teaching.questions, bankVersion: teaching.bankVersion, legacyCurriculum: teaching.legacyCurriculum });
   window.graphRepository = repository;
+  initMotion(repository);
   repository.subscribe(({ state }) => {
     document.documentElement.dataset.theme = state.settings.theme;
     updateThemeControl();
@@ -68,6 +70,7 @@ try {
   catch { setFeedback(document.getElementById('panel-competition'), 'مسابقه آماده نشد؛ محتوای مسابقه را بررسی کنید.', { tone: 'error' }); }
   try { await initLab(teaching.questions, teaching.curriculum, repository); }
   catch { setFeedback(document.getElementById('panel-lab'), 'آزمایشگاه آماده نشد؛ فایل محتوای آن را بررسی کنید.', {tone:'error'}); }
+  await initLandings();
 } catch {
   const notice = document.getElementById('content-notice');
   notice.textContent = 'آموزش آماده نشد؛ فایل‌های بانک و محتوای آموزش را بررسی کنید. پیشرفت ذخیره‌شده تغییر نمی‌کند.';

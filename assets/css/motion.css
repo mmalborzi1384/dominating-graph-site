@@ -1,0 +1,108 @@
+/* Motion is bounded and decorative; content and input remain available immediately. */
+.motion-rail { display: flex; padding: 2px; gap: 0; margin: 0; border-radius: 100px; min-inline-size: 0; }
+.motion-rail label { position: relative; display: grid; place-items: center; min-width: 44px; min-height: 44px; cursor: pointer; }
+.motion-rail input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.motion-rail span { display: grid; place-items: center; min-width: 44px; min-height: 36px; padding-inline: .35rem; border-radius: 100px; font-size: var(--font-xs); pointer-events: none; }
+.motion-rail input:checked + span { background: var(--heading); color: var(--surface); font-weight: 750; }
+.motion-rail input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 1px; }
+.motion-note { font-size: var(--font-xs); color: var(--muted); margin-block: .3rem; }
+.header-controls { gap: .65rem; flex-wrap: wrap; justify-content: flex-end; }
+.course-label { display: none; }
+.tab-landing { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: .65rem; min-width: 0; }
+.tab-landing > div { min-width: 0; }
+.tab-landing h1 { margin-bottom: .1rem !important; }
+.landing-caption { font-size: var(--font-xs); color: var(--muted); }
+.landing-art { width: 150px; height: 68px; flex: none; fill: none; stroke: var(--heading); stroke-width: 2; overflow: visible; }
+.landing-dot { fill: var(--accent-soft); }
+.landing-question rect { fill: var(--surface); }
+.landing-art text { stroke: none; fill: var(--heading); text-anchor: middle; font-family: var(--font-body); font-size: 15px; }
+.landing-bar { fill: var(--accent); stroke: none; transform-box: fill-box; transform-origin: bottom; }
+.landing-path { stroke-linecap: round; stroke-linejoin: round; }
+.landing-teach.is-entering .landing-path { stroke-dasharray: 1; animation: path-draw var(--motion-header) ease-out both; }
+.landing-practice.is-entering .landing-question { animation: card-float var(--motion-header) ease-in-out 2; transform-origin: center; }
+.landing-lab.is-entering .landing-network { animation: lab-orbit var(--motion-ornament) ease-in-out both; transform-origin: 75px 34px; }
+.landing-records.is-entering .landing-bar { animation: bar-fill var(--motion-header) ease-out both; }
+.landing-records .landing-bar:nth-of-type(2) { animation-delay: 100ms; }
+.landing-records .landing-bar:nth-of-type(3) { animation-delay: 200ms; }
+[role="tabpanel"]:not([hidden]) { animation: none; }
+details[open] > :not(summary) { animation: glass-open var(--motion-enter) ease-out; }
+.vertex-paint { transform-box: fill-box; transform-origin: center; animation: vertex-enter var(--motion-enter) ease-out backwards; animation-delay: calc(var(--vertex-order) * var(--motion-stagger)); }
+.board-vertex.is-selected .vertex-base { animation: bead-tap var(--motion-bead) ease-out; transform-origin: 0 0; }
+.vertex-coverage.coverage-changed { animation: coverage-fill var(--motion-enter) ease-out; }
+.inline-feedback[data-correct]::before { font-weight: 850; margin-inline-end: .4rem; }
+.inline-feedback[data-correct="true"]::before { content: "✓"; }
+.inline-feedback[data-correct="false"]::before { content: "!"; }
+.inline-feedback.feedback-pulse[data-correct="true"] { animation: correct-pulse var(--motion-bead) ease-out; }
+.inline-feedback.feedback-pulse[data-correct="false"] { animation: incorrect-shake var(--motion-bead) ease-out; }
+.progress-ring { width: 88px; height: 88px; position: relative; display: grid; place-items: center; margin-inline: auto; }
+.progress-ring svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring-track, .ring-fill { fill: none; stroke: var(--line); stroke-width: 6; }
+.ring-fill { stroke: var(--heading); stroke-dasharray: 100; stroke-linecap: round; }
+.progress-ring > :not(svg) { font-size: var(--font-xl); }
+.stage-button.is-unlocking { animation: unlock-pulse var(--motion-count) ease-out; }
+.stage-unlock-icon { display: inline-block; margin-inline-end: .3rem; }
+.stage-button.is-unlocking .stage-unlock-icon { animation: unlock-turn var(--motion-count) ease-out; }
+.live-score { display: flex; align-items: center; gap: .5rem; color: var(--heading); font-size: var(--font-sm); }
+.live-score output { font-weight: 850; font-size: var(--font-xl); }
+button, .tab, .motion-rail span { transition: background-color var(--motion-fast), color var(--motion-fast), border-color var(--motion-fast), transform var(--motion-press), box-shadow var(--motion-fast); }
+button:active:not(:disabled), .tab:active, .motion-rail label:active span { transform: scale(.97); }
+body, .site-header, .workspace, .glass-surface, .question-card, .records-card, input, select, textarea { transition: background-color var(--motion-enter), color var(--motion-enter), border-color var(--motion-enter), box-shadow var(--motion-enter); }
+@media (hover: hover) and (pointer: fine) {
+ .question-card, .records-card, .lesson-block { transition: transform var(--motion-fast), box-shadow var(--motion-fast), background-color var(--motion-enter); }
+ .question-card:hover, .records-card:hover, .lesson-block:hover { transform: translateY(-2px); box-shadow: 0 16px 36px var(--glass-shadow), inset 0 1px 0 var(--glass-shine); }
+}
+@keyframes path-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes card-float { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-4px) rotate(-3deg); } }
+@keyframes lab-orbit { from { transform: rotate(-12deg); } to { transform: rotate(348deg); } }
+@keyframes bar-fill { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes glass-open { from { opacity: 0; transform: translateY(var(--motion-distance)); backdrop-filter: blur(0); } to { opacity: 1; transform: none; backdrop-filter: blur(var(--glass-blur)); } }
+@keyframes vertex-enter { from { opacity: 0; transform: scale(.8); } to { opacity: 1; transform: scale(1); } }
+@keyframes bead-tap { 0% { transform: scale(.9); } 50% { transform: scale(1.12); } 100% { transform: scale(1); } }
+@keyframes coverage-fill { from { opacity: 0; } to { opacity: 1; } }
+@keyframes correct-pulse { 0%,100% { transform: translateY(0); } 40% { transform: translateY(-2px); } 70% { transform: translateY(1px); } }
+@keyframes incorrect-shake { 0%,100% { transform: translateX(0); } 25%,75% { transform: translateX(-3px); } 50% { transform: translateX(3px); } }
+@keyframes unlock-pulse { 50% { box-shadow: 0 0 0 3px var(--accent-soft); } }
+@keyframes unlock-turn { 0% { transform: rotate(-25deg) scale(.8); } 60% { transform: rotate(12deg) scale(1.15); } 100% { transform: none; } }
+@media(max-width:640px) {
+ .header-inner { flex-wrap: wrap; padding-block: .5rem; gap: .4rem; }
+ .header-controls { width: 100%; justify-content: space-between; }
+ .motion-rail { flex: none; }
+ .theme-toggle { margin-inline-start: auto; }
+ .landing-art { width: 90px; height: 58px; }
+ .tab-landing { align-items: flex-start; }
+ .landing-caption { line-height: 1.7; }
+ .teaching-heading { grid-template-columns: minmax(0,1fr) 90px; gap: .4rem; }
+ .teaching-progress { padding: .4rem; }
+}
+/* Low removes spatial/decorative effects, off/system removes every delay and movement. */
+:root[data-motion="low"] .landing-art *, :root[data-motion="low"] .vertex-paint,
+:root[data-motion="low"] .feedback-pulse, :root[data-motion="low"] .stage-button { animation: none !important; }
+:root[data-motion="low"] details[open] > :not(summary) { animation-name: coverage-fill; }
+:root[data-motion="low"] button:active, :root[data-motion="low"] .tab:active,
+:root[data-motion="low"] .question-card:hover, :root[data-motion="low"] .records-card:hover { transform: none; }
+:root[data-motion="off"] { scroll-behavior: auto; }
+:root[data-motion="off"] *, :root[data-motion="off"] *::before, :root[data-motion="off"] *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+:root[data-motion="off"] .question-card:hover, :root[data-motion="off"] .records-card:hover,
+:root[data-motion="off"] .lesson-block:hover, :root[data-motion="off"] button:active, :root[data-motion="off"] .tab:active { transform: none; }
+@media(prefers-reduced-motion:reduce) {
+ :root { --learning-celebrate: 0ms; --learning-exit: 0ms; --learning-enter: 0ms; }
+ *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+ .question-card:hover, .records-card:hover, .lesson-block:hover, button:active, .tab:active { transform: none; }
+}
+.stage-navigation { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .8rem; }
+.stage-button { width: auto; min-width: 112px; min-height: 60px; }
+@media(max-width:640px) {
+ .teaching-heading { grid-template-columns: minmax(0,1fr); gap: .5rem; margin-bottom: .7rem; }
+ .teaching-progress { display: flex; gap: .8rem; align-items: center; justify-content: flex-start; }
+ .teaching-progress .progress-ring { width: 64px; height: 64px; margin: 0; flex: none; }
+ .teaching-progress .save-state { margin: 0; }
+ .stage-button { min-width: 100px; }
+}
+.latin { display: inline-block; direction: ltr; unicode-bidi: isolate; text-align: left; }
+.records-row label { min-height: 44px; }
+:root[data-motion="low"] .lesson-block:hover, :root[data-motion="low"] .motion-rail label:active span,
+:root[data-motion="off"] .motion-rail label:active span { transform: none; }
+@media(prefers-reduced-motion:reduce) { .motion-rail label:active span { transform: none; } }
+.vertex-outline, .vertex-number, .vertex-label, .board-edge, .landing-art, .ring-fill {
+ transition: fill var(--motion-enter), stroke var(--motion-enter);
+}

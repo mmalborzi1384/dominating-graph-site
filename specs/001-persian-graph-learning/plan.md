@@ -1,6 +1,6 @@
 # Implementation Plan: آموزش فارسی گراف و مدل‌سازی
 
-**Branch**: `main` (actual checkout; setup reports logical feature `001-persian-graph-learning`)
+**Branch**: `codex/phase-8-polish` (phase-8 review; logical feature `001-persian-graph-learning`)
 | **Date**: 2026-11-10 | **Spec**: [spec.md](spec.md)
 
 **Input**: `specs/001-persian-graph-learning/spec.md`
@@ -11,7 +11,8 @@ Deliver five static Persian RTL tabs for chapter 2, using the 150-question sourc
 Use native browser modules, SVG graph interaction and exact small-graph evaluation.
 Persist only teaching completion flags/navigation, never teaching responses or scores;
 record practice, competition and lab activity separately. Keep content and presentation
-editable without a compilation step. This command produces design documents only.
+editable without a compilation step. Phase-8 runtime and validation evidence is recorded in
+validation/release.md; historical plan-only amendments remain labeled below.
 
 ## Technical Context
 
@@ -64,7 +65,8 @@ counting and capacity rules in data-model.md and contracts/persistence.md.
 | No unanswered behavioral clarification | PASS | User decisions in spec; third-hint cap zero remains explicit assumption |
 
 No constitutional exceptions. Missing instructional assets are release dependencies, not
-permission to publish bare or unanswerable questions. Runtime verification remains future work.
+permission to publish bare or unanswerable questions. Current runtime evidence and remaining
+release gates are in validation/release.md.
 
 ## Project Structure
 
@@ -247,3 +249,18 @@ moves to the new question heading, with the step route scrolled into view. Succe
 inputs/navigation during the change, including repeated review of already-completed activities.
 Future question cards are absent from DOM, not merely disabled; locked APOS navigation is hidden.
 Object definitions remain an optional collapsed reference. No storage schema or bank change.
+
+
+## Phase 8 motion architecture
+
+User authorization now opens phase 8 only. Shared motion.js owns bounded Web Animations,
+number interpolation, progress rings and effective preference; motion.css consumes central
+tokens and an effective data-motion attribute. motion.json contains editable landing copy.
+Native radio inputs form the compact glass rail. Stored optional settings.motion defaults
+to medium; validation rejects unknown levels. Early theme paint accepts curriculum 1/2;
+reduced-motion overrides every decorative/interactive animation including APOS delays.
+Finite headers replay on tab entry; graph topology/evaluation and local commits are synchronous
+and never depend on animation completion. No renderer dependency or build is introduced.
+The previous ban on continuous decoration remains: all ornament sequences terminate.
+Current-bank export/import must round-trip; historical bank exports remain explicitly rejected.
+Audit actual controller catalog reachability; do not infer UI readiness from source completeness.

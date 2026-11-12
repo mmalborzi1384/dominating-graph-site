@@ -14,7 +14,7 @@ export function parseBackup(text, curriculum, context) {
   safeData(file);
   fields(file,['format','schemaVersion','curriculumVersion','bankVersion','exportedAt','data'],[],'backup');
   check(file.format===BACKUP_FORMAT && file.schemaVersion===1 && [1,2].includes(file.curriculumVersion),'ساختار یا نسخهٔ آموزش فایل سازگار نیست.');
-  check(file.bankVersion===context.bankVersion && file.bankVersion==='1.2',file.bankVersion==='1.1'
+  check(file.bankVersion===context.bankVersion && ['1.2','1.4'].includes(file.bankVersion),file.bankVersion==='1.1'
     ? 'بک‌آپ بانک ۱٫۱ مستقیماً وارد نمی‌شود؛ پاسخ‌های مرجع در ۱٫۲ تغییر کرده‌اند. فایل اصلی را برای مهاجرت بازبینی‌شده نگه دارید.' : 'نسخهٔ بانک سؤال فایل پشتیبانی نمی‌شود.');
   timestamp(file.exportedAt,'exportedAt');
   fields(file.data,['teachingProgress','attempts','sessions','settings'],[],'data');

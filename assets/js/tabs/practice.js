@@ -1,3 +1,4 @@
+import { animateNumber } from '../ui/motion.js';
 import { practiceCatalog, filterPractice } from '../data/practice.js';
 import { createAttempt, appendAttempt } from '../domain/attempts.js';
 import { createGraphBoard } from '../ui/graph-editor.js';
@@ -70,6 +71,8 @@ export async function initPractice(questions, curriculum, repository) {
     let selected = [], hintLevel = 0, finalized = null, board, unsubscribe;
     let graph = item.mode === 'graph-construction' ? {n:item.target.n,vertices:Array.from({length:item.target.n},(_,i)=>String.fromCharCode(97+i)),edges:[]} : q.graph;
     const card = el('article','','question-card glass-surface');
+    const scoreBox=el('p','','live-score'),score=el('output','۰');let lastScore=0;
+    scoreBox.append(document.createTextNode('امتیاز پاسخ: '),score);scoreBox.hidden=true;
     card.dataset.questionId=q.id;card.dataset.difficulty=q.difficulty;
     const title=el('h2');renderTextMath(title,`${q.id} · ${item.title}`);
     card.append(title,el('p',`${q.lesson==='lesson1'?'درس ۱':'درس ۲'} · سطح ${fa(q.difficulty)} · ${q.apos_stage}`,'model-key'));
@@ -122,7 +125,8 @@ export async function initPractice(questions, curriculum, repository) {
         const a=candidate();
         if(item.mode==='vertex-selection') board.update(selected,{missed:a.evaluation.uncoveredVertexIds});
         const explanation=explain(a);
-        setFeedback(feedback,`${explanation} ${a.evaluation.satisfiesTarget?'پاسخ با خواسته هم‌خوان است.':'پاسخ هنوز خواسته را برآورده نمی‌کند.'} امتیاز: ${fa(a.finalScore)}. ${item.mode==='self-assessed-text'?'نتیجه بر پایهٔ خودارزیابی توست.':''} برای ذخیره «ثبت نهایی» را بزن.`,{tone:a.evaluation.satisfiesTarget?'success':'error'});
+        showScore(a.finalScore);
+        setFeedback(feedback,`${explanation} ${a.evaluation.satisfiesTarget?'پاسخ با خواسته هم‌خوان است.':'پاسخ هنوز خواسته را برآورده نمی‌کند.'} ${item.mode==='self-assessed-text'?'نتیجه بر پایهٔ خودارزیابی توست.':''} برای ذخیره «ثبت نهایی» را بزن.`,{tone:a.evaluation.satisfiesTarget?'success':'error'});
       } catch(error){setFeedback(feedback,error.message,{tone:'error'});}
     }
     function explain(a) {
@@ -147,7 +151,8 @@ export async function initPractice(questions, curriculum, repository) {
       } catch(error){setFeedback(feedback,error.message,{tone:'error'});}
     });submit.id='practice-submit';submit.className='primary-button';
     const retry=button('تلاش تازه روی همین سؤال',()=>{destroy();repository.setEditingDirty('practice',false);render(item);});retry.id='practice-retry';
-    function status(){if(finalized){const s=repository.snapshot();setFeedback(feedback,`${explain(finalized)} امتیاز نهایی: ${fa(finalized.finalScore)} · ${s.dirty||s.warning?'در حافظهٔ موقت؛ ذخیره نشده است.':'ذخیره شد.'} ${item.mode==='self-assessed-text'?'خودارزیابی تشریحی؛ ۱۰ برای هم‌خوانی با معیار و صفر برای نیاز به اصلاح.':''}`,{tone:s.dirty||s.warning?'error':'success'});}}
+    function showScore(value){if(!scoreBox.isConnected)card.append(scoreBox);scoreBox.hidden=false;animateNumber(score,value,lastScore);lastScore=value;}
+    function status(){if(finalized){showScore(finalized.finalScore);const s=repository.snapshot();setFeedback(feedback,`${explain(finalized)} ${s.dirty||s.warning?'در حافظهٔ موقت؛ ذخیره نشده است.':'ذخیره شد.'} ${item.mode==='self-assessed-text'?'خودارزیابی تشریحی؛ ۱۰ برای هم‌خوانی با معیار و صفر برای نیاز به اصلاح.':''}`,{tone:s.dirty||s.warning||!finalized.evaluation.satisfiesTarget?'error':'success'});}}
     const saveAgain=button('ذخیرهٔ دوبارهٔ کار موقت',()=>{repository.retry();status();});
     unsubscribe=repository.subscribe(s=>{saveAgain.hidden=!s.warning;status();});
     actions.append(check,hint,submit,retry,saveAgain);
