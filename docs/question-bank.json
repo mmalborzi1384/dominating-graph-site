@@ -48,8 +48,8 @@
       },
       "by_type": {
         "modeling": 38,
-        "text": 30,
-        "compute_gamma": 40,
+        "text": 31,
+        "compute_gamma": 39,
         "interactive_graph": 26,
         "draw": 9,
         "proof": 7

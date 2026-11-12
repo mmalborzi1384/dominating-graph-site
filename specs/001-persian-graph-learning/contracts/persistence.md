@@ -278,3 +278,14 @@ Escape پشتیبانی شوند؛ متن در جریان صفحه باز شود
 قبولی و هشدار واقعی ذخیره پنهان نشوند. دکمهٔ مسئلهٔ دیگر اندازهٔ محتوایی داشته باشد؛
 درس‌نامه‌های کوتاه بازشونده و فاصله/پدینگ مشترک پنج تب کمتر شوند. قلم/کنتراست، برد و
 هدف لمسی ۴۴ پیکسل حفظ شوند. این تغییر چیدمان است، نه شروع فاز ۸ یا تکمیل بانک سؤال.
+
+
+## Phase 8 preference extension
+
+settings requires theme and optionally motion in {off,low,medium,full}. Missing motion uses
+medium without invalidating historical envelopes. A preference update preserves the other
+setting; export includes it when present, import validates it through the same boundary.
+Reduced motion changes effective display only, never the stored user choice. Schema remains 1.
+Current bank 1.4 backups round-trip; 1.2/1.3 exports are rejected pending a reviewed semantic
+migration, particularly for replaced Q134. Local historical result reinterpretation is a
+separate release gate documented by the content audit.

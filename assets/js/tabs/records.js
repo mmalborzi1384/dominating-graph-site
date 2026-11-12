@@ -1,4 +1,5 @@
 import { summarizeRecords, recordScore } from '../domain/coverage.js';
+import { createProgressRing } from '../ui/motion.js';
 import { progressPercent } from '../domain/progress.js';
 import { exportBackup, parseBackup, mergeBackup } from '../storage/transfer.js';
 import { LIMITS } from '../domain/limits.js';
@@ -10,7 +11,7 @@ function btn(text,id,action) { const b=el('button',text,'secondary-button');b.ty
 function download(text,name) {const url=URL.createObjectURL(new Blob([text],{type:'application/json;charset=utf-8'})),a=el('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 export async function initRecords({questions,curriculum,bankVersion,legacyCurriculum},repository) {
   const response=await fetch(new URL('../../../content/records.json',import.meta.url));if(!response.ok)throw Error('محتوای سوابق بارگیری نشد.');const copy=await response.json(),context={questions,bankVersion,legacyCurriculum};
-  const root=document.getElementById('panel-records'),heading=el('h1',copy.title),intro=el('p',copy.intro),notice=el('p'),progress=el('section',undefined,'records-card glass-surface'),summary=el('section',undefined,'records-card glass-surface'),coverage=el('section',undefined,'records-card glass-surface'),history=el('section',undefined,'records-card glass-surface'),transfer=el('section',undefined,'records-card glass-surface');
+  const root=document.getElementById('panel-records'),heading=el('h1',copy.title),intro=el('p',copy.intro),notice=el('p'),progress=el('section',undefined,'records-card glass-surface'),summary=el('section',undefined,'records-card glass-surface'),coverage=el('section',undefined,'records-card glass-surface'),history=el('section',undefined,'records-card glass-surface'),transfer=el('section',undefined,'records-card glass-surface records-transfer');
   root.replaceChildren(heading,intro,notice,progress,summary,coverage,history,transfer);
   const selected=new Set();let pending=null,selectionRevision=null,filter='all',requestId=0;
   const status=el('p');status.id='records-feedback';
@@ -32,6 +33,7 @@ export async function initRecords({questions,curriculum,bankVersion,legacyCurric
   history.append(el('h2','نتایج ثبت‌شده'),filterSelect,deleteButton,impact,deletion.element,table);
   const reset=createInlineConfirmation({message:'فقط پیشرفت آموزش صفر شود؟ سایر نتایج و نشست‌ها حفظ می‌شوند.',id:'records-reset-confirmation',confirmId:'records-reset-confirm',onConfirm(){savedMessage(repository.resetTeaching());}});
   const resetButton=btn('شروع آموزش از اول','records-reset',()=>reset.open(resetButton));
+  const ringLabel=el('strong'),progressRing=createProgressRing(ringLabel);
   const progressCopy=el('div');progress.append(el('h2','پیشرفت آموزش APOS'),progressCopy,resetButton,reset.element);
   const importPreview=el('div');importPreview.id='records-import-preview';
   function clearImport(){pending=null;repository.setEditingDirty('records-import',false);importPreview.replaceChildren();importDialog.close({returnFocus:false});}
@@ -40,15 +42,15 @@ export async function initRecords({questions,curriculum,bankVersion,legacyCurric
       const ok=repository.commit(pending.candidate,pending.revision);clearImport();savedMessage(ok);
     }catch(error){clearImport();reportError(error);}
   }});
-  const fileInput=el('input');fileInput.type='file';fileInput.accept='.json,application/json';fileInput.id='records-import-file';
-  const fileLabel=el('label','ورود فایل پشتیبان JSON (حداکثر ۵ مگابایت)');fileLabel.htmlFor=fileInput.id;
+  const fileInput=el('input');fileInput.type='file';fileInput.accept='.json,application/json';fileInput.id='records-import-file';fileInput.className='file-picker-input';
+  const fileLabel=el('label','انتخاب فایل پشتیبان JSON (حداکثر ۵ مگابایت)','file-picker-label');fileLabel.htmlFor=fileInput.id;
   fileInput.addEventListener('change',async()=>{
     const id=++requestId;clearImport();const file=fileInput.files[0];if(!file)return;
     try {if(file.size>LIMITS.importBytes)throw Error('حداکثر حجم فایل ۵ مگابایت است.');const text=await file.text();if(id!==requestId)return;
       const incoming=parseBackup(text,curriculum,context),snap=repository.snapshot();if(snap.needsMigration||snap.conflict||snap.dirty||!['ready','absent'].includes(snap.readStatus))throw Error('ابتدا وضعیت ذخیره را با خروجی بازیابی و بازخوانی یا تلاش دوباره حل کنید.');
       const fresh=snap.state.revision<=1&&!Object.keys(snap.state.attempts).length&&!Object.keys(snap.state.sessions).length&&!snap.state.teachingProgress.completedActivityIds.length;
       const oldCurriculum=JSON.parse(text).curriculumVersion===1&&curriculum.curriculumVersion===2;const result=mergeBackup(snap.state,incoming,curriculum,context,{fresh});pending={...result,revision:snap.state.revision};const p=result.preview;
-      importPreview.replaceChildren(el('h3','پیش‌نمایش ورود؛ هنوز ذخیره نشده'),el('p',oldCurriculum?'این فایل آموزش قدیمی دارد؛ هیچ پیشرفت قدیمی منتقل نمی‌شود. سوابق سایر تب‌ها حفظ و پیشرفت آموزش تازهٔ موجود کم نمی‌شود.':''),el('p',`${fa(p.added)} نتیجه و ${fa(p.addedSessions)} نشست افزوده؛ ${fa(p.deduplicated)} نتیجهٔ تکراری؛ ${fa(p.suppressed)} نتیجهٔ قدیمی به‌علت علامت حذف بازگردانده نمی‌شود.`),el('p',`پیشرفت: ${fa(p.before)}٪ ← ${fa(p.after)}٪. ${p.restoresProgress?'این فایل تکمیل فعالیت‌ها را بازمی‌گرداند؛ حتی اگر قبلاً ریست شده باشند.':''}`),el('p',fresh?'مرورگر تازه: تم و محل ادامه از فایل گرفته می‌شوند.':'تم و محل ادامهٔ فعلی حفظ می‌شوند.'));
+      importPreview.replaceChildren(el('h3','پیش‌نمایش ورود؛ هنوز ذخیره نشده'),el('p',oldCurriculum?'این فایل آموزش قدیمی دارد؛ هیچ پیشرفت قدیمی منتقل نمی‌شود. سوابق سایر تب‌ها حفظ و پیشرفت آموزش تازهٔ موجود کم نمی‌شود.':''),el('p',`${fa(p.added)} نتیجه و ${fa(p.addedSessions)} نشست افزوده؛ ${fa(p.deduplicated)} نتیجهٔ تکراری؛ ${fa(p.suppressed)} نتیجهٔ قدیمی به‌علت علامت حذف بازگردانده نمی‌شود.`),el('p',`پیشرفت: ${fa(p.before)}٪ ← ${fa(p.after)}٪. ${p.restoresProgress?'این فایل تکمیل فعالیت‌ها را بازمی‌گرداند؛ حتی اگر قبلاً ریست شده باشند.':''}`),el('p',fresh?'مرورگر تازه: تم، سطح حرکت و محل ادامه از فایل گرفته می‌شوند.':'تم، سطح حرکت و محل ادامهٔ فعلی حفظ می‌شوند.'));
       repository.setEditingDirty('records-import',true);importDialog.open(fileInput);setFeedback(status,'فایل معتبر است؛ پیش‌نمایش را بررسی و تأیید یا لغو کنید.');
     }catch(error){reportError(error);}finally {fileInput.value='';}
   });
@@ -58,14 +60,15 @@ export async function initRecords({questions,curriculum,bankVersion,legacyCurric
   const reloadDialog=createInlineConfirmation({message:'وضعیت ذخیره دوباره خوانده شود؟ ابتدا کار ذخیره‌نشده را خروجی بگیرید؛ کار موقت کنار گذاشته می‌شود.',id:'records-reload-confirmation',confirmId:'records-reload-confirm',onConfirm(){clearImport();repository.reload({discardUnsaved:true});}});
   const reload=btn('بازخوانی ذخیره','records-reload',()=>reloadDialog.open(reload));
   transfer.append(el('h2','پشتیبان‌گیری و ورود فایل'),el('p',copy.transferNote),exportButton,original,retry,reload,reloadDialog.element,fileLabel,fileInput,importPreview,importDialog.element,status);
+  const transferActions=el('div',undefined,'transfer-actions');for(const control of [exportButton,reload,fileLabel,fileInput,original,retry])transferActions.append(control);transfer.insertBefore(transferActions,importPreview);
   function render(snapshot) {
     const {state}=snapshot,report=summarizeRecords(state,questions);setFeedback(notice,snapshot.warning||(snapshot.dirty?'کار فعلی ذخیره نشده؛ خروجی شامل همین کار موقت است.':''),{tone:'error'});
     exportButton.textContent=snapshot.dirty?'خروجی JSON از کار ذخیره‌نشده':'خروجی JSON از وضعیت فعلی';original.hidden=!snapshot.warning||repository.originalJSON()===null;retry.hidden=!snapshot.dirty;retry.disabled=snapshot.conflict;
     if(selectionRevision!==state.revision){selected.clear();selectionRevision=state.revision;deletion.close({returnFocus:false});impact.textContent='';}
     deleteButton.disabled=!selected.size||snapshot.dirty||snapshot.conflict;
-    const meter=el('progress');meter.max=100;meter.value=progressPercent(state.teachingProgress);meter.setAttribute('aria-label','پیشرفت آموزش');
+    const meter=el('progress');meter.className='sr-only';progressRing.update(progressPercent(state.teachingProgress));meter.max=100;meter.value=progressPercent(state.teachingProgress);meter.setAttribute('aria-label','پیشرفت آموزش');
     const stages=el('ul');for(const stage of curriculum.stages)stages.append(el('li',`${stage.title}: ${state.teachingProgress.passedStageIds.includes(stage.id)?'پاس‌شده':'پاس نشده'}`));
-    const link=el('a','ادامهٔ آموزش');link.href='#teach';progressCopy.replaceChildren(el('p',`${fa(meter.value)}٪ · ${fa(state.teachingProgress.completedActivityIds.length)} فعالیت تکمیل‌شده؛ پاسخ و امتیاز آموزشی ثبت نمی‌شود.`),meter,stages,link);
+    const link=el('a','ادامهٔ آموزش');link.href='#teach';progressCopy.replaceChildren(progressRing.element,el('p',`${fa(meter.value)}٪ · ${fa(state.teachingProgress.completedActivityIds.length)} فعالیت تکمیل‌شده؛ پاسخ و امتیاز آموزشی ثبت نمی‌شود.`),meter,stages,link);
     summary.replaceChildren(el('h2','تحلیل فعالیت‌ها'),el('p',`${fa(report.count)} تلاش · ${fa(report.unique)} سؤال یکتا · ${fa(report.score)} امتیاز · ${fa(report.correct)} پاسخ مطابق خواسته · ${fa(report.hints)} راهنمای مصرف‌شده`));
     const grid=el('div',undefined,'records-grid');for(const t of report.tabs)grid.append(el('p',`${copy.tabs[t.tab]}: ${fa(t.count)} تلاش، ${fa(t.correct)} مطابق خواسته، ${fa(t.score)} امتیاز، ${fa(t.hints)} راهنما`));summary.append(grid);
     for(const [title,rows] of [['به تفکیک درس',report.lessons],['به تفکیک APOS سؤال',report.apos]]){const details=el('details');details.append(el('summary',title));for(const row of rows)details.append(el('p',`${row.value} · ${fa(row.count)} تلاش · ${fa(row.correct)} مطابق خواسته · ${fa(row.score)} امتیاز`));summary.append(details);}

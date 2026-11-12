@@ -1,3 +1,4 @@
+import { animateNumber } from '../ui/motion.js';
 import { practiceCatalog } from '../data/practice.js';
 import { competitionPool, createCompetition, addCompetition, consumeHint, finalizeTurn, advanceTurn, competitionRanks } from '../domain/sessions.js';
 import { createGraphBoard } from '../ui/graph-editor.js';
@@ -33,7 +34,7 @@ export async function initCompetition(questions,curriculum,repository) {
   });start.id='competition-start';setup.append(start,setupError);setup.addEventListener('submit',e=>e.preventDefault());
   const status=el('p'),history=el('select');history.id='competition-history';
   const host=el('section','','practice-activity');root.append(setup,label('مسابقه‌های ذخیره‌شده',history),status,host);
-  let viewId=null,selected=[],turnId=null,board;
+  let viewId=null,selected=[],turnId=null,board;const previousScores=new Map();
   function managementConfirmation(restart) {
     let request;
     const key=restart?'reset':'delete';
@@ -83,7 +84,7 @@ export async function initCompetition(questions,curriculum,repository) {
     management.append(reset,remove);host.append(management);
     const table=el('table','','competition-results');table.append(el('caption',session.status==='completed'?'نتیجهٔ نهایی؛ رتبه‌های برابر مشترک‌اند':'امتیازهای فعلی'));
     const head=el('tr');for(const t of ['رتبه','گروه','امتیاز'])head.append(el('th',t));table.append(head);
-    for(const row of competitionRanks(session,s.state.attempts)){const tr=el('tr');for(const t of [fa(row.rank),row.name,fa(row.total)])tr.append(el('td',t));table.append(tr);}host.append(table);
+    for(const row of competitionRanks(session,s.state.attempts)){const tr=el('tr'),score=el('td'),key=session.id+':'+row.id;tr.append(el('td',fa(row.rank)),el('td',row.name),score);table.append(tr);host.append(table);animateNumber(score,row.total,previousScores.get(key)??0);previousScores.set(key,row.total);}host.append(table);
     if(session.status==='completed'){host.append(el('p','مسابقه تمام شد. برای مسابقهٔ تازه از فرم بالا استفاده کنید.'));return;}
     const turn=session.turns[session.currentIndex],item=pool.find(i=>i.question.id===turn.questionId);
     if(!item){host.append(el('p','مدل این نوبت در محتوای فعلی آماده نیست؛ اطلاعات ذخیره‌شده حفظ شده است.','notice'));return;}
@@ -103,7 +104,7 @@ export async function initCompetition(questions,curriculum,repository) {
     const submit=button('ثبت نهایی پاسخ گروه',()=>act(state=>finalizeTurn(state,session.id,selected,curriculum,context)));submit.id='competition-submit';submit.disabled=final;
     const next=button('نوبت بعد / پایان مسابقه',()=>{repository.setEditingDirty('competition',false);act(state=>advanceTurn(state,session.id,curriculum,context));});next.id='competition-next';next.disabled=!final;
     actions.append(hint,submit,next);host.append(actions);
-    if(final){const result=el('p');setFeedback(result,turn.resultStatus==='finalized-deleted'?'نتیجه حذف‌شده؛ این نوبت مصرف شده و قابل تکرار نیست.':`${selectionFeedback(attempt.evaluation,'minimum',ids=>ids.join('، ')).message} امتیاز پایه ${fa(attempt.baseScore)}؛ نهایی ${fa(attempt.finalScore)}.`,{tone:'success'});host.append(result);repository.setEditingDirty('competition',false);}
+    if(final){const result=el('p');setFeedback(result,turn.resultStatus==='finalized-deleted'?'نتیجه حذف‌شده؛ این نوبت مصرف شده و قابل تکرار نیست.':`${selectionFeedback(attempt.evaluation,'minimum',ids=>ids.join('، ')).message} امتیاز پایه ${fa(attempt.baseScore)}؛ نهایی ${fa(attempt.finalScore)}.`,{tone:turn.resultStatus==='finalized-deleted'?'info':attempt.evaluation.satisfiesTarget?'success':'error'});host.append(result);repository.setEditingDirty('competition',false);}
   }
   repository.subscribe(render);
 }

@@ -1,6 +1,6 @@
 # Implementation Plan: آموزش فارسی گراف و مدل‌سازی
 
-**Branch**: `main` (actual checkout; setup reports logical feature `001-persian-graph-learning`)
+**Branch**: `codex/phase-8-polish` (phase-8 review; logical feature `001-persian-graph-learning`)
 | **Date**: 2026-11-10 | **Spec**: [spec.md](spec.md)
 
 **Input**: `specs/001-persian-graph-learning/spec.md`
@@ -11,7 +11,8 @@ Deliver five static Persian RTL tabs for chapter 2, using the 150-question sourc
 Use native browser modules, SVG graph interaction and exact small-graph evaluation.
 Persist only teaching completion flags/navigation, never teaching responses or scores;
 record practice, competition and lab activity separately. Keep content and presentation
-editable without a compilation step. This command produces design documents only.
+editable without a compilation step. Phase-8 runtime and validation evidence is recorded in
+validation/release.md; historical plan-only amendments remain labeled below.
 
 ## Technical Context
 
@@ -64,7 +65,8 @@ counting and capacity rules in data-model.md and contracts/persistence.md.
 | No unanswered behavioral clarification | PASS | User decisions in spec; third-hint cap zero remains explicit assumption |
 
 No constitutional exceptions. Missing instructional assets are release dependencies, not
-permission to publish bare or unanswerable questions. Runtime verification remains future work.
+permission to publish bare or unanswerable questions. Current runtime evidence and remaining
+release gates are in validation/release.md.
 
 ## Project Structure
 
@@ -247,3 +249,96 @@ moves to the new question heading, with the step route scrolled into view. Succe
 inputs/navigation during the change, including repeated review of already-completed activities.
 Future question cards are absent from DOM, not merely disabled; locked APOS navigation is hidden.
 Object definitions remain an optional collapsed reference. No storage schema or bank change.
+
+
+## Phase 8 motion architecture
+
+User authorization now opens phase 8 only. Shared motion.js owns bounded Web Animations,
+number interpolation, progress rings and effective preference; motion.css consumes central
+tokens and an effective data-motion attribute. motion.json contains editable landing copy.
+Native radio inputs form the compact glass rail. Stored optional settings.motion defaults
+to medium; validation rejects unknown levels. Early theme paint accepts curriculum 1/2;
+reduced-motion overrides every decorative/interactive animation including APOS delays.
+Finite headers replay on tab entry; graph topology/evaluation and local commits are synchronous
+and never depend on animation completion. No renderer dependency or build is introduced.
+The previous ban on continuous decoration remains: all ornament sequences terminate.
+Current-bank export/import must round-trip; historical bank exports remain explicitly rejected.
+Audit actual controller catalog reachability; do not infer UI readiness from source completeness.
+
+
+## اتصال کامل بانک و پرداخت نهایی — مجوز کاربر ۲۰۲۶-۱۱-۱۲
+
+هر ۱۵۰ شناسه باید در تب مجاز مسیر پاسخ واقعی داشته باشد: ۱۲۶ مورد در تمرین و ۲۴ مورد
+بدون مجوز تمرین در بخش «کاوش‌های بانک» آزمایشگاه. مجوزهای منبع تغییر نمی‌کنند.
+صورت، سه راهنما و پاسخ معیار منبع حفظ شوند؛ برای پرسش‌های مرکب، رسم و اثبات، ابزار
+متناسب + پاسخ نوشتاری و خودارزیابی صریح ۱۰/۰ ارائه شود؛ ادعای تصحیح ماشینی کل اثبات
+یا متن ممنوع است. ۱۴ آداپتور قبلی ارزیابی خودکار خود را حفظ می‌کنند. کارگاه گراف عمومی
+جهت/چندیالی/طوقه و مدل منبع تا ۱۶ رأس را نمایش/ویرایش می‌کند؛ ارزیاب ساده همچنان حداکثر
+۱۲ و ابزار سفارشی اصلی ۲–۱۰ رأس است. صفحهٔ شطرنج، خانواده‌ها، ویرایش یال/رأس و تحلیل
+مدل ابزار پاسخ‌اند؛ صورت سؤال چندبخشی با یک محاسبهٔ گاما خلاصه نمی‌شود.
+خلاصهٔ مدل همراه پاسخ متنی تحت حد مشترک ۱۰۰۰ حرف ثبت می‌شود. فعالیت صرفاً نمایشی
+سابقه نمی‌سازد. هر figure_ref به تصویر واقعی صفحهٔ کتاب با توضیح و بارگیری تنبل وصل
+شود. تصویر کتاب جایگزین حدسی دادهٔ گراف نمی‌شود. Q141 معنای ریپوی مرجع را از سیاست
+ثبت نتیجهٔ سایت فعلی جدا توضیح می‌دهد. APOS دوازده فعالیت ترتیبی مستقل را حفظ می‌کند.
+لندینگ عمومی و پنج سربرگ در سطح کامل، ورود متن/مسیرها/مکان‌ها و صحنهٔ هندسی هماهنگ
+دارند؛ کاهش حرکت، سطوح کم/خاموش، خوانایی و گراف مات حفظ شوند. نسخهٔ موبایل/دسکتاپ
+هر دو تم با بانک پرشده بررسی و نتایج قبلیِ ۴۰ سؤال به‌عنوان سابقه برچسب‌گذاری شوند.
+
+
+## بازبینی کنترل‌ها و متن انتشار — ۱۵ نظر مرورگر، ۲۰۲۶-۱۱-۱۲
+
+فاصلهٔ برچسب درمانگاه از دایره افزایش یابد؛ کادرهای راهنمای دو درس و توضیحشان،
+«متن اصلی بانک» تکراری و نشان آمادهٔ بازبینی از رابط محصول حذف شوند. عنوان مشترک فقط
+«گراف و مدل‌سازی» باشد. وضعیت واقعی بازبینی در مستندات باقی بماند، نه پابرگ محصول.
+تم با switch شیشه‌ای متحرک و لوگو فقط در سطح کامل با حرکت محدود نمایش داده شوند.
+همهٔ selectهای تک‌انتخابی به کنترل شیشه‌ای درون‌صفحه‌ای بدون مودال ارتقا یابند؛ select
+بومی برای قرارداد value/change حفظ ولی از مسیر فوکوس/خواندن مخفی شود. فهرست دارای
+role listbox/option، انتخاب با لمس/Enter/Space، جهت‌ها/Home/End، Escape و خروج از کنترل
+باشد؛ فهرست بلند جست‌وجو و اسکرول هم‌تم داشته باشد. انتخاب/disabled/بازسازی پویا همگام
+بمانند. هدف لمسی حداقل۴۴px حفظ شود. هیچ پنجرهٔ جدید یا dialog محصول اضافه نشود.
+فوکوس رأس مربع نداشته باشد؛ نشان دایره‌ای focus-visible برای کیبورد حفظ شود. checkbox/
+radio و کنترل فایل ظاهر هماهنگ بگیرند؛ ریـل حرکت دست‌نخورده بماند. فرمول کوتاه inline
+اسکرول نداشته باشد و اسکرول لازم فرمول بلند/فهرست‌ها توکن‌های تم را مصرف کند.
+کنترل‌های انتقال در grid، چهار اقدام اصلی آزمایشگاه در چهار ستون دسکتاپ/دو ستون موبایل
+و سایر دکمه‌ها با عرض محتوایی و فاصلهٔ کم باشند. این پولیش منطق ارزیابی/ذخیره را تغییر
+نمی‌دهد. بررسی موبایل۳۶۰/دسکتاپ۱۲۸۰ و دو تم، لمس و کیبورد الزامی است.
+
+
+## بازبینی انتخاب رأس و فاصلهٔ کنترل‌ها — ۲۰۲۶-۱۱-۱۲
+
+تمام بسترهای انتخاب رأس، از جمله کارگاه مدل منبع، موتور نمایش/انتخاب مشترک داشته
+باشند: رنگ ثابت اندیس، مهرهٔ مات، ضربهٔ انتخاب، هاشور تک/چندمالک و پوشش تدریجی.
+انتخاب صرف نباید SVG را دوباره بسازد یا فوکوس را از دست بدهد. ماژول مشترک نمایش از
+ارزیاب گراف مستقل بماند تا گراف بزرگ/جهت‌دار/چندیالی به ارزیاب ساده وارد نشود؛
+برای مدل خاص فقط انتخاب نمایش داده شود و احاطه‌گری بدون جهت جعل نشود.
+بین کنترل‌های قدم و مرحله، و دکمه‌های همسایه در تمام بخش‌ها فاصلهٔ واضح باشد.
+فقط شکل سوییچ تم دیده شود؛ نام دسترس‌پذیر و وضعیت switch حفظ شوند. لینک‌های عملیاتی
+نمای دکمهٔ شیشه‌ای و بدون زیرخط داشته باشند ولی semantics و href ناوبری باقی بماند.
+موبایل/دسکتاپ و هر دو تم، ورودی لمسی/کیبورد و reduced-motion بررسی شوند.
+
+
+## اصلاح سوییچ، مرکز برچسب و فرمول انتخاب‌گر — ۲۰۲۶-۱۱-۱۲
+
+قاب بیرونی سوییچ حذف و فقط ریل تم با ارتفاع۵۰px هم‌اندازهٔ ریل حرکت نشان داده شود؛
+هدف لمس و نام/وضعیت دسترس‌پذیر حفظ شوند. بخش پاسخ تمرین با gap مستقل از حاشیهٔ
+textarea و دکمه، فاصلهٔ ثابت داشته باشد. برچسب داخلی تمام رأس‌ها در موتور مشترک
+با x=0/y=0، text-anchor=middle و dominant-baseline=central، مستقل از خط‌مبنا و جهت
+فارسی وسط شود؛ حروف منبع و اعداد فارسی، حالت معمول و انتخاب‌شده بررسی شوند.
+انتخاب‌گر شیشه‌ای هم گزینه و هم مقدار فعال را با همان KaTeX امن/ریاضی LTR سؤال
+رندر کند؛ مقدار اصلی select و رخدادهایش عوض نشوند و نام دسترس‌پذیر از عنوان کنترل
+و مقدار رندرشده ساخته شود. متن خام LaTeX در برچسب قابل مشاهده نماند.
+در رابط توضیح «تفاوت نسخه‌ها» و اشاره به ریپو/نسخهٔ دیگر حذف شود. برای Q141 مکمل
+سایت، صورت و راهنما و معیار را با رفتار جاری چالش هماهنگ کند:۵ گراف/۳ دقیقه، کیفیت
+۰/۵/۱۰/۱۵، بدون پاداش سرعت، ثبت در سوابق. دلیل اقتباس در دادهٔ توسعه/مستندات بماند؛
+سؤال خام بانک برای منشأ دست‌نخورده است و در جریان محصول نشان داده نمی‌شود.
+
+
+## نهایی‌سازی سوییچ و مجوز مرج — ۲۰۲۶-۱۱-۱۲
+
+کاربر حرکت پیوستهٔ ملایم برای سوییچ تم و پرتوهای خورشید را صریحاً خواست و مرج PR و
+بررسی Pages را مجاز کرد. این استثنای محدود، ممنوعیت قبلی حرکت پیوستهٔ تزئینی در طرح
+را فقط برای همین سوییچ در سطح متوسط/کامل جایگزین می‌کند. روز: دیسک خورشید با هشت
+پرتو و چرخش آرام پرتوها؛ شب: چشمک آرام ستاره‌ها. کم/خاموش و reduced-motion همهٔ این
+حرکت‌ها را متوقف می‌کنند؛ ریل چهارسطحی موجود ابزار توقف کاربر است. ابعاد، نام و
+وضعیت دسترس‌پذیر سوییچ و منطق ذخیره ثابت بمانند. پس از بررسی محلی و Graphify، همین
+PR مرج و SHA/استقرار Pages واقعاً بررسی شود؛ هیچ شواهد انسانی/میزبان دیگری جعل نشود.

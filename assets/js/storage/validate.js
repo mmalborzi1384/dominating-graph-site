@@ -210,7 +210,8 @@ export function validateStoredEnvelope(value, curriculum, context = {}) {
     'نسخهٔ آموزش پشتیبانی نمی‌شود.', 'curriculumVersion', 'unsupported-curriculum');
   integer(value.revision, 0, Number.MAX_SAFE_INTEGER, 'revision');
   validateProgress(value.teachingProgress, curriculum);
-  fields(value.settings, ['theme'], [], 'settings'); check(['day', 'night'].includes(value.settings.theme), 'تم معتبر نیست.', 'settings.theme');
+  fields(value.settings, ['theme'], ['motion'], 'settings');
+  check(value.settings.motion === undefined || ['off','low','medium','full'].includes(value.settings.motion), 'سطح حرکت معتبر نیست.', 'settings.motion'); check(['day', 'night'].includes(value.settings.theme), 'تم معتبر نیست.', 'settings.theme');
   check(isObject(value.attempts) && isObject(value.sessions), 'رکوردها و نشست‌ها باید نگاشت باشند.', 'state');
   validateCapacity(value.attempts, value.sessions);
   const result = structuredClone(value);

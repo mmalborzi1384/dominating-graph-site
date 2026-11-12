@@ -72,7 +72,7 @@ export function validateTeaching(curriculum, overrides, bank) {
 }
 
 function validateTeachingV2(curriculum, bank) {
-  requireValue(bank?.meta?.version==='1.2'&&bank.questions?.length===150&&new Set(bank.questions.map(q=>q.id)).size===150&&Array.from({length:150},(_,i)=>`Q${String(i+1).padStart(3,'0')}`).every(id=>bank.questions.some(q=>q.id===id)),'بانک مرجع معتبر نیست.');
+  requireValue(['1.2','1.4'].includes(bank?.meta?.version)&&bank.questions?.length===150&&new Set(bank.questions.map(q=>q.id)).size===150&&Array.from({length:150},(_,i)=>`Q${String(i+1).padStart(3,'0')}`).every(id=>bank.questions.some(q=>q.id===id)),'بانک مرجع معتبر نیست.');
   requireValue(curriculum.stages?.length===4&&curriculum.activities?.length===12&&new Set(curriculum.activities.map(a=>a.id)).size===12,'چهار مرحله و دوازده فعالیت لازم است.');
   const models=new Map();
   curriculum.stages.forEach((stage,index)=>{

@@ -7,6 +7,8 @@ export function setFeedback(host, text, { tone = 'info', math = false } = {}) {
   host.classList.add('inline-feedback'); host.dataset.tone = tone; host.hidden = !text;
   if (tone === 'success' || tone === 'error') host.dataset.correct = String(tone === 'success');
   else host.removeAttribute('data-correct');
+  host.classList.remove('feedback-pulse');
+  if (text && ['success','error'].includes(tone)) { void host.offsetWidth; host.classList.add('feedback-pulse'); }
   if (math) return renderTextMath(host, text);
   host.textContent = text;
   return { ok: true, errors: [] };

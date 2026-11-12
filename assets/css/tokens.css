@@ -104,3 +104,48 @@
   --learning-exit: 160ms;
   --learning-enter: 260ms;
 }
+
+/* One duration scale, shared by CSS and finite Web Animations. */
+:root {
+  --motion-tab: 180ms;
+  --motion-count: 600ms;
+  --motion-bead: 280ms;
+  --motion-stagger: 28ms;
+  --motion-header: 1800ms;
+  --motion-ornament: 6000ms;
+  --motion-press: 100ms;
+  --motion-distance: 8px;
+}
+:root[data-motion="full"] {
+  --motion-enter: 320ms;
+  --motion-count: 850ms;
+  --motion-bead: 360ms;
+  --motion-stagger: 40ms;
+  --motion-header: 2400ms;
+  --motion-ornament: 8000ms;
+}
+:root[data-motion="low"] {
+  --motion-fast: 80ms;
+  --motion-enter: 100ms;
+  --motion-tab: 100ms;
+  --motion-count: 0ms;
+  --motion-bead: 0ms;
+  --motion-stagger: 0ms;
+  --motion-distance: 0px;
+  --learning-celebrate: 100ms;
+  --learning-exit: 0ms;
+  --learning-enter: 0ms;
+}
+:root[data-motion="off"] {
+  --motion-fast: 0ms;
+  --motion-enter: 0ms;
+  --motion-tab: 0ms;
+  --motion-count: 0ms;
+  --learning-celebrate: 0ms;
+  --learning-exit: 0ms;
+  --learning-enter: 0ms;
+}
+:root { --hero-radius: 28px; --scene-duration: 3400ms; --text-reveal: 650ms; }
+
+:root { --theme-orbit: 14000ms; --theme-shimmer: 3200ms; }
+:root[data-motion="full"] { --theme-orbit: 10000ms; --theme-shimmer: 2400ms; }

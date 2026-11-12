@@ -1,0 +1,937 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "name": "360/day/Q001 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "360/day/Q001 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "360/day self-assessment button gap"
+    },
+    {
+      "ok": true,
+      "name": "360/day/Q048 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "360/day/Q048 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "360/day/Q141 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "360/day/Q141 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "360/day coherent Q141 copy"
+    },
+    {
+      "ok": true,
+      "name": "360/day/Q142 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "360/day/Q142 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "360/day selected KaTeX"
+    },
+    {
+      "ok": true,
+      "name": "360/day menu KaTeX"
+    },
+    {
+      "ok": true,
+      "name": "360/day/teach layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "360/day/practice layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "360/day/competition layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "360/day/records layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "360/day/lab layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "360/night/Q001 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "360/night/Q001 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "360/night self-assessment button gap"
+    },
+    {
+      "ok": true,
+      "name": "360/night/Q048 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "360/night/Q048 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "360/night/Q141 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "360/night/Q141 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "360/night coherent Q141 copy"
+    },
+    {
+      "ok": true,
+      "name": "360/night/Q142 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "360/night/Q142 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "360/night selected KaTeX"
+    },
+    {
+      "ok": true,
+      "name": "360/night menu KaTeX"
+    },
+    {
+      "ok": true,
+      "name": "360/night/teach layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "360/night/practice layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "360/night/competition layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "360/night/records layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "360/night/lab layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/Q001 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/Q001 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "1280/day self-assessment button gap"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/Q048 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/Q048 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/Q141 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/Q141 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "1280/day coherent Q141 copy"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/Q142 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/Q142 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "1280/day selected KaTeX"
+    },
+    {
+      "ok": true,
+      "name": "1280/day menu KaTeX"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/teach layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/practice layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/competition layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/records layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/lab layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/Q001 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/Q001 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "1280/night self-assessment button gap"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/Q048 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/Q048 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/Q141 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/Q141 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "1280/night coherent Q141 copy"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/Q142 centered labels"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/Q142 selected label center"
+    },
+    {
+      "ok": true,
+      "name": "1280/night selected KaTeX"
+    },
+    {
+      "ok": true,
+      "name": "1280/night menu KaTeX"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/teach layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/practice layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/competition layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/records layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/lab layout/switch"
+    },
+    {
+      "ok": true,
+      "name": "Reduced motion"
+    }
+  ],
+  "views": [
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "teach",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "practice",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "competition",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "records",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "lab",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "teach",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "practice",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "competition",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "records",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "lab",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "teach",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "practice",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "competition",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "records",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "lab",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "teach",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "practice",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "competition",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "records",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "lab",
+      "overflow": false,
+      "switchBorder": "0px",
+      "switchHeight": 50,
+      "railHeight": 50
+    }
+  ],
+  "centers": [
+    {
+      "width": 360,
+      "theme": "day",
+      "id": "Q001",
+      "centers": [
+        {
+          "text": "x",
+          "cx": 0.3161640167236328,
+          "cy": 0
+        },
+        {
+          "text": "y",
+          "cx": 0.5498504638671875,
+          "cy": 0
+        },
+        {
+          "text": "z",
+          "cx": 0.3161640167236328,
+          "cy": 0
+        },
+        {
+          "text": "w",
+          "cx": 0.39864158630371094,
+          "cy": 0
+        }
+      ]
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "id": "Q048",
+      "centers": [
+        {
+          "text": "۱",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "۲",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "۳",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "۴",
+          "cx": 0.04702472686767578,
+          "cy": 0
+        },
+        {
+          "text": "۵",
+          "cx": 0,
+          "cy": 0
+        }
+      ]
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "id": "Q141",
+      "centers": [
+        {
+          "text": "a",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "b",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "c",
+          "cx": 0.04123878479003906,
+          "cy": 0
+        },
+        {
+          "text": "d",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "e",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "f",
+          "cx": 0.04123878479003906,
+          "cy": 0
+        }
+      ]
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "id": "Q142",
+      "centers": [
+        {
+          "text": "a",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "b",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "c",
+          "cx": 0.04123878479003906,
+          "cy": 0
+        }
+      ]
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "id": "Q001",
+      "centers": [
+        {
+          "text": "x",
+          "cx": 0.3161640167236328,
+          "cy": 0
+        },
+        {
+          "text": "y",
+          "cx": 0.5498504638671875,
+          "cy": 0
+        },
+        {
+          "text": "z",
+          "cx": 0.3161640167236328,
+          "cy": 0
+        },
+        {
+          "text": "w",
+          "cx": 0.39864158630371094,
+          "cy": 0
+        }
+      ]
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "id": "Q048",
+      "centers": [
+        {
+          "text": "۱",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "۲",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "۳",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "۴",
+          "cx": 0.04702472686767578,
+          "cy": 0
+        },
+        {
+          "text": "۵",
+          "cx": 0,
+          "cy": 0
+        }
+      ]
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "id": "Q141",
+      "centers": [
+        {
+          "text": "a",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "b",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "c",
+          "cx": 0.04123878479003906,
+          "cy": 0
+        },
+        {
+          "text": "d",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "e",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "f",
+          "cx": 0.04123878479003906,
+          "cy": 0
+        }
+      ]
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "id": "Q142",
+      "centers": [
+        {
+          "text": "a",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "b",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "c",
+          "cx": 0.04123878479003906,
+          "cy": 0
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "id": "Q001",
+      "centers": [
+        {
+          "text": "x",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "y",
+          "cx": 0.12648820877075195,
+          "cy": 0
+        },
+        {
+          "text": "z",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "w",
+          "cx": 0,
+          "cy": 0
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "id": "Q048",
+      "centers": [
+        {
+          "text": "۱",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "۲",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "۳",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "۴",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "۵",
+          "cx": 0,
+          "cy": 0
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "id": "Q141",
+      "centers": [
+        {
+          "text": "a",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "b",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "c",
+          "cx": 0.02529764175415039,
+          "cy": 0
+        },
+        {
+          "text": "d",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "e",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "f",
+          "cx": 0.16443443298339844,
+          "cy": 0
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "id": "Q142",
+      "centers": [
+        {
+          "text": "a",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "b",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "c",
+          "cx": 0.02529764175415039,
+          "cy": 0
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "id": "Q001",
+      "centers": [
+        {
+          "text": "x",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "y",
+          "cx": 0.12648820877075195,
+          "cy": 0
+        },
+        {
+          "text": "z",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "w",
+          "cx": 0,
+          "cy": 0
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "id": "Q048",
+      "centers": [
+        {
+          "text": "۱",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "۲",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "۳",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "۴",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "۵",
+          "cx": 0,
+          "cy": 0
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "id": "Q141",
+      "centers": [
+        {
+          "text": "a",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "b",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "c",
+          "cx": 0.02529764175415039,
+          "cy": 0
+        },
+        {
+          "text": "d",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "e",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "f",
+          "cx": 0.16443443298339844,
+          "cy": 0
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "id": "Q142",
+      "centers": [
+        {
+          "text": "a",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "b",
+          "cx": 0,
+          "cy": 0
+        },
+        {
+          "text": "c",
+          "cx": 0.02529764175415039,
+          "cy": 0
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

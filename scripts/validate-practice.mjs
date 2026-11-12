@@ -13,7 +13,7 @@ check(catalog.every(i=>i.question.tabs.includes('practice')),'Allowed tab only')
 for(const difficulty of ['easy','hard'])for(const lesson of ['','lesson1','lesson2']){
  const list=filterPractice(catalog,{difficulty,lesson});check(list.every(i=>(difficulty==='easy'?i.question.difficulty===1:[2,3].includes(i.question.difficulty))&&(!lesson||i.question.lesson===lesson)),'Filter boundary');
 }
-check(filterPractice(catalog,{category:'E_modeling'}).every(i=>i.unavailable),'Explicit unready pool');
+check(catalog.length===126&&catalog.every(i=>!i.unavailable),'All 126 practice-permitted items connected');
 const q=questions.find(q=>q.id==='Q048');
 for(let hintLevel=0;hintLevel<=3;hintLevel++){
  const attempt=createAttempt({questionId:q.id,mode:'vertex-selection',target:'minimum',response:['b','e'],graph:q.graph,hintLevel});
@@ -45,7 +45,7 @@ const uniqueGraph=questions.find(q=>q.id==='Q074').graph;
 const correctUnique=createAttempt({questionId:'Q074',mode:'graph-construction',target:unique.target,response:uniqueGraph,
  graphSnapshot:{...graphSnapshot,graph:{n:uniqueGraph.n,vertices:uniqueGraph.vertices,edges:uniqueGraph.edges}}});
 check(correctUnique.finalScore===15&&appendAttempt(fresh(),correctUnique,curriculum,context).attempts[correctUnique.id].evaluation.satisfiesTarget,'Unique minimum checked exactly');
-for(const id of ['Q014','Q055','Q114'])check(!catalog.find(i=>i.question.id===id)||catalog.find(i=>i.question.id===id).unavailable,'Unsupported source cannot enter practice evaluator');
+for(const id of ['Q014','Q055','Q114'])check(!catalog.find(i=>i.question.id===id)||catalog.find(i=>i.question.id===id).mode==='self-assessed-text','Unsupported source cannot enter practice evaluator');
 const full=fresh();for(let i=0;i<200;i++){const a={...low,id:`a${i}`};full.attempts[a.id]=a;}
 rejects(()=>appendAttempt(full,{...low,id:'overflow'},curriculum,context),'No 201st record');
 check(createAttempt({questionId:q.id,mode:'vertex-selection',target:'minimum',response:[],graph:q.graph}).id!==low.id,'Retry identity');

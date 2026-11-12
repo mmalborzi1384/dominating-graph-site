@@ -312,10 +312,24 @@ Phase-7 implementation: T046–T052 complete; see validation/us5.md for exact sc
 
 - [ ] T053 [P] Run a complete content reachability/readiness audit with `scripts/validate-content.mjs` and record findings in `specs/001-persian-graph-learning/validation/content-audit.md`; require all 150 IDs accessible in an allowed tab, all APOS activities valid, modeling/context and required figures complete. Obtain and record human educational review of source pages 32–54/rubrics/figures; unresolved sources block release, never mark them approved automatically.
 - [ ] T054 [P] Verify both palettes, KaTeX math/Latin isolation, keyboard/touch use and 360px/1280px layouts across Chromium/Firefox/WebKit; correct issues in `assets/css/tokens.css`, `assets/css/layout.css`, `assets/css/graph.css` and `assets/js/ui/` and record actual results in `specs/001-persian-graph-learning/validation/presentation.md`. Check ordinary-text contrast >=4.5:1, visible focus and non-color-only status.
-- [ ] T055 Measure exact evaluation <=12 vertices (<100ms target), pointer redraw (16.7ms target) and loaded-tab transitions (<200ms target); correct justified bottlenecks in `assets/js/domain/evaluate.js`, `assets/js/ui/graph-editor.js` and `assets/js/ui/tabs.js`, and record hardware/browser/dataset/timings in `specs/001-persian-graph-learning/validation/performance.md`.
-- [ ] T056 Validate static project-subpath asset loading and hosting prerequisites for GitHub Pages, Linux Nginx/Apache and Windows IIS per `quickstart.md`; record actual host/browser outcomes or untested limitations in `specs/001-persian-graph-learning/validation/deployment.md`. Update `README.md` with copy-only deployment/MIME instructions; prepare deployable files but publish to external hosts only when separately authorized.
+- [x] T055 Measure exact evaluation <=12 vertices (<100ms target), pointer redraw (16.7ms target) and loaded-tab transitions (<200ms target); correct justified bottlenecks in `assets/js/domain/evaluate.js`, `assets/js/ui/graph-editor.js` and `assets/js/ui/tabs.js`, and record hardware/browser/dataset/timings in `specs/001-persian-graph-learning/validation/performance.md`.
+- [x] T056 Validate static project-subpath asset loading and hosting prerequisites for GitHub Pages, Linux Nginx/Apache and Windows IIS per `quickstart.md`; record actual host/browser outcomes or untested limitations in `specs/001-persian-graph-learning/validation/deployment.md`. Update `README.md` with copy-only deployment/MIME instructions; prepare deployable files but publish to external hosts only when separately authorized.
 - [ ] T057 Carry out the five-student usability protocol (4/5 locate/answer a practice question and find its result unaided), record observations in `specs/001-persian-graph-learning/validation/usability.md` and fix observed blockers; if participants are unavailable, record that pending release gate instead of fabricated results.
-- [ ] T058 Run the applicable end-to-end scenarios in `specs/001-persian-graph-learning/quickstart.md` and existing appropriate checks, inspect storage/export for teaching-data exclusion and validate no build/backend/storage drift; update `specs/001-persian-graph-learning/validation/release.md` with FR-001–025/SC-001–010 evidence, unresolved gates and each feature PR/human-review status. Complete the final code-slice Graphify update before requesting any merge/publication approval.
+- [x] T058 Run the applicable end-to-end scenarios in `specs/001-persian-graph-learning/quickstart.md` and existing appropriate checks, inspect storage/export for teaching-data exclusion and validate no build/backend/storage drift; update `specs/001-persian-graph-learning/validation/release.md` with FR-001–025/SC-001–010 evidence, unresolved gates and each feature PR/human-review status. Complete the final code-slice Graphify update before requesting any merge/publication approval.
+
+- [x] T059 Compact five-panel finite animated landings; preserve modeled content and editable copy.
+- [x] T060 Shared bounded tab/glass/board/feedback/score/progress/unlock motion, hover and pressed states.
+- [x] T061 Four-level glass radio rail; persisted/validated preference, reduced-motion precedence and immediate cancellation.
+- [x] T062 Verify touch/keyboard at 360px/1280px in both themes, all four levels, reload and current-bank backup round-trip; record evidence and limitations.
+
+**نتیجهٔ فاز ۸ — ۲۰۲۶-۱۱-۱۲**: پولیش‌های T059–T062 و بررسی‌های محلی/اندازه‌گیری/آماده‌سازی
+T055/T056/T058 انجام شدند. T053 باز است: فقط ۴۰/۱۵۰ شناسه مسیر دسترسی دارد، ۱۰ شکل نگاشت
+نشده و بازبینی آموزشی انسانی انجام نشده است. T054 برای Firefox/WebKit و دستگاه فیزیکی باز
+است؛ Chromium در ۸۰ ترکیب نمایش/لمس و ۲۰ نمای نهایی بررسی شد. T057 با صفر شرکت‌کننده باز
+است. فایل‌های validation/content-audit، presentation، performance، deployment، usability و
+release نتایج و محدودیت‌ها را ثبت می‌کنند. T006 و T015–T017 به‌سبب این پولیش کامل محسوب نشوند.
+آخرین `graphify update .` پس از تکهٔ نهایی کد موفق بود (تعداد گره/یال در لاگ ابزار)؛
+فایل‌های گراف ابزار توسعه‌اند و دارایی محصول نیستند. مرج/انتشار انجام نشده و کار در همین مرز بازبینی می‌ایستد.
 
 **Checkpoint**: Full release requires genuine human/content/host/usability evidence; local implementation success alone is not a completed external gate.
 
@@ -461,3 +475,94 @@ without real evidence. This command creates only this task list, not application
 - [X] APOS-U02 حذف جریان نمایان نسخهٔ قبلی، شروع خودکار آموزش قدیمی از صفر با حفظ سایر داده‌ها؛ توضیح رفتاری پشت ⓘ قابل لمس/فوکوس/ماوس، دکمهٔ محتوایی مسئلهٔ دیگر، درس کوتاه بازشونده، فاصله‌های کمتر در هر پنج تب؛ بررسی موبایل/دسکتاپ و هر دو تم و ثبت وضعیت واقعی تصادفی‌سازی/بانک در docs/content-status.md؛ همین PR، بدون مرج و بدون فاز ۸.
 
 - [X] APOS-U03 نمایش تک‌فعالیتی واقعی، عدم ساخت سؤال‌های آینده و پنهان‌بودن APOS قفل‌شده، گذر خودکار پس از قبولی با/بدون راهنما، مسیر سه‌نقطه‌ای و تعویض کارت با reduced-motion/فوکوس/جلوگیری از دوبار کلیک، مرور مراحل باز و پایان مسیر؛ بررسی دوازده فعالیت، refresh و دو تم/موبایل/دسکتاپ؛ همان PR، بدون مرج.
+
+
+## اتصال کامل بانک و پرداخت نهایی — مجوز کاربر ۲۰۲۶-۱۱-۱۲
+
+هر ۱۵۰ شناسه باید در تب مجاز مسیر پاسخ واقعی داشته باشد: ۱۲۶ مورد در تمرین و ۲۴ مورد
+بدون مجوز تمرین در بخش «کاوش‌های بانک» آزمایشگاه. مجوزهای منبع تغییر نمی‌کنند.
+صورت، سه راهنما و پاسخ معیار منبع حفظ شوند؛ برای پرسش‌های مرکب، رسم و اثبات، ابزار
+متناسب + پاسخ نوشتاری و خودارزیابی صریح ۱۰/۰ ارائه شود؛ ادعای تصحیح ماشینی کل اثبات
+یا متن ممنوع است. ۱۴ آداپتور قبلی ارزیابی خودکار خود را حفظ می‌کنند. کارگاه گراف عمومی
+جهت/چندیالی/طوقه و مدل منبع تا ۱۶ رأس را نمایش/ویرایش می‌کند؛ ارزیاب ساده همچنان حداکثر
+۱۲ و ابزار سفارشی اصلی ۲–۱۰ رأس است. صفحهٔ شطرنج، خانواده‌ها، ویرایش یال/رأس و تحلیل
+مدل ابزار پاسخ‌اند؛ صورت سؤال چندبخشی با یک محاسبهٔ گاما خلاصه نمی‌شود.
+خلاصهٔ مدل همراه پاسخ متنی تحت حد مشترک ۱۰۰۰ حرف ثبت می‌شود. فعالیت صرفاً نمایشی
+سابقه نمی‌سازد. هر figure_ref به تصویر واقعی صفحهٔ کتاب با توضیح و بارگیری تنبل وصل
+شود. تصویر کتاب جایگزین حدسی دادهٔ گراف نمی‌شود. Q141 معنای ریپوی مرجع را از سیاست
+ثبت نتیجهٔ سایت فعلی جدا توضیح می‌دهد. APOS دوازده فعالیت ترتیبی مستقل را حفظ می‌کند.
+لندینگ عمومی و پنج سربرگ در سطح کامل، ورود متن/مسیرها/مکان‌ها و صحنهٔ هندسی هماهنگ
+دارند؛ کاهش حرکت، سطوح کم/خاموش، خوانایی و گراف مات حفظ شوند. نسخهٔ موبایل/دسکتاپ
+هر دو تم با بانک پرشده بررسی و نتایج قبلیِ ۴۰ سؤال به‌عنوان سابقه برچسب‌گذاری شوند.
+
+- [x] T063 Connect and exercise all 150 permitted IDs (126 practice + 24 lab bank), preserve APOS and source modes; actual figures and authored contexts.
+- [x] T064 Enrich full-motion landing and all panels; inspect populated mobile/desktop, day/night, keyboard/touch/reduced motion; update release and deployment docs and same PR.
+
+Current follow-up: runtime content audit passes150/150; T053 remains open only for genuine independent educational approval, T054 for unavailable engines/devices, T057 for real students. Older40-ID evidence is historical. T006/T015–T017 runtime connection/figure work is delivered in this slice; their remaining human/legacy-migration gates are not automatically checked.
+
+
+## بازبینی کنترل‌ها و متن انتشار — ۱۵ نظر مرورگر، ۲۰۲۶-۱۱-۱۲
+
+فاصلهٔ برچسب درمانگاه از دایره افزایش یابد؛ کادرهای راهنمای دو درس و توضیحشان،
+«متن اصلی بانک» تکراری و نشان آمادهٔ بازبینی از رابط محصول حذف شوند. عنوان مشترک فقط
+«گراف و مدل‌سازی» باشد. وضعیت واقعی بازبینی در مستندات باقی بماند، نه پابرگ محصول.
+تم با switch شیشه‌ای متحرک و لوگو فقط در سطح کامل با حرکت محدود نمایش داده شوند.
+همهٔ selectهای تک‌انتخابی به کنترل شیشه‌ای درون‌صفحه‌ای بدون مودال ارتقا یابند؛ select
+بومی برای قرارداد value/change حفظ ولی از مسیر فوکوس/خواندن مخفی شود. فهرست دارای
+role listbox/option، انتخاب با لمس/Enter/Space، جهت‌ها/Home/End، Escape و خروج از کنترل
+باشد؛ فهرست بلند جست‌وجو و اسکرول هم‌تم داشته باشد. انتخاب/disabled/بازسازی پویا همگام
+بمانند. هدف لمسی حداقل۴۴px حفظ شود. هیچ پنجرهٔ جدید یا dialog محصول اضافه نشود.
+فوکوس رأس مربع نداشته باشد؛ نشان دایره‌ای focus-visible برای کیبورد حفظ شود. checkbox/
+radio و کنترل فایل ظاهر هماهنگ بگیرند؛ ریـل حرکت دست‌نخورده بماند. فرمول کوتاه inline
+اسکرول نداشته باشد و اسکرول لازم فرمول بلند/فهرست‌ها توکن‌های تم را مصرف کند.
+کنترل‌های انتقال در grid، چهار اقدام اصلی آزمایشگاه در چهار ستون دسکتاپ/دو ستون موبایل
+و سایر دکمه‌ها با عرض محتوایی و فاصلهٔ کم باشند. این پولیش منطق ارزیابی/ذخیره را تغییر
+نمی‌دهد. بررسی موبایل۳۶۰/دسکتاپ۱۲۸۰ و دو تم، لمس و کیبورد الزامی است.
+
+- [x] T065 Apply all fifteen browser-review changes; verify custom selects with touch/keyboard, compact transfer/lab actions, math scrollbars, theme/logo motion, and final copy at360/1280 day/night.
+
+
+## بازبینی انتخاب رأس و فاصلهٔ کنترل‌ها — ۲۰۲۶-۱۱-۱۲
+
+تمام بسترهای انتخاب رأس، از جمله کارگاه مدل منبع، موتور نمایش/انتخاب مشترک داشته
+باشند: رنگ ثابت اندیس، مهرهٔ مات، ضربهٔ انتخاب، هاشور تک/چندمالک و پوشش تدریجی.
+انتخاب صرف نباید SVG را دوباره بسازد یا فوکوس را از دست بدهد. ماژول مشترک نمایش از
+ارزیاب گراف مستقل بماند تا گراف بزرگ/جهت‌دار/چندیالی به ارزیاب ساده وارد نشود؛
+برای مدل خاص فقط انتخاب نمایش داده شود و احاطه‌گری بدون جهت جعل نشود.
+بین کنترل‌های قدم و مرحله، و دکمه‌های همسایه در تمام بخش‌ها فاصلهٔ واضح باشد.
+فقط شکل سوییچ تم دیده شود؛ نام دسترس‌پذیر و وضعیت switch حفظ شوند. لینک‌های عملیاتی
+نمای دکمهٔ شیشه‌ای و بدون زیرخط داشته باشند ولی semantics و href ناوبری باقی بماند.
+موبایل/دسکتاپ و هر دو تم، ورودی لمسی/کیبورد و reduced-motion بررسی شوند.
+
+- [x] T066 Share vertex selection engine across boards/workbenches; preserve selection animation/focus, action spacing and button links, icon-only labeled theme switch; validate mobile/desktop.
+
+
+## اصلاح سوییچ، مرکز برچسب و فرمول انتخاب‌گر — ۲۰۲۶-۱۱-۱۲
+
+قاب بیرونی سوییچ حذف و فقط ریل تم با ارتفاع۵۰px هم‌اندازهٔ ریل حرکت نشان داده شود؛
+هدف لمس و نام/وضعیت دسترس‌پذیر حفظ شوند. بخش پاسخ تمرین با gap مستقل از حاشیهٔ
+textarea و دکمه، فاصلهٔ ثابت داشته باشد. برچسب داخلی تمام رأس‌ها در موتور مشترک
+با x=0/y=0، text-anchor=middle و dominant-baseline=central، مستقل از خط‌مبنا و جهت
+فارسی وسط شود؛ حروف منبع و اعداد فارسی، حالت معمول و انتخاب‌شده بررسی شوند.
+انتخاب‌گر شیشه‌ای هم گزینه و هم مقدار فعال را با همان KaTeX امن/ریاضی LTR سؤال
+رندر کند؛ مقدار اصلی select و رخدادهایش عوض نشوند و نام دسترس‌پذیر از عنوان کنترل
+و مقدار رندرشده ساخته شود. متن خام LaTeX در برچسب قابل مشاهده نماند.
+در رابط توضیح «تفاوت نسخه‌ها» و اشاره به ریپو/نسخهٔ دیگر حذف شود. برای Q141 مکمل
+سایت، صورت و راهنما و معیار را با رفتار جاری چالش هماهنگ کند:۵ گراف/۳ دقیقه، کیفیت
+۰/۵/۱۰/۱۵، بدون پاداش سرعت، ثبت در سوابق. دلیل اقتباس در دادهٔ توسعه/مستندات بماند؛
+سؤال خام بانک برای منشأ دست‌نخورده است و در جریان محصول نشان داده نمی‌شود.
+
+- [x] T067 Fix seven browser comments: track-only theme switch, response spacing, central Latin/Persian vertex labels, KaTeX select values/options, and coherent Q141 current-site prompt/rubric; verify both viewports/themes.
+
+
+## نهایی‌سازی سوییچ و مجوز مرج — ۲۰۲۶-۱۱-۱۲
+
+کاربر حرکت پیوستهٔ ملایم برای سوییچ تم و پرتوهای خورشید را صریحاً خواست و مرج PR و
+بررسی Pages را مجاز کرد. این استثنای محدود، ممنوعیت قبلی حرکت پیوستهٔ تزئینی در طرح
+را فقط برای همین سوییچ در سطح متوسط/کامل جایگزین می‌کند. روز: دیسک خورشید با هشت
+پرتو و چرخش آرام پرتوها؛ شب: چشمک آرام ستاره‌ها. کم/خاموش و reduced-motion همهٔ این
+حرکت‌ها را متوقف می‌کنند؛ ریل چهارسطحی موجود ابزار توقف کاربر است. ابعاد، نام و
+وضعیت دسترس‌پذیر سوییچ و منطق ذخیره ثابت بمانند. پس از بررسی محلی و Graphify، همین
+PR مرج و SHA/استقرار Pages واقعاً بررسی شود؛ هیچ شواهد انسانی/میزبان دیگری جعل نشود.
+
+- [ ] T068 Add user-authorized continuous sun rays/night shimmer with motion controls; verify phone/desktop, merge PR9 at reviewed head and verify Pages deployment.

@@ -92,3 +92,15 @@ cycles and is disclosed. Equal totals have shared rank; no hidden tie-break rule
 نباید نوبت دیگری را خودکار پاس کند. بازگشت به فعالیت‌های باز و مرحله‌های قبلی ممکن است؛
 مرور نادرست قفل‌ها را برنمی‌گرداند. پس از refresh اولین فعالیت ناتمام مرحلهٔ جاری
 بازیابی می‌شود؛ فقط پیشرفت و محل مرحله ذخیره‌اند، نه پاسخ یا حالت انیمیشن.
+
+
+## Full-bank response adapters (current follow-up)
+
+Twelve existing automatic adapters retain exact selection/integer/construction evaluation.
+The other138 complete prompts use explicit10/0 learner self-assessment against the original
+answer, supported by a source-mode workbench when appropriate. Graph experiments and exact
+gamma feedback do not auto-accept a compound proof/construction task. The submitted text
+contains the current graph/queen summary under the same1000-codepoint storage limit; edits
+after finalization cannot alter the recorded result. No teacher or natural-language grading
+is fabricated. Special graph direction/parallel edges/loops are preserved in display and
+never coerced to the simple evaluator. Q134 requires its full reasoning, not just C4 gamma.

@@ -24,8 +24,8 @@ may have 12. graph.gamma is verified against exact enumeration in content valida
 sample gamma_sets is not assumed exhaustive.
 
 Response modes: vertex-selection, integer, graph-construction, self-assessed-text. Every
-mode declares a target/expected value or a reviewed answer rubric. Teaching assessments use
-only vertex-selection; other introductory material can remain instructional blocks.
+mode declares a target/expected value or a reviewed answer rubric. Teaching curriculum 2 uses typed parts (number, choice, edges, route, vertices, centers);
+legacy curriculum 1 alone used only vertex-selection.
 
 ## Persistent user envelope
 
@@ -40,7 +40,7 @@ entry/module base, not a current hash. This separates sites sharing the same ori
 | teachingProgress | object below | completion only, never answers or scores |
 | attempts | map from attemptId to Attempt | excludes teach entirely |
 | sessions | map from sessionId to Session | practice/competition/lab only |
-| settings | theme day/night | allowlist; no arbitrary executable configuration |
+| settings | theme day/night; optional motion off/low/medium/full (default medium) | allowlist; no arbitrary executable configuration |
 
 TeachingProgress: `completedActivityIds`, `passedStageIds`, `lastVisitedStageId`.
 Completion IDs reference known activities. Passed stages are the completed sequential prefix;
@@ -138,7 +138,7 @@ clean views; a dirty active form/turn pauses commits and asks for inline reload/
 Re-read revision before write to detect stale state. localStorage is not a multi-tab transaction
 service: one active writer is supported and simultaneous-tab use is explained to users.
 
-## Phase-7 derived data and version policy
+## Historical phase-7 derived data and version policy
 
 Report objects are never persisted: per-tab/lesson/APOS attempt/correctness/score/hint
 aggregates, distinct question count and six {code,label,count,total,percent} coverage rows.
@@ -150,3 +150,13 @@ No new persistent fields or new storage engine are introduced.
 ## APOS curriculum 2
 
 Envelope schema remains 1; curriculumVersion is 2. TeachingProgress retains exactly its three allowlisted fields. Valid curriculum-1 state is validated against content/teaching-v1.json and automatically converted by replacing only teachingProgress with initialProgress and curriculumVersion with 2. No legacy credit field. Curriculum-1 backup imports reset incoming old progress, while retaining existing curriculum-2 completion. Other records and tombstones are unchanged.
+
+
+## Phase 8 preferences / current-bank transfer
+
+settings.motion is optional, allowlisted and preserved when theme changes; reduced-motion
+only overrides effective rendering. No animation state/counters/timers are persisted.
+Current bank 1.4 backups round-trip; old bank versions are rejected by current context
+pending reviewed migration. The schema remains 1, active curriculum 2. Local old Attempts
+lack per-result bank versions; mixed-version interpretation remains a documented release
+gate rather than a claimed solved migration.

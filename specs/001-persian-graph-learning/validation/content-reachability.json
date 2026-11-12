@@ -1,0 +1,1909 @@
+{
+  "bankVersion": "1.4",
+  "total": 150,
+  "structuralErrors": [],
+  "metadataWarnings": [],
+  "gammaErrors": [],
+  "verifiedGamma": 82,
+  "reachable": 150,
+  "unreachable": [],
+  "runtimeMissingContext": [],
+  "sourceWithoutModeling": [
+    "Q016",
+    "Q018",
+    "Q021",
+    "Q029",
+    "Q056",
+    "Q059",
+    "Q061",
+    "Q066",
+    "Q076",
+    "Q093",
+    "Q094",
+    "Q108",
+    "Q137",
+    "Q141",
+    "Q146"
+  ],
+  "figureMappingsPending": [],
+  "catalogs": {
+    "practice": 126,
+    "competition": 26,
+    "lab": 51
+  },
+  "aposActivities": 12,
+  "releaseReady": false,
+  "rows": [
+    {
+      "id": "Q001",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "figure_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q002",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "figure_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q003",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "text",
+      "byTab": {
+        "teach": "text",
+        "lab": "multigraph_draw"
+      },
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q004",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q005",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q006",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q007",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q008",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q009",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q010",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q011",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q012",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q013",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q014",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "draw",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q015",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "draw",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q016",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q017",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q018",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q019",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q020",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "proof_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q021",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q022",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "figure_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q023",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "figure_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q024",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "draw",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q025",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "figure_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q026",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q027",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q028",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "figure_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q029",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "proof_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q030",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q031",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q032",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q033",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q034",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q035",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q036",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q037",
+      "reachable": [
+        "practice",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q038",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q039",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q040",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q041",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "text",
+      "byTab": {
+        "teach": "text",
+        "lab": "board"
+      },
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q042",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q043",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q044",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q045",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q046",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q047",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q048",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q049",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q050",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q051",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q052",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q053",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q054",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q055",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "outside-simple-engine",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q056",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q057",
+      "reachable": [
+        "practice",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q058",
+      "reachable": [
+        "practice",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q059",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q060",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q061",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q062",
+      "reachable": [
+        "practice",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q063",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q064",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q065",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q066",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q067",
+      "reachable": [
+        "practice",
+        "lab"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q068",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q069",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q070",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q071",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q072",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q073",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q074",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "draw",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q075",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "draw",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q076",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "proof_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q077",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q078",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q079",
+      "reachable": [
+        "practice",
+        "competition"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q080",
+      "reachable": [
+        "practice",
+        "competition"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q081",
+      "reachable": [
+        "practice",
+        "competition"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q082",
+      "reachable": [
+        "practice",
+        "competition"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q083",
+      "reachable": [
+        "practice",
+        "competition"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q084",
+      "reachable": [
+        "practice",
+        "competition"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q085",
+      "reachable": [
+        "practice",
+        "competition"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q086",
+      "reachable": [
+        "practice",
+        "competition"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q087",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q088",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q089",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q090",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q091",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q092",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q093",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "proof_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q094",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "proof_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q095",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q096",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q097",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q098",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q099",
+      "reachable": [
+        "practice",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q100",
+      "reachable": [
+        "practice",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q101",
+      "reachable": [
+        "practice",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q102",
+      "reachable": [
+        "practice",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q103",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q104",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q105",
+      "reachable": [
+        "practice",
+        "competition",
+        "lab"
+      ],
+      "mode": "compute_gamma",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q106",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q107",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "figure_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q108",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "proof_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q109",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q110",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "draw",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q111",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "draw",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q112",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "figure_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q113",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "figure_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q114",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "outside-simple-engine",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q115",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "outside-simple-engine",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q116",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q117",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q118",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q119",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q120",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q121",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q122",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q123",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q124",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q125",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q126",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q127",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q128",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q129",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q130",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q131",
+      "reachable": [
+        "practice"
+      ],
+      "mode": "text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q132",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "draw",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q133",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "draw",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q134",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "draw",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q135",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q136",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q137",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "proof_text",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q138",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q139",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "draw",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q140",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q141",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "text",
+      "byTab": {
+        "teach": "text",
+        "lab": "runtime_library"
+      },
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q142",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {
+        "teach": "text",
+        "lab": "runtime_library"
+      },
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q143",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {
+        "teach": "text",
+        "lab": "runtime_library"
+      },
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q144",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q145",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q146",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "text",
+      "byTab": {
+        "teach": "text",
+        "lab": "lab_activity"
+      },
+      "modeled": true,
+      "figure": "",
+      "gamma": "not-applicable",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q147",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q148",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q149",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    },
+    {
+      "id": "Q150",
+      "reachable": [
+        "lab"
+      ],
+      "mode": "interactive_graph",
+      "byTab": {},
+      "modeled": true,
+      "figure": "",
+      "gamma": "verified",
+      "educationalReview": "pending"
+    }
+  ]
+}

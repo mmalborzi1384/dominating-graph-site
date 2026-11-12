@@ -2,9 +2,9 @@
 
 ## Inputs
 
-- `docs/question-bank.json`: authoritative existing IDs/metadata, currently v1.2, fetched as JSON.
-- `docs/گسسته-دوازدهم.pdf`: local book source; `docs/question-bank-v1.2-report.md`
-  describes v1.2 changes. `docs/content-gaps.md` is a historical v1.1 audit, not a
+- `docs/question-bank.json`: authoritative existing IDs/metadata, currently v1.4, fetched as JSON.
+- `docs/گسسته-دوازدهم.pdf`: local book source; `docs/question-bank-v1.4-report.md`
+  describes v1.4 changes. `docs/content-gaps.md` is a historical v1.1 audit, not a
   current outstanding-work list.
 - `content/question-overrides.json`: versioned reviewed supplements keyed by question ID.
 - `content/teaching.json`: curriculumVersion, ordered stages, lesson blocks and activities.
@@ -76,7 +76,7 @@ sahat counts 60/25/20/15/15/15, graph endpoint integrity and gamma consistency.
 Human review verifies modeling meaning, book figures, rubrics, APOS fit and page coverage.
 Machine structure checks alone do not certify instructional correctness.
 
-## v1.2 baseline and outstanding decisions
+## Historical v1.2 baseline and outstanding decisions
 
 The bank contains 150 questions, 78 graph fields and 64 modeling fields. The report's
 47/126 practice-ready count uses only its own source-field rule: it does not establish
@@ -113,3 +113,51 @@ test the compatibility policy before changing the existing transfer contract.
 هیچ پیشرفت قدیمی را منتقل نمی‌کند؛ پیشرفت تازهٔ موجود نسخهٔ ۲ را کم نمی‌کند. واردکردن
 نسخهٔ ۲ پیشرفت تازه را ادغام می‌کند. هیچ پاسخ/امتیاز/راهنمای آموزش ذخیره نمی‌شود.
 قرارداد کاملِ فعال این بازنویسی در بخش ۵ ضمیمهٔ APOS آمده است. فاز ۸ مجوز اجرا ندارد.
+
+
+## Phase 8 actual content audit — v1.4
+
+Active source has 150 stable IDs, 93 graph fields and 135 modeling fields. The runtime
+catalogs expose 14 practice / 26 competition / 27 lab IDs, overlapping to 40 unique IDs.
+Authored APOS activities do not expand bank reachability. Source completeness is distinct
+from a supported/reviewed response adapter: response_mode_by_tab takes precedence, then
+response_mode, then legacy type. Special modes/figures must not be silently coerced.
+The audit script emits per-ID reachability and reports missing adapters, figure mappings
+and human review as release blockers. Its --write report is reproducible; it never stamps
+educational approval. Current v1.4 bank loading/current-bank backup round-trip is supported;
+legacy-bank semantic migration remains a separate uncompleted release prerequisite.
+
+
+## اتصال کامل بانک و پرداخت نهایی — مجوز کاربر ۲۰۲۶-۱۱-۱۲
+
+هر ۱۵۰ شناسه باید در تب مجاز مسیر پاسخ واقعی داشته باشد: ۱۲۶ مورد در تمرین و ۲۴ مورد
+بدون مجوز تمرین در بخش «کاوش‌های بانک» آزمایشگاه. مجوزهای منبع تغییر نمی‌کنند.
+صورت، سه راهنما و پاسخ معیار منبع حفظ شوند؛ برای پرسش‌های مرکب، رسم و اثبات، ابزار
+متناسب + پاسخ نوشتاری و خودارزیابی صریح ۱۰/۰ ارائه شود؛ ادعای تصحیح ماشینی کل اثبات
+یا متن ممنوع است. ۱۴ آداپتور قبلی ارزیابی خودکار خود را حفظ می‌کنند. کارگاه گراف عمومی
+جهت/چندیالی/طوقه و مدل منبع تا ۱۶ رأس را نمایش/ویرایش می‌کند؛ ارزیاب ساده همچنان حداکثر
+۱۲ و ابزار سفارشی اصلی ۲–۱۰ رأس است. صفحهٔ شطرنج، خانواده‌ها، ویرایش یال/رأس و تحلیل
+مدل ابزار پاسخ‌اند؛ صورت سؤال چندبخشی با یک محاسبهٔ گاما خلاصه نمی‌شود.
+خلاصهٔ مدل همراه پاسخ متنی تحت حد مشترک ۱۰۰۰ حرف ثبت می‌شود. فعالیت صرفاً نمایشی
+سابقه نمی‌سازد. هر figure_ref به تصویر واقعی صفحهٔ کتاب با توضیح و بارگیری تنبل وصل
+شود. تصویر کتاب جایگزین حدسی دادهٔ گراف نمی‌شود. Q141 معنای ریپوی مرجع را از سیاست
+ثبت نتیجهٔ سایت فعلی جدا توضیح می‌دهد. APOS دوازده فعالیت ترتیبی مستقل را حفظ می‌کند.
+لندینگ عمومی و پنج سربرگ در سطح کامل، ورود متن/مسیرها/مکان‌ها و صحنهٔ هندسی هماهنگ
+دارند؛ کاهش حرکت، سطوح کم/خاموش، خوانایی و گراف مات حفظ شوند. نسخهٔ موبایل/دسکتاپ
+هر دو تم با بانک پرشده بررسی و نتایج قبلیِ ۴۰ سؤال به‌عنوان سابقه برچسب‌گذاری شوند.
+
+
+## اصلاح سوییچ، مرکز برچسب و فرمول انتخاب‌گر — ۲۰۲۶-۱۱-۱۲
+
+قاب بیرونی سوییچ حذف و فقط ریل تم با ارتفاع۵۰px هم‌اندازهٔ ریل حرکت نشان داده شود؛
+هدف لمس و نام/وضعیت دسترس‌پذیر حفظ شوند. بخش پاسخ تمرین با gap مستقل از حاشیهٔ
+textarea و دکمه، فاصلهٔ ثابت داشته باشد. برچسب داخلی تمام رأس‌ها در موتور مشترک
+با x=0/y=0، text-anchor=middle و dominant-baseline=central، مستقل از خط‌مبنا و جهت
+فارسی وسط شود؛ حروف منبع و اعداد فارسی، حالت معمول و انتخاب‌شده بررسی شوند.
+انتخاب‌گر شیشه‌ای هم گزینه و هم مقدار فعال را با همان KaTeX امن/ریاضی LTR سؤال
+رندر کند؛ مقدار اصلی select و رخدادهایش عوض نشوند و نام دسترس‌پذیر از عنوان کنترل
+و مقدار رندرشده ساخته شود. متن خام LaTeX در برچسب قابل مشاهده نماند.
+در رابط توضیح «تفاوت نسخه‌ها» و اشاره به ریپو/نسخهٔ دیگر حذف شود. برای Q141 مکمل
+سایت، صورت و راهنما و معیار را با رفتار جاری چالش هماهنگ کند:۵ گراف/۳ دقیقه، کیفیت
+۰/۵/۱۰/۱۵، بدون پاداش سرعت، ثبت در سوابق. دلیل اقتباس در دادهٔ توسعه/مستندات بماند؛
+سؤال خام بانک برای منشأ دست‌نخورده است و در جریان محصول نشان داده نمی‌شود.

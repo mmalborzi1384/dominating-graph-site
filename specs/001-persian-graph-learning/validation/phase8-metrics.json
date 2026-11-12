@@ -1,0 +1,304 @@
+{
+  "date": "2026-11-12",
+  "browser": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+    "hardwareConcurrency": 8,
+    "dataset": "200 seeded random simple undirected graphs, n=12, every 4096 subsets, 32-entry cache eviction",
+    "evaluation": {
+      "median": 0.39999999944120646,
+      "p95": 0.7000000001862645,
+      "max": 1
+    },
+    "redraw": {
+      "samples": 100,
+      "actualMoves": 100,
+      "median": 0,
+      "p95": 0.10000000055879354,
+      "max": 0.2999999998137355
+    },
+    "tabs": [
+      {
+        "id": "teach",
+        "paint": 22.40000000037253,
+        "animation": 180
+      },
+      {
+        "id": "practice",
+        "paint": 26.799999999813735,
+        "animation": 180
+      },
+      {
+        "id": "competition",
+        "paint": 28.799999999813735,
+        "animation": 180
+      },
+      {
+        "id": "records",
+        "paint": 33.30000000074506,
+        "animation": 180
+      },
+      {
+        "id": "lab",
+        "paint": 33.39999999944121,
+        "animation": 180
+      }
+    ]
+  },
+  "domainRuntime": {
+    "runtime": "v26.5.0",
+    "cpu": "Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz",
+    "platform": "linux",
+    "samples": 300,
+    "n": 12,
+    "subsets": 4096,
+    "median": 0.32082600000001094,
+    "p95": 0.9725219999999979,
+    "max": 9.359096999999998
+  },
+  "contrast": [
+    {
+      "theme": "day",
+      "background": "paper",
+      "foreground": "ink",
+      "contrast": 14.28
+    },
+    {
+      "theme": "day",
+      "background": "paper",
+      "foreground": "ink-soft",
+      "contrast": 9.0
+    },
+    {
+      "theme": "day",
+      "background": "paper",
+      "foreground": "heading",
+      "contrast": 9.47
+    },
+    {
+      "theme": "day",
+      "background": "paper",
+      "foreground": "error",
+      "contrast": 6.3
+    },
+    {
+      "theme": "day",
+      "background": "paper",
+      "foreground": "hint",
+      "contrast": 5.96
+    },
+    {
+      "theme": "day",
+      "background": "grid",
+      "foreground": "ink",
+      "contrast": 13.63
+    },
+    {
+      "theme": "day",
+      "background": "grid",
+      "foreground": "ink-soft",
+      "contrast": 8.6
+    },
+    {
+      "theme": "day",
+      "background": "grid",
+      "foreground": "heading",
+      "contrast": 9.04
+    },
+    {
+      "theme": "day",
+      "background": "grid",
+      "foreground": "error",
+      "contrast": 6.02
+    },
+    {
+      "theme": "day",
+      "background": "grid",
+      "foreground": "hint",
+      "contrast": 5.69
+    },
+    {
+      "theme": "day",
+      "background": "surface",
+      "foreground": "ink",
+      "contrast": 14.37
+    },
+    {
+      "theme": "day",
+      "background": "surface",
+      "foreground": "ink-soft",
+      "contrast": 9.06
+    },
+    {
+      "theme": "day",
+      "background": "surface",
+      "foreground": "heading",
+      "contrast": 9.53
+    },
+    {
+      "theme": "day",
+      "background": "surface",
+      "foreground": "error",
+      "contrast": 6.34
+    },
+    {
+      "theme": "day",
+      "background": "surface",
+      "foreground": "hint",
+      "contrast": 6.0
+    },
+    {
+      "theme": "night",
+      "background": "paper",
+      "foreground": "ink",
+      "contrast": 12.15
+    },
+    {
+      "theme": "night",
+      "background": "paper",
+      "foreground": "ink-soft",
+      "contrast": 9.17
+    },
+    {
+      "theme": "night",
+      "background": "paper",
+      "foreground": "heading",
+      "contrast": 8.6
+    },
+    {
+      "theme": "night",
+      "background": "paper",
+      "foreground": "error",
+      "contrast": 6.24
+    },
+    {
+      "theme": "night",
+      "background": "paper",
+      "foreground": "hint",
+      "contrast": 8.16
+    },
+    {
+      "theme": "night",
+      "background": "grid",
+      "foreground": "ink",
+      "contrast": 11.37
+    },
+    {
+      "theme": "night",
+      "background": "grid",
+      "foreground": "ink-soft",
+      "contrast": 8.58
+    },
+    {
+      "theme": "night",
+      "background": "grid",
+      "foreground": "heading",
+      "contrast": 8.05
+    },
+    {
+      "theme": "night",
+      "background": "grid",
+      "foreground": "error",
+      "contrast": 5.83
+    },
+    {
+      "theme": "night",
+      "background": "grid",
+      "foreground": "hint",
+      "contrast": 7.63
+    },
+    {
+      "theme": "night",
+      "background": "surface",
+      "foreground": "ink",
+      "contrast": 11.92
+    },
+    {
+      "theme": "night",
+      "background": "surface",
+      "foreground": "ink-soft",
+      "contrast": 8.99
+    },
+    {
+      "theme": "night",
+      "background": "surface",
+      "foreground": "heading",
+      "contrast": 8.44
+    },
+    {
+      "theme": "night",
+      "background": "surface",
+      "foreground": "error",
+      "contrast": 6.11
+    },
+    {
+      "theme": "night",
+      "background": "surface",
+      "foreground": "hint",
+      "contrast": 8.0
+    }
+  ],
+  "pagesReadOnly": {
+    "url": "https://mmalborzi1384.github.io/dominating-graph-site/",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "phase8MotionPresent": false
+  },
+  "priorPullRequests": [
+    {
+      "number": 8,
+      "title": "PR#1.1 — بازنویسی آموزش APOS با شروع پیشرفت از صفر",
+      "html_url": "https://github.com/mmalborzi1384/dominating-graph-site/pull/8",
+      "state": "closed",
+      "merged_at": "2026-11-12T08:00:59Z"
+    },
+    {
+      "number": 7,
+      "title": "Phase 7: Records analytics, selective deletion and validated backups",
+      "html_url": "https://github.com/mmalborzi1384/dominating-graph-site/pull/7",
+      "state": "closed",
+      "merged_at": "2026-11-11T19:18:52Z"
+    },
+    {
+      "number": 6,
+      "title": "فاز ۶: آزمایشگاه گراف با پنج ایستگاه، ویرایشگر و چالش زمان‌دار",
+      "html_url": "https://github.com/mmalborzi1384/dominating-graph-site/pull/6",
+      "state": "closed",
+      "merged_at": "2026-11-11T12:04:31Z"
+    },
+    {
+      "number": 5,
+      "title": "مسابقهٔ گروهی و انتخاب تصادفی سؤال در مسابقه، آموزش و تمرین",
+      "html_url": "https://github.com/mmalborzi1384/dominating-graph-site/pull/5",
+      "state": "closed",
+      "merged_at": "2026-11-11T10:23:42Z"
+    },
+    {
+      "number": 4,
+      "title": "فاز ۴: تمرین مستقل با بانک ۱٫۲، راهنمای رایگان و ثبت نتیجه",
+      "html_url": "https://github.com/mmalborzi1384/dominating-graph-site/pull/4",
+      "state": "closed",
+      "merged_at": "2026-11-11T09:33:09Z"
+    },
+    {
+      "number": 3,
+      "title": "فاز ۳: آموزش APOS با پیشرفت پایدار و زیرساخت ذخیره‌سازی",
+      "html_url": "https://github.com/mmalborzi1384/dominating-graph-site/pull/3",
+      "state": "closed",
+      "merged_at": "2026-11-10T23:21:29Z"
+    },
+    {
+      "number": 2,
+      "title": "feat: phase 2 2D board with scoring, liquid glass and repo bead colours",
+      "html_url": "https://github.com/mmalborzi1384/dominating-graph-site/pull/2",
+      "state": "closed",
+      "merged_at": "2026-11-10T22:13:14Z"
+    },
+    {
+      "number": 1,
+      "title": "feat: phase 1 shell with five tabs and day/night theme (T001-T005)",
+      "html_url": "https://github.com/mmalborzi1384/dominating-graph-site/pull/1",
+      "state": "closed",
+      "merged_at": "2026-11-10T19:49:11Z"
+    }
+  ]
+}
