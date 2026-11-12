@@ -520,3 +520,18 @@ radio و کنترل فایل ظاهر هماهنگ بگیرند؛ ریـل حر�
 نمی‌دهد. بررسی موبایل۳۶۰/دسکتاپ۱۲۸۰ و دو تم، لمس و کیبورد الزامی است.
 
 - [x] T065 Apply all fifteen browser-review changes; verify custom selects with touch/keyboard, compact transfer/lab actions, math scrollbars, theme/logo motion, and final copy at360/1280 day/night.
+
+
+## بازبینی انتخاب رأس و فاصلهٔ کنترل‌ها — ۲۰۲۶-۱۱-۱۲
+
+تمام بسترهای انتخاب رأس، از جمله کارگاه مدل منبع، موتور نمایش/انتخاب مشترک داشته
+باشند: رنگ ثابت اندیس، مهرهٔ مات، ضربهٔ انتخاب، هاشور تک/چندمالک و پوشش تدریجی.
+انتخاب صرف نباید SVG را دوباره بسازد یا فوکوس را از دست بدهد. ماژول مشترک نمایش از
+ارزیاب گراف مستقل بماند تا گراف بزرگ/جهت‌دار/چندیالی به ارزیاب ساده وارد نشود؛
+برای مدل خاص فقط انتخاب نمایش داده شود و احاطه‌گری بدون جهت جعل نشود.
+بین کنترل‌های قدم و مرحله، و دکمه‌های همسایه در تمام بخش‌ها فاصلهٔ واضح باشد.
+فقط شکل سوییچ تم دیده شود؛ نام دسترس‌پذیر و وضعیت switch حفظ شوند. لینک‌های عملیاتی
+نمای دکمهٔ شیشه‌ای و بدون زیرخط داشته باشند ولی semantics و href ناوبری باقی بماند.
+موبایل/دسکتاپ و هر دو تم، ورودی لمسی/کیبورد و reduced-motion بررسی شوند.
+
+- [x] T066 Share vertex selection engine across boards/workbenches; preserve selection animation/focus, action spacing and button links, icon-only labeled theme switch; validate mobile/desktop.

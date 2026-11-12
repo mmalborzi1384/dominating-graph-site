@@ -67,3 +67,22 @@ input:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
 .records-transfer .transfer-actions > .file-picker-input { position:absolute; width:1px; height:1px; min-height:0; padding:0; margin:-1px; border:0; overflow:hidden; clip-path:inset(50%); }
 .records-transfer .file-picker-label:has(+ .file-picker-input:focus-visible) { outline:3px solid var(--focus); outline-offset:3px; }
 :root[data-motion=low] .glass-select-menu { animation-name:coverage-fill; }
+/* One action language and clear space between step, stage and secondary actions. */
+main a:not(.tab):not(.hero-start), .text-button {
+ display:inline-flex; align-items:center; justify-content:center; min-height:44px;
+ padding:.4rem .8rem; border:1px solid var(--line); border-radius:var(--control-radius);
+ color:var(--heading); background:var(--panel); box-shadow:var(--control-shadow);
+ text-decoration:none; font-size:var(--font-sm); cursor:pointer;
+}
+main a:not(.tab):hover, .text-button:hover:not(:disabled) { border-color:var(--heading); background:var(--accent-soft); }
+.learning-review-controls { margin-block:.8rem; padding-block:.25rem; gap:.65rem; }
+.stage-controls { margin-block-start:.85rem; gap:.65rem; }
+.stage-controls > button { width:auto; justify-self:start; margin:0; }
+:is(.apos-part,.learning-finish,.source-workbench) > button { margin-inline-end:.5rem; margin-block:.35rem; }
+.inline-confirm,.teaching-recovery { display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; }
+.inline-confirm > p,.teaching-recovery > p { flex-basis:100%; }
+.inline-confirm > button,.teaching-recovery > button { margin:0; }
+.theme-toggle { min-width:68px; justify-content:center; }
+#theme-label { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+.source-graph .vertex-number { stroke:var(--sheet); stroke-width:3; paint-order:stroke fill; }
+.source-graph .is-selected .vertex-number { fill:var(--bead-ink); }

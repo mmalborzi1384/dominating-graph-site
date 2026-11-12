@@ -1,0 +1,287 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "name": "Selection preserves same SVG node"
+    },
+    {
+      "ok": true,
+      "name": "Shared bead tap animation"
+    },
+    {
+      "ok": true,
+      "name": "Shared owner coverage"
+    },
+    {
+      "ok": true,
+      "name": "Equal multi-owner sectors"
+    },
+    {
+      "ok": true,
+      "name": "Keyboard toggles and retains vertex focus"
+    },
+    {
+      "ok": true,
+      "name": "360/day previous-step to previous-stage gap"
+    },
+    {
+      "ok": true,
+      "name": "360/day/teach"
+    },
+    {
+      "ok": true,
+      "name": "360/day/practice"
+    },
+    {
+      "ok": true,
+      "name": "360/day/competition"
+    },
+    {
+      "ok": true,
+      "name": "360/day/records"
+    },
+    {
+      "ok": true,
+      "name": "360/day/lab"
+    },
+    {
+      "ok": true,
+      "name": "360/night previous-step to previous-stage gap"
+    },
+    {
+      "ok": true,
+      "name": "360/night/teach"
+    },
+    {
+      "ok": true,
+      "name": "360/night/practice"
+    },
+    {
+      "ok": true,
+      "name": "360/night/competition"
+    },
+    {
+      "ok": true,
+      "name": "360/night/records"
+    },
+    {
+      "ok": true,
+      "name": "360/night/lab"
+    },
+    {
+      "ok": true,
+      "name": "1280/day previous-step to previous-stage gap"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/teach"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/practice"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/competition"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/records"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/lab"
+    },
+    {
+      "ok": true,
+      "name": "1280/night previous-step to previous-stage gap"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/teach"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/practice"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/competition"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/records"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/lab"
+    },
+    {
+      "ok": true,
+      "name": "Reduced motion zero animation"
+    }
+  ],
+  "views": [
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "teach",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "practice",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "competition",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "records",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "lab",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "teach",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "practice",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "competition",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "records",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "lab",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "teach",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "practice",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "competition",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "records",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "lab",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "teach",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "practice",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "competition",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "records",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "lab",
+      "overflow": false,
+      "themeTextClipped": true,
+      "links": true
+    }
+  ],
+  "errors": []
+}

@@ -72,3 +72,5 @@ explicitly skips unsupported assets and does not certify semantic content review
 
 
 Latest UI follow-up: [controls-review.md](controls-review.md) records all fifteen user comments,20 views/53 checks and the removal of development copy from the product. Human review/deployment limits remain documentation-only.
+
+Shared vertex selection and spacing follow-up: [selection-review.md](selection-review.md),20 viewport/theme/tab views and30 checks.
