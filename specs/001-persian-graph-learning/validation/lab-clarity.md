@@ -31,3 +31,16 @@ for mobile/day and desktop/night. These are emulated phone checks, not physical 
 
 Machine evidence: [lab-clarity-evidence.json](lab-clarity-evidence.json).
 Graphify AST index updated after code edits. Public deployment is checked after merge.
+
+## Verified public publication
+
+[PR10](https://github.com/mmalborzi1384/dominating-graph-site/pull/10) merged with
+explicit user authorization at30048e14b21cce13d324bd2de2f669019ce8e62f. GitHub Pages
+reported built at exactly that merge SHA, with no build error. All15 inspected public
+assets returned HTTP200, correct MIME and SHA256 identical to the local merged files.
+The same49 browser checks/20 views passed against the actual HTTPS Pages site, including
+real native touch/mouse input, no text selection, accurate vertex position and keyboard
+movement. No browser runtime exceptions or horizontal overflow were observed.
+
+Evidence: [lab-clarity-publication.json](lab-clarity-publication.json).
+This final documentation-only update records the observed deployment; it changes no runtime.

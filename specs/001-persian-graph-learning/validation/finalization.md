@@ -51,3 +51,5 @@ Machine-readable public evidence: [pages-publication-evidence.json](pages-public
 Older “not merged/not published” notes are historical review checkpoints. Pages publication
 is now verified; unavailable student/educational/other-browser/VPS observations remain
 explicitly unclaimed. No further feature phase was started.
+
+Follow-up: PR10 lab workbench corrections and its verified publication are recorded in [lab-clarity.md](lab-clarity.md). This PR9 report is historical evidence.
