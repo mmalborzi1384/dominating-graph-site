@@ -16,3 +16,6 @@ __pycache__/
 *.pyc
 .venv/
 graphify-out/
+
+# Local Codex configuration stays on this computer.
+/.codex/

@@ -583,3 +583,12 @@ Final execution completed: PR9 merged67c0328; Pages built that exact SHA and13 a
 - [x] T069 Clarify lab heading/workbench labels, prevent drag text selection and verify pointer geometry, responsive UI and publication.
 
 T069 publication verified: PR10 merged30048e1; Pages built the same SHA,15 matching public assets and49 public browser checks/20 views passed. See validation/lab-clarity.md.
+
+
+## اصلاح لایهٔ فهرست انتخاب — ۲۰۲۶-۱۱-۱۲
+
+فهرست شیشه‌ایِ باز در هر دو جهت باید بالاتر از کنترل‌ها و کارت‌های همسایه باشد.
+ظرف‌های شیشه‌ای و پنل بردِ حاوی فهرست باز نیز همراه کارت داخلی موقتاً بالا می‌آیند؛
+z-index خود فهرست به‌تنهایی از stacking context شیشه خارج نمی‌شود. با بسته‌شدن
+فهرست، لایه‌بندی عادی بازمی‌گردد. کاربر پوش مستقیم بدون PR را صریحاً مجاز کرد.
+پوشهٔ محلی `.codex/` از ردیابی خارج و ignore شود، بدون حذف فایل محلی.

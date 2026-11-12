@@ -20,7 +20,7 @@
 .glass-select-option:disabled { opacity:.6; }
 input.glass-select-search { width:100%; min-height:44px; padding:.45rem .7rem; margin-bottom:.3rem; flex:none; border:1px solid var(--line); border-radius:9px; color:var(--ink); background:var(--surface); font:inherit; }
 .select-empty { padding:.7rem; font-size:var(--font-sm); }
-.question-card:has(.select-field.is-open),.records-card:has(.select-field.is-open),.lab-tool-group:has(.select-field.is-open) { position:relative; z-index:85; }
+.glass-surface:has(.select-field.is-open),.board-panel:has(.select-field.is-open),.question-card:has(.select-field.is-open),.records-card:has(.select-field.is-open),.lab-tool-group:has(.select-field.is-open) { position:relative; z-index:85; }
 .primary-button,.secondary-button,.text-button { width:auto; min-height:44px; padding:.4rem .7rem; font-size:var(--font-sm); border-radius:var(--control-radius); margin-bottom:.25rem; }
 .secondary-button,.vertex-choice { background:var(--panel); box-shadow:var(--control-shadow); }
 .practice-actions > button,.lab-result-actions > button { width:100%; margin:0; }
