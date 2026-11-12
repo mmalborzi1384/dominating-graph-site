@@ -10,8 +10,8 @@ were changed. Teaching retains12 authored sequential cognitive activities, witho
 
 The independent source question/answer/hint content is preserved. Only two stale aggregate
 metadata counts were corrected (text31, compute_gamma39). All15 missing source contexts
-receive explicit modeled supplements in the site catalogs, including source-version policy
-clarification for Q141. Seven actual book pages32/36/37/39/41/48/52 were rendered from PDF
+receive explicit modeled supplements in the site catalogs, including current-site prompt/rubric
+adaptation for Q141 (see alignment-review.md). Seven actual book pages32/36/37/39/41/48/52 were rendered from PDF
 physical pages+8 to local WebP; every one of10 figure_ref records has its real page. No
 hospital distance, bridge or topology was invented from a missing illustration.
 

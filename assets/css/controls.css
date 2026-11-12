@@ -86,3 +86,17 @@ main a:not(.tab):hover, .text-button:hover:not(:disabled) { border-color:var(--h
 #theme-label { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
 .source-graph .vertex-number { stroke:var(--sheet); stroke-width:3; paint-order:stroke fill; }
 .source-graph .is-selected .vertex-number { fill:var(--bead-ink); }
+/* The switch track is the only visible vessel; its height matches the motion rail. */
+#theme-toggle { width:84px; height:50px; min-width:84px; min-height:50px; padding:0; gap:0; border:0; border-radius:100px; background:transparent; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; }
+#theme-toggle .theme-switch-track { width:84px; height:50px; background:var(--panel); backdrop-filter:blur(var(--glass-blur)); }
+#theme-toggle .theme-switch-knob { width:40px; height:40px; top:4px; left:4px; }
+[data-theme=night] #theme-toggle .theme-switch-knob { transform:translateX(34px); }
+#theme-toggle .theme-switch-stars { top:9px; left:auto; right:10px; }
+[data-theme=night] #theme-toggle .theme-switch-stars { right:auto; left:10px; }
+.practice-response { display:flex; flex-direction:column; align-items:stretch; gap:.75rem; }
+.practice-response > button { align-self:flex-start; margin:0; }
+.practice-response > .question-card { margin:0; }
+.practice-activity > .question-card { margin-bottom:.85rem; }
+.vertex-number { dominant-baseline:central; text-anchor:middle; direction:ltr; unicode-bidi:isolate; }
+.glass-select-value { flex:1; min-width:0; overflow-wrap:anywhere; text-align:right; }
+.glass-select-value .math,.glass-select-option .math { vertical-align:baseline; }

@@ -43,7 +43,7 @@ export function createVertexSelection(svg,graph,placeList,onToggle,{numberFor=(i
     const coverage = svgElement('g', { class: 'vertex-coverage', 'aria-hidden': 'true' });
     paint.append(coverage);
     paint.append(svgElement('circle', { r: RADIUS, class: 'vertex-outline' }));
-    paint.append(svgElement('text', { y: 8, class: 'vertex-number', 'aria-hidden': 'true' },
+    paint.append(svgElement('text', { x: 0, y: 0, 'dominant-baseline': 'central', 'text-anchor': 'middle', direction: 'ltr', class: 'vertex-number', 'aria-hidden': 'true' },
       numberFor(place.id, index)));
     const label = svgElement('text', { x: 0, y: place.y < 150 ? -42 : 46,
       class: 'vertex-label', direction: 'rtl', 'aria-hidden': 'true' }, place.label);
