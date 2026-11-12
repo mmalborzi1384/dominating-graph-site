@@ -1,0 +1,276 @@
+{
+  "api": {
+    "build": {
+      "status": "built",
+      "commit": "67c0328b008e0f1e9914c46e3af9cd9a83fae40a",
+      "updated_at": "2026-11-12T12:59:09Z",
+      "error": {
+        "message": null
+      }
+    },
+    "pr": {
+      "merged": true,
+      "merge_commit_sha": "67c0328b008e0f1e9914c46e3af9cd9a83fae40a",
+      "merged_at": "2026-11-12T12:58:46Z"
+    }
+  },
+  "assets": {
+    "url": "https://mmalborzi1384.github.io/dominating-graph-site/",
+    "mergeCommit": "67c0328b008e0f1e9914c46e3af9cd9a83fae40a",
+    "assets": [
+      {
+        "file": "index.html",
+        "status": 200,
+        "matchesLocal": true,
+        "mime": "text/html; charset=utf-8"
+      },
+      {
+        "file": "assets/css/controls.css",
+        "status": 200,
+        "matchesLocal": true,
+        "mime": "text/css; charset=utf-8"
+      },
+      {
+        "file": "assets/css/editorial.css",
+        "status": 200,
+        "matchesLocal": true,
+        "mime": "text/css; charset=utf-8"
+      },
+      {
+        "file": "assets/css/workbench.css",
+        "status": 200,
+        "matchesLocal": true,
+        "mime": "text/css; charset=utf-8"
+      },
+      {
+        "file": "assets/js/app.js",
+        "status": 200,
+        "matchesLocal": true,
+        "mime": "application/javascript; charset=utf-8"
+      },
+      {
+        "file": "assets/js/ui/vertex-selection.js",
+        "status": 200,
+        "matchesLocal": true,
+        "mime": "application/javascript; charset=utf-8"
+      },
+      {
+        "file": "assets/js/ui/selects.js",
+        "status": 200,
+        "matchesLocal": true,
+        "mime": "application/javascript; charset=utf-8"
+      },
+      {
+        "file": "content/practice.json",
+        "status": 200,
+        "matchesLocal": true,
+        "mime": "application/json; charset=utf-8"
+      },
+      {
+        "file": "content/bank-lab.json",
+        "status": 200,
+        "matchesLocal": true,
+        "mime": "application/json; charset=utf-8"
+      },
+      {
+        "file": "content/teaching.json",
+        "status": 200,
+        "matchesLocal": true,
+        "mime": "application/json; charset=utf-8"
+      },
+      {
+        "file": "assets/book/page-32.webp",
+        "status": 200,
+        "matchesLocal": true,
+        "mime": "image/webp"
+      },
+      {
+        "file": "assets/vendor/vazirmatn/Vazirmatn-variable.woff2",
+        "status": 200,
+        "matchesLocal": true,
+        "mime": "font/woff2"
+      },
+      {
+        "file": "assets/vendor/katex/katex.min.js",
+        "status": 200,
+        "matchesLocal": true,
+        "mime": "application/javascript; charset=utf-8"
+      }
+    ]
+  },
+  "browser": {
+    "url": "https://mmalborzi1384.github.io/dominating-graph-site/",
+    "views": [
+      {
+        "width": 360,
+        "theme": "day",
+        "tab": "teach",
+        "visible": true,
+        "overflow": false,
+        "heading": "از تجربهٔ محله تا مدل‌سازی با گراف"
+      },
+      {
+        "width": 360,
+        "theme": "day",
+        "tab": "practice",
+        "visible": true,
+        "overflow": false,
+        "heading": "برای فکرکردن، راه‌های بیشتری هست."
+      },
+      {
+        "width": 360,
+        "theme": "day",
+        "tab": "competition",
+        "visible": true,
+        "overflow": false,
+        "heading": "یک مسئله، چند نگاه متفاوت."
+      },
+      {
+        "width": 360,
+        "theme": "day",
+        "tab": "records",
+        "visible": true,
+        "overflow": false,
+        "heading": "سوابق و مسیر یادگیری"
+      },
+      {
+        "width": 360,
+        "theme": "day",
+        "tab": "lab",
+        "visible": true,
+        "overflow": false,
+        "heading": "بساز، تغییر بده، کشف کن."
+      },
+      {
+        "width": 360,
+        "theme": "night",
+        "tab": "teach",
+        "visible": true,
+        "overflow": false,
+        "heading": "از تجربهٔ محله تا مدل‌سازی با گراف"
+      },
+      {
+        "width": 360,
+        "theme": "night",
+        "tab": "practice",
+        "visible": true,
+        "overflow": false,
+        "heading": "تمرین؛ راه‌های بیشتر برای مدل‌سازی"
+      },
+      {
+        "width": 360,
+        "theme": "night",
+        "tab": "competition",
+        "visible": true,
+        "overflow": false,
+        "heading": "مسابقهٔ گروهی؛ یک مدل، چند راه‌حل"
+      },
+      {
+        "width": 360,
+        "theme": "night",
+        "tab": "records",
+        "visible": true,
+        "overflow": false,
+        "heading": "سوابق و مسیر یادگیری"
+      },
+      {
+        "width": 360,
+        "theme": "night",
+        "tab": "lab",
+        "visible": true,
+        "overflow": false,
+        "heading": "بساز، تغییر بده، کشف کن."
+      },
+      {
+        "width": 1280,
+        "theme": "day",
+        "tab": "teach",
+        "visible": true,
+        "overflow": false,
+        "heading": "از تجربهٔ محله تا مدل‌سازی با گراف"
+      },
+      {
+        "width": 1280,
+        "theme": "day",
+        "tab": "practice",
+        "visible": true,
+        "overflow": false,
+        "heading": "تمرین؛ راه‌های بیشتر برای مدل‌سازی"
+      },
+      {
+        "width": 1280,
+        "theme": "day",
+        "tab": "competition",
+        "visible": true,
+        "overflow": false,
+        "heading": "مسابقهٔ گروهی؛ یک مدل، چند راه‌حل"
+      },
+      {
+        "width": 1280,
+        "theme": "day",
+        "tab": "records",
+        "visible": true,
+        "overflow": false,
+        "heading": "سوابق و مسیر یادگیری"
+      },
+      {
+        "width": 1280,
+        "theme": "day",
+        "tab": "lab",
+        "visible": true,
+        "overflow": false,
+        "heading": "آزمایشگاه گراف و مدل‌سازی"
+      },
+      {
+        "width": 1280,
+        "theme": "night",
+        "tab": "teach",
+        "visible": true,
+        "overflow": false,
+        "heading": "از تجربهٔ محله تا مدل‌سازی با گراف"
+      },
+      {
+        "width": 1280,
+        "theme": "night",
+        "tab": "practice",
+        "visible": true,
+        "overflow": false,
+        "heading": "تمرین؛ راه‌های بیشتر برای مدل‌سازی"
+      },
+      {
+        "width": 1280,
+        "theme": "night",
+        "tab": "competition",
+        "visible": true,
+        "overflow": false,
+        "heading": "مسابقهٔ گروهی؛ یک مدل، چند راه‌حل"
+      },
+      {
+        "width": 1280,
+        "theme": "night",
+        "tab": "records",
+        "visible": true,
+        "overflow": false,
+        "heading": "سوابق و مسیر یادگیری"
+      },
+      {
+        "width": 1280,
+        "theme": "night",
+        "tab": "lab",
+        "visible": true,
+        "overflow": false,
+        "heading": "آزمایشگاه گراف و مدل‌سازی"
+      }
+    ],
+    "content": {
+      "practice": 126,
+      "labBank": 24,
+      "questions": 150,
+      "sharedVertex": true,
+      "sunRays": true,
+      "font": true
+    },
+    "exceptions": [],
+    "failedRequests": []
+  }
+}

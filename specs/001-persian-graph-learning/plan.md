@@ -1,6 +1,6 @@
 # Implementation Plan: آموزش فارسی گراف و مدل‌سازی
 
-**Branch**: `codex/phase-8-polish` (phase-8 review; logical feature `001-persian-graph-learning`)
+**Branch**: `main` (PR9 merged; logical feature `001-persian-graph-learning`)
 | **Date**: 2026-11-10 | **Spec**: [spec.md](spec.md)
 
 **Input**: `specs/001-persian-graph-learning/spec.md`

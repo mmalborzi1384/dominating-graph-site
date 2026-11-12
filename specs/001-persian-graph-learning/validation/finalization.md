@@ -29,3 +29,25 @@ physical-device/Firefox/WebKit/Linux-IIS target-host results remain unobserved, 
 
 The actual merge/deployment outcome is recorded after execution; pre-merge local success
 alone is not proof of GitHub Pages publication. Pages source was verified as main/root.
+
+
+## Executed merge and live verification
+
+- PR9 merged at2026-11-12 12:58:46UTC (16:28:46 Asia/Tehran), merge SHA
+  `67c0328b008e0f1e9914c46e3af9cd9a83fae40a`. Explicit user authorization is in this task.
+- Pages legacy build from main/root completed successfully for that exact merge SHA;
+  API build updated at12:59:09UTC (16:29:09 Asia/Tehran), no error.
+- Public site: https://mmalborzi1384.github.io/dominating-graph-site/ . Thirteen actual deployed
+  files (entry, styles, modules, catalogs, source image, font and KaTeX) returnedHTTP200,
+  correct MIME, and SHA256 bytes identical to the locally merged files.
+- Actual public Chrome session:20 tab/viewport/theme views, all five functional headings,
+  no horizontal overflow, no JavaScript exceptions or failed network responses. Source
+  data confirms126 Practice +24 lab-bank questions =150 IDs. Shared vertex rendering,
+  sun rays, local Vazirmatn and stored settings load at the real GitHub project subpath.
+- Local main was fast-forwarded to the merge. A final documentation-only commit records
+  these observations; it does not change the runtime implementation tested above.
+
+Machine-readable public evidence: [pages-publication-evidence.json](pages-publication-evidence.json).
+Older “not merged/not published” notes are historical review checkpoints. Pages publication
+is now verified; unavailable student/educational/other-browser/VPS observations remain
+explicitly unclaimed. No further feature phase was started.

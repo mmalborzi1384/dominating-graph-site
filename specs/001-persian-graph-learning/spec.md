@@ -1,10 +1,10 @@
 # Feature Specification: آموزش فارسی گراف و مدل‌سازی
 
-**Feature Branch**: `codex/phase-8-polish` (مرحلهٔ جاری؛ تاریخچه در ضمیمه‌ها حفظ شده است).
+**Feature Branch**: `main`؛ PR شمارهٔ۹ مرج و نسخهٔ جاری روی GitHub Pages منتشر و بررسی شده است.
 
 **Created**: 2026-11-10
 
-**Status**: فاز ۸ آمادهٔ بازبینی محلی؛ گیت‌های انتشار محتوایی/انسانی/میزبان باز هستند.
+**Status**: فاز۸ مرج و انتشار Pages بررسی شد؛ شواهد و موارد انسانی/میزبان مشاهده‌نشده در validation/finalization.md ثبت‌اند.
 
 **به‌روزرسانی منبع ۲۰۲۶-۱۱-۱۲**: بانک مرجع `docs/question-bank.json` نسخهٔ ۱٫۴ است؛
 گزارش فعال `docs/question-bank-v1.4-report.md` و کتاب `docs/گسسته-دوازدهم.pdf` هستند.

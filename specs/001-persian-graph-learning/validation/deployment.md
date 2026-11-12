@@ -1,3 +1,5 @@
+> Historical pre-merge matrix. **Current GitHub Pages outcome: [finalization.md](finalization.md)** — PR9 merged and the exact merge deployment/public browser checks passed. Linux/IIS real-host limits remain.
+
 # Phase 8 — static deployment / T056
 
 2026-11-12. No branch merge or external publication was performed.

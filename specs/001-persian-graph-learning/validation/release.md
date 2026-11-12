@@ -78,3 +78,6 @@ Shared vertex selection and spacing follow-up: [selection-review.md](selection-r
 Seven-comment follow-up: [alignment-review.md](alignment-review.md),69 checks/20 views; Q141 site adapter now matches current challenge policy with no version-difference copy.
 
 Final user authorization opens merge/publication verification: [finalization.md](finalization.md). Earlier no-merge statements describe previous review boundaries, not the current instruction.
+
+
+**Final repository/publication status:** PR9 merged with explicit user authorization; GitHub Pages exact-merge build and live20-view smoke checks passed. See finalization.md and pages-publication-evidence.json. These observations supersede historical pending-merge/publication notes without inventing independent educational/student/VPS approval.

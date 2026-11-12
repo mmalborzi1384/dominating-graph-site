@@ -565,4 +565,6 @@ textarea و دکمه، فاصلهٔ ثابت داشته باشد. برچسب د�
 وضعیت دسترس‌پذیر سوییچ و منطق ذخیره ثابت بمانند. پس از بررسی محلی و Graphify، همین
 PR مرج و SHA/استقرار Pages واقعاً بررسی شود؛ هیچ شواهد انسانی/میزبان دیگری جعل نشود.
 
-- [ ] T068 Add user-authorized continuous sun rays/night shimmer with motion controls; verify phone/desktop, merge PR9 at reviewed head and verify Pages deployment.
+- [x] T068 Add user-authorized continuous sun rays/night shimmer with motion controls; verify phone/desktop, merge PR9 at reviewed head and verify Pages deployment.
+
+Final execution completed: PR9 merged67c0328; Pages built that exact SHA and13 asset hashes/20 public browser views passed. No further phase. Final evidence is in validation/finalization.md.
