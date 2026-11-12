@@ -69,3 +69,6 @@ added. Finite counters/animation handles remain in memory; teaching storage rema
 completion IDs, passed stages and last visited stage. Motion only extends optional settings.
 Final code-slice `graphify update .` completed successfully before handoff. AST extraction
 explicitly skips unsupported assets and does not certify semantic content review.
+
+
+Latest UI follow-up: [controls-review.md](controls-review.md) records all fifteen user comments,20 views/53 checks and the removal of development copy from the product. Human review/deployment limits remain documentation-only.

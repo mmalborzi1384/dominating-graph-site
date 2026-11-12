@@ -11,7 +11,7 @@ function btn(text,id,action) { const b=el('button',text,'secondary-button');b.ty
 function download(text,name) {const url=URL.createObjectURL(new Blob([text],{type:'application/json;charset=utf-8'})),a=el('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 export async function initRecords({questions,curriculum,bankVersion,legacyCurriculum},repository) {
   const response=await fetch(new URL('../../../content/records.json',import.meta.url));if(!response.ok)throw Error('محتوای سوابق بارگیری نشد.');const copy=await response.json(),context={questions,bankVersion,legacyCurriculum};
-  const root=document.getElementById('panel-records'),heading=el('h1',copy.title),intro=el('p',copy.intro),notice=el('p'),progress=el('section',undefined,'records-card glass-surface'),summary=el('section',undefined,'records-card glass-surface'),coverage=el('section',undefined,'records-card glass-surface'),history=el('section',undefined,'records-card glass-surface'),transfer=el('section',undefined,'records-card glass-surface');
+  const root=document.getElementById('panel-records'),heading=el('h1',copy.title),intro=el('p',copy.intro),notice=el('p'),progress=el('section',undefined,'records-card glass-surface'),summary=el('section',undefined,'records-card glass-surface'),coverage=el('section',undefined,'records-card glass-surface'),history=el('section',undefined,'records-card glass-surface'),transfer=el('section',undefined,'records-card glass-surface records-transfer');
   root.replaceChildren(heading,intro,notice,progress,summary,coverage,history,transfer);
   const selected=new Set();let pending=null,selectionRevision=null,filter='all',requestId=0;
   const status=el('p');status.id='records-feedback';
@@ -42,8 +42,8 @@ export async function initRecords({questions,curriculum,bankVersion,legacyCurric
       const ok=repository.commit(pending.candidate,pending.revision);clearImport();savedMessage(ok);
     }catch(error){clearImport();reportError(error);}
   }});
-  const fileInput=el('input');fileInput.type='file';fileInput.accept='.json,application/json';fileInput.id='records-import-file';
-  const fileLabel=el('label','ورود فایل پشتیبان JSON (حداکثر ۵ مگابایت)');fileLabel.htmlFor=fileInput.id;
+  const fileInput=el('input');fileInput.type='file';fileInput.accept='.json,application/json';fileInput.id='records-import-file';fileInput.className='file-picker-input';
+  const fileLabel=el('label','انتخاب فایل پشتیبان JSON (حداکثر ۵ مگابایت)','file-picker-label');fileLabel.htmlFor=fileInput.id;
   fileInput.addEventListener('change',async()=>{
     const id=++requestId;clearImport();const file=fileInput.files[0];if(!file)return;
     try {if(file.size>LIMITS.importBytes)throw Error('حداکثر حجم فایل ۵ مگابایت است.');const text=await file.text();if(id!==requestId)return;
@@ -60,6 +60,7 @@ export async function initRecords({questions,curriculum,bankVersion,legacyCurric
   const reloadDialog=createInlineConfirmation({message:'وضعیت ذخیره دوباره خوانده شود؟ ابتدا کار ذخیره‌نشده را خروجی بگیرید؛ کار موقت کنار گذاشته می‌شود.',id:'records-reload-confirmation',confirmId:'records-reload-confirm',onConfirm(){clearImport();repository.reload({discardUnsaved:true});}});
   const reload=btn('بازخوانی ذخیره','records-reload',()=>reloadDialog.open(reload));
   transfer.append(el('h2','پشتیبان‌گیری و ورود فایل'),el('p',copy.transferNote),exportButton,original,retry,reload,reloadDialog.element,fileLabel,fileInput,importPreview,importDialog.element,status);
+  const transferActions=el('div',undefined,'transfer-actions');for(const control of [exportButton,reload,fileLabel,fileInput,original,retry])transferActions.append(control);transfer.insertBefore(transferActions,importPreview);
   function render(snapshot) {
     const {state}=snapshot,report=summarizeRecords(state,questions);setFeedback(notice,snapshot.warning||(snapshot.dirty?'کار فعلی ذخیره نشده؛ خروجی شامل همین کار موقت است.':''),{tone:'error'});
     exportButton.textContent=snapshot.dirty?'خروجی JSON از کار ذخیره‌نشده':'خروجی JSON از وضعیت فعلی';original.hidden=!snapshot.warning||repository.originalJSON()===null;retry.hidden=!snapshot.dirty;retry.disabled=snapshot.conflict;

@@ -79,7 +79,7 @@ export async function initPractice(questions, curriculum, repository, {tab = 'pr
     card.append(title,el('p',`${q.lesson==='lesson1'?'درس ۱':'درس ۲'} · سطح ${fa(q.difficulty)} · ${q.apos_stage}`,'model-key'));
     for (const text of [item.model.scenario,item.model.vertexMeaning,item.model.edgeMeaning,item.prompt]) {const p=el('p');renderTextMath(p,text);card.append(p);}
     const workbench = createWorkbench(card,q,item,()=>repository.setEditingDirty(tab+'-bank',true));
-    const original=el('details'),originalText=el('p');renderTextMath(originalText,q.question_fa);original.append(el('summary','متن اصلی بانک'),originalText);card.append(original);
+
     const work=el('div','','board-panel glass-surface'),actions=el('div','','practice-actions'),feedback=el('p'),hintList=el('ol','','hint-list');
     const answer=el('input');answer.type='number';answer.min='0';answer.max='12';answer.step='1';answer.id='practice-number';
     const text=el('textarea');text.rows=5;text.id='practice-text';

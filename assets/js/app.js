@@ -1,3 +1,4 @@
+import { initGlassSelects } from './ui/selects.js';
 import { initMotion, initLandings } from './ui/motion.js';
 import { loadTeaching } from './data/load.js';
 import { createRepository } from './storage/repository.js';
@@ -15,6 +16,7 @@ const themeLabel = document.getElementById('theme-label');
 const storageNotice = document.getElementById('storage-notice');
 function updateThemeControl() {
   const isNight = document.documentElement.dataset.theme === 'night';
+  themeButton.setAttribute('aria-checked', String(isNight));
   themeLabel.textContent = isNight ? 'حالت روز' : 'حالت شب';
   themeButton.setAttribute('aria-label', isNight ? 'تغییر به حالت روز' : 'تغییر به حالت شب');
   const warning = window.graphRepository?.snapshot().warning ?? window.graphShellTheme?.warning ?? '';
@@ -27,6 +29,7 @@ themeButton.addEventListener('click', () => {
 });
 updateThemeControl();
 initTabs();
+initGlassSelects();
 document.querySelector('.skip-link').addEventListener('click', event => {
   event.preventDefault();
   document.getElementById('main-content').focus();

@@ -1,0 +1,399 @@
+{
+  "views": [
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "teach",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "practice",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "competition",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "records",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 360,
+      "theme": "day",
+      "tab": "lab",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "teach",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "practice",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "competition",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "records",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 360,
+      "theme": "night",
+      "tab": "lab",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "teach",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "practice",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "competition",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "records",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 1280,
+      "theme": "day",
+      "tab": "lab",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "teach",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "practice",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "competition",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "records",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    },
+    {
+      "width": 1280,
+      "theme": "night",
+      "tab": "lab",
+      "overflow": false,
+      "selects": true,
+      "removed": 0,
+      "reviewCopy": false
+    }
+  ],
+  "checks": [
+    {
+      "ok": true,
+      "name": "360/day/teach layout"
+    },
+    {
+      "ok": true,
+      "name": "360/day/practice layout"
+    },
+    {
+      "ok": true,
+      "name": "360/day/practice opens by touch"
+    },
+    {
+      "ok": true,
+      "name": "360/day/practice menu within viewport"
+    },
+    {
+      "ok": true,
+      "name": "360/day/competition layout"
+    },
+    {
+      "ok": true,
+      "name": "360/day/records layout"
+    },
+    {
+      "ok": true,
+      "name": "360/day/records opens by touch"
+    },
+    {
+      "ok": true,
+      "name": "360/day/records menu within viewport"
+    },
+    {
+      "ok": true,
+      "name": "360/day/lab layout"
+    },
+    {
+      "ok": true,
+      "name": "360/day/lab opens by touch"
+    },
+    {
+      "ok": true,
+      "name": "360/day/lab menu within viewport"
+    },
+    {
+      "ok": true,
+      "name": "360/night/teach layout"
+    },
+    {
+      "ok": true,
+      "name": "360/night/practice layout"
+    },
+    {
+      "ok": true,
+      "name": "360/night/practice opens by touch"
+    },
+    {
+      "ok": true,
+      "name": "360/night/practice menu within viewport"
+    },
+    {
+      "ok": true,
+      "name": "360/night/competition layout"
+    },
+    {
+      "ok": true,
+      "name": "360/night/records layout"
+    },
+    {
+      "ok": true,
+      "name": "360/night/records opens by touch"
+    },
+    {
+      "ok": true,
+      "name": "360/night/records menu within viewport"
+    },
+    {
+      "ok": true,
+      "name": "360/night/lab layout"
+    },
+    {
+      "ok": true,
+      "name": "360/night/lab opens by touch"
+    },
+    {
+      "ok": true,
+      "name": "360/night/lab menu within viewport"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/teach layout"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/practice layout"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/practice opens by touch"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/practice menu within viewport"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/competition layout"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/records layout"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/records opens by touch"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/records menu within viewport"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/lab layout"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/lab opens by touch"
+    },
+    {
+      "ok": true,
+      "name": "1280/day/lab menu within viewport"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/teach layout"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/practice layout"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/practice opens by touch"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/practice menu within viewport"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/competition layout"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/records layout"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/records opens by touch"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/records menu within viewport"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/lab layout"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/lab opens by touch"
+    },
+    {
+      "ok": true,
+      "name": "1280/night/lab menu within viewport"
+    },
+    {
+      "ok": true,
+      "name": "Keyboard opens selected option"
+    },
+    {
+      "ok": true,
+      "name": "Keyboard selects and closes"
+    },
+    {
+      "ok": true,
+      "name": "Long list searchable"
+    },
+    {
+      "ok": true,
+      "name": "Touch option updates real question"
+    },
+    {
+      "ok": true,
+      "name": "Theme switch semantic and persisted"
+    },
+    {
+      "ok": true,
+      "name": "Four lab actions grouped"
+    },
+    {
+      "ok": true,
+      "name": "Transfer controls grouped"
+    },
+    {
+      "ok": true,
+      "name": "Inline math no scrollbar"
+    },
+    {
+      "ok": true,
+      "name": "Reduced motion no running animations"
+    }
+  ],
+  "errors": []
+}
