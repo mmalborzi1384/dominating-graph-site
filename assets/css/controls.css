@@ -100,3 +100,16 @@ main a:not(.tab):hover, .text-button:hover:not(:disabled) { border-color:var(--h
 .vertex-number { dominant-baseline:central; text-anchor:middle; direction:ltr; unicode-bidi:isolate; }
 .glass-select-value { flex:1; min-width:0; overflow-wrap:anywhere; text-align:right; }
 .glass-select-value .math,.glass-select-option .math { vertical-align:baseline; }
+/* User-authorized continuous ornament; the motion rail is its pause/off control. */
+[data-theme=day] #theme-toggle .theme-switch-knob { background:transparent; box-shadow:none; }
+#theme-toggle .theme-sun { width:100%; height:100%; display:block; overflow:visible; }
+.theme-sun-disc { fill:var(--gold); }
+.theme-sun-rays { fill:none; stroke:var(--gold); stroke-width:2.5; stroke-linecap:round; transform-origin:24px 24px; }
+[data-theme=night] #theme-toggle .theme-sun { visibility:hidden; }
+:root:is([data-motion=medium],[data-motion=full])[data-theme=day] .theme-sun-rays { animation:theme-rays-orbit var(--theme-orbit) linear infinite; }
+:root:is([data-motion=medium],[data-motion=full])[data-theme=day] .theme-sun-disc { animation:theme-sun-glow var(--theme-shimmer) ease-in-out infinite alternate; }
+:root:is([data-motion=medium],[data-motion=full])[data-theme=night] #theme-toggle .theme-switch-stars { animation:theme-stars-shimmer var(--theme-shimmer) ease-in-out infinite alternate; }
+@keyframes theme-rays-orbit { to { transform:rotate(360deg); } }
+@keyframes theme-sun-glow { from { opacity:.8; } to { opacity:1; } }
+@keyframes theme-stars-shimmer { from { opacity:.45; transform:scale(.9); } to { opacity:1; transform:scale(1.05); } }
+@media(prefers-reduced-motion:reduce) { #theme-toggle * { animation:none!important; } }

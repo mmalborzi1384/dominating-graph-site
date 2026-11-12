@@ -146,3 +146,6 @@
   --learning-enter: 0ms;
 }
 :root { --hero-radius: 28px; --scene-duration: 3400ms; --text-reveal: 650ms; }
+
+:root { --theme-orbit: 14000ms; --theme-shimmer: 3200ms; }
+:root[data-motion="full"] { --theme-orbit: 10000ms; --theme-shimmer: 2400ms; }

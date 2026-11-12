@@ -76,3 +76,5 @@ Latest UI follow-up: [controls-review.md](controls-review.md) records all fiftee
 Shared vertex selection and spacing follow-up: [selection-review.md](selection-review.md),20 viewport/theme/tab views and30 checks.
 
 Seven-comment follow-up: [alignment-review.md](alignment-review.md),69 checks/20 views; Q141 site adapter now matches current challenge policy with no version-difference copy.
+
+Final user authorization opens merge/publication verification: [finalization.md](finalization.md). Earlier no-merge statements describe previous review boundaries, not the current instruction.

@@ -553,3 +553,16 @@ textarea و دکمه، فاصلهٔ ثابت داشته باشد. برچسب د�
 سؤال خام بانک برای منشأ دست‌نخورده است و در جریان محصول نشان داده نمی‌شود.
 
 - [x] T067 Fix seven browser comments: track-only theme switch, response spacing, central Latin/Persian vertex labels, KaTeX select values/options, and coherent Q141 current-site prompt/rubric; verify both viewports/themes.
+
+
+## نهایی‌سازی سوییچ و مجوز مرج — ۲۰۲۶-۱۱-۱۲
+
+کاربر حرکت پیوستهٔ ملایم برای سوییچ تم و پرتوهای خورشید را صریحاً خواست و مرج PR و
+بررسی Pages را مجاز کرد. این استثنای محدود، ممنوعیت قبلی حرکت پیوستهٔ تزئینی در طرح
+را فقط برای همین سوییچ در سطح متوسط/کامل جایگزین می‌کند. روز: دیسک خورشید با هشت
+پرتو و چرخش آرام پرتوها؛ شب: چشمک آرام ستاره‌ها. کم/خاموش و reduced-motion همهٔ این
+حرکت‌ها را متوقف می‌کنند؛ ریل چهارسطحی موجود ابزار توقف کاربر است. ابعاد، نام و
+وضعیت دسترس‌پذیر سوییچ و منطق ذخیره ثابت بمانند. پس از بررسی محلی و Graphify، همین
+PR مرج و SHA/استقرار Pages واقعاً بررسی شود؛ هیچ شواهد انسانی/میزبان دیگری جعل نشود.
+
+- [ ] T068 Add user-authorized continuous sun rays/night shimmer with motion controls; verify phone/desktop, merge PR9 at reviewed head and verify Pages deployment.
