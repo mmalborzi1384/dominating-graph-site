@@ -5,6 +5,15 @@
 
 **Input**: `specs/001-persian-graph-learning/spec.md`
 
+## مسیر فعال بازطراحی نسخهٔ ۱.۱
+
+تاریخ۲۰۲۶-۱۱-۱۴: مرجع آموزش جدید [plan](../002-apos-teaching-v11/plan.md)،
+[spec](../002-apos-teaching-v11/spec.md) و [tasks](../002-apos-teaching-v11/tasks.md) است.
+قانون‌نامهٔ۱٫۲٫۰ پیشنهادی، اصل شواهد شناختی را اضافه می‌کند. دو درس/هشت واحد، شواهد
+و خروج، ادامهٔ دستی و مهاجرتِ حفظ‌کنندهٔ داده جای قرارداد ثابت مسیر۱۲فعالیتی را در
+طراحی جدید می‌گیرند؛ runtime هنوز curriculum۲ است. قسمت‌های بعدی سابقهٔ برنامهٔ
+محصول قبلی‌اند و مجوز اجرا/مرج خودکار نسخهٔ تازه نیستند.
+
 ## Summary
 
 Deliver five static Persian RTL tabs for chapter 2, using the 150-question source bank.
