@@ -204,12 +204,17 @@ function validateSession(session, key, state, context, usedAttempts) {
 /** Strict common boundary for local commits and future pre/post-merge imports. Returns a normalized copy. */
 export function validateStoredEnvelope(value, curriculum, context = {}) {
   safeData(value);
-  fields(value, ['schemaVersion', 'revision', 'curriculumVersion', 'teachingProgress', 'attempts', 'sessions', 'settings'], [], 'state');
-  check(value.schemaVersion === 1, 'نسخهٔ ساختار ذخیره پشتیبانی نمی‌شود.', 'schemaVersion', 'unsupported-schema');
-  check(value.curriculumVersion === curriculum.curriculumVersion && [1,2].includes(value.curriculumVersion),
+  fields(value, ['schemaVersion', 'revision', 'curriculumVersion', 'teachingProgress', 'attempts', 'sessions', 'settings'], ['teachingProgressArchive'], 'state');
+  const ownCurriculum = curriculumForState(value, curriculum, context);
+  check(value.schemaVersion === (value.curriculumVersion === 3 ? 2 : 1), 'نسخهٔ ساختار ذخیره پشتیبانی نمی‌شود.', 'schemaVersion', 'unsupported-schema');
+  check([1,2,3].includes(value.curriculumVersion),
     'نسخهٔ آموزش پشتیبانی نمی‌شود.', 'curriculumVersion', 'unsupported-curriculum');
   integer(value.revision, 0, Number.MAX_SAFE_INTEGER, 'revision');
-  validateProgress(value.teachingProgress, curriculum);
+  validateProgress(value.teachingProgress, ownCurriculum);
+  if (Object.hasOwn(value, 'teachingProgressArchive')) {
+    check(value.curriculumVersion === 3, 'آرشیو فقط در مسیر تازه مجاز است.');
+    validateTeachingArchive(value.teachingProgressArchive, context);
+  }
   fields(value.settings, ['theme'], ['motion'], 'settings');
   check(value.settings.motion === undefined || ['off','low','medium','full'].includes(value.settings.motion), 'سطح حرکت معتبر نیست.', 'settings.motion'); check(['day', 'night'].includes(value.settings.theme), 'تم معتبر نیست.', 'settings.theme');
   check(isObject(value.attempts) && isObject(value.sessions), 'رکوردها و نشست‌ها باید نگاشت باشند.', 'state');
@@ -235,6 +240,8 @@ export function validateStateTransition(previous, next, { allowTeachingReset = f
     check(previous.sessions[removedCompetitionId]?.kind === 'competition' && !next.sessions[removedCompetitionId], 'حذف صریح باید به یک مسابقهٔ موجود محدود باشد.', 'sessions');
     check(!Object.values(next.attempts).some(a => a.sessionId === removedCompetitionId), 'نتایج وابسته به مسابقه باید همراه آن حذف شوند.', 'attempts');
   }
+  check(previous.schemaVersion === next.schemaVersion && previous.curriculumVersion === next.curriculumVersion, 'تغییر نسخه فقط با تأیید تبدیل مجاز است.');
+  if (previous.teachingProgressArchive) check(next.teachingProgressArchive && previous.teachingProgressArchive.teachingProgress.completedActivityIds.every(id => next.teachingProgressArchive.teachingProgress.completedActivityIds.includes(id)), 'آرشیو قبلی نباید حذف یا کم شود.');
   if (!allowTeachingReset) check(previous.teachingProgress.completedActivityIds.every(id => next.teachingProgress.completedActivityIds.includes(id)), 'کاهش پیشرفت فقط با ریست صریح مجاز است.', 'teachingProgress');
   for (const [id, attempt] of Object.entries(previous.attempts)) {
     if (next.attempts[id]) check(same(attempt, next.attempts[id]), 'نتیجهٔ نهایی قابل ویرایش نیست.', `attempts.${id}`);
@@ -254,4 +261,20 @@ export function validateStateTransition(previous, next, { allowTeachingReset = f
       if (turn.resultStatus === 'finalized' && replacement.resultStatus === 'finalized') check(replacement.finalizedAttemptId === turn.finalizedAttemptId, 'ارجاع نتیجهٔ نهایی قابل تعویض نیست.', `sessions.${id}.turns`);
     }
   }
+}
+
+/** A v3 host may continue ordinary records/settings operations on a validated old envelope. */
+export function curriculumForState(value, curriculum, context = {}) {
+  if (value.curriculumVersion === curriculum.curriculumVersion) return curriculum;
+  if (curriculum.curriculumVersion === 3) {
+    const previous = value.curriculumVersion === 2 ? context.previousCurriculum : context.legacyCurriculum;
+    if ([1, 2].includes(value.curriculumVersion) && previous?.curriculumVersion === value.curriculumVersion) return previous;
+  }
+  check(false, 'نسخهٔ آموزش پشتیبانی نمی‌شود.', 'curriculumVersion', 'unsupported-curriculum');
+}
+export function validateTeachingArchive(archive, context) {
+  fields(archive, ['curriculumVersion', 'teachingProgress'], [], 'teachingProgressArchive');
+  check(archive.curriculumVersion === 2 && context.previousCurriculum?.curriculumVersion === 2, 'نسخهٔ آرشیو معتبر نیست.');
+  validateProgress(archive.teachingProgress, context.previousCurriculum);
+  return structuredClone(archive);
 }

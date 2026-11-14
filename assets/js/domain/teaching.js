@@ -66,3 +66,5 @@ export function followingTeachingActivity(curriculum, stageId, activityId) {
   if(position+1<stage.requiredActivityIds.length)return {stageId,activityId:stage.requiredActivityIds[position+1]};
   const next=curriculum.stages[index+1];return next?{stageId:next.id,activityId:next.requiredActivityIds[0]}:null;
 }
+
+export { assessTeachingEvidence, assessEvidencePart, validateEvidencePart, evidenceGraph, commitTeachingPrediction } from './teaching-evidence.js';

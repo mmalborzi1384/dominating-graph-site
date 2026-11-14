@@ -1,7 +1,7 @@
 # Implementation Plan: آموزش APOS نسخهٔ ۱.۱
 
 **Branch**: `codex/v1.1-apos-teaching` | **Date**: 2026-11-14
-**Spec**: [spec.md](spec.md) | **Status**: طراحی؛ محصول هنوز curriculum=2 است.
+**Spec**: [spec.md](spec.md) | **Status**: زیرساخت فاز۲ پیاده شده؛ محصول هنوز curriculum=2 است.
 
 ## Summary
 

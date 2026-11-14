@@ -1,6 +1,7 @@
 import { summarizeRecords, recordScore } from '../domain/coverage.js';
 import { createProgressRing } from '../ui/motion.js';
 import { progressPercent } from '../domain/progress.js';
+import { curriculumForState } from '../storage/validate.js';
 import { exportBackup, parseBackup, mergeBackup } from '../storage/transfer.js';
 import { LIMITS } from '../domain/limits.js';
 import { renderTextMath, renderFormula } from '../ui/math.js';
@@ -9,8 +10,8 @@ const fa=n=>n.toLocaleString('fa-IR',{maximumFractionDigits:1});
 function el(tag,text,className='') { const e=document.createElement(tag);e.className=className;if(text!==undefined)e.textContent=text;return e; }
 function btn(text,id,action) { const b=el('button',text,'secondary-button');b.type='button';b.id=id;b.addEventListener('click',action);return b; }
 function download(text,name) {const url=URL.createObjectURL(new Blob([text],{type:'application/json;charset=utf-8'})),a=el('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-export async function initRecords({questions,curriculum,bankVersion,legacyCurriculum},repository) {
-  const response=await fetch(new URL('../../../content/records.json',import.meta.url));if(!response.ok)throw Error('محتوای سوابق بارگیری نشد.');const copy=await response.json(),context={questions,bankVersion,legacyCurriculum};
+export async function initRecords({questions,curriculum,bankVersion,legacyCurriculum,previousCurriculum},repository) {
+  const response=await fetch(new URL('../../../content/records.json',import.meta.url));if(!response.ok)throw Error('محتوای سوابق بارگیری نشد.');const copy=await response.json(),context={questions,bankVersion,legacyCurriculum,previousCurriculum};
   const root=document.getElementById('panel-records'),heading=el('h1',copy.title),intro=el('p',copy.intro),notice=el('p'),progress=el('section',undefined,'records-card glass-surface'),summary=el('section',undefined,'records-card glass-surface'),coverage=el('section',undefined,'records-card glass-surface'),history=el('section',undefined,'records-card glass-surface'),transfer=el('section',undefined,'records-card glass-surface records-transfer');
   root.replaceChildren(heading,intro,notice,progress,summary,coverage,history,transfer);
   const selected=new Set();let pending=null,selectionRevision=null,filter='all',requestId=0;
@@ -35,6 +36,28 @@ export async function initRecords({questions,curriculum,bankVersion,legacyCurric
   const resetButton=btn('شروع آموزش از اول','records-reset',()=>reset.open(resetButton));
   const ringLabel=el('strong'),progressRing=createProgressRing(ringLabel);
   const progressCopy=el('div');progress.append(el('h2','پیشرفت آموزش APOS'),progressCopy,resetButton,reset.element);
+  let migrationRevision = null;
+  const migrationPanel = el('section', undefined, 'records-card');
+  migrationPanel.id = 'records-teaching-migration';
+  const migrationCopy = el('p');
+  const migrationExport = btn('خروجی پیشرفت و سوابق فعلی', 'records-migration-export', () => {
+    try { download(repository.recoveryJSON(), 'graph-learning-before-teaching-change.json'); } catch(error) { reportError(error); }
+  });
+  const migrationDialog = createInlineConfirmation({
+    message: 'مسیر تازه از ابتدا شروع و پیشرفت قبلی در آرشیو نگه‌داری شود؟ سوابق، نشست‌ها و تنظیمات حفظ می‌شوند.',
+    id: 'records-migration-confirmation', confirmId: 'records-migration-confirm', cancelId: 'records-migration-cancel',
+    onCancel() { repository.cancelTeachingMigration(); },
+    onConfirm() { savedMessage(repository.confirmTeachingMigration(migrationRevision)); },
+  });
+  const migrationButton = btn('بررسی تبدیل مسیر آموزش', 'records-migration-preview', () => {
+    try { const preview = repository.migrationPreview(); if (!preview) return;
+      migrationRevision = preview.expectedRevision;
+      migrationCopy.textContent = 'این مسیر فعالیت‌ها و معیارهای تازه دارد؛ پیشرفت قبلی آرشیو می‌شود و اعتبار تکمیل مسیر تازه نیست. پیش از تأیید می‌توانی خروجی بگیری. انصراف داده‌ای را تغییر نمی‌دهد.';
+      migrationDialog.open(migrationButton);
+    } catch(error) { reportError(error); }
+  });
+  migrationPanel.append(el('h3','آماده‌سازی مسیر تازهٔ آموزش'), migrationCopy, migrationExport, migrationButton, migrationDialog.element);
+  progress.append(migrationPanel);
   const importPreview=el('div');importPreview.id='records-import-preview';
   function clearImport(){pending=null;repository.setEditingDirty('records-import',false);importPreview.replaceChildren();importDialog.close({returnFocus:false});}
   const importDialog=createInlineConfirmation({message:'این ادغام کامل در ذخیرهٔ مرورگر ثبت شود؟',id:'records-import-confirmation',confirmId:'records-import-confirm',cancelId:'records-import-cancel',onCancel:clearImport,onConfirm(){
@@ -49,8 +72,8 @@ export async function initRecords({questions,curriculum,bankVersion,legacyCurric
     try {if(file.size>LIMITS.importBytes)throw Error('حداکثر حجم فایل ۵ مگابایت است.');const text=await file.text();if(id!==requestId)return;
       const incoming=parseBackup(text,curriculum,context),snap=repository.snapshot();if(snap.needsMigration||snap.conflict||snap.dirty||!['ready','absent'].includes(snap.readStatus))throw Error('ابتدا وضعیت ذخیره را با خروجی بازیابی و بازخوانی یا تلاش دوباره حل کنید.');
       const fresh=snap.state.revision<=1&&!Object.keys(snap.state.attempts).length&&!Object.keys(snap.state.sessions).length&&!snap.state.teachingProgress.completedActivityIds.length;
-      const oldCurriculum=JSON.parse(text).curriculumVersion===1&&curriculum.curriculumVersion===2;const result=mergeBackup(snap.state,incoming,curriculum,context,{fresh});pending={...result,revision:snap.state.revision};const p=result.preview;
-      importPreview.replaceChildren(el('h3','پیش‌نمایش ورود؛ هنوز ذخیره نشده'),el('p',oldCurriculum?'این فایل آموزش قدیمی دارد؛ هیچ پیشرفت قدیمی منتقل نمی‌شود. سوابق سایر تب‌ها حفظ و پیشرفت آموزش تازهٔ موجود کم نمی‌شود.':''),el('p',`${fa(p.added)} نتیجه و ${fa(p.addedSessions)} نشست افزوده؛ ${fa(p.deduplicated)} نتیجهٔ تکراری؛ ${fa(p.suppressed)} نتیجهٔ قدیمی به‌علت علامت حذف بازگردانده نمی‌شود.`),el('p',`پیشرفت: ${fa(p.before)}٪ ← ${fa(p.after)}٪. ${p.restoresProgress?'این فایل تکمیل فعالیت‌ها را بازمی‌گرداند؛ حتی اگر قبلاً ریست شده باشند.':''}`),el('p',fresh?'مرورگر تازه: تم، سطح حرکت و محل ادامه از فایل گرفته می‌شوند.':'تم، سطح حرکت و محل ادامهٔ فعلی حفظ می‌شوند.'));
+      const sourceVersion=JSON.parse(text).curriculumVersion;const oldCurriculum=sourceVersion===1&&curriculum.curriculumVersion===2;const result=mergeBackup(snap.state,incoming,curriculum,context,{fresh});pending={...result,revision:snap.state.revision};const p=result.preview;
+      importPreview.replaceChildren(el('h3','پیش‌نمایش ورود؛ هنوز ذخیره نشده'),el('p',curriculum.curriculumVersion===3&&sourceVersion<3?'پیشرفت این فایل در آرشیو نگه‌داری می‌شود و تکمیل مسیر تازه را افزایش نمی‌دهد.':oldCurriculum?'این فایل آموزش قدیمی دارد؛ هیچ پیشرفت قدیمی منتقل نمی‌شود. سوابق سایر تب‌ها حفظ و پیشرفت آموزش تازهٔ موجود کم نمی‌شود.':''),el('p',`${fa(p.added)} نتیجه و ${fa(p.addedSessions)} نشست افزوده؛ ${fa(p.deduplicated)} نتیجهٔ تکراری؛ ${fa(p.suppressed)} نتیجهٔ قدیمی به‌علت علامت حذف بازگردانده نمی‌شود.`),el('p',`پیشرفت: ${fa(p.before)}٪ ← ${fa(p.after)}٪. ${p.restoresProgress?'این فایل تکمیل فعالیت‌ها را بازمی‌گرداند؛ حتی اگر قبلاً ریست شده باشند.':''}`),el('p',fresh?'مرورگر تازه: تم، سطح حرکت و محل ادامه از فایل گرفته می‌شوند.':'تم، سطح حرکت و محل ادامهٔ فعلی حفظ می‌شوند.'));
       repository.setEditingDirty('records-import',true);importDialog.open(fileInput);setFeedback(status,'فایل معتبر است؛ پیش‌نمایش را بررسی و تأیید یا لغو کنید.');
     }catch(error){reportError(error);}finally {fileInput.value='';}
   });
@@ -66,8 +89,12 @@ export async function initRecords({questions,curriculum,bankVersion,legacyCurric
     exportButton.textContent=snapshot.dirty?'خروجی JSON از کار ذخیره‌نشده':'خروجی JSON از وضعیت فعلی';original.hidden=!snapshot.warning||repository.originalJSON()===null;retry.hidden=!snapshot.dirty;retry.disabled=snapshot.conflict;
     if(selectionRevision!==state.revision){selected.clear();selectionRevision=state.revision;deletion.close({returnFocus:false});impact.textContent='';}
     deleteButton.disabled=!selected.size||snapshot.dirty||snapshot.conflict;
-    const meter=el('progress');meter.className='sr-only';progressRing.update(progressPercent(state.teachingProgress));meter.max=100;meter.value=progressPercent(state.teachingProgress);meter.setAttribute('aria-label','پیشرفت آموزش');
-    const stages=el('ul');for(const stage of curriculum.stages)stages.append(el('li',`${stage.title}: ${state.teachingProgress.passedStageIds.includes(stage.id)?'پاس‌شده':'پاس نشده'}`));
+    const displayedCurriculum = curriculumForState(state, curriculum, context);
+    migrationPanel.hidden = !snapshot.needsMigration;
+    migrationButton.disabled = snapshot.dirty || snapshot.conflict || snapshot.editing;
+    resetButton.disabled = snapshot.needsMigration;
+    const meter=el('progress');meter.className='sr-only';progressRing.update(progressPercent(state.teachingProgress,displayedCurriculum));meter.max=100;meter.value=progressPercent(state.teachingProgress,displayedCurriculum);meter.setAttribute('aria-label','پیشرفت آموزش');
+    const stages=el('ul');for(const stage of displayedCurriculum.units??displayedCurriculum.stages)stages.append(el('li',`${stage.title??`${stage.lessonId} · ${stage.stageId}`}: ${(state.teachingProgress.passedUnitIds??state.teachingProgress.passedStageIds).includes(stage.id)?'پاس‌شده':'پاس نشده'}`));
     const link=el('a','ادامهٔ آموزش');link.href='#teach';progressCopy.replaceChildren(progressRing.element,el('p',`${fa(meter.value)}٪ · ${fa(state.teachingProgress.completedActivityIds.length)} فعالیت تکمیل‌شده؛ پاسخ و امتیاز آموزشی ثبت نمی‌شود.`),meter,stages,link);
     summary.replaceChildren(el('h2','تحلیل فعالیت‌ها'),el('p',`${fa(report.count)} تلاش · ${fa(report.unique)} سؤال یکتا · ${fa(report.score)} امتیاز · ${fa(report.correct)} پاسخ مطابق خواسته · ${fa(report.hints)} راهنمای مصرف‌شده`));
     const grid=el('div',undefined,'records-grid');for(const t of report.tabs)grid.append(el('p',`${copy.tabs[t.tab]}: ${fa(t.count)} تلاش، ${fa(t.correct)} مطابق خواسته، ${fa(t.score)} امتیاز، ${fa(t.hints)} راهنما`));summary.append(grid);

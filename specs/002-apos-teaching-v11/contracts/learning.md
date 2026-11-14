@@ -93,3 +93,82 @@ curriculumVersion=3 می‌خواهد؛ تغییر شکل پیشرفت بدون 
 بک‌آپ schema2/curriculum3 فقط در نسخهٔ جدید مجاز است؛ downgrade به کد قدیم رد شود.
 برخورد نشست‌ها، تقدم tombstone، محدودیت‌ها، شناسه‌ها، امتیاز و bankVersion از قرارداد
 موجود پیروی می‌کنند؛ تغییر curriculum مجوز تغییر این قواعد نیست.
+
+## API اجرایی زیرساخت فاز۲
+
+وضعیت 2026-11-14: زیرساخت پیاده شده؛ `content/teaching.json` همچنان نسخه۲ است.
+نسخه۳ فقط با fixture فنی بررسی می‌شود؛ فعال‌سازی و تألیف هر۳۲ فعالیت در فاز۳ باقی است.
+
+- `validateTeaching` به اعتبارسنج نسخهٔ محتوا dispatch می‌کند؛ نسخه۲ با قرارداد خودش
+  می‌ماند. نسخه۳ دو درس، ترتیب چهار ساختار در هر درس، زنجیرهٔ واحدها، تعداد فعالیتِ
+  خوانده‌شده از داده، هدف/داربست/بدفهمی/معیار، زمینه و sourceReference را بررسی می‌کند.
+- activity دارای `unitId/lessonId/stageId/prerequisites` است. پیش‌نیاز فعالیت، تمام
+  فعالیت‌های پیشین همان واحد است. unit پیش‌نیاز واحد قبلی دارد؛ خروج آخرین فعالیت است.
+  هر فعالیت حداقل یک شاهد ساخت‌یافته و یک reflection با معیارهای جدا دارد.
+- `exitVariants[]` شامل id/context/graph/parts است. گراف خروج نباید با تغییر نام/چیدمان
+  همان گراف باشد؛ بررسی هم‌ریختی کوچک با سقف۱۰۰هزار گام انجام می‌شود. رسیدن به سقف
+  به‌صورت محافظه‌کارانه «تازگی اثبات‌نشده» و رد محتواست. اگر فعالیت بدون گراف باشد،
+  قرارداد شاهد غیرreflection باید متفاوت باشد؛ بازبینی شناختی همچنان لازم است.
+- `validateTeachingSources` نگاشت کامل و دوطرفه را بررسی می‌کند. SHA فایل خام بانک و
+  SHA هر سؤال در اسکریپت ممیزی بررسی می‌شوند. `content/teaching-sources.json` منبع قابل
+  مصرف در فاز۳ است؛ فعلاً load نمی‌شود. وضعیت ممیزی عامل به معنی تأیید معلم نیست.
+
+### شکل شواهد موقت
+
+`assessTeachingEvidence(activity, answers)` از `domain/teaching.js` صادر می‌شود؛ ارزیاب
+نسخه۲ (`assessTeaching`) جدا باقی است. هر جزء فقط id/label/type و فیلدهای نوع خود دارد:
+
+| type | قرارداد جزء | مقدار پاسخ |
+| --- | --- | --- |
+| relation/model | expected: گراف شامل vertices/edges/directed/multigraph | گراف پیشنهادی با همان رأس‌ها، روابط، جهت و چندگانگی |
+| neighborhood | vertexId, closed:boolean | مجموعهٔ رأس‌ها؛ ترتیب بی‌اثر |
+| coverageTable | selected: مجموعهٔ ثابت مراکز | نگاشت هر رأس به یک مرکز پوشاننده؛ null فقط برای بی‌پوشش واقعی |
+| deletionTable | selected | نگاشت هر عضو منتخب به مجموعهٔ کامل بی‌پوشش‌ها پس از حذف مستقل آن عضو |
+| prediction | part: یک جزء ساخت‌یافته | beforeReveal, revised, committedBeforeReveal:true |
+| classification | property و در خواسته‌های احاطه‌گری selected | boolean برای ویژگی دقیق |
+| counterexample | claim | graph و شاهد متناسب با گزاره |
+| minimumArgument | lowerBoundMethods | upperWitness و lowerBound با روش مجاز |
+| route | start, end | توالی مسیر ساده؛ جهت یال رعایت می‌شود |
+| number | expected: عدد صحیح | عدد صحیح دقیق |
+| choice | options:[{value,label}], expected | مقدار یکی از گزینه‌ها |
+| reflection | criteria:[{id,label}] | نگاشت تک‌تک معیارها به true؛ checkbox عمومی کافی نیست |
+
+خواص classification: directed/parallel/loops/regular/complete/dominating/minimal/minimum.
+شاهد نقض: minimal-implies-minimum با selected و smallerWitness، regular-implies-complete
+با گراف، reachable-implies-adjacent با graph و route معتبر بدون یال مستقیم دو سر.
+گراف عمومی۲تا۱۶رأسی، ولی همسایگی/احاطه‌گری دقیق فقط گراف سادهٔ بی‌جهتٔ۲تا۱۲رأسی است؛
+جهت/طوقه/یال موازی به‌طور ضمنی حذف نمی‌شوند. دادهٔ بزرگ‌تر بانک فقط با ابزار خودش مصرف شود.
+
+سه روش lowerBound: `capacity` با maxClosedSize/vertexCount/bound و برابری کران با
+اندازهٔ شاهد؛ `packing` با vertices که هیچ مرکز نتواند دو مورد را هم‌زمان بپوشاند؛
+`subset-witnesses` با rows:[{selected,uncoveredWitness}] برای **تمام** زیرمجموعه‌های
+اندازهٔ یک کمتر از شاهد بالا. یکنوایی پوشش، رد اندازه‌های کوچک‌تر را نتیجه می‌دهد.
+فقط عدد گاما، انتخاب کوچک یا دیدن جواب نمونه، minimumArgument را پاس نمی‌کند.
+
+کنترل‌گر پیش از آشکارکردن ابزار از `commitTeachingPrediction` استفاده می‌کند؛ پیش‌بینی
+اولیه ساخت‌یافته ولی ممکن است غلط باشد، اصلاحِ درست مجاز است. پرچم زمانی یک قرارداد
+حالت موقت رابط است، نه اثبات امنیتی زمان یا شاهد ذخیره‌شونده. متن آزاد در RAM جدا
+نمایش/ویرایش می‌شود؛ ارزیاب کیفیت آن را تشخیص نمی‌دهد. هر معیار خودبازبینی جدا تأیید شود.
+
+### پیشرفت، آرشیو و مخزن
+
+`initialProgress(curriculum)`, `completeActivity`, `validateProgress`, `mergeProgress` و
+`progressPercent(progress,curriculum,lessonId?)` نسخه‌محورند. برای ناوبری۳ از
+`unlockedUnits/visitUnit` استفاده شود؛ API مرحله‌های قدیم مخصوص نسخه‌های۱و۲ می‌ماند.
+آرشیو دقیقاً `{curriculumVersion:2,teachingProgress:<سه فیلد نسخه۲>}` است و اختیاری است؛
+نصب تازه آرشیو ساختگی ندارد. `context.previousCurriculum` باید snapshot دقیق نسخه۲ و
+`context.legacyCurriculum` نسخه۱ باشد. نسخه۳ در load فاز۳ باید هر دو را تأمین کند.
+
+مخزن روی میزبان۳، envelope معتبر۱/۲ را تا زمان تأیید نگه می‌دارد و عملیات نتایج، نشست
+و تنظیمات را با نسخهٔ خود آن اعتبارسنجی می‌کند. تغییر/ریست آموزش و ورود فایل تا تبدیل
+مسدودند. `migrationPreview()` revision و آرشیو پیشنهادی را بدون write می‌دهد؛
+`cancelTeachingMigration()` هیچ تغییری ندارد؛ `confirmTeachingMigration(revision)` فقط
+بعد از تأیید درون‌صفحه‌ای فراخوانی شود. فرم کثیف، revision قدیمی یا baseline متفاوت
+تبدیل را رد می‌کند. خطای تبدیل برخلاف کار عادیِ موقت، حافظهٔ قدیمی را هم حفظ می‌کند.
+`recoveryJSON()` پیش از تأیید بک‌آپ همان نسخهٔ قدیم و پس از تأیید بک‌آپ schema۲ می‌دهد.
+commit عادی حق تغییر schema/curriculum یا کم‌کردن آرشیو را ندارد.
+
+سوابق، پیش‌نمایش/خروجی/تأیید/انصراف را شرطی نمایش می‌دهد؛ مسیر۲ عمومی هیچ کنترل
+تبدیل تازه‌ای نمی‌بیند. نمایش تفصیلی آرشیو و درصد هر درس در T023، و اتصال آموزش در
+T022 باقی‌اند. ورود فایلِ قدیمی به مسیر۳ فقط آرشیو را ادغام می‌کند؛ تقدم tombstone و
+تعارض هویت/ظرفیت از قبل پابرجاست. import قدیمی هیچ اعتبار فعال تازه‌ای نمی‌سازد.

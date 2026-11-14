@@ -1,6 +1,7 @@
 import { initialProgress, validateProgress } from '../domain/progress.js';
-import { validateStoredEnvelope, validateStateTransition } from './validate.js';
-import { decodeStoredState, migrateShellPreference } from './migrate.js';
+import { validateStoredEnvelope, validateStateTransition, curriculumForState } from './validate.js';
+import { decodeStoredState, migrateShellPreference, migrateCurriculum } from './migrate.js';
+import { exportBackup } from './transfer.js';
 import { requireValid } from '../domain/limits.js';
 import { replaceCompetition } from '../domain/sessions.js';
 import { deleteResults } from '../domain/coverage.js';
@@ -19,20 +20,22 @@ const errorInfo = error => ({ code: error.code ?? 'invalid-data', message: error
 /** Atomic, versioned repository. Controllers supply a complete candidate + expected revision.
  * A failed write retains valid unsaved memory; a rejected candidate never changes memory. */
 export function createRepository(curriculum, storage = browserStorage, context = {}) {
-  const fresh = () => ({ schemaVersion: 1, revision: 0, curriculumVersion: curriculum.curriculumVersion,
-    teachingProgress: initialProgress(), attempts: {}, sessions: {},
+  const fresh = () => ({ schemaVersion: curriculum.curriculumVersion === 3 ? 2 : 1, revision: 0, curriculumVersion: curriculum.curriculumVersion,
+    teachingProgress: initialProgress(curriculum), attempts: {}, sessions: {},
     settings: { theme: globalThis.document?.documentElement.dataset.theme === 'night' ? 'night' : 'day', motion: 'medium' } });
   let state = fresh(), baseline = null, legacyRaw = null;
   let migrationPending = false;
   let readStatus = 'absent', dirty = false, conflict = false, warning = '', persisted = false;
   let lastResult = { status: 'absent' }, unsavedReset = false;
   const listeners = new Set(), editing = new Set();
-  const blocked = () => migrationPending || ['corrupt', 'unsupported', 'unavailable'].includes(readStatus);
+  const blocked = () => ['corrupt', 'unsupported', 'unavailable'].includes(readStatus);
   const snapshot = () => ({ state: structuredClone(state), warning, dirty, conflict, persisted,
     readStatus, needsMigration: migrationPending, editing: editing.size > 0, lastResult: structuredClone(lastResult) });
   function notify() {
     // One consumer's rendering exception must not turn a successful write into a quota error.
-    for (const listener of listeners) listener(snapshot());
+    for (const listener of listeners) {
+      try { listener(snapshot()); } catch (error) { globalThis.reportError?.(error); }
+    }
   }
   function read() {
     try {
@@ -41,7 +44,7 @@ export function createRepository(curriculum, storage = browserStorage, context =
       const decoded = decodeStoredState(raw, curriculum, context);
       migrationPending=decoded.status==='migration-required';
       readStatus=migrationPending?'ready':decoded.status;
-      if (decoded.state) { state = decoded.state; persisted = !migrationPending; }
+      if (decoded.state) { state = decoded.state; persisted = !migrationPending || curriculum.curriculumVersion === 3; }
       else if (decoded.status === 'absent') {
         const next = fresh();
         legacyRaw = storage.getItem(legacyKey);
@@ -65,7 +68,7 @@ export function createRepository(curriculum, storage = browserStorage, context =
       warning = 'ذخیرهٔ قبلی خوانده نشد؛ داده‌ها را تغییر نمی‌دهیم. کار فعلی موقت است؛ فایل بازیابی بگیرید.';
       lastResult = { status: readStatus, error: errorInfo(error) };
     }
-    if(migrationPending){migrationPending=false;commit(state,state.revision);}
+    if(migrationPending && curriculum.curriculumVersion === 2){migrationPending=false;commit(state,state.revision);}
     return snapshot();
   }
   function prepare(next, expectedRevision, allowTeachingReset = false, removedCompetitionId = null) {
@@ -81,7 +84,6 @@ export function createRepository(curriculum, storage = browserStorage, context =
     } catch (error) { return { ok: false, status: error.code === 'revision-conflict' ? 'conflict' : 'invalid', error: errorInfo(error) }; }
   }
   function commit(next = state, expectedRevision = state.revision, { allowTeachingReset = false, removedCompetitionId = null } = {}) {
-    if(migrationPending){lastResult={status:'migration-required'};notify();return false;}
     const prepared = prepare(next, expectedRevision, allowTeachingReset, removedCompetitionId);
     if (!prepared.ok) {
       lastResult = { status: prepared.status, error: prepared.error };
@@ -143,12 +145,14 @@ export function createRepository(curriculum, storage = browserStorage, context =
     },
     commit(next, expectedRevision) { return commit(next ?? null, expectedRevision ?? NaN); },
     changeProgress(transition) {
+      if (migrationPending) { lastResult = { status: 'migration-required' }; notify(); return false; }
       const next = validateProgress(transition(structuredClone(state.teachingProgress)), curriculum);
       if (JSON.stringify(next) === JSON.stringify(state.teachingProgress)) return !dirty && !blocked() && !conflict;
       return commit({ ...state, teachingProgress: next }, state.revision);
     },
     resetTeaching() {
-      return commit({ ...state, teachingProgress: initialProgress() }, state.revision, { allowTeachingReset: true });
+      if (migrationPending) { lastResult = { status: 'migration-required' }; notify(); return false; }
+      return commit({ ...state, teachingProgress: initialProgress(curriculum) }, state.revision, { allowTeachingReset: true });
     },
     manageCompetition(id, restart, expectedRevision) {
       requireValid(expectedRevision === state.revision && !dirty && !conflict && !blocked(), 'وضعیت ذخیره تغییر کرده است؛ عملیات را دوباره بررسی و تأیید کنید.', 'revision', 'revision-conflict');
@@ -185,12 +189,37 @@ export function createRepository(curriculum, storage = browserStorage, context =
       }
       const result = read(); notify(); return result;
     },
+    migrationPreview() {
+      if (!migrationPending || curriculum.curriculumVersion !== 3) return null;
+      const candidate = migrateCurriculum(state, curriculum, context);
+      return { expectedRevision: state.revision, previousCurriculumVersion: state.curriculumVersion,
+        archive: structuredClone(candidate.teachingProgressArchive), startsAt: candidate.teachingProgress.lastVisitedUnitId };
+    },
+    cancelTeachingMigration() { return snapshot(); },
+    confirmTeachingMigration(expectedRevision) {
+      // A migration failure retains BOTH the old live state and the exact old disk bytes.
+      if (!migrationPending || curriculum.curriculumVersion !== 3) return false;
+      try {
+        requireValid(!dirty && !conflict && !editing.size && !blocked() && expectedRevision === state.revision,
+          'وضعیت ذخیره تغییر کرده است؛ پیش‌نمایش تبدیل را دوباره بررسی کنید.', 'revision', 'revision-conflict');
+        requireValid(storage.getItem(storageKey) === baseline, 'ذخیره در صفحهٔ دیگری تغییر کرده است.', 'revision', 'revision-conflict');
+        requireValid(state.revision < Number.MAX_SAFE_INTEGER, 'شمار نسخه به حد مجاز رسیده است.', 'revision');
+        const candidate = migrateCurriculum(state, curriculum, context);
+        candidate.revision++;
+        const serialized = JSON.stringify(candidate);
+        storage.setItem(storageKey, serialized);
+        state = candidate; baseline = serialized; migrationPending = false;
+        persisted = true; readStatus = 'ready'; warning = ''; lastResult = { status: 'saved', revision: state.revision };
+        notify(); return true;
+      } catch (error) {
+        if (error.code === 'revision-conflict') conflict = true;
+        warning = 'تبدیل ذخیره نشد؛ پیشرفت و دادهٔ قبلی حفظ شدند. خروجی بگیرید و پیش‌نمایش را دوباره بررسی کنید.';
+        lastResult = { status: conflict ? 'conflict' : 'migration-failed', error: errorInfo(error) };
+        notify(); return false;
+      }
+    },
     recoveryJSON() {
-      const valid = validateStoredEnvelope(state, curriculum, context);
-      return JSON.stringify({ format: 'persian-graph-learning-backup', schemaVersion: 1,
-        curriculumVersion: curriculum.curriculumVersion, bankVersion: context.bankVersion ?? '1.1', exportedAt: new Date().toISOString(),
-        data: { teachingProgress: valid.teachingProgress, attempts: valid.attempts,
-          sessions: valid.sessions, settings: valid.settings } }, null, 2);
+      return exportBackup(state, curriculumForState(state, curriculum, context), { ...context, bankVersion: context.bankVersion ?? '1.1' });
     },
     originalJSON() { return baseline; },
     dispose() { globalThis.window?.removeEventListener?.('storage', storageChanged); listeners.clear(); editing.clear(); },
