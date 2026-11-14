@@ -1,24 +1,24 @@
 import { validateStoredEnvelope, validateStateTransition, safeData, fields, timestamp, same } from './validate.js';
 import { migrateCurriculum } from './migrate.js';
-import { passedPrefix, unlockedStages } from '../domain/progress.js';
+import { mergeProgress, progressPercent } from '../domain/progress.js';
 import { LIMITS, requireValid as check } from '../domain/limits.js';
 export const BACKUP_FORMAT = 'persian-graph-learning-backup';
 export function exportBackup(state, curriculum, context) {
   const valid = validateStoredEnvelope(state,curriculum,context);
-  return JSON.stringify({format:BACKUP_FORMAT,schemaVersion:1,curriculumVersion:curriculum.curriculumVersion,bankVersion:context.bankVersion,
-    exportedAt:new Date().toISOString(),data:{teachingProgress:valid.teachingProgress,attempts:valid.attempts,sessions:valid.sessions,settings:valid.settings}},null,2);
+  return JSON.stringify({format:BACKUP_FORMAT,schemaVersion:valid.schemaVersion,curriculumVersion:valid.curriculumVersion,bankVersion:context.bankVersion,
+    exportedAt:new Date().toISOString(),data:{teachingProgress:valid.teachingProgress,attempts:valid.attempts,sessions:valid.sessions,settings:valid.settings,...(valid.teachingProgressArchive ? {teachingProgressArchive:valid.teachingProgressArchive} : {})}},null,2);
 }
 export function parseBackup(text, curriculum, context) {
   check(typeof text === 'string' && new TextEncoder().encode(text).length <= LIMITS.importBytes,'حداکثر حجم فایل ۵ مگابایت است.');
   let file; try { file=JSON.parse(text); } catch { throw Error('فایل JSON معتبر نیست.'); }
   safeData(file);
   fields(file,['format','schemaVersion','curriculumVersion','bankVersion','exportedAt','data'],[],'backup');
-  check(file.format===BACKUP_FORMAT && file.schemaVersion===1 && [1,2].includes(file.curriculumVersion),'ساختار یا نسخهٔ آموزش فایل سازگار نیست.');
+  check(file.format===BACKUP_FORMAT && file.schemaVersion===(file.curriculumVersion===3?2:1) && [1,2,3].includes(file.curriculumVersion),'ساختار یا نسخهٔ آموزش فایل سازگار نیست.');
   check(file.bankVersion===context.bankVersion && ['1.2','1.4'].includes(file.bankVersion),file.bankVersion==='1.1'
     ? 'بک‌آپ بانک ۱٫۱ مستقیماً وارد نمی‌شود؛ پاسخ‌های مرجع در ۱٫۲ تغییر کرده‌اند. فایل اصلی را برای مهاجرت بازبینی‌شده نگه دارید.' : 'نسخهٔ بانک سؤال فایل پشتیبانی نمی‌شود.');
   timestamp(file.exportedAt,'exportedAt');
-  fields(file.data,['teachingProgress','attempts','sessions','settings'],[],'data');
-  return migrateCurriculum({schemaVersion:1,curriculumVersion:file.curriculumVersion,revision:0,...file.data},curriculum,context);
+  fields(file.data,['teachingProgress','attempts','sessions','settings'],['teachingProgressArchive'],'data');
+  return migrateCurriculum({schemaVersion:file.schemaVersion,curriculumVersion:file.curriculumVersion,revision:0,...file.data},curriculum,context);
 }
 /** Same identity and schedule may advance, never rewind. Deletion wins only for a matching turn. */
 export function mergeBackup(local, incoming, curriculum, context, {fresh=false}={}) {
@@ -58,13 +58,20 @@ export function mergeBackup(local, incoming, curriculum, context, {fresh=false}=
   for(const id of suppressed) delete next.attempts[id];
   for(const kind of ['competition','lab']) check(Object.values(next.sessions).filter(s=>s.kind===kind&&s.status!=='completed').length<=1,
     'دو نشست فعال ناسازگار وجود دارد؛ ابتدا نشست فعلی را تمام کنید و دوباره فایل را بررسی کنید.');
-  const flags=new Set([...local.teachingProgress.completedActivityIds,...incoming.teachingProgress.completedActivityIds]);
-  const progress={completedActivityIds:curriculum.activities.filter(a=>flags.has(a.id)).map(a=>a.id),passedStageIds:passedPrefix(curriculum,flags),lastVisitedStageId:local.teachingProgress.lastVisitedStageId};
-  if(fresh && unlockedStages(progress).includes(incoming.teachingProgress.lastVisitedStageId)) progress.lastVisitedStageId=incoming.teachingProgress.lastVisitedStageId;
-  next.teachingProgress=progress;if(fresh)next.settings=incoming.settings;
+  check(local.curriculumVersion === curriculum.curriculumVersion && incoming.curriculumVersion === curriculum.curriculumVersion,
+    'پیش از ورود فایل، تبدیل مسیر را تأیید کنید.');
+  const progress = mergeProgress(local.teachingProgress, incoming.teachingProgress, curriculum, {fresh});
+  next.teachingProgress = progress;
+  if (curriculum.curriculumVersion === 3) {
+    const a = local.teachingProgressArchive, b = incoming.teachingProgressArchive;
+    if (a && b) next.teachingProgressArchive = { curriculumVersion: 2,
+      teachingProgress: mergeProgress(a.teachingProgress, b.teachingProgress, context.previousCurriculum) };
+    else if (b) next.teachingProgressArchive = structuredClone(b);
+  }
+  if(fresh)next.settings=incoming.settings;
   const candidate=validateStoredEnvelope(next,curriculum,context);validateStateTransition(local,candidate);
   return {candidate,preview:{added:Object.keys(candidate.attempts).filter(id=>!local.attempts[id]).length,deduplicated,suppressed:suppressed.size,
     addedSessions:Object.keys(candidate.sessions).filter(id=>!local.sessions[id]).length,
-    before:local.teachingProgress.passedStageIds.length*25,after:progress.passedStageIds.length*25,
+    before:progressPercent(local.teachingProgress,curriculum),after:progressPercent(progress,curriculum),
     restoresProgress:progress.completedActivityIds.some(id=>!local.teachingProgress.completedActivityIds.includes(id)),fresh}};
 }

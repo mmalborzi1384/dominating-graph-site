@@ -1,7 +1,7 @@
 {
   "bankVersion": "1.4",
   "bankSha256": "f9c36455948676c09d6463c6ca3f6678fc254837c8c3acfe1cc7909367875d11",
-  "status": "design-mapping-not-runtime-wiring",
+  "status": "agent-instructional-audit-complete-human-review-required",
   "total": 150,
   "rows": [
     {
@@ -23,10 +23,26 @@
         }
       ],
       "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "چهار ناحیه و هفت پل؛ wx و wz هرکدام دو پل دارند. حذف چندگانگی یا بررسی گاما مجاز نیست. نگاشت و هر هفت رابطه بررسی شوند.",
       "requiresFigure": true,
       "specialGraph": true,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "f4968f02c566164bd1d5cb074767107e8e532bd014d2b8980ccd7691afb8d899",
+        "finding": "چهار ناحیه و هفت پل؛ wx و wz هرکدام دو پل دارند. حذف چندگانگی یا بررسی گاما مجاز نیست. نگاشت و هر هفت رابطه بررسی شوند.",
+        "humanReviewRequired": true,
+        "figureAsset": "assets/book/page-32.webp",
+        "evaluatorRestriction": "preserve-special-graph-no-simple-domination"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q002",
@@ -37,11 +53,27 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Process",
+      "placementReason": "درجه‌ها ۵،۳،۳،۳ فردند؛ مانع گذر بسته ورود/خروج است. عکس قضیهٔ راهنمای سوم شرط همبندی بخش دارای یال را هم لازم دارد؛ صرف زوجیت اثبات کافی نیست.",
       "requiresFigure": true,
       "specialGraph": true,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "a46f0545131e5cf0b14cbfd5703884ca0e775885519b39878f4861868bf0ded5",
+        "finding": "درجه‌ها ۵،۳،۳،۳ فردند؛ مانع گذر بسته ورود/خروج است. عکس قضیهٔ راهنمای سوم شرط همبندی بخش دارای یال را هم لازم دارد؛ صرف زوجیت اثبات کافی نیست.",
+        "humanReviewRequired": true,
+        "figureAsset": "assets/book/page-32.webp",
+        "evaluatorRestriction": "preserve-special-graph-no-simple-domination"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q003",
@@ -62,10 +94,26 @@
         }
       ],
       "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "چهار ناحیه و هفت پل؛ wx و wz هرکدام دو پل دارند. حذف چندگانگی یا بررسی گاما مجاز نیست. نگاشت و هر هفت رابطه بررسی شوند.",
       "requiresFigure": true,
       "specialGraph": true,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "53ab4e9103d92430ed138cdc9271c0f56c8fafb1256a323a9fa60d3e297f1a86",
+        "finding": "چهار ناحیه و هفت پل؛ wx و wz هرکدام دو پل دارند. حذف چندگانگی یا بررسی گاما مجاز نیست. نگاشت و هر هفت رابطه بررسی شوند.",
+        "humanReviewRequired": true,
+        "figureAsset": "assets/book/page-32.webp",
+        "evaluatorRestriction": "preserve-special-graph-no-simple-domination"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q004",
@@ -76,11 +124,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Process",
+      "placementReason": "افزودن یک پل بین دو رأس فرد، تعداد فردها را از چهار به دو می‌رساند؛ در همین گراف همبند گذر باز ممکن و بسته ناممکن است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "508892d5ee86d82305b06c9194a9ac80123fa3e5733dd1aecf42454f45cb3d08",
+        "finding": "افزودن یک پل بین دو رأس فرد، تعداد فردها را از چهار به دو می‌رساند؛ در همین گراف همبند گذر باز ممکن و بسته ناممکن است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q005",
@@ -101,10 +163,24 @@
         }
       ],
       "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "دو بخش سه‌تایی و نه رابطه؛ نامتقاطع‌بودن در هدف نگاشت وارد نشود. برگهٔ خروج باید یک مدل تازه با دادهٔ کامل بسازد.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "63fb7891fcb45dcde1069e56de97fffec578d7fe285d104da8a81cd2df5c2c4e",
+        "finding": "دو بخش سه‌تایی و نه رابطه؛ نامتقاطع‌بودن در هدف نگاشت وارد نشود. برگهٔ خروج باید یک مدل تازه با دادهٔ کامل بسازد.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q006",
@@ -115,11 +191,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "پاسخ موجود نامسطح‌بودن را بیان می‌کند و اثبات مستقلی نمی‌دهد. جابه‌جایی مکرر یال‌ها اثبات ناممکنی نیست؛ فقط تکمیلی با معیار توضیح روشن.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "6103a3f3ee2592bfc8e705c0d669edff6f05a085d8a305c0c93df0ebbfadce39",
+        "finding": "پاسخ موجود نامسطح‌بودن را بیان می‌کند و اثبات مستقلی نمی‌دهد. جابه‌جایی مکرر یال‌ها اثبات ناممکنی نیست؛ فقط تکمیلی با معیار توضیح روشن.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q007",
@@ -130,11 +220,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "در این رکورد بخش‌ها abc و def هستند؛ با Q005 که بخش‌ها ace و bdf است مخلوط نشود. شاهد دو رأسی و نبود رأس فراگیر لازم است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "03b522a20964276cb10e560539bdd2a8434e5622e6583e9b4119c4edd75a3577",
+        "finding": "در این رکورد بخش‌ها abc و def هستند؛ با Q005 که بخش‌ها ace و bdf است مخلوط نشود. شاهد دو رأسی و نبود رأس فراگیر لازم است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q008",
@@ -158,7 +262,22 @@
       "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
       "requiresFigure": false,
       "specialGraph": true,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "c31376c306d7f85a5f68ffa43ec2eedcdb89bec818c3d2704c39f95315e38c00",
+        "finding": "جهت از برنده به بازنده است؛ a و c هر دو دو برد و ۶ امتیاز دارند. غیرهمسایه با باخت یکی نیست؛ جهت و فهرست کامل بازی‌ها حفظ شوند.",
+        "humanReviewRequired": true,
+        "evaluatorRestriction": "preserve-special-graph-no-simple-domination"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q009",
@@ -173,7 +292,22 @@
       "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
       "requiresFigure": false,
       "specialGraph": true,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "0c366a2ca41cd65f42b020f8bee439b49e223bff3576574cc2c902526503ae36",
+        "finding": "جهت از برنده به بازنده است؛ a و c هر دو دو برد و ۶ امتیاز دارند. غیرهمسایه با باخت یکی نیست؛ جهت و فهرست کامل بازی‌ها حفظ شوند.",
+        "humanReviewRequired": true,
+        "evaluatorRestriction": "preserve-special-graph-no-simple-domination"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q010",
@@ -188,7 +322,22 @@
       "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
       "requiresFigure": false,
       "specialGraph": true,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "3ed905fe0d81218ef01a13bcbe12d21b7cdcb53d0d4a237088bce28b32a0bf8f",
+        "finding": "جهت از برنده به بازنده است؛ a و c هر دو دو برد و ۶ امتیاز دارند. غیرهمسایه با باخت یکی نیست؛ جهت و فهرست کامل بازی‌ها حفظ شوند.",
+        "humanReviewRequired": true,
+        "evaluatorRestriction": "preserve-special-graph-no-simple-domination"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q011",
@@ -203,7 +352,22 @@
       "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
       "requiresFigure": false,
       "specialGraph": true,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "a4cd32a12cf80b50bdf4eda77056259dba16af4167f79a3ea4d5b4243f31afc2",
+        "finding": "جهت از برنده به بازنده است؛ a و c هر دو دو برد و ۶ امتیاز دارند. غیرهمسایه با باخت یکی نیست؛ جهت و فهرست کامل بازی‌ها حفظ شوند.",
+        "humanReviewRequired": true,
+        "evaluatorRestriction": "preserve-special-graph-no-simple-domination"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q012",
@@ -224,10 +388,24 @@
         }
       ],
       "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "۹ رأس و ۱۰ یال؛ این سؤال دربارهٔ مرتبه و اندازه است، نه فهرست همسایه‌ها. برای L1-P1 فقط منبع شمارش است؛ گراف همسایگی باید جدا تألیف شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "ff2f830577770560ad95991675fab5b6bfd9f6a8267ca9fb7b5b0d25d3ae7b1f",
+        "finding": "۹ رأس و ۱۰ یال؛ این سؤال دربارهٔ مرتبه و اندازه است، نه فهرست همسایه‌ها. برای L1-P1 فقط منبع شمارش است؛ گراف همسایگی باید جدا تألیف شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q013",
@@ -247,11 +425,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "V و E ساختار را مشخص می‌کنند، نه چیدمان. راهنمای «زوج مرتب» برای گراف بدون جهت به زوج نامرتب اصلاح اقتباسی شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "c1e67ff449c9686838ee90f0461c561850c226c2a8cdb00b7fa4ba8432aac67b",
+        "finding": "V و E ساختار را مشخص می‌کنند، نه چیدمان. راهنمای «زوج مرتب» برای گراف بدون جهت به زوج نامرتب اصلاح اقتباسی شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q014",
@@ -271,11 +463,26 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "یال‌های a→b، a→c، c→a، d→b؛ ورودی a از c و خروجی به b,c است. V/E در خود گراف موجود است؛ ارجاع «بالا» در اقتباس مستقل نباشد.",
       "requiresFigure": false,
       "specialGraph": true,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "b7b516187488b58a675e2ab8d5d71e4a274721e70e42e905bcd9708347ce9595",
+        "finding": "یال‌های a→b، a→c، c→a، d→b؛ ورودی a از c و خروجی به b,c است. V/E در خود گراف موجود است؛ ارجاع «بالا» در اقتباس مستقل نباشد.",
+        "humanReviewRequired": true,
+        "evaluatorRestriction": "preserve-special-graph-no-simple-domination"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q015",
@@ -295,11 +502,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "شش رأس و هفت یال؛ f به c,e و d به b,c متصل است. ترتیب دو سر در گراف بدون جهت مؤثر نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "a72b57bd13bea8867431126ab740d57426559fb05f94b69ed4ca28183dffdcbd",
+        "finding": "شش رأس و هفت یال؛ f به c,e و d به b,c متصل است. ترتیب دو سر در گراف بدون جهت مؤثر نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q016",
@@ -319,11 +540,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "درجهٔ طوقه دو واحد است؛ چندگانگی در شمارش درجه حفظ شود. همسایگی و درجه در چندگراف لزوماً یک عدد نیستند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "8d88c43afe3f8f5b981a03823357e17b09bf5718f44b1a07eb6e54cc4fac72fb",
+        "finding": "درجهٔ طوقه دو واحد است؛ چندگانگی در شمارش درجه حفظ شود. همسایگی و درجه در چندگراف لزوماً یک عدد نیستند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q017",
@@ -344,10 +579,24 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "K3,3 شش رأس با درجهٔ سه دارد؛ منتظم‌بودن به معنی کامل‌بودن نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "c9476d82aac7ba4f7ff092a4d720d1fc1526f20d3cf12bd2deeee21db4c7bf47",
+        "finding": "K3,3 شش رأس با درجهٔ سه دارد؛ منتظم‌بودن به معنی کامل‌بودن نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q018",
@@ -368,10 +617,24 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "درجهٔ طوقه دو واحد است؛ چندگانگی در شمارش درجه حفظ شود. همسایگی و درجه در چندگراف لزوماً یک عدد نیستند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "b153dc1b795c21ddd02418dc2db8268466635f90ba8c5254e852c3de986d3dce",
+        "finding": "درجهٔ طوقه دو واحد است؛ چندگانگی در شمارش درجه حفظ شود. همسایگی و درجه در چندگراف لزوماً یک عدد نیستند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q019",
@@ -392,10 +655,24 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "p(p−1)/2=36 تنها پاسخ طبیعی p=9 و درجات همگی ۸؛ دلیل و شمارش دو سر بررسی شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "e2f1d10d7136aa1a7103d31dd0dd722e58c9ff3f3fbf6d6cc80c664aacb2f4ec",
+        "finding": "p(p−1)/2=36 تنها پاسخ طبیعی p=9 و درجات همگی ۸؛ دلیل و شمارش دو سر بررسی شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q020",
@@ -415,11 +692,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Process",
+      "placementReason": "مجموع درجات زوج است؛ ۶×۲+۵=۱۷ ناممکن. استدلال زوجیت باید از شمارش هر یال در دو سر ساخته شود، نه حفظ جواب.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "d069c09c4dcc69e5b13732255c4a37e9eb84ca046c74b8770e97a02ff6cae181",
+        "finding": "مجموع درجات زوج است؛ ۶×۲+۵=۱۷ ناممکن. استدلال زوجیت باید از شمارش هر یال در دو سر ساخته شود، نه حفظ جواب.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q021",
@@ -439,11 +730,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Process",
+      "placementReason": "در گراف سادهٔ بی‌طوقه N[v]=N(v)∪{v}؛ همسایهٔ چندگامی اضافه نشود. نمونهٔ زمینه‌دار باید تألیف شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "ac22b2a14060128f5124da9118a443f5b50cc0f75be1be69bdb7e388995fd2b1",
+        "finding": "در گراف سادهٔ بی‌طوقه N[v]=N(v)∪{v}؛ همسایهٔ چندگامی اضافه نشود. نمونهٔ زمینه‌دار باید تألیف شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q022",
@@ -455,10 +760,25 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "مجاورت bc و cd از رأس مشترک c می‌آید؛ شکل صفحهٔ۳۶ موجود است. مجاورت رأس با یال خلط نشود.",
       "requiresFigure": true,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "001e855d5516ad81d50d57207d20db9d12484e8888b9a2a3db357f58ce489074",
+        "finding": "مجاورت bc و cd از رأس مشترک c می‌آید؛ شکل صفحهٔ۳۶ موجود است. مجاورت رأس با یال خلط نشود.",
+        "humanReviewRequired": true,
+        "figureAsset": "assets/book/page-36.webp"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q023",
@@ -479,10 +799,25 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "سؤال روش یافتن بیشینه/کمینه را می‌خواهد، نه عددِ درج‌نشده. شکل۱۳ در تصویر صفحهٔ۳۷ است؛ قبل از تمرین عددی همهٔ یال‌ها استخراج و بررسی شوند.",
       "requiresFigure": true,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "7507726221271dc177c5f51afdc9ea69176d5714e46b0f56f52828349a66c2ba",
+        "finding": "سؤال روش یافتن بیشینه/کمینه را می‌خواهد، نه عددِ درج‌نشده. شکل۱۳ در تصویر صفحهٔ۳۷ است؛ قبل از تمرین عددی همهٔ یال‌ها استخراج و بررسی شوند.",
+        "humanReviewRequired": true,
+        "figureAsset": "assets/book/page-37.webp"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q024",
@@ -510,11 +845,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "مکمل فقط روی مجموعهٔ رأس ثابت و گراف سادهٔ بدون جهت؛ برای شکل۱۶ یال‌های مکمل ae,bc,bd,be هستند. زیرگراف ممکن است رأس هم حذف کند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "0e10193a25917db585b5e8d322a3c21c5af21bf3d6411547bb3c88d59933c7bc",
+        "finding": "مکمل فقط روی مجموعهٔ رأس ثابت و گراف سادهٔ بدون جهت؛ برای شکل۱۶ یال‌های مکمل ae,bc,bd,be هستند. زیرگراف ممکن است رأس هم حذف کند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q025",
@@ -534,11 +883,26 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Process",
+      "placementReason": "N(b)={a,c}، g تنها و گاما۳؛ انتخاب x با شرط همسایه‌ها، نه نزدیکی در رسم.",
       "requiresFigure": true,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "36f367ae1373ef75f1576f4f28bb36d24f1beebe51142a192096c2a76bb4327c",
+        "finding": "N(b)={a,c}، g تنها و گاما۳؛ انتخاب x با شرط همسایه‌ها، نه نزدیکی در رسم.",
+        "humanReviewRequired": true,
+        "figureAsset": "assets/book/page-41.webp"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q026",
@@ -558,11 +922,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "گذر تکرار دارد؛ مسیر ساده رأس تکراری ندارد؛ دور فقط رأس آغاز/پایان را تکرار می‌کند. عبارت مبهم «شاید شروع/پایان» در اقتباس با این قرارداد دقیق جایگزین شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "d45c956a6cdd5013aae3ebfd19577e1326cb3f8f4ca5afa8832314cc971a6a51",
+        "finding": "گذر تکرار دارد؛ مسیر ساده رأس تکراری ندارد؛ دور فقط رأس آغاز/پایان را تکرار می‌کند. عبارت مبهم «شاید شروع/پایان» در اقتباس با این قرارداد دقیق جایگزین شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q027",
@@ -590,11 +968,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "گذر تکرار دارد؛ مسیر ساده رأس تکراری ندارد؛ دور فقط رأس آغاز/پایان را تکرار می‌کند. عبارت مبهم «شاید شروع/پایان» در اقتباس با این قرارداد دقیق جایگزین شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "bf35b7a9d0bde7632cf427a167b14ca761a47525fb45aef260e66d330f753188",
+        "finding": "گذر تکرار دارد؛ مسیر ساده رأس تکراری ندارد؛ دور فقط رأس آغاز/پایان را تکرار می‌کند. عبارت مبهم «شاید شروع/پایان» در اقتباس با این قرارداد دقیق جایگزین شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q028",
@@ -630,11 +1022,26 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Process",
+      "placementReason": "همبندی وجود مسیر بین هر جفت است، نه یال مستقیم؛ شکل۲۰ صفحهٔ۳۹ موجود است. پیدا نکردن تصادفی مسیر اثبات نرسیدن نیست؛ مؤلفه/برش شاهد می‌خواهد.",
       "requiresFigure": true,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "b1e926ae7472bc1fbcca544300abd5cb85e59fae79c7bf84a88ad54162e9c0c0",
+        "finding": "همبندی وجود مسیر بین هر جفت است، نه یال مستقیم؛ شکل۲۰ صفحهٔ۳۹ موجود است. پیدا نکردن تصادفی مسیر اثبات نرسیدن نیست؛ مؤلفه/برش شاهد می‌خواهد.",
+        "humanReviewRequired": true,
+        "figureAsset": "assets/book/page-39.webp"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q029",
@@ -654,11 +1061,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Process",
+      "placementReason": "مجموع درجات زوج است؛ ۶×۲+۵=۱۷ ناممکن. استدلال زوجیت باید از شمارش هر یال در دو سر ساخته شود، نه حفظ جواب.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "2a56584af4738e1a547332cfbd58c077381a34dad227e586de9422c14b02636b",
+        "finding": "مجموع درجات زوج است؛ ۶×۲+۵=۱۷ ناممکن. استدلال زوجیت باید از شمارش هر یال در دو سر ساخته شود، نه حفظ جواب.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q030",
@@ -678,11 +1099,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "حداکثر n(n−1)/2 فقط برای گراف سادهٔ بدون جهت است؛ در تعمیم شش تیم ۱۵ مسابقه با فرض هر جفت یک‌بار.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "aef570310fecbcf07039bc22da3d4d2a81e45b5dfa3dd78f50241c28b46ee19d",
+        "finding": "حداکثر n(n−1)/2 فقط برای گراف سادهٔ بدون جهت است؛ در تعمیم شش تیم ۱۵ مسابقه با فرض هر جفت یک‌بار.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q031",
@@ -702,11 +1137,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "مکمل فقط روی مجموعهٔ رأس ثابت و گراف سادهٔ بدون جهت؛ برای شکل۱۶ یال‌های مکمل ae,bc,bd,be هستند. زیرگراف ممکن است رأس هم حذف کند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "9776058aacdf0b174d746656377d3a3962c78a357610559368780cfd9cb3872b",
+        "finding": "مکمل فقط روی مجموعهٔ رأس ثابت و گراف سادهٔ بدون جهت؛ برای شکل۱۶ یال‌های مکمل ae,bc,bd,be هستند. زیرگراف ممکن است رأس هم حذف کند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q032",
@@ -727,10 +1176,24 @@
         }
       ],
       "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "مدل خودپرداز هشت تقاطع و نه خیابان؛ {a,b,c,f} همه را می‌پوشاند. خود تقاطع انتخاب‌شده هم پوشیده است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "26cef4b83b3c508952f0c1188f2068683e283faa94d8f6d71d3029cb4c30f449",
+        "finding": "مدل خودپرداز هشت تقاطع و نه خیابان؛ {a,b,c,f} همه را می‌پوشاند. خود تقاطع انتخاب‌شده هم پوشیده است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q033",
@@ -742,10 +1205,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "مدل خودپرداز هشت تقاطع و نه خیابان؛ {a,b,c,f} همه را می‌پوشاند. خود تقاطع انتخاب‌شده هم پوشیده است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "1e578d2480839ac33ddb33a6f1e3be6d4c302fc77b1fd684ff249e80dc15d7b3",
+        "finding": "مدل خودپرداز هشت تقاطع و نه خیابان؛ {a,b,c,f} همه را می‌پوشاند. خود تقاطع انتخاب‌شده هم پوشیده است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q034",
@@ -766,10 +1243,24 @@
         }
       ],
       "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "مدل خودپرداز هشت تقاطع و نه خیابان؛ {a,b,c,f} همه را می‌پوشاند. خود تقاطع انتخاب‌شده هم پوشیده است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "7bfd55b49c3006b17030b21e65b9cbba852fc745cea62b097eb09cac4fd4babd",
+        "finding": "مدل خودپرداز هشت تقاطع و نه خیابان؛ {a,b,c,f} همه را می‌پوشاند. خود تقاطع انتخاب‌شده هم پوشیده است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q035",
@@ -780,11 +1271,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "هدف کمترین تعداد با پوشش تفاوت دارد؛ بدون مقایسهٔ مجموعه‌ها و حد پایین، انتخاب کوچک اثبات کمینه نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "afa15744d3f35643ab9a6026b555bfa77cd996a0de46c987346968fb10ae2502",
+        "finding": "هدف کمترین تعداد با پوشش تفاوت دارد؛ بدون مقایسهٔ مجموعه‌ها و حد پایین، انتخاب کوچک اثبات کمینه نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q036",
@@ -796,10 +1301,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "رابطهٔ رادیویی فاصلهٔ مستقیم حداکثر۵۰ است؛ با مسیر چندیالی یا فاصلهٔ جاده‌ای عوض نشود. گراف موجود از جدول کتاب است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "203b213d2edf817c620441d0534f5563a9c94431436733625b9940246c7b4daa",
+        "finding": "رابطهٔ رادیویی فاصلهٔ مستقیم حداکثر۵۰ است؛ با مسیر چندیالی یا فاصلهٔ جاده‌ای عوض نشود. گراف موجود از جدول کتاب است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q037",
@@ -810,11 +1329,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "گاما۳ و {a,f,i} شاهد است؛ بررسی پوشش سه رأس به‌تنهایی حد پایین۳ را اثبات نمی‌کند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "f3b324f190b3c712a89a0e05c7f708232d54324069f73cb86b83c00b101dbbb5",
+        "finding": "گاما۳ و {a,f,i} شاهد است؛ بررسی پوشش سه رأس به‌تنهایی حد پایین۳ را اثبات نمی‌کند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q038",
@@ -825,11 +1358,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Schema",
+      "placementReason": "پاسخ بانک فقط روش را می‌دهد و تعداد/شهرهای خواسته‌شده را کامل نمی‌کند. در تکمیلی یا سؤال روش باقی بماند یا پاسخ مقید به b جدا محاسبه و با دلیل تألیف شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "4e45396667604de388b7257c21152267053011747383aaf88856d2f0374385ba",
+        "finding": "پاسخ بانک فقط روش را می‌دهد و تعداد/شهرهای خواسته‌شده را کامل نمی‌کند. در تکمیلی یا سؤال روش باقی بماند یا پاسخ مقید به b جدا محاسبه و با دلیل تألیف شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q039",
@@ -840,11 +1387,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Schema",
+      "placementReason": "برابری کمترین هزینه با کمترین تعداد فقط با هزینهٔ یکسان ایستگاه‌ها؛ فرض پوشش متقارن و شعاع ثابت را صریح کن.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "84418805a79ec04caefc112a9db3c1dd1dc164c9adf7e4ec2fb70848f47aaf9b",
+        "finding": "برابری کمترین هزینه با کمترین تعداد فقط با هزینهٔ یکسان ایستگاه‌ها؛ فرض پوشش متقارن و شعاع ثابت را صریح کن.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q040",
@@ -855,11 +1416,25 @@
       "teachAllowed": true,
       "role": "optional-tool-reference",
       "adaptations": [],
-      "supplementalCandidateStage": null,
-      "placementReason": "ارجاع مکمل به ابزار موجود؛ شرط عبور هسته یا شرط گروه/زمان نیست.",
+      "supplementalCandidateStage": "Process",
+      "placementReason": "وزیر خود خانه و سطر/ستون/قطر را می‌پوشاند؛ گراف۶۴رأسی به ارزیاب دقیق کوچک ارسال نشود. ابزار شطرنج و معیار هندسی جدا لازم است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "a3b6de7255481a19ff8210cc73baad69a90efb8dbfdc9235a69ee06d528856c8",
+        "finding": "وزیر خود خانه و سطر/ستون/قطر را می‌پوشاند؛ گراف۶۴رأسی به ارزیاب دقیق کوچک ارسال نشود. ابزار شطرنج و معیار هندسی جدا لازم است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "optional-tool-only"
     },
     {
       "questionId": "Q041",
@@ -871,10 +1446,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "وزیر خود خانه و سطر/ستون/قطر را می‌پوشاند؛ گراف۶۴رأسی به ارزیاب دقیق کوچک ارسال نشود. ابزار شطرنج و معیار هندسی جدا لازم است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "a4ccdc4d867cb7cb45f4f8fd0c670afe926fc7be37fd7c548072b6698b7cf4a2",
+        "finding": "وزیر خود خانه و سطر/ستون/قطر را می‌پوشاند؛ گراف۶۴رأسی به ارزیاب دقیق کوچک ارسال نشود. ابزار شطرنج و معیار هندسی جدا لازم است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q042",
@@ -885,11 +1474,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "پنج وزیر جواب کلاسیک است؛ چند تلاش ناموفق با چهار وزیر، اثبات حد پایین نیست. مرجع ابزار اختیاری و بیرون هسته؛ ادعای تصحیح اثبات نکن.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "24272cf54301a49e49257d8b113ebd2cb48fbea67bc7a170291ae287aa545d1e",
+        "finding": "پنج وزیر جواب کلاسیک است؛ چند تلاش ناموفق با چهار وزیر، اثبات حد پایین نیست. مرجع ابزار اختیاری و بیرون هسته؛ ادعای تصحیح اثبات نکن.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q043",
@@ -901,10 +1504,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "تعریف با همسایگی بسته و اجتماع پوشش؛ افزودن مرکز پوشش را کم نمی‌کند؛ رأس تنها باید خودش عضو باشد. Q046 از P5 نمایشی استفاده می‌کند؛ P3 اقتباس مستقل است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "c680664fc22cd2225aed6995c4bfd8f417c7aef8ab987125a9ac549329822b87",
+        "finding": "تعریف با همسایگی بسته و اجتماع پوشش؛ افزودن مرکز پوشش را کم نمی‌کند؛ رأس تنها باید خودش عضو باشد. Q046 از P5 نمایشی استفاده می‌کند؛ P3 اقتباس مستقل است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q044",
@@ -916,10 +1533,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "تعریف با همسایگی بسته و اجتماع پوشش؛ افزودن مرکز پوشش را کم نمی‌کند؛ رأس تنها باید خودش عضو باشد. Q046 از P5 نمایشی استفاده می‌کند؛ P3 اقتباس مستقل است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "3d8ee88dadf117debf36b11d5ec00e9d6f5caa134ae5a73297b1fe6175e260e5",
+        "finding": "تعریف با همسایگی بسته و اجتماع پوشش؛ افزودن مرکز پوشش را کم نمی‌کند؛ رأس تنها باید خودش عضو باشد. Q046 از P5 نمایشی استفاده می‌کند؛ P3 اقتباس مستقل است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q045",
@@ -931,10 +1562,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "تعریف با همسایگی بسته و اجتماع پوشش؛ افزودن مرکز پوشش را کم نمی‌کند؛ رأس تنها باید خودش عضو باشد. Q046 از P5 نمایشی استفاده می‌کند؛ P3 اقتباس مستقل است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "90ad2dbae7f743414f4caa6d24eb79b020d5581ebdc9273993410c069b05f578",
+        "finding": "تعریف با همسایگی بسته و اجتماع پوشش؛ افزودن مرکز پوشش را کم نمی‌کند؛ رأس تنها باید خودش عضو باشد. Q046 از P5 نمایشی استفاده می‌کند؛ P3 اقتباس مستقل است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q046",
@@ -963,10 +1608,24 @@
         }
       ],
       "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "تعریف با همسایگی بسته و اجتماع پوشش؛ افزودن مرکز پوشش را کم نمی‌کند؛ رأس تنها باید خودش عضو باشد. Q046 از P5 نمایشی استفاده می‌کند؛ P3 اقتباس مستقل است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "aae6c5847b98f66e38ccb4a0d62cb483805da629d8c8783d12236c793a360c2c",
+        "finding": "تعریف با همسایگی بسته و اجتماع پوشش؛ افزودن مرکز پوشش را کم نمی‌کند؛ رأس تنها باید خودش عضو باشد. Q046 از P5 نمایشی استفاده می‌کند؛ P3 اقتباس مستقل است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q047",
@@ -987,10 +1646,24 @@
         }
       ],
       "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "تعریف با همسایگی بسته و اجتماع پوشش؛ افزودن مرکز پوشش را کم نمی‌کند؛ رأس تنها باید خودش عضو باشد. Q046 از P5 نمایشی استفاده می‌کند؛ P3 اقتباس مستقل است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "1bd897d48e95337b19052da89524ca846c62f4b94075a453116572504a599f64",
+        "finding": "تعریف با همسایگی بسته و اجتماع پوشش؛ افزودن مرکز پوشش را کم نمی‌کند؛ رأس تنها باید خودش عضو باشد. Q046 از P5 نمایشی استفاده می‌کند؛ P3 اقتباس مستقل است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q048",
@@ -1011,10 +1684,24 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "bea964135021fa05f02311e78dd3244333ede45f470991f1c41ca22b0ee1f1f1",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q049",
@@ -1035,10 +1722,24 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "5d92b4559e2bcfc3c2e7db5fabbbedc8ecf479bc3883cc47bb01627c53a4bc33",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q050",
@@ -1050,10 +1751,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "65553d6f792283f077c1002af8b31b003c72de07a0c82c8bd17248aaa1b49983",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q051",
@@ -1074,10 +1789,24 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "f558022c303bfa198e370c75b5e5c71c86efe39bd143c0460b7ea614dce86a63",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q052",
@@ -1089,10 +1818,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "مؤلفه‌ها مستقل‌اند؛ جمع گاما هم شاهد اجتماع و هم ضرورت پوشش هر مؤلفه را می‌خواهد.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "7f9c9cf546c73ea055a97c980435dbd3ef05683b45923a174389a3266e34d829",
+        "finding": "مؤلفه‌ها مستقل‌اند؛ جمع گاما هم شاهد اجتماع و هم ضرورت پوشش هر مؤلفه را می‌خواهد.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q053",
@@ -1104,10 +1847,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "برای گراف ناتهی، گاما۱ معادل رأس فراگیر است؛ تک‌مرکز همهٔ رأس‌ها را می‌پوشاند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "2b7ecd452482cc122f8796baf6795623dabfbc96a0ad293c1178ed040d996775",
+        "finding": "برای گراف ناتهی، گاما۱ معادل رأس فراگیر است؛ تک‌مرکز همهٔ رأس‌ها را می‌پوشاند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q054",
@@ -1119,10 +1876,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "برای گراف ناتهی، گاما۱ معادل رأس فراگیر است؛ تک‌مرکز همهٔ رأس‌ها را می‌پوشاند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "3e2b1cab216f09040d01c56d48d211d272aa72ef2bfae49faf8aba48fe0afd87",
+        "finding": "برای گراف ناتهی، گاما۱ معادل رأس فراگیر است؛ تک‌مرکز همهٔ رأس‌ها را می‌پوشاند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q055",
@@ -1134,10 +1905,25 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "سقف n/4 برای تاکسی با ظرفیت۴ درست است؛ گراف کلیک‌های ازپیش‌تقسیم‌شده مدل هم‌تاکسی پس از تخصیص است، نه حل عام ظرفیت با احاطه‌گری. این گراف۱۴رأسی به ارزیاب۱۲رأسی ارسال نشود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "e2395d6a82be185442f39c3e364a0babb90460a75f12b80c6dbd19c50841ae26",
+        "finding": "سقف n/4 برای تاکسی با ظرفیت۴ درست است؛ گراف کلیک‌های ازپیش‌تقسیم‌شده مدل هم‌تاکسی پس از تخصیص است، نه حل عام ظرفیت با احاطه‌گری. این گراف۱۴رأسی به ارزیاب۱۲رأسی ارسال نشود.",
+        "humanReviewRequired": true,
+        "evaluatorRestriction": "outside-small-exact-evaluator"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q056",
@@ -1148,11 +1934,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Process",
+      "placementReason": "کف و سقف دقیقاً روی اعداد صحیح برابرند؛ برای غیرصحیح مثال مثبت/منفی و زمینهٔ ظرفیت روشن لازم است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "4416b0d63f74f50db90784866447697d5775dd38531772d3207415ccc9b4c0d9",
+        "finding": "کف و سقف دقیقاً روی اعداد صحیح برابرند؛ برای غیرصحیح مثال مثبت/منفی و زمینهٔ ظرفیت روشن لازم است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q057",
@@ -1163,11 +1963,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "cc55b73d1af32a58c0c3d8e5dd39862e52b8d88ec9ac70f5f2e0ac0a0dcd4672",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q058",
@@ -1178,11 +1992,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "d27861cbe9030b1a6b6c8af49b59db7cbbc32407f5812cd61fedfa3b4559463d",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q059",
@@ -1193,11 +2021,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "تهی فقط در گراف بی‌رأس احاطه‌گر است؛ مرز مفهومی است و خارج از دامنهٔ ابزار۲تا۱۲رأسی بررسی متنی شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "50c48f48a0cb35cd52f72dda0d4c4e6d015e11fe0c021b9b2c433f96a7e6dc46",
+        "finding": "تهی فقط در گراف بی‌رأس احاطه‌گر است؛ مرز مفهومی است و خارج از دامنهٔ ابزار۲تا۱۲رأسی بررسی متنی شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q060",
@@ -1208,11 +2050,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "fb1c22b68b0280a5c40d2d06c9d7ec2b5a1d27b67cf7efcfbe70e40e012dee07",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q061",
@@ -1223,11 +2079,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Process",
+      "placementReason": "تعریف با همسایگی بسته و اجتماع پوشش؛ افزودن مرکز پوشش را کم نمی‌کند؛ رأس تنها باید خودش عضو باشد. Q046 از P5 نمایشی استفاده می‌کند؛ P3 اقتباس مستقل است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "091df2d4f67ea73bb133aea880d4e796ce5e2c4d5499e08d27946fb684a9ea9d",
+        "finding": "تعریف با همسایگی بسته و اجتماع پوشش؛ افزودن مرکز پوشش را کم نمی‌کند؛ رأس تنها باید خودش عضو باشد. Q046 از P5 نمایشی استفاده می‌کند؛ P3 اقتباس مستقل است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q062",
@@ -1238,11 +2108,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "در C7 دو مجموعهٔ سه‌عضوی داده‌شده کمینه و مجموعهٔ چهارتایی غیرکمینه است؛ منبع برچسب Action دارد اما مقایسهٔ کمینه اقتباس Object است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "0b9659b9d4a8347fba8d377647f153157571379dc45cbbe7cec3b913e25d3b74",
+        "finding": "در C7 دو مجموعهٔ سه‌عضوی داده‌شده کمینه و مجموعهٔ چهارتایی غیرکمینه است؛ منبع برچسب Action دارد اما مقایسهٔ کمینه اقتباس Object است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q063",
@@ -1262,11 +2146,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Process",
+      "placementReason": "مینیمال یعنی هیچ عضو قابل حذف نیست، کمینه یعنی اندازهٔ سراسری. حذف متناهی به مینیمال می‌رسد ولی الزاماً کمینه نمی‌دهد.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "e5abda854274dbc722f486dbeec9a929e7f520ef0062a86f00004b9c4a5fd247",
+        "finding": "مینیمال یعنی هیچ عضو قابل حذف نیست، کمینه یعنی اندازهٔ سراسری. حذف متناهی به مینیمال می‌رسد ولی الزاماً کمینه نمی‌دهد.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q064",
@@ -1277,11 +2175,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "در پترسن C رأس d را نمی‌پوشاند؛ A,B,D,H مینیمال و E,F قابل حذف‌اند. طبقه‌بندی هفت مجموعه و همهٔ حذف‌ها باید جدا بررسی شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "dca8c67c3fb906a00a3db0c7ab7aa3d5c89e3d5a42decfde0f789cd09aceef07",
+        "finding": "در پترسن C رأس d را نمی‌پوشاند؛ A,B,D,H مینیمال و E,F قابل حذف‌اند. طبقه‌بندی هفت مجموعه و همهٔ حذف‌ها باید جدا بررسی شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q065",
@@ -1309,11 +2221,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Process",
+      "placementReason": "گراف منبع۹رأسی و {b,d,f} مینیمال است؛ P5 و حذف b,d در مسیر جدید اقتباس جدا با شناسه و شاهد خودش است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "45bc79b3a801873310a6e62ab577b9de59f50037f3830cc443028a7e374ce12e",
+        "finding": "گراف منبع۹رأسی و {b,d,f} مینیمال است؛ P5 و حذف b,d در مسیر جدید اقتباس جدا با شناسه و شاهد خودش است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q066",
@@ -1325,10 +2251,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "مینیمال یعنی هیچ عضو قابل حذف نیست، کمینه یعنی اندازهٔ سراسری. حذف متناهی به مینیمال می‌رسد ولی الزاماً کمینه نمی‌دهد.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "8aac49c78d4cde1510e07cce2bac265bed0f6166dd2b15f3c69551b54b88c8f0",
+        "finding": "مینیمال یعنی هیچ عضو قابل حذف نیست، کمینه یعنی اندازهٔ سراسری. حذف متناهی به مینیمال می‌رسد ولی الزاماً کمینه نمی‌دهد.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q067",
@@ -1348,11 +2288,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "1f6848b4701b67f1b9b7256acec244d7988955c6c52167c0b47181d5e920ac9b",
+        "finding": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q068",
@@ -1363,11 +2317,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "a06ef0927f698d72d7aad266b14aeb351f0e19b273e145397c868e97e1f14578",
+        "finding": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q069",
@@ -1378,11 +2346,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "44afba963ddee15f95193f03767c7ade17afb8b5599a0c43af65863ab5a7b7b2",
+        "finding": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q070",
@@ -1393,11 +2375,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "f4c306f02b7e814eaa6539ed0f0a3e1be5690b03e9390bdbf70f6c5a14951409",
+        "finding": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q071",
@@ -1417,11 +2413,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "a1acf043a08c7841b0aa4a8cc2e6554a2c4d6ac345cf03dcf49debb452290ffb",
+        "finding": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q072",
@@ -1433,10 +2443,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "4451dafa7f78752a14732d64d0a11fb2a54164bdc70db3725bfadb7ffdb5b90d",
+        "finding": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q073",
@@ -1448,10 +2472,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "afcf6f66e6c4b60949aa933148150a891534f3e0f536f79cace298e82c092839",
+        "finding": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q074",
@@ -1472,10 +2510,24 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "Q074 دو ستارهٔ شش‌رأسی یک کمینه دارد؛ C6 سه کمینه دارد. یکتایی باید همهٔ مجموعه‌های هم‌اندازه را بررسی کند، نه فقط جواب نمونه.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "bb64d8e3bc925df4bcd8f3a914e829a2843fe886b5f93d1f5122a15acd2f3390",
+        "finding": "Q074 دو ستارهٔ شش‌رأسی یک کمینه دارد؛ C6 سه کمینه دارد. یکتایی باید همهٔ مجموعه‌های هم‌اندازه را بررسی کند، نه فقط جواب نمونه.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q075",
@@ -1496,10 +2548,24 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "Q074 دو ستارهٔ شش‌رأسی یک کمینه دارد؛ C6 سه کمینه دارد. یکتایی باید همهٔ مجموعه‌های هم‌اندازه را بررسی کند، نه فقط جواب نمونه.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "19d9fa9629f5d1c9bbd02d4d39e50cb051f752a4a394fbb1535e26a37306e495",
+        "finding": "Q074 دو ستارهٔ شش‌رأسی یک کمینه دارد؛ C6 سه کمینه دارد. یکتایی باید همهٔ مجموعه‌های هم‌اندازه را بررسی کند، نه فقط جواب نمونه.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q076",
@@ -1510,11 +2576,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Schema",
+      "placementReason": "ساخت معتبر برای هر ۱≤k≤n: افراز به k گروه ناتهی و کلیک/ستارهٔ جدا در هر گروه. عبارت جایگزین k نسخهٔ K2 فقط وقتی ۲k≤n و با تنظیم مؤلفه‌ها معتبر است؛ در اقتباس به آن تکیه نشود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "38528100b4b24708a1a5cecd4164ba84cf89fb14e27f275a29fc68d3d78ee3c9",
+        "finding": "ساخت معتبر برای هر ۱≤k≤n: افراز به k گروه ناتهی و کلیک/ستارهٔ جدا در هر گروه. عبارت جایگزین k نسخهٔ K2 فقط وقتی ۲k≤n و با تنظیم مؤلفه‌ها معتبر است؛ در اقتباس به آن تکیه نشود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q077",
@@ -1529,7 +2609,21 @@
       "placementReason": "ارجاع مکمل به ابزار موجود؛ شرط عبور هسته یا شرط گروه/زمان نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "fcdded51241629e2579add1625ecf2fafc8b11124448c7fc43a57340581cc030",
+        "finding": "وابسته به امتیاز/ریپو/تایمر یا گروه است؛ فقط مرجع ابزار اختیاری. متن تفاوت نسخه یا الزام رقابت/زمان وارد آموزش فردی نشود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "optional-tool-only"
     },
     {
       "questionId": "Q078",
@@ -1550,10 +2644,24 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "740c6017e524fc2d12ce745a474fa69f260af849cb4e6fedf731cbc73937cb57",
+        "finding": "پوشش، همهٔ حذف‌ها و شاهد کوچک‌تر سه کار مستقل‌اند. P6:{b,d,f} در برابر {b,e}؛ ستارهٔ Q071 سه برگ دارد، نمونهٔ چهاربرگی هسته از Q051 اقتباس شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q079",
@@ -1565,10 +2673,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "651666927b3626345984cbf50379ceaa367272fc9df3250cc96a3d23977db75f",
+        "finding": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q080",
@@ -1580,10 +2702,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "d8174e8ad295f32a14d84505b074dd22d6dca1952b24c44e6c0ec2dd2f5c4f57",
+        "finding": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q081",
@@ -1594,11 +2730,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "744b0b27d444a01217f315ae3362e352000f3c340c3b07739aa19ab9a94e8a5c",
+        "finding": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q082",
@@ -1609,11 +2759,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "ec1678f34b90c0b3463d898730c03c6f9f15fe6b24d1ea29c47efd874b997e91",
+        "finding": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q083",
@@ -1624,11 +2788,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "b6d88db1b36ad326b9419b3174f3faee2612f2e05e10d9ce320eb22d8c617d41",
+        "finding": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q084",
@@ -1639,11 +2817,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "c7957a16d2aa55d28b582a36a558695f720ace6bc4d9d2d99d83fdcb76631488",
+        "finding": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q085",
@@ -1654,11 +2846,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "43243bd8c52392b11c49b210459c1ffa182e9a8e83f2473ecf4ef90ce3e42264",
+        "finding": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q086",
@@ -1669,11 +2875,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "6d84ff33cc1682d8120c2fc48dfa19fb4cac455abc54bd9a4b52415a5da08d7d",
+        "finding": "مجموعهٔ داده‌شده کمینه است و بنابراین مینیمال؛ در C4 هر جفت رأس (نه فقط مقابل) یک کمینه است. شاهد حذف و کران پایین جدا بمانند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q087",
@@ -1685,10 +2905,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "60ed1d7daafbc480c1e7ca2af662cdbaf30f42ce2250a63370526330458fc3f9",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q088",
@@ -1700,10 +2934,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "a7b8f19188f610397c8e50faa42cf4ca071018de517eb334085a0b687a036f67",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q089",
@@ -1715,10 +2963,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "4adb936dc7ddb053274a312b2c1395da24557a3270826a804cc0d395a706729f",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q090",
@@ -1730,10 +2992,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "9d6f6f095f1f46ab60ebdb82efc3a2e1ee5b81a6ba6d1d998ad7cf64a4943881",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q091",
@@ -1745,10 +3021,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "2de907e97d6310c290c2efc74fead90169fdd2f080fb621fe4dd76f8dd1855bd",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q092",
@@ -1760,10 +3050,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "27fd242707719f0e7b8bc2d2fe61fcf0eb395bf8633adaec2dcd7faf19b6f7a0",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q093",
@@ -1784,10 +3088,24 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "انتخاب ۲،۵،۸،… به‌تنهایی برای n=3k+1 انتهای مسیر را نمی‌پوشاند؛ سه باقیمانده و n=1,2 باید جدا با ساخت درست ارائه شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "af22a6214c67a5756e034b413d30c865acc6124437755d300b224ad2816cbcba",
+        "finding": "انتخاب ۲،۵،۸،… به‌تنهایی برای n=3k+1 انتهای مسیر را نمی‌پوشاند؛ سه باقیمانده و n=1,2 باید جدا با ساخت درست ارائه شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q094",
@@ -1808,10 +3126,24 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "دامنهٔ «هر n طبیعی» در دور ساده به n≥3 محدود شود. سه باقیمانده و اتصال آخر به اول در ساخت شاهد صریح بررسی شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "f209e8a8898d00e311b91c21ef1af38ca9db6a222e7b268e9ba0700edc7eb071",
+        "finding": "دامنهٔ «هر n طبیعی» در دور ساده به n≥3 محدود شود. سه باقیمانده و اتصال آخر به اول در ساخت شاهد صریح بررسی شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q095",
@@ -1823,10 +3155,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "f677cd0c7c100e0d890e58d3d8816b4b6f600290cf5c8c0799822c5073a13e9a",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q096",
@@ -1838,10 +3184,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "5337b78f22e3370a7b666cb6d092ede2f2b8a6034a27103408031e5e0ac704a3",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q097",
@@ -1853,10 +3213,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "000d1ba48d74f79e2ab4a85cbb772212dda17dc74aaf0fed3eeb8d0eb9ea1a9c",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q098",
@@ -1868,10 +3242,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "63a6cd5118f099b116f3f22d305699ef325cc18df48aa392f9d4825111dc5bc4",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q099",
@@ -1883,10 +3271,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "در K1,4 یک مرکز کافی است؛ راهنمای اول «یک رأس از هر بخش» به جواب کمینه منتهی نمی‌شود. اقتباس راهنمای مستقل و دقیق داشته باشد.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "5c457851663f059a531ee0bc9e7a5a342666f0cc45be74fdb591d03d93c5abca",
+        "finding": "در K1,4 یک مرکز کافی است؛ راهنمای اول «یک رأس از هر بخش» به جواب کمینه منتهی نمی‌شود. اقتباس راهنمای مستقل و دقیق داشته باشد.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q100",
@@ -1898,10 +3300,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "f59ff3c2cc02f8e967f4275dec2793c7a5285b4290bfa4fe568b96e15c417a74",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q101",
@@ -1913,10 +3329,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "77c6211054be08942b7cf2b63dd8b32941c2c73be50f65a130fcc3940b8134d4",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q102",
@@ -1928,10 +3358,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "e7cdf23ee2844ad081c8ae200fce3070b4a64374675c98fa76bb6ebb62e2f563",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q103",
@@ -1943,10 +3387,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "d200efd24a1b557fc70dcb57eb00b1a36783bfe6ff004b9a722ce976b4bdb1f1",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q104",
@@ -1958,10 +3416,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "60e19218efed03d28e51aee12fb5b19b020d144f95785d591077ef505e3b24c1",
+        "finding": "شاهد و گامای گراف ذخیره‌شده با ساختار بررسی شوند؛ همهٔ جواب‌های کمینه معتبر پذیرفته شوند، نه فقط پنج نمونهٔ gamma_sets. ناحیهٔ دور n≥3 و خودپوشانی رعایت شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q105",
@@ -1973,10 +3445,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "پترسن گاما۳ و دقیقاً۱۰ کمینه دارد؛ کران سقف۱۰/۴=۳ با شاهد سه‌عضوی تیز است. فهرست پنج‌تایی graph نمونه است، فهرست Q140 کامل.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "948f9013ad82454fd3803c98bdb710c8097d9c1bfcd0897b36b0c1fe0e0c63c3",
+        "finding": "پترسن گاما۳ و دقیقاً۱۰ کمینه دارد؛ کران سقف۱۰/۴=۳ با شاهد سه‌عضوی تیز است. فهرست پنج‌تایی graph نمونه است، فهرست Q140 کامل.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q106",
@@ -1997,10 +3483,24 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "کران سقف n/(Δ+1) ضروری است و لزوماً تیز نیست؛ فقط اگر شاهد هم‌اندازه یافت شود کمینه را ثابت می‌کند. در kمنتظم Δ=k.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "8000e363e90ceb8a2c6a6fa20c9541adcd3288400369b82ee9eb78430e0ee142",
+        "finding": "کران سقف n/(Δ+1) ضروری است و لزوماً تیز نیست؛ فقط اگر شاهد هم‌اندازه یافت شود کمینه را ثابت می‌کند. در kمنتظم Δ=k.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q107",
@@ -2012,10 +3512,25 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "پترسن گاما۳ و دقیقاً۱۰ کمینه دارد؛ کران سقف۱۰/۴=۳ با شاهد سه‌عضوی تیز است. فهرست پنج‌تایی graph نمونه است، فهرست Q140 کامل.",
       "requiresFigure": true,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "b94266357c06f66a21ea48e3c89472cae9c42fec859b4c74043029e445bcdd09",
+        "finding": "پترسن گاما۳ و دقیقاً۱۰ کمینه دارد؛ کران سقف۱۰/۴=۳ با شاهد سه‌عضوی تیز است. فهرست پنج‌تایی graph نمونه است، فهرست Q140 کامل.",
+        "humanReviewRequired": true,
+        "figureAsset": "assets/book/page-48.webp"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q108",
@@ -2027,10 +3542,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "کران سقف n/(Δ+1) ضروری است و لزوماً تیز نیست؛ فقط اگر شاهد هم‌اندازه یافت شود کمینه را ثابت می‌کند. در kمنتظم Δ=k.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "683e9ec5e32d6419d6b8d1c15969fcce149cda3ed1cb671abaae55df9ea116bf",
+        "finding": "کران سقف n/(Δ+1) ضروری است و لزوماً تیز نیست؛ فقط اگر شاهد هم‌اندازه یافت شود کمینه را ثابت می‌کند. در kمنتظم Δ=k.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q109",
@@ -2042,10 +3571,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "قضیهٔ اور شرط نبود رأس تنها دارد؛ اشارهٔ کوتاه به جفت‌بندی اثبات کامل عمومی نیست؛ شرط و استدلال تکمیلی جدا بازبینی شوند.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "a7332525609d2ff3532131e365fe8052b3a85f32b222e9f4dc829ac6bbf0debb",
+        "finding": "قضیهٔ اور شرط نبود رأس تنها دارد؛ اشارهٔ کوتاه به جفت‌بندی اثبات کامل عمومی نیست؛ شرط و استدلال تکمیلی جدا بازبینی شوند.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q110",
@@ -2066,10 +3609,24 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "Q110 کران تیز P3 و Q111 کران۲ با گاما۳ است. در Q111 پوشش d,e جفت را به چهار حالت محدود می‌کند و f در هر چهار حالت بی‌پوشش است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "d92ef9ac7541129dc198c194e67aee6757497f2e1edbdbdb3d6c8789f1747249",
+        "finding": "Q110 کران تیز P3 و Q111 کران۲ با گاما۳ است. در Q111 پوشش d,e جفت را به چهار حالت محدود می‌کند و f در هر چهار حالت بی‌پوشش است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q111",
@@ -2090,10 +3647,24 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "Q110 کران تیز P3 و Q111 کران۲ با گاما۳ است. در Q111 پوشش d,e جفت را به چهار حالت محدود می‌کند و f در هر چهار حالت بی‌پوشش است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "c5b7ee51430a3df80cabf495ca7fc22b4f972e3431cb9b171ee440c04320734d",
+        "finding": "Q110 کران تیز P3 و Q111 کران۲ با گاما۳ است. در Q111 پوشش d,e جفت را به چهار حالت محدود می‌کند و f در هر چهار حالت بی‌پوشش است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q112",
@@ -2113,11 +3684,26 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Schema",
+      "placementReason": "شکل۱۵ صفحهٔ۵۲ نقشهٔ فاصله‌دار دارد؛ آستانهٔ۱۰ روی کوتاه‌ترین فاصلهٔ جاده‌ای اعمال شود نه فقط یک جادهٔ مستقیم. خروج اجباری بدون جدول/دادهٔ کامل تألیف نشود.",
       "requiresFigure": true,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "06ce47972c23c5aceeef5a0018c264350c2dd6066554134aa74134c8baf80b05",
+        "finding": "شکل۱۵ صفحهٔ۵۲ نقشهٔ فاصله‌دار دارد؛ آستانهٔ۱۰ روی کوتاه‌ترین فاصلهٔ جاده‌ای اعمال شود نه فقط یک جادهٔ مستقیم. خروج اجباری بدون جدول/دادهٔ کامل تألیف نشود.",
+        "humanReviewRequired": true,
+        "figureAsset": "assets/book/page-52.webp"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q113",
@@ -2137,11 +3723,26 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Schema",
+      "placementReason": "شکل۱۵ صفحهٔ۵۲ نقشهٔ فاصله‌دار دارد؛ آستانهٔ۱۰ روی کوتاه‌ترین فاصلهٔ جاده‌ای اعمال شود نه فقط یک جادهٔ مستقیم. خروج اجباری بدون جدول/دادهٔ کامل تألیف نشود.",
       "requiresFigure": true,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "6a919e82ee0cc2fe27f76966d0549597cfdc49bcba5b6a305a8ce9b517856b24",
+        "finding": "شکل۱۵ صفحهٔ۵۲ نقشهٔ فاصله‌دار دارد؛ آستانهٔ۱۰ روی کوتاه‌ترین فاصلهٔ جاده‌ای اعمال شود نه فقط یک جادهٔ مستقیم. خروج اجباری بدون جدول/دادهٔ کامل تألیف نشود.",
+        "humanReviewRequired": true,
+        "figureAsset": "assets/book/page-52.webp"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q114",
@@ -2152,11 +3753,26 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "Q4 شانزده رأس، درجه۴ و گاما۴؛ {a,b,m,n} با کران سقف۱۶/۵=۴. از حد۱۲ ارزیاب کوچک بزرگ‌تر است؛ فقط ابزار منبع/بررسی مستقل، بدون کوچک‌سازی خاموش.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "6cebc18be4d6fed099237cc8efef51a60d24850a474f949d4a75d4b049a968aa",
+        "finding": "Q4 شانزده رأس، درجه۴ و گاما۴؛ {a,b,m,n} با کران سقف۱۶/۵=۴. از حد۱۲ ارزیاب کوچک بزرگ‌تر است؛ فقط ابزار منبع/بررسی مستقل، بدون کوچک‌سازی خاموش.",
+        "humanReviewRequired": true,
+        "evaluatorRestriction": "outside-small-exact-evaluator"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q115",
@@ -2167,11 +3783,26 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "Q4 شانزده رأس، درجه۴ و گاما۴؛ {a,b,m,n} با کران سقف۱۶/۵=۴. از حد۱۲ ارزیاب کوچک بزرگ‌تر است؛ فقط ابزار منبع/بررسی مستقل، بدون کوچک‌سازی خاموش.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "8f549ae97b9863c48d77890d765e8ef7a91ed063561e8ef454cf28ef05b65d5e",
+        "finding": "Q4 شانزده رأس، درجه۴ و گاما۴؛ {a,b,m,n} با کران سقف۱۶/۵=۴. از حد۱۲ ارزیاب کوچک بزرگ‌تر است؛ فقط ابزار منبع/بررسی مستقل، بدون کوچک‌سازی خاموش.",
+        "humanReviewRequired": true,
+        "evaluatorRestriction": "outside-small-exact-evaluator"
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q116",
@@ -2182,11 +3813,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Action",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Schema",
+      "placementReason": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "b394c74ec12bf814a8d17f461659c55aed9a0bd405cd3627d1721fd19c058c1a",
+        "finding": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q117",
@@ -2197,11 +3842,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Schema",
+      "placementReason": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "2ed9e75bac3698686baf0ed2ee50f968b78910ba28fa5ce22fb90520ee60d4e5",
+        "finding": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q118",
@@ -2212,11 +3871,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Schema",
+      "placementReason": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "7e550424f66bae36b7dae13d3aa8cbdcefcb5cbf89575a251a06fcbbc65caae4",
+        "finding": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q119",
@@ -2227,11 +3900,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Schema",
+      "placementReason": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "887da02180da940dca86f25f7bf946d99a62d5ac62c940e0ed1e74d10b7dafd6",
+        "finding": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q120",
@@ -2251,11 +3938,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Schema",
+      "placementReason": "C6 شش خانه و دو نگهبان مقابل؛ ساخت زمینه و ترجمهٔ جواب لازم است، نه صرف اعلام گاما۲.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "5c9ff6293231f31055ecee2e52a27188ceb4d180c6b801c107e81506a393f7b1",
+        "finding": "C6 شش خانه و دو نگهبان مقابل؛ ساخت زمینه و ترجمهٔ جواب لازم است، نه صرف اعلام گاما۲.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q121",
@@ -2275,11 +3976,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Schema",
+      "placementReason": "دوستی متقابل و دنبال‌کردن یک‌طرفه جدا؛ دست‌دادن رابطهٔ دوطرفه است. گراف خاص از متن تعیین نمی‌شود؛ فهرست روابط در اقتباس باید تألیف شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "ad7d5dad4b5e83f88eb57893e015a9c407ae99fd3f31ccdee4145537a8650951",
+        "finding": "دوستی متقابل و دنبال‌کردن یک‌طرفه جدا؛ دست‌دادن رابطهٔ دوطرفه است. گراف خاص از متن تعیین نمی‌شود؛ فهرست روابط در اقتباس باید تألیف شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q122",
@@ -2300,10 +4015,24 @@
         }
       ],
       "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "روی پنج عضو نام‌دار ۱۰ جفت و ۱۰۲۴ گراف ساده وجود دارد؛ این تعداد آرایش‌های رسم یا گراف‌های بی‌نام نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "6d5a953e2b0265af45243c7060dcdf103c4f971188a39fe11b5b7dd69d397fab",
+        "finding": "روی پنج عضو نام‌دار ۱۰ جفت و ۱۰۲۴ گراف ساده وجود دارد؛ این تعداد آرایش‌های رسم یا گراف‌های بی‌نام نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q123",
@@ -2323,11 +4052,25 @@
           "use": "adapted-not-relabelled-original"
         }
       ],
-      "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Schema",
+      "placementReason": "دوستی متقابل و دنبال‌کردن یک‌طرفه جدا؛ دست‌دادن رابطهٔ دوطرفه است. گراف خاص از متن تعیین نمی‌شود؛ فهرست روابط در اقتباس باید تألیف شود.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "9fbc27fa62e3b3e58ac5b30893062064ac82ccae5ef9807685f38ef047d6f1a4",
+        "finding": "دوستی متقابل و دنبال‌کردن یک‌طرفه جدا؛ دست‌دادن رابطهٔ دوطرفه است. گراف خاص از متن تعیین نمی‌شود؛ فهرست روابط در اقتباس باید تألیف شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q124",
@@ -2338,11 +4081,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Schema",
+      "placementReason": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "538963cbc3c98de2295b604dd79674d1b14b8843baa7f227da821310dce84d79",
+        "finding": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q125",
@@ -2353,11 +4110,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Object",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "supplementalCandidateStage": "Schema",
+      "placementReason": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "41b3d696b2b9cc441c9ca0af7a97e70406392722e3e4f11521ca3a9ea371eb5b",
+        "finding": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q126",
@@ -2378,10 +4149,24 @@
         }
       ],
       "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "168d537060b5bdc55c9b3c455d370cf6fe3dc9dfc6cb168fb06edf42006a247e",
+        "finding": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q127",
@@ -2402,10 +4187,24 @@
         }
       ],
       "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "d0c2e3ad02e44c437dddf58bfb941ab19c549c15b03fdc23de58ed5dce0ad90f",
+        "finding": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q128",
@@ -2426,10 +4225,24 @@
         }
       ],
       "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "8848754b2bf6976383bbe38984e6c4c421e8543b88a705e8008c7ab92ed817da",
+        "finding": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q129",
@@ -2441,10 +4254,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "ad3069f7cd998ab73d73d608b73663147c8b17bab916f40d66f781977c972917",
+        "finding": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q130",
@@ -2456,10 +4283,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "cea2ea103a8624361e49eb4a9f1887a9f3f114261b82c567f2fc5844ca51b72a",
+        "finding": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q131",
@@ -2480,10 +4321,24 @@
         }
       ],
       "supplementalCandidateStage": "Schema",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "7bf1db8b7c46257ab2f0b85059357c5bb7fc1799b3e93c756b15d1eebafebdc0",
+        "finding": "این سؤال‌ها نوع مدل را می‌خواهند، نه جواب عددیِ بدون نقشه. برای Schema، روابط تازهٔ کامل، شاهد، حد پایین و فرض ظرفیت/دید/برد لازم است؛ مدل احاطه‌گری جواب خودکار مسئلهٔ واقعیِ ظرفیت‌دار نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q132",
@@ -2495,10 +4350,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Schema",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "کمینه۴ با کران پوشش۳ و نمونهٔ C12 یا C6∪C6؛ C12 تنها پاسخ نیست. ساخت و استدلال Object/Schema است، نه صرف کنش برچسب منبع.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "8afe0b3270643877039040555ae940bd331af6be7dece79e18f3b72469b3edec",
+        "finding": "کمینه۴ با کران پوشش۳ و نمونهٔ C12 یا C6∪C6؛ C12 تنها پاسخ نیست. ساخت و استدلال Object/Schema است، نه صرف کنش برچسب منبع.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q133",
@@ -2509,11 +4378,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "دامنه‌های کوچک مهم‌اند: یکتایی برای۲ و۴ در Q133، چندکمینه برای۳ و۴ در Q134. γ گراف نمونه به‌تنهایی پاسخ همهٔ بخش‌ها نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "82debda86859a4c9e68a664ec9cf27148bc896136c38fd24f170fd0d55b55d40",
+        "finding": "دامنه‌های کوچک مهم‌اند: یکتایی برای۲ و۴ در Q133، چندکمینه برای۳ و۴ در Q134. γ گراف نمونه به‌تنهایی پاسخ همهٔ بخش‌ها نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q134",
@@ -2524,11 +4407,25 @@
       "teachAllowed": true,
       "role": "supplemental-candidate",
       "adaptations": [],
-      "supplementalCandidateStage": "Schema",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "دامنه‌های کوچک مهم‌اند: یکتایی برای۲ و۴ در Q133، چندکمینه برای۳ و۴ در Q134. γ گراف نمونه به‌تنهایی پاسخ همهٔ بخش‌ها نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "87fcb43e1d6e5f6cbced81d64989e30d6ef153afa3cd69e24dfd02e9cafcbfad",
+        "finding": "دامنه‌های کوچک مهم‌اند: یکتایی برای۲ و۴ در Q133، چندکمینه برای۳ و۴ در Q134. γ گراف نمونه به‌تنهایی پاسخ همهٔ بخش‌ها نیست.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q135",
@@ -2549,10 +4446,24 @@
         }
       ],
       "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "افزودن یال گاما را زیاد و حذف یال کم نمی‌کند. Q135 اکنون P3+تنهاست؛ همهٔ افزودن‌ها به P5 گاما۲ نگه می‌دارند. برای آزمایش از دو مبنای متفاوت استفاده کن.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "f7a931a974e44343bdc7938fa8c01b74803749185632333dd175973ed01ffa54",
+        "finding": "افزودن یال گاما را زیاد و حذف یال کم نمی‌کند. Q135 اکنون P3+تنهاست؛ همهٔ افزودن‌ها به P5 گاما۲ نگه می‌دارند. برای آزمایش از دو مبنای متفاوت استفاده کن.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q136",
@@ -2573,10 +4484,24 @@
         }
       ],
       "supplementalCandidateStage": "Process",
-      "placementReason": "نامزد تکمیلی براساس متادیتای منبع؛ تعیین نهایی بعد از بررسی کامل صورت و معیار.",
+      "placementReason": "افزودن یال گاما را زیاد و حذف یال کم نمی‌کند. Q135 اکنون P3+تنهاست؛ همهٔ افزودن‌ها به P5 گاما۲ نگه می‌دارند. برای آزمایش از دو مبنای متفاوت استفاده کن.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "39a85c07764efd70127fa621d410fbf7adb1018740cee408a8e7488cfd583b62",
+        "finding": "افزودن یال گاما را زیاد و حذف یال کم نمی‌کند. Q135 اکنون P3+تنهاست؛ همهٔ افزودن‌ها به P5 گاما۲ نگه می‌دارند. برای آزمایش از دو مبنای متفاوت استفاده کن.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q137",
@@ -2588,10 +4513,24 @@
       "role": "supplemental-candidate",
       "adaptations": [],
       "supplementalCandidateStage": "Object",
-      "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
+      "placementReason": "از γ=1 رأس فراگیر، Δ=n−1 و n−1≤q≤n(n−1)/2 برای گراف سادهٔ ناتهی؛ شاهد ستاره/کامل برای کران‌ها لازم است.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "f9a4962a59cf4549f1b06a3a02dc2cd78ee0547a2b20a03fddc2639ce8674dc9",
+        "finding": "از γ=1 رأس فراگیر، Δ=n−1 و n−1≤q≤n(n−1)/2 برای گراف سادهٔ ناتهی؛ شاهد ستاره/کامل برای کران‌ها لازم است.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q138",
@@ -2606,7 +4545,21 @@
       "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "86a64e60bd3556b859e787e1296783bd98f8143bcc989f659b347c36e99812d0",
+        "finding": "ابزار مکمل اختیاری، نه فعالیت اجباری مسیر. Q142 چهار مدل می‌خواهد، Q143 دورهای۱و۲ تعریف ساده ندارند؛ Q144 شرط اور بدون رأس تنها؛ Q150 دور بسته پنج‌یالی با ده یال گراف فعلی بررسی شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q139",
@@ -2621,7 +4574,21 @@
       "placementReason": "ارجاع مکمل به ابزار موجود؛ شرط عبور هسته یا شرط گروه/زمان نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "6ae855cccb43918c8f1fbb5dc895aeded820d0e050c995ed1c25fa97b15ac0f6",
+        "finding": "ابزار مکمل اختیاری، نه فعالیت اجباری مسیر. Q142 چهار مدل می‌خواهد، Q143 دورهای۱و۲ تعریف ساده ندارند؛ Q144 شرط اور بدون رأس تنها؛ Q150 دور بسته پنج‌یالی با ده یال گراف فعلی بررسی شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "optional-tool-only"
     },
     {
       "questionId": "Q140",
@@ -2632,11 +4599,25 @@
       "teachAllowed": true,
       "role": "optional-tool-reference",
       "adaptations": [],
-      "supplementalCandidateStage": null,
-      "placementReason": "ارجاع مکمل به ابزار موجود؛ شرط عبور هسته یا شرط گروه/زمان نیست.",
+      "supplementalCandidateStage": "Object",
+      "placementReason": "پترسن گاما۳ و دقیقاً۱۰ کمینه دارد؛ کران سقف۱۰/۴=۳ با شاهد سه‌عضوی تیز است. فهرست پنج‌تایی graph نمونه است، فهرست Q140 کامل.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "5c0e83bc858ae97aa95bcdddd1763747d03a0b5d3aab28fb95abb3e08f8432a9",
+        "finding": "پترسن گاما۳ و دقیقاً۱۰ کمینه دارد؛ کران سقف۱۰/۴=۳ با شاهد سه‌عضوی تیز است. فهرست پنج‌تایی graph نمونه است، فهرست Q140 کامل.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "optional-tool-only"
     },
     {
       "questionId": "Q141",
@@ -2651,7 +4632,21 @@
       "placementReason": "ارجاع مکمل به ابزار موجود؛ شرط عبور هسته یا شرط گروه/زمان نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "f7cbdbe609830e59a40d06365570d0bbea57990781eada7f031160e6d5230555",
+        "finding": "وابسته به امتیاز/ریپو/تایمر یا گروه است؛ فقط مرجع ابزار اختیاری. متن تفاوت نسخه یا الزام رقابت/زمان وارد آموزش فردی نشود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "optional-tool-only"
     },
     {
       "questionId": "Q142",
@@ -2666,7 +4661,21 @@
       "placementReason": "ارجاع مکمل به ابزار موجود؛ شرط عبور هسته یا شرط گروه/زمان نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "1dfa7ed73192b5d6762279ca15b3d5a981eb070a0670672c43305e6611010d64",
+        "finding": "ابزار مکمل اختیاری، نه فعالیت اجباری مسیر. Q142 چهار مدل می‌خواهد، Q143 دورهای۱و۲ تعریف ساده ندارند؛ Q144 شرط اور بدون رأس تنها؛ Q150 دور بسته پنج‌یالی با ده یال گراف فعلی بررسی شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "optional-tool-only"
     },
     {
       "questionId": "Q143",
@@ -2681,7 +4690,21 @@
       "placementReason": "ارجاع مکمل به ابزار موجود؛ شرط عبور هسته یا شرط گروه/زمان نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "ce2329194e7ca363f739dab457630d56ab56749d6b8316204c2dd3217fb4b9d3",
+        "finding": "ابزار مکمل اختیاری، نه فعالیت اجباری مسیر. Q142 چهار مدل می‌خواهد، Q143 دورهای۱و۲ تعریف ساده ندارند؛ Q144 شرط اور بدون رأس تنها؛ Q150 دور بسته پنج‌یالی با ده یال گراف فعلی بررسی شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "optional-tool-only"
     },
     {
       "questionId": "Q144",
@@ -2696,7 +4719,21 @@
       "placementReason": "ارجاع مکمل به ابزار موجود؛ شرط عبور هسته یا شرط گروه/زمان نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "23e469dd6ef87ea4d92601b2b1f672ae41bbe1c3a3b1c3e99bb86babd9eda8b0",
+        "finding": "ابزار مکمل اختیاری، نه فعالیت اجباری مسیر. Q142 چهار مدل می‌خواهد، Q143 دورهای۱و۲ تعریف ساده ندارند؛ Q144 شرط اور بدون رأس تنها؛ Q150 دور بسته پنج‌یالی با ده یال گراف فعلی بررسی شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "optional-tool-only"
     },
     {
       "questionId": "Q145",
@@ -2711,7 +4748,21 @@
       "placementReason": "ارجاع مکمل به ابزار موجود؛ شرط عبور هسته یا شرط گروه/زمان نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "6dec67ac3ac7b2acd4383ee28a645538605f17ba8329f0cf93ccec2fba17b362",
+        "finding": "ابزار مکمل اختیاری، نه فعالیت اجباری مسیر. Q142 چهار مدل می‌خواهد، Q143 دورهای۱و۲ تعریف ساده ندارند؛ Q144 شرط اور بدون رأس تنها؛ Q150 دور بسته پنج‌یالی با ده یال گراف فعلی بررسی شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "optional-tool-only"
     },
     {
       "questionId": "Q146",
@@ -2726,7 +4777,21 @@
       "placementReason": "ارجاع مکمل به ابزار موجود؛ شرط عبور هسته یا شرط گروه/زمان نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "95c1ea40e42ad6b4d41be64753f75668807d433219eeb56c190d9002818d8e5a",
+        "finding": "وابسته به امتیاز/ریپو/تایمر یا گروه است؛ فقط مرجع ابزار اختیاری. متن تفاوت نسخه یا الزام رقابت/زمان وارد آموزش فردی نشود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "optional-tool-only"
     },
     {
       "questionId": "Q147",
@@ -2741,7 +4806,21 @@
       "placementReason": "طراحی/اثبات/تعمیم یا مقایسهٔ فرمول پس از ساخت مفهوم؛ سختی یا برچسب منبع به‌تنهایی ملاک کنش نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "31cd9a8305715b4629d9f565c8b90ce9c6b28b29a08a081f3076763dfa99b16d",
+        "finding": "ابزار مکمل اختیاری، نه فعالیت اجباری مسیر. Q142 چهار مدل می‌خواهد، Q143 دورهای۱و۲ تعریف ساده ندارند؛ Q144 شرط اور بدون رأس تنها؛ Q150 دور بسته پنج‌یالی با ده یال گراف فعلی بررسی شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "adaptation-with-recorded-conditions"
     },
     {
       "questionId": "Q148",
@@ -2756,7 +4835,21 @@
       "placementReason": "ارجاع مکمل به ابزار موجود؛ شرط عبور هسته یا شرط گروه/زمان نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "c2c0fb032de58c303b1efb8cdbd508f68294d4e413b2912c03df6015d5cce436",
+        "finding": "ابزار مکمل اختیاری، نه فعالیت اجباری مسیر. Q142 چهار مدل می‌خواهد، Q143 دورهای۱و۲ تعریف ساده ندارند؛ Q144 شرط اور بدون رأس تنها؛ Q150 دور بسته پنج‌یالی با ده یال گراف فعلی بررسی شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "optional-tool-only"
     },
     {
       "questionId": "Q149",
@@ -2767,11 +4860,25 @@
       "teachAllowed": true,
       "role": "optional-tool-reference",
       "adaptations": [],
-      "supplementalCandidateStage": null,
-      "placementReason": "ارجاع مکمل به ابزار موجود؛ شرط عبور هسته یا شرط گروه/زمان نیست.",
+      "supplementalCandidateStage": "Process",
+      "placementReason": "افزودن یال گاما را زیاد و حذف یال کم نمی‌کند. Q135 اکنون P3+تنهاست؛ همهٔ افزودن‌ها به P5 گاما۲ نگه می‌دارند. برای آزمایش از دو مبنای متفاوت استفاده کن.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "0249a714848a6eec9ecef2815342fad20be3e1d56f6b2f4d0d0ed1b49cc9c430",
+        "finding": "افزودن یال گاما را زیاد و حذف یال کم نمی‌کند. Q135 اکنون P3+تنهاست؛ همهٔ افزودن‌ها به P5 گاما۲ نگه می‌دارند. برای آزمایش از دو مبنای متفاوت استفاده کن.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "optional-tool-only"
     },
     {
       "questionId": "Q150",
@@ -2786,7 +4893,21 @@
       "placementReason": "ارجاع مکمل به ابزار موجود؛ شرط عبور هسته یا شرط گروه/زمان نیست.",
       "requiresFigure": false,
       "specialGraph": false,
-      "contentReview": "pending-full-instructional-review"
+      "contentReview": "agent-reviewed-with-recorded-conditions",
+      "instructionalReview": {
+        "status": "agent-review-not-human-approval",
+        "reviewedFields": [
+          "question_fa",
+          "answer_fa",
+          "hints",
+          "graph",
+          "figure_ref"
+        ],
+        "sourceSha256": "b1749ce305c30b035c9e811e76fc7e2ac1ac67a607b5cf7bc0429d1438605ae7",
+        "finding": "ابزار مکمل اختیاری، نه فعالیت اجباری مسیر. Q142 چهار مدل می‌خواهد، Q143 دورهای۱و۲ تعریف ساده ندارند؛ Q144 شرط اور بدون رأس تنها؛ Q150 دور بسته پنج‌یالی با ده یال گراف فعلی بررسی شود.",
+        "humanReviewRequired": true
+      },
+      "supplementalUse": "optional-tool-only"
     }
   ]
 }

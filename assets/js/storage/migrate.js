@@ -10,11 +10,14 @@ export function decodeStoredState(raw, curriculum, context = {}) {
     if (!value || typeof value !== 'object' || Array.isArray(value) || !Object.hasOwn(value, 'schemaVersion')) {
       throw new ValidationError('ساختار ذخیره معتبر نیست.');
     }
-    if (value.schemaVersion !== 1) throw new ValidationError('نسخهٔ ذخیره پشتیبانی نمی‌شود؛ دادهٔ قبلی حفظ شد.', 'schemaVersion', 'unsupported-schema');
+    if (![1, 2].includes(value.schemaVersion)) throw new ValidationError('نسخهٔ ذخیره پشتیبانی نمی‌شود؛ دادهٔ قبلی حفظ شد.', 'schemaVersion', 'unsupported-schema');
+    if (curriculum.curriculumVersion === 3 && [1, 2].includes(value.curriculumVersion)) {
+      return { status: 'migration-required', state: validateStoredEnvelope(value, curriculum, context), raw };
+    }
     if(value.curriculumVersion===1 && curriculum.curriculumVersion===2){
       return {status:'migration-required',state:migrateCurriculum(value,curriculum,context),raw};
     }
-    if (![1,2].includes(value.curriculumVersion) || value.curriculumVersion !== curriculum.curriculumVersion) {
+    if (![1,2,3].includes(value.curriculumVersion) || value.curriculumVersion !== curriculum.curriculumVersion) {
       throw new ValidationError('نسخهٔ آموزش ناسازگار است؛ مهاجرت تأییدشده‌ای وجود ندارد.', 'curriculumVersion', 'unsupported-curriculum');
     }
     return { status: 'ready', state: validateStoredEnvelope(value, curriculum, context), raw };
@@ -33,6 +36,13 @@ export function migrateShellPreference(raw) {
 
 /** Authorized APOS redesign: validate old content first, reset ONLY old teaching progress. */
 export function migrateCurriculum(value, curriculum, context) {
+  if (curriculum.curriculumVersion === 3 && [1, 2].includes(value.curriculumVersion)) {
+    const validated = validateStoredEnvelope(value, curriculum, context);
+    const previous = validated.curriculumVersion === 1 ? migrateCurriculum(validated, context.previousCurriculum, context) : validated;
+    return validateStoredEnvelope({ ...previous, schemaVersion: 2, curriculumVersion: 3,
+      teachingProgress: initialProgress(curriculum),
+      teachingProgressArchive: { curriculumVersion: 2, teachingProgress: previous.teachingProgress } }, curriculum, context);
+  }
   if(value.curriculumVersion===curriculum.curriculumVersion)return validateStoredEnvelope(value,curriculum,context);
   if(value.curriculumVersion!==1||curriculum.curriculumVersion!==2||context.legacyCurriculum?.curriculumVersion!==1)throw new ValidationError('مسیر مهاجرت آموزش پشتیبانی نمی‌شود.');
   const previous=validateStoredEnvelope(value,context.legacyCurriculum,context);

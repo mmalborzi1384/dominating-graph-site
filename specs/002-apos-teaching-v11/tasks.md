@@ -2,7 +2,7 @@
 
 **Input**: `spec.md`، `plan.md`، `research.md`، `data-model.md`، `contracts/learning.md`،
 `curriculum-design.md` و `curriculum-blueprint.json` در همین پوشه؛ قانون‌نامهٔ۱٫۲٫۰ پیشنهادی.
-**Status**: فقط فاز۱ در این نوبت اجرا می‌شود؛ تیک‌های فازهای بعد ادعای تکمیل نیستند.
+**Status**: فاز۱ با PR11 مرج شده؛ فاز۲ (T006–T013) اجرا و بررسی شده است. فاز۳/۴ شروع نشده‌اند.
 **Validation**: اسکریپت سبک و سناریوهای رفتاری معنادار؛ بدون وابستگی جدید محصول/runner.
 
 ## Phase 1: Setup — سند، بانک و قرارداد قابل بازبینی
@@ -17,14 +17,14 @@
 
 **Purpose**: آماده‌سازی زیرساخت بدون فعال‌کردن آموزش نیمه‌کامل. پیش‌نیاز: بازبینی فاز۱.
 
-- [ ] T006 ذخیرهٔ snapshot دقیق curriculum۲ در `content/teaching-v2.json` و تعریف نسخه۳ در `assets/js/data/validate.js` طبق `contracts/learning.md`؛ شناسه‌ها/روابط/منبع‌ها/تعدادهای داده‌محور و الگوی هر نوع شواهد اعتبارسنجی شوند.
-- [ ] T007 تعریف پیشرفت هشت واحد و درصد وزن‌دار در `assets/js/domain/progress.js`؛ dispatch نسخهٔ۲ برای fixtures قدیمی، پیش‌نیاز/قفل/مرور/reset و حفظ تکمیل‌ها.
-- [ ] T008 قرارداد schema۲/curriculum۳ و آرشیو محدود را در `assets/js/storage/validate.js` و `assets/js/storage/migrate.js` پیاده کن؛ دادهٔ قبلی ابتدا با نسخهٔ خودش بررسی و candidate اتمی ساخته شود.
-- [ ] T009 پیش‌نمایش/خروجی قبلی/تأیید/انصراف/شکست نوشتن را در `assets/js/storage/repository.js` و `assets/js/tabs/records.js` وصل کن؛ قبل از تبدیل، سایر تب‌ها همچنان با دادهٔ معتبر قبلی کار کنند.
-- [ ] T010 ورود/خروج دو schema و ادغام آرشیو/پیشرفت فعال را در `assets/js/storage/transfer.js` تکمیل کن؛ تقدم حذف، تعارض نشست و محدودیت‌ها عوض نشوند؛ downgrade رد شود.
-- [ ] T011 ارزیاب‌های خالص جدول پوشش، همهٔ حذف‌ها، پیش‌بینی، طبقه‌بندی، شاهد نقض و استدلال حد پایین را در `assets/js/domain/teaching.js` اضافه کن؛ هیچ branch به activityId خاص وابسته نباشد و متن آزاد تصحیح ماشینی نشود.
-- [ ] T012 ممیزی کامل صورت/جواب/شکل همهٔ اقتباس‌های هسته و نامزدهای تکمیلی را در `question-mapping.json` ثبت و محتوای اجرایی `content/teaching-sources.json` را بساز؛ دلیل تغییر stage و متن اقتباس جدا از سؤال اصلی حفظ شود.
-- [ ] T013 بررسی معنادار پیشرفت، migration/import، quota/revision، tombstone، متن‌نشت‌نکرده و جواب جایگزین را در `scripts/validate-apos-v3.mjs` اجرا و در `validation/foundation.md` ثبت کن؛ PR فاز۲ قبل از فاز۳.
+- [x] T006 ذخیرهٔ snapshot دقیق curriculum۲ در `content/teaching-v2.json` و تعریف نسخه۳ در `assets/js/data/validate.js` طبق `contracts/learning.md`؛ شناسه‌ها/روابط/منبع‌ها/تعدادهای داده‌محور و الگوی هر نوع شواهد اعتبارسنجی شوند.
+- [x] T007 تعریف پیشرفت هشت واحد و درصد وزن‌دار در `assets/js/domain/progress.js`؛ dispatch نسخهٔ۲ برای fixtures قدیمی، پیش‌نیاز/قفل/مرور/reset و حفظ تکمیل‌ها.
+- [x] T008 قرارداد schema۲/curriculum۳ و آرشیو محدود را در `assets/js/storage/validate.js` و `assets/js/storage/migrate.js` پیاده کن؛ دادهٔ قبلی ابتدا با نسخهٔ خودش بررسی و candidate اتمی ساخته شود.
+- [x] T009 پیش‌نمایش/خروجی قبلی/تأیید/انصراف/شکست نوشتن را در `assets/js/storage/repository.js` و `assets/js/tabs/records.js` وصل کن؛ قبل از تبدیل، سایر تب‌ها همچنان با دادهٔ معتبر قبلی کار کنند.
+- [x] T010 ورود/خروج دو schema و ادغام آرشیو/پیشرفت فعال را در `assets/js/storage/transfer.js` تکمیل کن؛ تقدم حذف، تعارض نشست و محدودیت‌ها عوض نشوند؛ downgrade رد شود.
+- [x] T011 ارزیاب‌های خالص جدول پوشش، همهٔ حذف‌ها، پیش‌بینی، طبقه‌بندی، شاهد نقض و استدلال حد پایین را در `assets/js/domain/teaching.js` اضافه کن؛ هیچ branch به activityId خاص وابسته نباشد و متن آزاد تصحیح ماشینی نشود.
+- [x] T012 ممیزی کامل صورت/جواب/شکل همهٔ اقتباس‌های هسته و نامزدهای تکمیلی را در `question-mapping.json` ثبت و محتوای اجرایی `content/teaching-sources.json` را بساز؛ دلیل تغییر stage و متن اقتباس جدا از سؤال اصلی حفظ شود.
+- [x] T013 بررسی معنادار پیشرفت، migration/import، quota/revision، tombstone، متن‌نشت‌نکرده و جواب جایگزین را در `scripts/validate-apos-v3.mjs` اجرا و در `validation/foundation.md` ثبت کن؛ PR فاز۲ قبل از فاز۳.
 
 ## Phase 3: User Story 1 — ساخت مفهوم گراف (P1)
 

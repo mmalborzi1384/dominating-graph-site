@@ -1,4 +1,5 @@
 import { teachingInstance, teachingWitness, assessTeaching } from '../domain/teaching.js';
+import { validateTeachingV3 } from './validate-teaching-v3.js';
 import { STAGE_IDS } from '../domain/progress.js';
 import { analyzeGraph } from '../domain/evaluate.js';
 const text = value => typeof value === 'string' && value.trim().length > 0;
@@ -6,6 +7,7 @@ const requireValue = (ok, message) => { if (!ok) throw new TypeError(message); }
 
 /** Phase-3 boundary: validate the teaching references, not release-readiness of all 150. */
 export function validateTeaching(curriculum, overrides, bank) {
+  if (curriculum?.curriculumVersion === 3) return validateTeachingV3(curriculum, bank);
   if(curriculum?.curriculumVersion===2)return validateTeachingV2(curriculum,bank);
 
   requireValue(bank?.questions?.length === 150, 'بانک باید ۱۵۰ سؤال داشته باشد.');
@@ -93,3 +95,5 @@ function validateTeachingV2(curriculum, bank) {
   requireValue(!/G=|\\gamma|\\sum|مینیمم|مینیمال|احاطه|رأس|یال/.test([action.goal,action.bridge,...action.blocks.map(b=>b.body),...actionActivities.flatMap(a=>[a.prompt,a.rubric,a.solution,...a.hints])].join(' ')),'آموزش رسمی نباید به Action نشت کند.');
   return {curriculum,models,questions:bank.questions,bankVersion:bank.meta.version};
 }
+
+export { validateTeachingV3, validateTeachingSources } from './validate-teaching-v3.js';
