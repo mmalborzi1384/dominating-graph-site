@@ -1,5 +1,11 @@
 # Evaluation Contract
 
+> بازطراحی آموزش نسخهٔ۱٫۱: قرارداد پیشنهادی آموزش و دادهٔ جدید در
+> [002/contracts/learning.md](../../002-apos-teaching-v11/contracts/learning.md) است.
+> این سند رفتار فعلی/تاریخی curriculum۲ را شرح می‌دهد؛ عددهای ثابت/تبدیل قبلی مجوز
+> استفاده در مسیر تازه نیستند. قراردادهای سایر تب‌ها همچنان حفظ شوند؛ runtime این فاز عوض نشده است.
+
+
 ## Domain inputs / output
 
 Input: simple undirected graph G=(V,E), selected unique IDs S subset V, and requested target
