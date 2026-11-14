@@ -5,8 +5,9 @@ import {competitionPool,createCompetition} from '../assets/js/domain/sessions.js
 import {practiceCatalog,filterPractice} from '../assets/js/data/practice.js';
 import {initialProgress} from '../assets/js/domain/progress.js';
 const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url)));
-const bank=read('../docs/question-bank.json'),curriculum=read('../content/teaching.json');
+const bank=read('../docs/question-bank.json'),curriculum=read('../content/teaching-v2.json');
 validateTeaching(curriculum,null,bank);
+validateTeaching(read('../content/teaching.json'),null,bank); // Active route validated separately from legacy randomized chains.
 const config=read('../content/competition.json'),pool=competitionPool(bank.questions,config);
 practiceCatalog(bank.questions,config);
 let checks=0;const check=(ok,msg)=>{checks++;if(!ok)throw Error(msg);};

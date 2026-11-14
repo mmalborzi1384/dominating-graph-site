@@ -1,0 +1,31 @@
+window.fillEvidence=(section,part,value)=>{
+ const own=selector=>[...section.querySelectorAll(selector)].filter(n=>n.closest('.apos3-evidence')===section);
+ const nested=()=>[...section.children].filter(n=>n.classList.contains('apos3-evidence'));
+ const choose=(select,value)=>{select.value=String(value);select.dispatchEvent(new Event('change',{bubbles:true}));};
+ const vertices=(box,ids)=>{for(const id of ids){const button=[...box.querySelectorAll('.vertex-buttons button')].find(b=>b.dataset.vertexId===id);if(!button)throw Error('Missing vertex '+id);button.click();}};
+ const graph=(target)=>{const count=own('input[type=number]')[0];if(count){count.value=target.vertices.length;count.dispatchEvent(new Event('change',{bubbles:true}));}for(const edge of target.edges){for(const id of edge)vertices(own('.apos3-board')[0],[id]);}};
+ if(part.type==='number'){const input=own('input')[0];input.value=value;input.dispatchEvent(new Event('input',{bubbles:true}));}
+ else if(part.type==='choice'||part.type==='classification')choose(own('select')[0],value);
+ else if(['relation','model'].includes(part.type))graph(value);
+ else if(part.type==='neighborhood')vertices(own('.apos3-board')[0],value);
+ else if(part.type==='route')vertices(own('.apos3-board')[0],value);
+ else if(part.type==='coverageTable')own('select').forEach((input,i)=>choose(input,value[window.qaModel.graph.vertices[i]]??'none'));
+ else if(part.type==='deletionTable'){for(const center of part.selected){const detail=[...section.children].find(n=>n.tagName==='DETAILS'&&n.querySelector('summary').textContent.includes(' '+center+' '));detail.open=true;const child=detail.querySelector('.apos3-evidence');fillEvidence(child,{type:'neighborhood'},value[center]);}}
+ else if(part.type==='dominatingSet'){vertices(own('.apos3-board')[0],value.selected);own('select').forEach((input,i)=>choose(input,value.rows[window.qaModel.graph.vertices[i]]));}
+ else if(part.type==='minimumArgument'){
+  vertices(own('.apos3-board')[0],value.upperWitness);choose(own('select')[0],value.lowerBound.method);
+  if(value.lowerBound.method==='capacity'){for(const input of own('input')){const label=input.getAttribute('aria-label');input.value=label==='تعداد همهٔ رأس‌ها'?value.lowerBound.vertexCount:label.startsWith('بیشترین')?value.lowerBound.maxClosedSize:value.lowerBound.bound;input.dispatchEvent(new Event('input',{bubbles:true}));}}
+  else if(value.lowerBound.method==='packing')fillEvidence(section.querySelector('.apos3-lower-bound .apos3-evidence'),{type:'neighborhood'},value.lowerBound.vertices);
+  else own('select').slice(1).forEach((input,i)=>choose(input,value.lowerBound.rows[i].uncoveredWitness));
+ }
+ else if(part.type==='minimumFamily')nested().forEach((child,i)=>fillEvidence(child,{type:'minimumArgument'},value[i]));
+ else if(part.type==='counterexample'){
+  graph(value.graph);const fields=[...section.children].find(n=>n.tagName==='DIV'&&!n.className);
+  if(part.claim==='minimal-implies-minimum'){const children=[...fields.children];fillEvidence(children[0],{type:'neighborhood'},value.selected);fillEvidence(children[1],{type:'neighborhood'},value.smallerWitness);}
+  else if(part.claim==='reachable-implies-adjacent')fillEvidence(fields.firstElementChild,{type:'route'},value.route);
+ }
+ else if(part.type==='reflection'){own('textarea')[0].value='QA_EPHEMERAL_EXPLANATION';own('textarea')[0].dispatchEvent(new Event('input',{bubbles:true}));for(const check of own('input[type=checkbox]'))if(value[check.dataset.criterionId])check.click();}
+ else if(part.type==='prediction'){fillEvidence(nested()[0],part.part,value.beforeReveal);own('[data-action=commit-prediction]')[0].click();}
+ else throw Error('Unknown fill '+part.type);
+};
+window.fillActivity=(model,answers)=>{window.qaModel=model;const method=document.querySelector('[data-prediction-method]');if(method){method.value='QA_EPHEMERAL_METHOD: رابطه‌ها را پیش از رنگ‌آمیزی، گام‌به‌گام بررسی می‌کنم.';method.dispatchEvent(new Event('input',{bubbles:true}));}const form=document.querySelector('.apos3-form');for(const part of model.parts){const section=[...form.children].find(n=>n.dataset.partId===part.id);fillEvidence(section,part,answers[part.id]);}};

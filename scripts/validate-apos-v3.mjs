@@ -176,5 +176,8 @@ raw=JSON.stringify(old);repo=createRepository(c,storage,context);let renderCalls
 const unsubscribe=repo.subscribe(()=>{if(renderCalls++)throw Error('render failure');});
 check(repo.confirmTeachingMigration(old.revision),'A rendering error cannot undo a durable migration');check(JSON.parse(raw).curriculumVersion===3,'Durable result after render failure');unsubscribe();repo.dispose();
 check(decodeStoredState(JSON.stringify(invalid),c,context).status==='corrupt','Invalid old data retained');
-eq(fs.readFileSync(new URL('../content/teaching.json',import.meta.url),'utf8'),fs.readFileSync(new URL('../content/teaching-v2.json',import.meta.url),'utf8'),'Published v2 snapshot byte exact, activation deferred');
-console.log(`${checks} APOS v3 foundation checks passed (fixture curriculum only; published curriculum remains v2).`);
+eq(hash(fs.readFileSync(new URL('../content/teaching-v2.json',import.meta.url))),'954a0b7dcad2c934d6a153eb5dc8aab4220ba0feb1892a15f796e0282a06881c','Published v2 snapshot remains byte exact after v3 activation');
+console.log(`${checks} APOS v3 foundation checks passed (fixture curriculum and preserved v2 snapshot).`);
+// Once curriculum 3 is activated, validate the authored route as well as the
+// deliberately unequal-count technical fixture above.
+await import('./validate-apos-authored.mjs');
