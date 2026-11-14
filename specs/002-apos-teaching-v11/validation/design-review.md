@@ -54,3 +54,9 @@
 phase and provide its URL to the user.» و «Never merge automatically.»
 پس از ارائهٔ PR این فاز، فاز۲ شروع نمی‌شود تا بازبینی این قراردادها انجام شود.
 مرج و انتشار نسخهٔ جدید با درخواست جاری مجاز نشده‌اند.
+
+## PR فاز۱
+
+[PR #11](https://github.com/mmalborzi1384/dominating-graph-site/pull/11) به‌شکل draft
+روی شاخهٔ `codex/v1.1-apos-teaching` ایجاد شد. فاز۱ کامل و آمادهٔ بازبینی است؛
+فاز۲ شروع نشده، مرج/انتشار انجام نشده و اصلاح قانون‌نامه هنوز نیازمند تأیید انسانی است.

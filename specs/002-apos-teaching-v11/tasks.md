@@ -11,7 +11,7 @@
 - [x] T002 بازخوانی و تنظیم `.specify/memory/constitution.md` و `../001-persian-graph-learning/{spec,plan,tasks}.md`؛ تفکیک سابقهٔ PR#1.1 از محصول۱٫۱ و رفع الزام‌های قدیمیِ ناسازگار.
 - [x] T003 تنظیم `spec.md` و `plan.md` و `research.md` و `contracts/learning.md` و `data-model.md` برای دو درس، شواهد، پیشرفت و حفظ دادهٔ قبلی.
 - [x] T004 ثبت تجزیهٔ ژنتیک در `genetic-decomposition.md` و طراحی۳۲ فعالیت با عملیات/شاهد/معیار/منبع در `curriculum-design.md` و `curriculum-blueprint.json` و ماتریس نقش۱۵۰ سؤال در `question-mapping.json`؛ بدون تغییر بانک/runtime.
-- [ ] T005 بررسی سازگاری مشخصات/تسک‌ها/نگاشت‌ها و ثبت شواهد واقعی در `validation/design-review.md`؛ ارائهٔ PR همین فاز و توقف پیش از فاز۲ طبق `AGENTS.md`؛ بدون مرج.
+- [x] T005 بررسی سازگاری مشخصات/تسک‌ها/نگاشت‌ها و ثبت شواهد واقعی در `validation/design-review.md`؛ ارائهٔ PR همین فاز و توقف پیش از فاز۲ طبق `AGENTS.md`؛ بدون مرج.
 
 ## Phase 2: Foundational — محتوا، شواهد و سازگاری نسخه
 
