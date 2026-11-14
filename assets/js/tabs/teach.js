@@ -1,4 +1,5 @@
 import { createProgressRing, motionLevel } from '../ui/motion.js';
+import { initTeachingV3 } from './teach-v3.js';
 import { completeActivity, progressPercent, unlockedStages, visitStage } from '../domain/progress.js';
 import { teachingInstance, assessTeaching, availableTeachingActivity, followingTeachingActivity } from '../domain/teaching.js';
 import { pickRandom } from '../domain/random.js';
@@ -11,6 +12,7 @@ const math=(tag,text,cls='')=>{const node=el(tag,undefined,cls);renderTextMath(n
 const button=(text,action,cls='secondary-button')=>{const node=el('button',text,cls);node.type='button';node.addEventListener('click',action);return node;};
 function download(text,name){if(text===null)return;const url=URL.createObjectURL(new Blob([text],{type:'application/json;charset=utf-8'})),a=el('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 export function initTeaching({curriculum},repository){
+  if(curriculum.curriculumVersion===3)return initTeachingV3({curriculum},repository);
   const panel=document.getElementById('panel-teach'),root=el('div',undefined,'teaching'),header=el('header',undefined,'teaching-heading'),intro=el('div'),progress=el('div',undefined,'teaching-progress glass-surface'),percent=el('strong',undefined,'progress-percent'),meter=el('progress'),save=el('p',undefined,'save-state');
   const ring=createProgressRing(percent);meter.className='sr-only';
   percent.id='teaching-percent';save.id='teaching-save-state';meter.max=100;meter.setAttribute('aria-label','پیشرفت آموزش تازه');progress.append(ring.element,meter,save);intro.append(el('h1',curriculum.title),el('p','تجربه کن، پیش‌بینی کن، مفهوم را بشناس و مدل بساز.'));header.append(intro,progress);

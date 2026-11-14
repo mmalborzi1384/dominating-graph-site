@@ -7,7 +7,7 @@
   "roadmapSha256": "2e3b63b0049478193cef93b31d46f4dfeaf7aaf83f68d54aabee035b51d4c9cf",
   "roadmapPages": 10,
   "roadmapContentPages": 9,
-  "status": "proposed-design-pending-human-review",
+  "status": "implemented-phase3-pending-educational-review",
   "activities": [
     {
       "id": "L1-A1",
@@ -22,7 +22,7 @@
       "responseEvidence": "تطبیق اجزا؛ چهار ناحیه و هفت پل، حفظ پل‌های موازی.",
       "completionCriterion": "انتخاب نگاشت ناحیه/پل و بررسی همهٔ پل‌ها؛ تعداد به‌تنهایی کافی نیست.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L1-A2",
@@ -37,7 +37,7 @@
       "responseEvidence": "رسم چندگراف و جدول پل به دو سر آن.",
       "completionCriterion": "دقیقاً چهار رأس و هفت یال با چندگانگی درست؛ بدون تبدیل به گراف ساده.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L1-A3",
@@ -52,7 +52,7 @@
       "responseEvidence": "انتخاب/رسم پیکان و خواندن جهت یک رابطه.",
       "completionCriterion": "دو سر و جهت همهٔ رابطه‌ها مطابق داده؛ جهت با جابه‌جایی رسم عوض نمی‌شود.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L1-A4",
@@ -67,7 +67,7 @@
       "responseEvidence": "رسم و تطبیق نگاشت؛ اقتباس با شناسهٔ آموزشی مستقل.",
       "completionCriterion": "نگاشت درست + رابطه‌های درست؛ نتیجهٔ مسطح‌بودن یا ناممکنی Q006 مطالبه نمی‌شود.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L1-P1",
@@ -83,7 +83,7 @@
       "responseEvidence": "مجموعهٔ همسایه‌ها، عدد درجه و علت یک خطا.",
       "completionCriterion": "مجموعه و درجه با رابطهٔ واقعی سازگار؛ پیش‌بینی قبل از نمایش نتیجه.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L1-P2",
@@ -98,7 +98,7 @@
       "responseEvidence": "دو مجموعه و توضیح ساخت‌یافتهٔ تفاوت.",
       "completionCriterion": "N[v]=N(v)∪{v} و هیچ همسایهٔ چندگامی افزوده نشود.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L1-P3",
@@ -114,7 +114,7 @@
       "responseEvidence": "جدول درجه و قطعات استدلال + توضیح آزاد موقت.",
       "completionCriterion": "مجموع درجات=دو برابر تعداد یال در مدل بدون جهت؛ شرط‌های گزاره رعایت شوند.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L1-P4",
@@ -130,7 +130,7 @@
       "responseEvidence": "توالی مجاز و شاهد نرسیدن در دو بخش جدا.",
       "completionCriterion": "تمام گام‌ها معتبر؛ مجاورت مستقیم با وجود مسیر یکی گرفته نشود.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L1-O1",
@@ -146,7 +146,7 @@
       "responseEvidence": "ترجمهٔ نمایش و مقایسهٔ دو چیدمان.",
       "completionCriterion": "برابری رأس/رابطه‌ها مستقل از جای رسم و ترتیب اعضای مجموعه.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L1-O2",
@@ -162,7 +162,7 @@
       "responseEvidence": "طبقه‌بندی و یک تبدیل مشخص؛ بدون ارزیابی احاطه‌گری برای مدل خاص.",
       "completionCriterion": "حفظ جهت/طوقه/چندگانگی؛ هیچ تبدیل پنهان به مدل ساده.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L1-O3",
@@ -179,7 +179,7 @@
       "responseEvidence": "عدد و دسته‌بندی و مثال نقض.",
       "completionCriterion": "k-منتظم با کامل یکی نشود؛ K9 برای ۳۶ یال با دلیل درست تشخیص داده شود.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L1-O4",
@@ -196,7 +196,7 @@
       "responseEvidence": "رسم رابطه، طبقه‌بندی توالی، رابطهٔ تعداد یال مکمل.",
       "completionCriterion": "مجموعهٔ رأس مرجع و قرارداد گراف ساده ثابت؛ همهٔ خواسته‌ها جدا بررسی شوند.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L1-S1",
@@ -212,7 +212,7 @@
       "responseEvidence": "نگاشت، رسم، فرض رابطه و پیش‌بینی یک ویژگی.",
       "completionCriterion": "گراف با معنای رابطه سازگار؛ آمار بدون تعریف رابطه پذیرفته نشود.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L1-S2",
@@ -228,7 +228,7 @@
       "responseEvidence": "مدل K6، عدد ۱۵ و استدلال شمارش جفت‌ها.",
       "completionCriterion": "نه تکرار یال و نه طوقه؛ نمایش شاهد و حد بالای تعداد جفت‌ها.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L1-S3",
@@ -244,7 +244,7 @@
       "responseEvidence": "شاهد نقض، رابطهٔ اصلاح‌شده و نقد موقت.",
       "completionCriterion": "یک مسیر چندگامی شاهد باشد؛ به‌جای اصلاح استدلال یال تازه اختراع نشود.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L1-S4",
@@ -261,7 +261,7 @@
       "responseEvidence": "رسم، مسیر، جدول و خودبازبینی توضیح.",
       "completionCriterion": "اجزای ساخت‌یافته درست + بازبینی صریح نگاشت/فرض؛ سامانه متن آزاد را تصحیح‌شده اعلام نکند.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-A1",
@@ -276,7 +276,7 @@
       "responseEvidence": "انتخاب مرکز و جدول پوشش با دلیل عضو/همسایه/بی‌پوشش.",
       "completionCriterion": "برای {b} هر سه پوشیده؛ برای {a} رأس c بی‌پوشش؛ خود مرکز هم پوشیده است.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-A2",
@@ -292,7 +292,7 @@
       "responseEvidence": "جدول رأس به مرکز پوشاننده، با شکل و گراف معتبر منبع.",
       "completionCriterion": "هر رأس شاهد معتبر داشته باشد؛ وجود چند رأس پوشیده برای قبولی کافی نیست.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-A3",
@@ -307,7 +307,7 @@
       "responseEvidence": "ثبت موقت حذف و رأس بی‌پوشش یا عضو زائد.",
       "completionCriterion": "دانش‌آموز اثر حذف را نشان دهد؛ یک حذف موفق به معنی کمینه‌بودن نیست.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-A4",
@@ -322,7 +322,7 @@
       "responseEvidence": "جدول پوشش و انتخاب مجموعهٔ احاطه‌گر؛ اقتباس از محاسبهٔ گاما.",
       "completionCriterion": "هدف اینجا فقط احاطه‌گری است؛ انتخاب بزرگ‌تر معتبر به‌علت کمینه‌نبودن رد نشود.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-P1",
@@ -338,7 +338,7 @@
       "responseEvidence": "مجموعهٔ پوشش و بی‌پوشش قبل از آزمایش.",
       "completionCriterion": "رأس تنها تنها با انتخاب خودش پوشیده می‌شود؛ دسترسی چندگامی ملاک نیست.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-P2",
@@ -353,7 +353,7 @@
       "responseEvidence": "جدول دو حذف مستقل با مجموعهٔ بی‌پوشش.",
       "completionCriterion": "حذف b بی‌پوشش‌های {a,b} و حذف d بی‌پوشش‌های {d,e} می‌دهد؛ یک شاهد کافی برای توضیح، اما جدول باید تمام بی‌پوشش‌ها را درست نشان دهد.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-P3",
@@ -369,7 +369,7 @@
       "responseEvidence": "همهٔ حذف‌ها، انتخاب {b,e} یا هر شاهد معتبر هم‌اندازه و علت تفاوت.",
       "completionCriterion": "مینیمال بودن + شاهد کوچک‌تر؛ آزمون حذف اثبات کمینه معرفی نشود.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-P4",
@@ -385,7 +385,7 @@
       "responseEvidence": "پیش‌بینی، شاهد و مقایسهٔ پس از آزمایش.",
       "completionCriterion": "افزودن یال گاما را افزایش نمی‌دهد؛ حذف یال کاهش نمی‌دهد؛ تساوی هم ممکن است.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-O1",
@@ -402,7 +402,7 @@
       "responseEvidence": "طبقه‌بندی، همهٔ حذف‌ها و شاهد کوچک‌تر.",
       "completionCriterion": "چهار برگ مینیمال غیرکمینه، مرکز کمینه؛ هر کمینه مینیمال، عکس نادرست.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-O2",
@@ -419,7 +419,7 @@
       "responseEvidence": "دو مجموعهٔ کمینهٔ متمایز C6 و مقایسه با دو ستارهٔ متصل بانک.",
       "completionCriterion": "همهٔ جواب‌های معتبر هم‌اندازه پذیرفته شوند؛ یک نمونهٔ بانک جواب یکتا تلقی نشود.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-O3",
@@ -435,7 +435,7 @@
       "responseEvidence": "قطعات استدلال برای سه باقیماندهٔ n بر ۳ و خودبازبینی متن.",
       "completionCriterion": "P_n برای n≥1 و C_n برای n≥3؛ فقط چند نمونه یا فقط انتخاب کوچک اثبات نیست.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-O4",
@@ -452,7 +452,7 @@
       "responseEvidence": "عدد کران، شاهد پوشش و مقایسهٔ دو مدل.",
       "completionCriterion": "دو طرف توجیه کمینه بودن جدا؛ هر کران پایین را خود گاما اعلام نکند.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-S1",
@@ -467,7 +467,7 @@
       "responseEvidence": "نگاشت، مجموعهٔ رابطه‌ها و تابع هدف تعداد مرکز.",
       "completionCriterion": "مدل از دادهٔ مسئله ساخته شود؛ نزدیکی ظاهری تصویر یال نیست.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-S2",
@@ -482,7 +482,7 @@
       "responseEvidence": "جدول پوشش و حذف، حد پایین و شاهد هم‌اندازه.",
       "completionCriterion": "برای شش رأس با یال‌های ab,bc,bd,de,df، {b,d} پوشش و کران۲ دارد؛ پاسخ‌های معتبر دیگر با ارزیاب سنجیده شوند.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-S3",
@@ -498,7 +498,7 @@
       "responseEvidence": "انتخاب فرض نقض‌شده و مقایسهٔ گزینه‌ها + تأمل موقت.",
       "completionCriterion": "گامای مدل ساده جواب ظرفیت‌دار معرفی نشود؛ توضیح آزاد خودارزیابی است.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     },
     {
       "id": "L2-S4",
@@ -515,7 +515,7 @@
       "responseEvidence": "مدل، شاهد پوشش، شاهد رد اندازه‌های کوچک‌تر و محدودیت؛ بازنگری پاسخ.",
       "completionCriterion": "اگر از بیمارستان منبع استفاده شد شکل و مسافت معتبر لازم است؛ دادهٔ نامشخص حدس زده نشود. یک نمونهٔ تألیفی کامل برای خروج مستقل موجود باشد.",
       "assessment": "structured-auto-plus-explicit-self-review",
-      "status": "design-not-implemented"
+      "status": "implemented-phase3-pending-educational-review"
     }
   ]
 }

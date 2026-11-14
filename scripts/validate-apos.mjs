@@ -10,7 +10,7 @@ import {createAttempt} from '../assets/js/domain/attempts.js';
 import {startLabSession,submitLabTurn} from '../assets/js/domain/lab.js';
 import {createCompetition,competitionPool,addCompetition,finalizeTurn,advanceTurn} from '../assets/js/domain/sessions.js';
 import {deleteResults} from '../assets/js/domain/coverage.js';
-const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url),'utf8')),c=read('../content/teaching.json'),legacy=read('../content/teaching-v1.json'),bank=read('../docs/question-bank.json'),context={questions:bank.questions,bankVersion:'1.2',legacyCurriculum:legacy};
+const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url),'utf8')),c=read('../content/teaching-v2.json'),legacy=read('../content/teaching-v1.json'),bank=read('../docs/question-bank.json'),context={questions:bank.questions,bankVersion:'1.2',legacyCurriculum:legacy};
 let count=0;const check=(v,m)=>{count++;if(!v)throw Error(m);},reject=(f,m)=>{let bad=false;try{f();}catch{bad=true;}check(bad,m);};
 const fresh=(version=2)=>({schemaVersion:1,curriculumVersion:version,revision:0,teachingProgress:initialProgress(),attempts:{},sessions:{},settings:{theme:'night'}});
 check(validateTeaching(c,null,bank).models.size===12,'Twelve typed activities');

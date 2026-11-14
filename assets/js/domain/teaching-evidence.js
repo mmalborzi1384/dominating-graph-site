@@ -8,7 +8,7 @@ const object = value => value && typeof value === 'object' && !Array.isArray(val
 const exactKeys = (value, keys) => object(value) && equalSet(Object.keys(value), keys);
 const demand = (ok, message) => { if (!ok) throw new TypeError(message); };
 export const EVIDENCE_TYPES = Object.freeze(['relation', 'model', 'neighborhood', 'coverageTable', 'deletionTable',
-  'prediction', 'classification', 'counterexample', 'minimumArgument', 'route', 'number', 'choice', 'reflection']);
+  'prediction', 'classification', 'counterexample', 'minimumArgument', 'dominatingSet', 'minimumFamily', 'route', 'number', 'choice', 'reflection']);
 const properties = ['directed', 'parallel', 'loops', 'regular', 'complete', 'dominating', 'minimal', 'minimum'];
 const claims = ['minimal-implies-minimum', 'regular-implies-complete', 'reachable-implies-adjacent'];
 const lowerMethods = ['capacity', 'packing', 'subset-witnesses'];
@@ -52,7 +52,14 @@ export function validateEvidencePart(part, graph) {
   const required = ['id', 'label', 'type'];
   const add = (...keys) => required.push(...keys);
   if (['relation', 'model'].includes(part.type)) { add('expected'); evidenceGraph(part.expected); }
-  if (['neighborhood', 'coverageTable', 'deletionTable', 'minimumArgument', 'route'].includes(part.type)) demand(graph, 'گراف شواهد لازم است.');
+  if (['neighborhood', 'coverageTable', 'deletionTable', 'minimumArgument', 'dominatingSet', 'minimumFamily', 'route'].includes(part.type)) demand(graph, 'گراف شواهد لازم است.');
+  if (part.type === 'dominatingSet') simple(graph);
+  if (part.type === 'minimumFamily') {
+    add('count', 'lowerBoundMethods'); simple(graph);
+    demand(Number.isSafeInteger(part.count) && part.count >= 2 && part.count <= 6
+      && unique(part.lowerBoundMethods) && part.lowerBoundMethods.length > 0
+      && part.lowerBoundMethods.every(m => lowerMethods.includes(m)), 'خانوادهٔ کمینه‌ها معتبر نیست.');
+  }
   if (part.type === 'neighborhood') {
     add('vertexId', 'closed'); simple(graph);
     demand(graph.vertices.includes(part.vertexId) && typeof part.closed === 'boolean', 'قرارداد همسایگی معتبر نیست.');
@@ -167,6 +174,12 @@ export function assessEvidencePart(part, graph, value) {
       case 'classification': return typeof value === 'boolean' && value === hasProperty(graph, part.property, part.selected);
       case 'counterexample': return counterexampleCorrect(part.claim, value);
       case 'minimumArgument': return minimumCorrect(simple(graph), value, part.lowerBoundMethods);
+      case 'dominatingSet': return exactKeys(value, ['selected', 'rows'])
+        && evaluateSelection(simple(graph), value.selected, 'dominating').dominates
+        && coverageCorrect(graph, value.selected, value.rows);
+      case 'minimumFamily': return Array.isArray(value) && value.length === part.count
+        && new Set(value.map(proof => JSON.stringify([...proof.upperWitness].sort()))).size === part.count
+        && value.every(proof => minimumCorrect(simple(graph), proof, part.lowerBoundMethods));
       case 'route': return routeCorrect(graph, value, part.start, part.end);
       case 'number': return Number.isSafeInteger(value) && value === part.expected;
       case 'choice': return value === part.expected;

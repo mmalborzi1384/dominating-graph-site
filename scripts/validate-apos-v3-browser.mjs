@@ -26,8 +26,8 @@ try{
  await send('Runtime.enable');await send('Page.enable');await send('Emulation.setDeviceMetricsOverride',{width:1280,height:900,deviceScaleFactor:1,mobile:false});
  await send('Page.navigate',{url:origin});
  for(let i=0;i<200;i++){if(await run('Boolean(window.graphRepository && document.getElementById("records-export") && document.getElementById("lab-bank")?.querySelector(".practice-filters"))'))break;await pause(50);}
- check(await run('window.graphRepository.snapshot().state.curriculumVersion===2'),'Published curriculum stays 2');
- check(await run('document.getElementById("records-teaching-migration").hidden'),'No migration UI in current v2');
+ check(await run('window.graphRepository.snapshot().state.curriculumVersion===3'),'Complete curriculum 3 activated');
+ check(await run('document.getElementById("records-teaching-migration").hidden'),'No migration UI on fresh v3');
  for(const tab of ['teach','practice','competition','records','lab']){
   await run(`location.hash=${JSON.stringify('#'+tab)}`);await pause(80);
   check(await run(`!document.getElementById('panel-${tab}').hidden && document.getElementById('panel-${tab}').innerText.length>100`),`${tab} mounted`);
