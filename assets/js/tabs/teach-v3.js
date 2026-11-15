@@ -1,5 +1,5 @@
 import { completeActivity, progressPercent, unlockedUnits, visitUnit } from '../domain/progress.js';
-import { assessTeachingEvidence } from '../domain/teaching-evidence.js';
+import { assessTeachingEvidence, assessEvidencePart } from '../domain/teaching-evidence.js';
 import { createEvidenceInput, el, action } from '../ui/teaching-inputs.js';
 import { createTeachingBoard } from '../ui/teaching-board.js';
 import { renderTextMath } from '../ui/math.js';
@@ -45,11 +45,12 @@ export function initTeachingV3({curriculum},repository){
   // prediction controller until its initial draft is committed.
   const drawing=el('details',undefined,'apos3-reference');drawing.append(el('summary','دیدن مدل رابطه‌های داده‌شده'));const boardHost=el('div',undefined,'apos3-board');let toggled=[];const board=createTeachingBoard(boardHost,model.graph,id=>{toggled=toggled.includes(id)?toggled.filter(v=>v!==id):[...toggled,id];board.update(toggled);});drawing.append(boardHost);cleanups.push(()=>board.destroy());
   // Drawing an expected model would give away a construction task. Its input
-  // already shows the blank vertices, so only use this reference for analysis.
-  if(!model.parts.some(part=>['relation','model'].includes(part.type)))card.append(drawing);
+  // already shows blank vertices. Comparisons and explicit transformations
+  // still need the given source graph, which differs from the model to build.
+  if(activity.alternateLayout||!model.parts.some(part=>['relation','model'].includes(part.type)&&assessEvidencePart(part,model.graph,model.graph)))card.append(drawing);
   if(activity.alternateLayout){const alt=el('details');alt.append(el('summary','چیدمان دوم؛ همان رابطه‌ها'));const box=el('div',undefined,'apos3-board');const view=createTeachingBoard(box,model.graph,id=>view.update([id]),{alternate:true});alt.append(box);card.append(alt);cleanups.push(()=>view.destroy());}
   card.append(el('p','معیار تکمیل: '+activity.rubric.join(' '),'required-note'));
-  const form=el('div',undefined,'apos3-form'),inputs=new Map(),token='teaching-v3:'+activityId,feedback=el('div',undefined,'apos3-feedback'),continueHost=el('div',undefined,'apos3-actions');feedback.setAttribute('role','status');feedback.setAttribute('aria-live','polite');let satisfied=false,building=true;
+  const form=el('div',undefined,'apos3-form'),inputs=new Map(),token='teaching-v3:'+activityId,feedback=el('div',undefined,'apos3-feedback'),continueHost=el('div',undefined,'apos3-actions');feedback.id='learning-evidence-feedback';feedback.setAttribute('role','status');feedback.setAttribute('aria-live','polite');let satisfied=false,building=true;
   const changed=()=>{if(building)return;satisfied=false;continueHost.replaceChildren();repository.setEditingDirty(token,true);};
   const method=el('textarea');method.rows=2;method.maxLength=1500;method.dataset.predictionMethod='';method.setAttribute('aria-label','روش پیش‌بینی پیش از آزمایش');method.addEventListener('input',changed);
   if(model.parts.some(p=>p.type==='prediction')){const label=el('label','پیش از آزمایش، روش پیش‌بینی را با زبان خودت بنویس؛ بعداً می‌توانی نقد و اصلاحش کنی. متن خودکار تصحیح نمی‌شود.');label.append(method);form.append(label);}
@@ -64,7 +65,7 @@ export function initTeachingV3({curriculum},repository){
   },'primary-button');continueButton.dataset.action='continue';
   const check=action('بررسی شواهد و خودبازبینی',()=>{
    const result=assessTeachingEvidence(model,getAnswers());for(const[id,input]of inputs)input.element.dataset.correct=String(!result.issues.some(issue=>issue.partId===id));feedback.replaceChildren();
-   if(!result.correct){satisfied=false;continueHost.replaceChildren();feedback.append(el('p','هنوز چند شاهد نیاز به بازبینی دارد.','notice'));const issues=el('ul');for(const issue of result.issues)issues.append(el('li',issue.message));feedback.append(issues);return;}
+   if(!result.correct){satisfied=false;continueHost.replaceChildren();feedback.append(el('p','هنوز چند شاهد نیاز به بازبینی دارد.','notice'));const issues=el('ul');for(const issue of result.issues)issues.append(el('li',issue.message));feedback.append(issues);const first=inputs.get(result.issues[0]?.partId)?.element,control=[...first?.querySelectorAll('input,textarea,select,button,[role=button]')??[]].find(node=>node.getClientRects().length&&!node.disabled&&!node.hidden);if(control){control.setAttribute('aria-describedby',feedback.id);control.focus({preventScroll:true});control.scrollIntoView({block:'center',behavior:'instant'});}return;}
    satisfied=true;repository.setEditingDirty(token,false);
    if(!isExit||transfer)repository.changeProgress(progress=>completeActivity(progress,activityId,curriculum));
    const after=repository.snapshot();feedback.append(el('p',isExit&&!transfer?'شواهد تمرین کامل شد. اکنون همین هدف را روی یک نمونهٔ تازه نشان بده؛ تکمیل پس از آن ثبت می‌شود.':'شواهد ساخت‌یافته مطابق معیارند و معیارهای توضیح را خودت بازبینی کردی. برای خواندن بازخورد و ادامه فرصت داری.'));
