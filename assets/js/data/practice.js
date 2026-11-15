@@ -32,5 +32,7 @@ export function practiceCatalog(questions, config, tab = 'practice') {
 }
 export function filterPractice(catalog, { lesson = '', category = '', difficulty = 'easy' } = {}) {
   return catalog.filter(({ question: q }) => (!lesson || q.lesson === lesson) && (!category || q.category === category)
-    && (difficulty === 'easy' ? q.difficulty === 1 : [2,3].includes(q.difficulty)));
+    && (difficulty === 'all' || (['1','2','3'].includes(difficulty)
+      ? q.difficulty === Number(difficulty)
+      : difficulty === 'easy' ? q.difficulty === 1 : [2,3].includes(q.difficulty))));
 }

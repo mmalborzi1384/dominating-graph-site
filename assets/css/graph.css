@@ -56,6 +56,12 @@ body, .site-header, .glass-surface, .tab-list, .workspace, .tab, .theme-toggle,
 .is-selected .vertex-number { fill: var(--bead-ink); font-weight: 800; }
 .vertex-label { fill: var(--ink); font-family: var(--font-body); font-size: 17px; text-anchor: middle; pointer-events: none; }
 .board-vertex { cursor: pointer; outline: none; }
+/* SVG groups need their own tap rule; the browser's link highlight is not selection feedback. */
+.board-vertex, .board-vertex * {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+}
 .board-vertex:focus-visible .vertex-outline { stroke: var(--focus); stroke-width: 3; stroke-dasharray: 5 4; }
 .board-vertex.is-missed .vertex-outline { stroke: var(--error); stroke-width: 3.2; }
 .board-vertex.is-hinted .vertex-outline { stroke: var(--hint); stroke-width: 3; stroke-dasharray: 5 4; }

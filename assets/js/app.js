@@ -8,6 +8,7 @@ import { initRecords } from './tabs/records.js';
 import { initLab } from './tabs/lab.js';
 import { initTeaching } from './tabs/teach.js';
 import { initTabs } from './ui/tabs.js';
+import { initGraphNavigation } from './ui/navigation.js';
 import { renderFormula } from './ui/math.js';
 import { setFeedback } from './ui/feedback.js';
 
@@ -29,6 +30,7 @@ themeButton.addEventListener('click', () => {
 });
 updateThemeControl();
 initTabs();
+initGraphNavigation();
 initGlassSelects();
 document.querySelector('.skip-link').addEventListener('click', event => {
   event.preventDefault();

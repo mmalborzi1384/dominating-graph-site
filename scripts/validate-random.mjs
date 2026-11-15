@@ -19,4 +19,14 @@ for(let count=2;count<=10;count++){const s=createCompetition(Array(count).fill('
 let rejected=false;try{createCompetition(['الف','ب'],1,pool.slice(0,1),state);}catch{rejected=true;}check(rejected,'Insufficient ready pool rejects start');
 const practice=practiceCatalog(bank.questions,read('../content/practice.json'));
 for(const level of [1,2,3]){const candidates=filterPractice(practice,{difficulty:level===1?'easy':'hard'}).filter(i=>!i.unavailable&&i.question.difficulty===level);check(!!pickRandom(candidates),'Practice all exact levels available');check(candidates.every(i=>i.question.difficulty===level),'Practice exact difficulty');}
+for(const tab of ['practice','lab']){
+ const catalog=practiceCatalog(bank.questions,read(tab==='practice'?'../content/practice.json':'../content/bank-lab.json'),tab).filter(i=>!i.unavailable);
+ check(filterPractice(catalog,{difficulty:'all'}).length===catalog.length,'All difficulty levels preserve complete ready catalog');
+ for(const level of [1,2,3]){
+  const exact=filterPractice(catalog,{difficulty:String(level)});
+  check(exact.length===catalog.filter(i=>i.question.difficulty===level).length,'Exact degree neither loses nor adds questions');
+  for(const lesson of ['lesson1','lesson2'])check(filterPractice(catalog,{difficulty:String(level),lesson}).every(i=>i.question.lesson===lesson&&i.question.difficulty===level),'Lesson and exact difficulty combine');
+ }
+ check(filterPractice(catalog,{difficulty:'all',category:'nonexistent'}).length===0,'No-match filter stays empty');
+}
 console.log(`${checks} random-selection checks passed.`);

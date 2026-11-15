@@ -38,13 +38,26 @@ export async function initLab(questions,curriculum,repository){
    layoutFamily='prepared';selected=[];edgeStart=null;places=null;baseline=analyzeGraph(graph).gamma;lastAttempt=null;render();
  },'lab-load'),el('p','مدل آماده مستقل از تنظیمات سازنده بارگذاری می‌شود.','model-key'));
  const drawGroup=section('۳. رسم با n و گاما');
- drawGroup.append(label('تعداد رأس خواسته',targetN),label('گامای خواسته',gamma),button('بررسی و ثبت رسم',()=>{
+ function drawingTarget(){
    const target={n:Number(targetN.value),gamma:Number(gamma.value)};
    if(!Number.isInteger(target.n)||target.n<2||target.n>10||!Number.isInteger(target.gamma)||target.gamma<1||target.gamma>target.n)throw Error('برای رسم، ۲ تا ۱۰ رأس و گامای صحیح ۱ تا تعداد رأس لازم است.');
+   return target;
+ }
+ function goToDrawingBoard(){
+   const target=document.getElementById('lab-drawing-board');
+   target?.scrollIntoView({block:'start',behavior:document.documentElement.dataset.motion==='off'?'instant':'smooth'});
+   target?.focus({preventScroll:true});
+ }
+ drawGroup.append(el('p','این یک تمرین رسم است: تعداد رأس و گامای هدف را مشخص کن، سپس یال‌ها را خودت روی برد پایین بساز. پاسخ خودکار رسم نمی‌شود.','model-key'),label('تعداد رأس خواسته',targetN),label('گامای خواسته',gamma),button('آغاز رسم تازه روی برد پایین',()=>{
+   const target=drawingTarget();graph=familyGraph(target.n,'empty');source=null;selected=[];edgeStart=null;places=null;layoutFamily='empty';editMode='connect';baseline=analyzeGraph(graph).gamma;lastAttempt=null;render();
+   setFeedback(notice,`برد تازه با ${fa(target.n)} رأس آماده است؛ برای گامای ${fa(target.gamma)}، دو رأس را به‌ترتیب انتخاب کن تا یال بسازی. سپس «بررسی و ثبت رسم» را بزن.`);
+   goToDrawingBoard();
+ },'lab-draw-start'),button('رفتن به رسم فعلی روی برد',goToDrawingBoard,'lab-draw-jump'),button('بررسی و ثبت رسم',()=>{
+   const target=drawingTarget();
    if(graph.n>10)throw Error('مدل فعلی '+fa(graph.n)+' رأس دارد. ثبت رسم سفارشی فقط برای ۲ تا ۱۰ رأس است؛ یک مدل سفارشی بسازید. مدل آماده همچنان قابل بررسی است.');
    const a=createAttempt({tab:'lab',activityId:'lab:draw',mode:'graph-construction',target,response:graph,graphSnapshot:graphSnapshot(graph,source?config.models[source.id]:config.model)});
    save(a);setFeedback(notice,`رأس‌های واقعی ${fa(a.evaluation.n)}؛ گامای واقعی ${fa(a.evaluation.gamma)}؛ خواسته ${fa(target.n)} رأس و گامای ${fa(target.gamma)}. ${a.evaluation.satisfiesTarget?'خواسته برقرار است.':'خواسته برقرار نیست.'} ${repository.snapshot().dirty?'ذخیره نشده؛ کار موقت است.':'نتیجه ثبت شد.'}`,{tone:repository.snapshot().dirty||!a.evaluation.satisfiesTarget?'error':'success'});
- },'lab-draw-submit'),el('p','ابتدا با ابزار اتصال، گراف هدف را بساز؛ این بخش گرافِ پاسخ را برایت حدس نمی‌زند.','model-key'));
+ },'lab-draw-submit'),el('p','«آغاز رسم تازه» مدل فعلی را با رأس‌های بدون یال جایگزین می‌کند. «رفتن به رسم فعلی» ویرایش‌ها را نگه می‌دارد. نتیجه فقط با «بررسی و ثبت رسم» ذخیره می‌شود.','model-key'));
  answer.addEventListener('input',()=>{lastAttempt=null;});
 
  const context={questions};
@@ -87,7 +100,7 @@ export async function initLab(questions,curriculum,repository){
  if(st.id==='game'){const heading=el('h3','فعالیت اختصاصی: بازی دو گروهی');heading.id='lab-station-activity';heading.tabIndex=-1;host.insertBefore(heading,gameControls);const sessions=Object.values(repository.snapshot().state.sessions).filter(s=>s.kind==='lab'&&s.groups?.length);const s=sessions.at(-1);if(s)for(const row of competitionRanks(s,repository.snapshot().state.attempts)){const line=el('p',`رتبه ${fa(row.rank)} · ${row.name} · `),score=el('output'),key=s.id+':'+row.id;line.append(score);host.append(line);animateNumber(score,row.total,sessionScores.get(key)??0);sessionScores.set(key,row.total);}return;}
  if(!places)places=source?structuredClone(config.models[source.id].places):labPlaces(graph,layoutFamily);
  const model=source?config.models[source.id]:config.model;host.append(el('p',`مدل فعلی: ${fa(graph.n)} رأس · ${fa(graph.edges.length)} یال`,'lab-model-summary'),el('p',model.scenario),el('p',model.vertexMeaning+' '+model.edgeMeaning));
- const bh=el('div','','board-panel glass-surface');host.append(bh);board=createEditableGraphBoard(bh,{...model,graph,places},id=>{
+ const bh=el('div','','board-panel glass-surface');bh.id='lab-drawing-board';bh.tabIndex=-1;bh.setAttribute('aria-label','برد رسم و ویرایش گراف');host.append(bh);board=createEditableGraphBoard(bh,{...model,graph,places},id=>{
    if(editMode==='connect'){if(edgeStart===null){edgeStart=id;setFeedback(notice,'رأس '+fa(graph.vertices.indexOf(id)+1)+' انتخاب شد؛ رأس دوم را روی برد یا با دکمهٔ آن انتخاب کن.');}else if(edgeStart===id){edgeStart=null;setFeedback(notice,'انتخاب اتصال لغو شد.');}else{toggleEdge(edgeStart,id);edgeStart=null;render();}return;}
    selected=selected.includes(id)?selected.filter(v=>v!==id):[...selected,id];board.update(selected);lastAttempt=null;
  },()=>{});board.update(selected);

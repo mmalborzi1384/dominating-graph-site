@@ -1,3 +1,9 @@
+## Shared agent guide
+
+Read `.agent/README.md` and `.agent/skills/project-workflow/SKILL.md` for portable tool,
+skill and validation guidance. `.agent/` is public project documentation; local agent
+settings, credentials and conversation history do not belong there.
+
 ## graphify
 
 This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
