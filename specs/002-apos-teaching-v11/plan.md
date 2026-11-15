@@ -1,7 +1,7 @@
 # Implementation Plan: آموزش APOS نسخهٔ ۱.۱
 
-**Branch**: `codex/v1.1-apos-learning` (اجرای فاز۳؛ طراحی اولیه در شاخهٔ teaching بود) | **Date**: 2026-11-14
-**Spec**: [spec.md](spec.md) | **Status**: فاز۳ در `codex/v1.1-apos-learning` کامل است؛ curriculum=3 روی شاخه فعال، فاز۴ شروع نشده.
+**Branch**: `codex/v1.1-apos-review` (بازبینی و پولیش فاز۴) | **Date**: 2026-11-14
+**Spec**: [spec.md](spec.md) | **Status**: فاز۳ با PR13 مرج شده؛ T025–T028 فاز۴ اجرا شده‌اند. گیت انسانی و T029 پس از مجوز مرج باقی‌اند.
 
 ## Summary
 

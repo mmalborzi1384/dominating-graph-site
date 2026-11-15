@@ -1,11 +1,12 @@
-// Dependency-free local verification of the APOS content and persistence boundary.
+// Historical curriculum-2 progress/persistence checks use its frozen content.
+// Active curriculum 3 and legacy migration are exercised by validate-apos-v3.mjs.
 import { readFileSync } from 'node:fs';
 import { validateTeaching } from '../assets/js/data/validate.js';
 import { initialProgress, completeActivity, visitStage, validateProgress, progressPercent, unlockedStages } from '../assets/js/domain/progress.js';
 import { createRepository, storageKey } from '../assets/js/storage/repository.js';
 const read = path => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
-const { curriculum, models } = validateTeaching(read('../content/teaching-v1.json'),
-  read('../content/question-overrides.json'), read('../docs/question-bank.json'));
+const { curriculum, models } = validateTeaching(read('../content/teaching-v2.json'),
+  null, read('../docs/question-bank.json'));
 let checks = 0;
 const expect = (ok, message) => { checks++; if (!ok) throw Error(message); };
 const rejects = (action, message) => { let rejected = false; try { action(); } catch { rejected = true; } expect(rejected, message); };
