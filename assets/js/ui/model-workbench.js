@@ -1,6 +1,6 @@
-import { createVertexSelection } from './vertex-selection.js';
+import {paintGraph,attachGraphView} from './graph-surface.js';
+import {canonicalPlaces,spaceLayout} from './graph-layout.js';
 import { analyzeGraph } from '../domain/evaluate.js';
-let serial=0;
 const node=(tag,text,cls='')=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;n.className=cls;return n;};
 const field=(title,control)=>{const label=node('label',undefined,'workbench-field');label.append(document.createTextNode(title),control);return label;};
 /** General source-model workbench. Directed/parallel/large models never enter the simple evaluator. */
@@ -41,23 +41,23 @@ export function createWorkbench(host,q,item,onChange){
  const sizeObserver=new ResizeObserver(fitTargets);sizeObserver.observe(viewport);
  const choices=node('div',undefined,'vertex-buttons'),edgeList=node('details'),edgeSummary=node('summary','یال‌های مدل؛ حذف تکی');edgeList.append(edgeSummary);
  function hit(id){if(locked)return;if(moved){moved=false;return;}if(action.value==='edge'){if(pending===null){pending=id;status.textContent=`رأس ${id} انتخاب شد؛ رأس دوم را بزن.`;return;}const a=pending;pending=null;const index=graph.edges.findIndex(e=>e[0]===a&&e[1]===id||!graph.directed&&e[0]===id&&e[1]===a);if(a===id&&!graph.multigraph){status.textContent='برای طوقه باید مدل چندگراف باشد؛ دو رأس متفاوت انتخاب کن.';return;}if(graph.multigraph)graph.edges.push([a,id]);else if(index>=0)graph.edges.splice(index,1);else graph.edges.push([a,id]);render();onChange();}else if(action.value==='select'){selected=selected.includes(id)?selected.filter(v=>v!==id):[...selected,id];selection.update(selected);onChange();}}
- const make=(tag,attrs={},text)=>{const n=document.createElementNS(svg.namespaceURI,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);if(text)n.textContent=text;return n;};
- const marker='source-arrow-'+(++serial);
  function render(){
-  const initial=graph.vertices.map((id,i)=>({id,x:240+175*Math.cos(2*Math.PI*i/graph.n-Math.PI/2),y:170+120*Math.sin(2*Math.PI*i/graph.n-Math.PI/2)}));
-  if(positions.length!==graph.n)positions=initial;
+  const initial=canonicalPlaces(graph,graph.vertices.map((id,i)=>({id,label:`مکان ${id}`,x:240+175*Math.cos(2*Math.PI*i/graph.n-Math.PI/2),y:170+120*Math.sin(2*Math.PI*i/graph.n-Math.PI/2)})),{width:480,height:340});
+  const spaced=spaceLayout(initial,480,340);
+  if(positions.length!==graph.n)positions=spaced.places;
+  svg.setAttribute('viewBox',`0 0 ${spaced.width} ${spaced.height}`);
   // Dense models scroll within the board rather than overlapping their initial touch targets.
-  const distance=Math.min(...initial.flatMap((p,i)=>initial.slice(i+1).map(q=>Math.hypot(p.x-q.x,p.y-q.y))));
-  svg.style.minWidth=`${Math.max(226,Number.isFinite(distance)?Math.ceil(480*46/distance):0)}px`;
-  svg.replaceChildren();choices.replaceChildren();edgeList.replaceChildren(edgeSummary);const defs=make('defs'),arrow=make('marker',{id:marker,viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:5,markerHeight:5,orient:'auto-start-reverse'});arrow.append(make('path',{d:'M0 0 10 5 0 10z',fill:'var(--graph-line)'}));defs.append(arrow);svg.append(defs);const point=id=>positions.find(p=>p.id===id);
-  graph.edges.forEach(([a,b],i)=>{const p=point(a),q=point(b);if(!p||!q)return;const same=graph.edges.slice(0,i).filter(e=>e.includes(a)&&e.includes(b)).length,dx=q.x-p.x,dy=q.y-p.y,len=Math.hypot(dx,dy)||1,off=24,ex=q.x-dx/len*off,ey=q.y-dy/len*off;const d=a===b?`M${p.x-12} ${p.y-14} C${p.x-65} ${p.y-75} ${p.x+65} ${p.y-75} ${p.x+12} ${p.y-14}`:`M${p.x+dx/len*off} ${p.y+dy/len*off} Q${(p.x+q.x)/2-dy/len*same*32} ${(p.y+q.y)/2+dx/len*same*32} ${ex} ${ey}`;const path=make('path',{d,class:'board-edge',fill:'none'});if(graph.directed)path.setAttribute('marker-end',`url(#${marker})`);svg.append(path);edgeList.append(button(`${a} ${graph.directed?'→':'↔'} ${b} · حذف`,()=>{graph.edges.splice(i,1);render();onChange();}));});
-  selection=createVertexSelection(svg,graph,positions.map(p=>({...p,label:`مکان ${p.id}`})),hit,{numberFor:id=>id,coverage:!graph.directed&&!graph.multigraph});
+  svg.style.minWidth=`${Math.max(226,Math.ceil(spaced.width*.8))}px`;
+  edgeList.replaceChildren(edgeSummary);
+  graph.edges.forEach(([a,b],i)=>edgeList.append(button(`${a} ${graph.directed?'→':'↔'} ${b} · حذف`,()=>{graph.edges.splice(i,1);render();onChange();})));
+  selection=paintGraph(svg,graph,positions.map(p=>({...p,label:`مکان ${p.id}`})),hit,{numberFor:id=>id,coverage:!graph.directed&&!graph.multigraph});
   choices.replaceChildren(...selection.buttons.children);
   for(const p of positions){const {group}=selection.views.get(p.id);group.setAttribute('transform',`translate(${p.x} ${p.y})`);group.dataset.sourceId=p.id;group.querySelector('.vertex-label').remove();if(!entering)group.querySelector('.vertex-paint').style.animation='none';
-   group.addEventListener('keydown',e=>{if(locked||!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();p.x=Math.max(50,Math.min(430,p.x+({ArrowRight:15,ArrowLeft:-15}[e.key]??0)));p.y=Math.max(50,Math.min(290,p.y+({ArrowDown:15,ArrowUp:-15}[e.key]??0)));render();svg.querySelector(`[data-source-id="${p.id}"]`).focus();onChange();});
+   group.addEventListener('keydown',e=>{if(locked||!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();p.x=Math.max(50,Math.min(svg.viewBox.baseVal.width-50,p.x+({ArrowRight:15,ArrowLeft:-15}[e.key]??0)));p.y=Math.max(50,Math.min(svg.viewBox.baseVal.height-50,p.y+({ArrowDown:15,ArrowUp:-15}[e.key]??0)));render();svg.querySelector(`[data-source-id="${p.id}"]`).focus();onChange();});
   }selection.update(selected);fitTargets();
   entering=false;const degrees=graph.vertices.map(id=>`${id}: ${graph.edges.reduce((n,e)=>n+(e[0]===id?1:0)+(e[1]===id?1:0),0)}`).join('، ');status.textContent=`${graph.n} رأس؛ ${graph.edges.length} یال. درجه‌ها: ${degrees}${graph.directed?' (مجموع ورودی و خروجی)':''}`;
  }
+ svg.graphMove=(id,x,y)=>{if(locked||action.value!=='move')return;const p=positions.find(p=>p.id===id);p.x=Math.max(50,Math.min(svg.viewBox.baseVal.width-50,x));p.y=Math.max(50,Math.min(svg.viewBox.baseVal.height-50,y));render();onChange();};
  const syncInteraction=()=>{svg.dataset.interaction=action.value;pending=null;moved=false;};
  action.addEventListener('change',syncInteraction);syncInteraction();
  svg.addEventListener('pointerdown',e=>{
@@ -71,7 +71,7 @@ export function createWorkbench(host,q,item,onChange){
   const matrix=svg.getScreenCTM();if(!matrix)return;
   const point=new DOMPoint(e.clientX,e.clientY).matrixTransform(matrix.inverse());
   const p=positions.find(p=>p.id===drag.id);
-  p.x=Math.max(50,Math.min(430,point.x));p.y=Math.max(50,Math.min(290,point.y));
+  p.x=Math.max(50,Math.min(svg.viewBox.baseVal.width-50,point.x));p.y=Math.max(50,Math.min(svg.viewBox.baseVal.height-50,point.y));
   moved=true;render();
  });
  const endDrag=e=>{if(!drag||e.pointerId!==drag.pointerId)return;const changed=moved;drag=null;
@@ -82,6 +82,6 @@ export function createWorkbench(host,q,item,onChange){
 
  container.append(tools,node('p','در حالت یال، دو مکان را بزن. برای یال موازی این کار را تکرار کن؛ حذف هر نسخه از فهرست یال‌هاست. جابه‌جایی با حالت حرکت یا کلیدهای جهت‌دار انجام می‌شود.','model-key'),scrollNote,viewport,choices,edgeList,status);
  container.append(button('تحلیل مدل فعلی',()=>{try{const a=analyzeGraph(graph);status.textContent=`گامای مدل فعلی ${a.gamma}؛ ${a.minimumSets.length} مجموعهٔ کمینه. نمونه‌ها: ${a.minimumSets.map(s=>s.join(',')).slice(0,12).join(' | ')}`;}catch{status.textContent=graph.n===1?'گراف تک‌مکانی با یک مرکز پوشش می‌گیرد.':'این مدل جهت‌دار، چندیالی یا بیش از ۱۲ رأس است؛ درجه/مسیر را بررسی کن و پاسخ کامل را با معیار منبع مقایسه کن. به موتور احاطه‌گری ساده فرستاده نمی‌شود.';}}));
- if(q.id==='Q146'){const jump=button('اجرای بازی واقعی دو گروهی',()=>{const s=document.getElementById('lab-station');s.value='game';s.dispatchEvent(new Event('change',{bubbles:true}));s.scrollIntoView({block:'start'});});container.append(jump);}
- render();return{summary:()=>`\nمدل کارگاه: ${JSON.stringify({V:graph.vertices,E:graph.edges,D:selected,directed:!!graph.directed,multigraph:!!graph.multigraph})}`,lock(){locked=true;tools.inert=true;choices.inert=true;edgeList.inert=true;for(const n of svg.querySelectorAll('[role=button]')){n.setAttribute('tabindex','-1');n.setAttribute('aria-disabled','true');}},destroy(){drag=null;sizeObserver.disconnect();}};
+ if(q.id==='Q146'){const jump=button('گفت‌وگوی دو گروهی روی برد',()=>{const s=document.getElementById('lab-station');s.value='game';s.dispatchEvent(new Event('change',{bubbles:true}));s.scrollIntoView({block:'start'});});container.append(jump);}
+ render();const graphView=attachGraphView(svg);return{summary:()=>`\nمدل کارگاه: ${JSON.stringify({V:graph.vertices,E:graph.edges,D:selected,directed:!!graph.directed,multigraph:!!graph.multigraph})}`,lock(){locked=true;tools.inert=true;choices.inert=true;edgeList.inert=true;for(const n of svg.querySelectorAll('[role=button]')){n.setAttribute('tabindex','-1');n.setAttribute('aria-disabled','true');}},destroy(){drag=null;sizeObserver.disconnect();graphView.destroy();}};
 }

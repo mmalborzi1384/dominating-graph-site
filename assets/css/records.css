@@ -20,3 +20,11 @@
   .records-row { padding-inline: 0; }
   .records-card .secondary-button, .records-card .text-button { width: 100%; margin-inline: 0; }
 }
+/* Grid tracks must shrink to the phone, including long APOS activity titles. */
+#panel-records { min-width:0; grid-template-columns:minmax(0,1fr); overflow-wrap:anywhere; }
+#panel-records > *, .records-card > *, .records-grid > * { min-width:0; max-width:100%; }
+.records-card ul { padding-inline-start:1.3rem; }
+.records-card .secondary-button { display:inline-flex; align-items:center; justify-content:center; white-space:normal; }
+.records-metrics > span { white-space:normal; }
+/* The accessible progress meter must not inherit the visible meter's 100% width. */
+.records-card progress.sr-only { width:1px; max-width:1px; }

@@ -5,7 +5,7 @@
 .workbench-tools input,.workbench-tools select { width: 100%; min-width: 0; min-height: 44px; padding: .5rem; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: .6rem; font: inherit; }
 .source-graph-viewport { overflow-x: auto; direction: ltr; max-width: 100%; }
 .source-graph-viewport:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 1rem; }
-.source-graph { display: block; width: 100%; height: auto; max-height: 420px; background: var(--sheet); border-radius: 1rem; touch-action: pan-x pan-y; }
+.source-graph { display: block; width: 100%; height: auto;  background: var(--sheet); border-radius: 1rem; touch-action: pan-x pan-y; }
 .source-graph[data-interaction="move"] { touch-action: none; }
 .source-graph text { font-family: var(--font-body); font-size: 20px; }
 .source-graph [role=button] { cursor: pointer; }

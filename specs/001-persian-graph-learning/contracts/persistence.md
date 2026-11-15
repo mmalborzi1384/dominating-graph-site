@@ -295,3 +295,12 @@ Reduced motion changes effective display only, never the stored user choice. Sch
 Current bank 1.4 backups round-trip; 1.2/1.3 exports are rejected pending a reviewed semantic
 migration, particularly for replaced Q134. Local historical result reinterpretation is a
 separate release gate documented by the content audit.
+
+## Laboratory scratch policy, 2026-11-15
+
+New lab UI, including its question bank, does not create attempts or sessions, award
+scores, consume hints in storage, or require writable storage. Existing lab attempts
+and sessions remain readable/exportable/deletable through Records. No schema migration,
+implicit deletion or rewriting of historical scores is performed. Practice and competition
+persistence contracts remain in force. Legacy lab domain helpers remain for validating
+and reading historical data; product UI must not call them to record new activity.
