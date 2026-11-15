@@ -56,7 +56,6 @@ input:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
 :root[data-motion=full] .brand-mark circle:nth-child(2) { animation-delay:120ms; }
 :root[data-motion=full] .brand-mark circle:nth-child(3) { animation-delay:240ms; }
 :root[data-motion=full] .brand-mark circle:nth-child(4) { animation-delay:360ms; }
-@supports(backdrop-filter:blur(1px)) { .glass-select-trigger,.theme-toggle,.secondary-button { backdrop-filter:blur(var(--glass-blur)); } }
 @keyframes control-open { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
 @keyframes brand-connect { from { stroke-dashoffset:180; } to { stroke-dashoffset:0; } }
 @keyframes brand-node { 0% { opacity:0; scale:.5; } 60% { opacity:1; scale:1.25; } 100% { opacity:1; scale:1; } }
@@ -88,7 +87,7 @@ main a:not(.tab):hover, .text-button:hover:not(:disabled) { border-color:var(--h
 .source-graph .is-selected .vertex-number { fill:var(--bead-ink); }
 /* The switch track is the only visible vessel; its height matches the motion rail. */
 #theme-toggle { width:84px; height:50px; min-width:84px; min-height:50px; padding:0; gap:0; border:0; border-radius:100px; background:transparent; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; }
-#theme-toggle .theme-switch-track { width:84px; height:50px; background:var(--panel); backdrop-filter:blur(var(--glass-blur)); }
+#theme-toggle .theme-switch-track { width:84px; height:50px; background:var(--surface); }
 #theme-toggle .theme-switch-knob { width:40px; height:40px; top:4px; left:4px; }
 [data-theme=night] #theme-toggle .theme-switch-knob { transform:translateX(34px); }
 #theme-toggle .theme-switch-stars { top:9px; left:auto; right:10px; }

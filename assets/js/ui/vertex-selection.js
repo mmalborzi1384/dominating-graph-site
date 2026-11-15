@@ -38,7 +38,7 @@ export function createVertexSelection(svg,graph,placeList,onToggle,{numberFor=(i
     const paint = svgElement('g', {class:'vertex-paint'});
     paint.style.setProperty('--vertex-order',index);
     // Large transparent hit area preserves touch selection around the 23px visible bead.
-    group.append(svgElement('circle', { r: 29, fill: 'transparent', 'aria-hidden': 'true' }));
+    group.append(svgElement('circle', { r: 29, class: 'vertex-hit', fill: 'transparent', 'aria-hidden': 'true' }));
     paint.append(svgElement('circle', { r: RADIUS, class: 'vertex-base' }));
     const coverage = svgElement('g', { class: 'vertex-coverage', 'aria-hidden': 'true' });
     paint.append(coverage);

@@ -8,6 +8,14 @@
 
 ## Navigation and shared presentation
 
+Current presentation amendment (constitution1.4.0, approved antislop findings1–3):
+the five routes live in the small nonmodal graph window specified in
+`003-lab-navigation/spec.md`; this overrides the historical no-popup sentence below
+only for navigation. Blur belongs only to that window, with an opaque fallback.
+Working cards and controls are matte. Source workbench targets must remain at least
+44CSS pixels on narrow screens; dense models may scroll inside their board.
+Self-assessment and queen-coordinate fields have associated visible labels.
+
 Five top-level hash destinations: #teach, #practice, #competition, #records, #lab.
 No additional top-level page flow, modal, browser alert/confirm/prompt or popup. Unknown hash
 opens Teaching with a clear default. Browser back/forward and direct hash links preserve
@@ -100,19 +108,19 @@ the shared normalization/counting rules. Show length errors inline. At 200 live 
 must not claim persistence or silently discard existing records.
 
 
-## Liquid-glass amendment (constitution 1.1.0, FR-025)
+## Surface amendment (constitution 1.4.0, approved antislop follow-up)
 
-Use shared glass container tokens/classes for tab bar, question cards, board vessel and
-future records cards. Background translucency and backdrop blur belong to the vessel, never
-to a parent opacity/filter that blurs text or graph children. Keep the graph canvas, nodes
-and pieces opaque; coverage hatching/text are additional to color. Retain educational
+Use shared matte surface tokens/classes for question cards, board vessels and records.
+Reserve translucency and backdrop blur for the small navigation window, with an opaque
+fallback when filtering is unsupported. Keep the graph canvas, nodes and pieces opaque;
+coverage hatching/text are additional to color. Retain educational
 palettes and >=4.5:1 normal-text contrast on the composited background. Use an opaque theme
 surface when backdrop filtering is unsupported. Tab/card entrance and theme transitions
 are brief; prefers-reduced-motion removes all nonessential animation/transition.
 
 
-Exact visual reference: `docs/repo-patterns.md`. Use --panel rgba(255,251,243,0.84) /
-rgba(26,43,36,0.84) and 12px blur; all bead/hatch tokens come verbatim from the reference.
+Exact visual reference: `docs/repo-patterns.md`, with the approved matte-surface exception.
+The navigation window uses --panel and --glass-blur; all bead/hatch tokens stay unchanged.
 Vertex identity is zero-based graph.vertices index modulo 10. Selected=solid own bead;
 nonselected=equal wedge per owner in N[v] intersect S, each with owner's 7x7/45-degree/2.2px
 hatch on sheet. Empty=sheet. After assessment only, missed vertices get 3.2px error rings.
@@ -189,7 +197,7 @@ Escape پشتیبانی شوند؛ متن در جریان صفحه باز شود
 Each mounted panel has one compact, decorative landing illustration with its own motif.
 Panels switch in <=180ms using opacity and small RTL-aware translation; same-tab hash changes
 must not replay transitions or steal focus. Tab semantics/inertness change immediately.
-Glass reveal animates backdrop blur only on containers, never graphs or descendants.
+Reveals use opacity/translation; neither tab transitions nor details animate backdrop blur.
 Radio rail off/low/medium/full has native arrow/Space behavior and 44px targets. Effective
 motion is off under prefers-reduced-motion irrespective of saved preference; announce this.
 Off cancels active Web Animations, CSS movement, counters and APOS transition delays; low

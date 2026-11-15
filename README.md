@@ -105,6 +105,7 @@ node scripts/validate-apos-learning-browser.mjs
 node scripts/validate-apos-v3-browser.mjs
 node scripts/validate-apos-review-browser.mjs
 node scripts/validate-navigation-lab-browser.mjs
+node scripts/validate-antislop-browser.mjs
 node scripts/validate-foundation.mjs
 node scripts/validate-practice.mjs
 node scripts/validate-competition.mjs
@@ -135,13 +136,17 @@ node scripts/validate-random.mjs
 گزارش جاری: [اتصال بانک و طراحی نهایی](specs/001-persian-graph-learning/validation/bank-integration.md).
 
 
-کنترل‌های انتخاب اکنون داخل صفحه و با ظاهر شیشه‌ای باز می‌شوند؛ فهرست بلند جست‌وجو،
+کنترل‌های انتخاب اکنون داخل صفحه و با زمینهٔ خوانای بدون blur باز می‌شوند؛ فهرست بلند جست‌وجو،
 اسکرول هم‌تم و انتخاب با لمس/کیبورد دارد. متن‌های وضعیت توسعه در رابط عمومی نیستند.
 تم switch متحرک دارد؛ حالت کامل لوگو را نیز کوتاه متحرک می‌کند.
 
 انتخاب رأس در بردها و کارگاه مدل از موتور مشترک `assets/js/ui/vertex-selection.js` استفاده
 می‌کند؛ رنگ/هاشور/انیمیشن و فوکوس یکسان‌اند. لینک‌های عملیاتی ظاهر دکمه دارند و
 سوییچ تم فقط شکل دارد؛ نام دسترس‌پذیر آن حفظ شده است.
+
+پیگیری ممیزی antislop: blur فقط در پنجرهٔ نقشهٔ ناوبری به کار می‌رود؛ کارت‌ها و
+کنترل‌ها مات‌اند. محدودهٔ لمس کارگاه منبع دست‌کم۴۴پیکسل است؛ مدل پرتراکم فقط داخل
+برد پیمایش می‌شود. خودارزیابی و مختصات وزیر برچسب نمایان مرتبط دارند.
 
 فرمول‌های انتخاب‌گرها نیز با KaTeX رندر می‌شوند؛ برچسب تمام رأس‌ها مرکزی است. سؤال
 چالش زمان‌دار Q141 در مکمل سایت با سیاست جاری امتیاز و ثبت نتیجه هماهنگ شده است؛

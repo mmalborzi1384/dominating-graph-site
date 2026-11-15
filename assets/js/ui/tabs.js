@@ -19,9 +19,6 @@ export function initTabs() {
       const panel = document.getElementById(selected.getAttribute('aria-controls'));
       const distance = motionLevel() === 'low' ? 0 : 8;
       entrance = animateFinite(panel,[{opacity:0,transform:`translateX(${-distance}px)`},{opacity:1,transform:'translateX(0)'}],'--motion-tab');
-      for (const glass of panel.querySelectorAll('.question-card, .records-card, .teaching-progress')) {
-        if (motionLevel() !== 'low') animateFinite(glass,[{backdropFilter:'blur(0px)'},{backdropFilter:'blur(var(--glass-blur))'}],'--motion-tab');
-      }
       current = selected;
       document.dispatchEvent(new CustomEvent('tabchange',{detail:{id:selected.hash.slice(1)}}));
     }

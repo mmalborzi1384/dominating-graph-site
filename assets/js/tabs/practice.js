@@ -88,7 +88,8 @@ export async function initPractice(questions, curriculum, repository, {tab = 'pr
     const rubricBody=el('p');renderTextMath(rubricBody,item.rubric??q.answer_fa);
     const self=el('select');self.id='practice-self-assessment';
     for(const [value,label] of [['','انتخاب کن'],['yes','با معیار کامل هم‌خوان است'],['no','نیاز به اصلاح دارد']]) {const o=el('option',label);o.value=value;self.append(o);}
-    rubric.append(el('p','خودارزیابی؛ پاسخ تشریحی به‌صورت ماشینی تصحیح نمی‌شود.'),rubricBody,self);
+    const selfLabel=el('label','ارزیابی پاسخ با معیار: ','workbench-field');selfLabel.append(self);
+    rubric.append(el('p','خودارزیابی؛ پاسخ تشریحی به‌صورت ماشینی تصحیح نمی‌شود.'),rubricBody,selfLabel);
     function changed() { if(finalized)return;setFeedback(feedback,'پاسخ تغییر کرد؛ دوباره بررسی کن.');repository.setEditingDirty('practice',true); }
     function draw() {
       board?.destroy();
