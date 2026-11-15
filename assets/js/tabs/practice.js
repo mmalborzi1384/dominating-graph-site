@@ -24,10 +24,10 @@ export async function initPractice(questions, curriculum, repository, {tab = 'pr
   }
   const lesson = select('درس',[['','هر دو درس'],['lesson1','درس ۱'],['lesson2','درس ۲']],'practice-lesson');
   const category = select('موضوع',[['','همهٔ موضوع‌ها'],...Object.entries({A_foundations:'مبانی',B_domination:'احاطه‌گری',C_minimal_minimum:'مینیمال و مینیمم',D_formulas_bounds:'فرمول‌ها و کران‌ها',E_modeling:'مدل‌سازی',F_lab:'کاوش'})],'practice-category');
-  const difficulty = select('دشواری',[['easy','آسان'],['hard','سخت']],'practice-difficulty');
+  const difficulty = select('دشواری',[['all','همهٔ درجه‌ها'],['1','درجهٔ ۱'],['2','درجهٔ ۲'],['3','درجهٔ ۳']],'practice-difficulty');
   const picker = select('سؤال',[],'practice-question');
   const availability = el('p','','model-key'), host = el('section','','practice-activity');
-  const redraw=el('button','سؤال تصادفی بعدی','secondary-button');redraw.type='button';redraw.id='practice-random-next';redraw.hidden=true;
+  const redraw=el('button','سؤال تصادفی بعدی','secondary-button');redraw.type='button';redraw.id=mount?'bank-practice-random-next':'practice-random-next';redraw.hidden=true;
   root.append(filters,redraw,availability,host);
   let destroy = () => {};
   let randomLevel=null,lastRandomId=null;
@@ -46,9 +46,10 @@ export async function initPractice(questions, curriculum, repository, {tab = 'pr
     const list = filterPractice(catalog,{lesson:lesson.value, category:category.value, difficulty:difficulty.value});
     picker.replaceChildren();
     randomLevel=null;lastRandomId=null;redraw.hidden=true;
-    for(const level of difficulty.value==='easy'?[1]:[2,3]){
-      const option=el('option',`تمرین با سؤال‌های تصادفی · درجهٔ ${fa(level)}`);option.value=`random:${level}`;
-      option.disabled=!list.some(i=>!i.unavailable&&i.question.difficulty===level);picker.append(option);
+    for(const level of [1,2,3]){
+      const available=list.some(i=>!i.unavailable&&i.question.difficulty===level);
+      const option=el('option',`تمرین با سؤال‌های تصادفی · درجهٔ ${fa(level)}${available?'':' (بدون سؤال در این فیلتر)'}`);option.value=`random:${level}`;
+      option.disabled=!available;picker.append(option);
     }
     for (const item of list) {
       const option = el('option',`${item.question.id} · ${item.unavailable ? 'نیازمند تکمیل محتوا' : item.title}`);

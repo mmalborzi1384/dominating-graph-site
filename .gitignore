@@ -1,4 +1,4 @@
-.agents/
+# Personal installed skills and runtime settings are local. The shared .agent/ guide is tracked.
 .agents/
 
 node_modules/
