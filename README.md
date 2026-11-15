@@ -227,3 +227,8 @@ snapshot، validator و آزمون‌های تبدیل/ورود را در PR ط�
 
 بررسی این تغییر: `node scripts/validate-graph-workspace.mjs` و
 `node scripts/validate-graph-workspace-browser.mjs`.
+
+در۳بعدی، هاشور از همان مالک‌های پوشش در `vertex-selection` و توکن‌های `--hatch-*`
+ساخته می‌شود. `coverage-texture.js` تنها نگاشت بصری روی کره را انجام می‌دهد؛ همسایگی
+یا داوری جداگانه ندارد. در پوشش مشترک، بخش‌های رنگی با ترتیب رأس‌های گراف تقسیم می‌شوند؛
+رأس انتخاب‌شده توپر می‌ماند. آزمون: `node scripts/validate-graph-hatching-browser.mjs`.

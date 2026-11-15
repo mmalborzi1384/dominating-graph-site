@@ -113,3 +113,5 @@ button:disabled { cursor: default; color: var(--muted); text-decoration: none; }
 .graph-three-labels button[aria-pressed=true] { color:var(--bead-ink); }
 .graph-view-switch button:hover:not([aria-pressed=true]) { background:var(--accent-soft); }
 .graph-view-switch button:disabled { opacity:.65; cursor:wait; }
+/* Keep the identifier readable where several colored hatches meet. */
+.graph-three-labels .is-covered .graph-three-number { background:var(--sheet); border-radius:50%; padding-inline:.15em; }
