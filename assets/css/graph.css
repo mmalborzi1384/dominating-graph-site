@@ -12,18 +12,11 @@
 .model-caption .math { color: var(--heading); font-size: var(--font-sm); }
 @media (max-width: 640px) { .model-cover { max-width: 360px; width: 100%; margin-inline: auto; transform: none; } }
 
-/* Shared glass vessels; graph paint is deliberately opaque. */
+/* Matte working surfaces; liquid glass is reserved for the navigation window. */
 .glass-surface, .tab-list, .question-card, .board-panel, .records-card {
   background: var(--surface);
   border: 1px solid var(--glass-border);
   box-shadow: 0 12px 32px var(--glass-shadow), inset 0 1px 0 var(--glass-shine);
-}
-@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .glass-surface, .tab-list, .question-card, .board-panel, .records-card {
-    background: var(--panel);
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    backdrop-filter: blur(var(--glass-blur));
-  }
 }
 body, .site-header, .glass-surface, .tab-list, .workspace, .tab, .theme-toggle,
 .graph-canvas, .vertex-base, .vertex-choice, .board-options select {
