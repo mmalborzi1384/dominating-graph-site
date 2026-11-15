@@ -5,17 +5,20 @@ import { createAttempt, appendAttempt } from '../domain/attempts.js';
 import { createGraphBoard } from '../ui/graph-editor.js';
 import { renderTextMath } from '../ui/math.js';
 import { setFeedback, selectionFeedback } from '../ui/feedback.js';
-import { analyzeGraph } from '../domain/evaluate.js';
+import { evaluateSelection, analyzeGraph } from '../domain/evaluate.js';
+import {normalizeUserText} from '../domain/limits.js';
 import { pickRandom } from '../domain/random.js';
 
 const el = (tag, text = '', className = '') => { const n = document.createElement(tag); n.textContent = text; n.className = className; return n; };
 const fa = n => n.toLocaleString('fa-IR');
 export async function initPractice(questions, curriculum, repository, {tab = 'practice', mount = null, source = 'practice.json'} = {}) {
+  const freeLab=tab==='lab';
+  const markEditing=(scope,value)=>{if(!freeLab)repository.setEditingDirty(scope,value);};
   const response = await fetch(new URL('../../../content/'+source, import.meta.url));
   if (!response.ok) throw new Error('محتوای تمرین بارگیری نشد.');
   const catalog = practiceCatalog(questions, await response.json(), tab).filter(item=>!mount||!item.unavailable);
   const root = mount ?? document.getElementById('panel-practice'); root.replaceChildren();
-  root.append(el(mount?'h2':'h1',mount?'کاوش در سرزمین سوالات':'تمرین؛ راه‌های بیشتر برای مدل‌سازی'), el('p','مستقل از آموزش · راهنمای رایگان · نتیجه فقط با ثبت نهایی ذخیره می‌شود.','model-key'));
+  root.append(el(mount?'h2':'h1',mount?'کاوش در سرزمین سوالات':'تمرین؛ راه‌های بیشتر برای مدل‌سازی'), el('p',freeLab?'کاوش آزاد · راهنمای رایگان · پاسخ و امتیازی ثبت نمی‌شود.':'مستقل از آموزش · راهنمای رایگان · نتیجه فقط با ثبت نهایی ذخیره می‌شود.','model-key'));
   const filters = el('div','','practice-filters');
   function select(label, options, id) {
     const wrapper = el('label',label), control = el('select'); control.id = mount?'bank-'+id:id;
@@ -33,7 +36,7 @@ export async function initPractice(questions, curriculum, repository, {tab = 'pr
   let randomLevel=null,lastRandomId=null;
   const currentList=()=>filterPractice(catalog,{lesson:lesson.value,category:category.value,difficulty:difficulty.value});
   function drawRandom(){
-    destroy();repository.setEditingDirty('practice',false);
+    destroy();markEditing('practice',false);
     const candidates=currentList().filter(i=>!i.unavailable&&i.question.difficulty===randomLevel);
     const item=pickRandom(candidates,lastRandomId);
     if(!item){host.replaceChildren(el('p','سؤال آماده برای این درجه و فیلتر نداریم.','notice'));return;}
@@ -42,7 +45,7 @@ export async function initPractice(questions, curriculum, repository, {tab = 'pr
   }
   redraw.addEventListener('click',drawRandom);
   function refresh() {
-    destroy(); repository.setEditingDirty('practice',false);
+    destroy(); markEditing('practice',false);
     const list = filterPractice(catalog,{lesson:lesson.value, category:category.value, difficulty:difficulty.value});
     picker.replaceChildren();
     randomLevel=null;lastRandomId=null;redraw.hidden=true;
@@ -65,7 +68,7 @@ export async function initPractice(questions, curriculum, repository, {tab = 'pr
   picker.addEventListener('change',()=> {
     randomLevel=picker.value.startsWith('random:')?Number(picker.value.split(':')[1]):null;redraw.hidden=randomLevel===null;
     if(randomLevel!==null){lastRandomId=null;drawRandom();return;}
-    destroy();repository.setEditingDirty('practice',false);render(catalog.find(item=>item.question.id===picker.value));
+    destroy();markEditing('practice',false);render(catalog.find(item=>item.question.id===picker.value));
   });
   function render(item) {
     if (!item || item.unavailable) return;
@@ -79,7 +82,7 @@ export async function initPractice(questions, curriculum, repository, {tab = 'pr
     const title=el(mount?'h3':'h2');renderTextMath(title,`${q.id} · ${item.title}`);
     card.append(title,el('p',`${q.lesson==='lesson1'?'درس ۱':'درس ۲'} · سطح ${fa(q.difficulty)} · ${q.apos_stage}`,'model-key'));
     for (const text of [item.model.scenario,item.model.vertexMeaning,item.model.edgeMeaning,item.prompt]) {const p=el('p');renderTextMath(p,text);card.append(p);}
-    const workbench = createWorkbench(card,q,item,()=>repository.setEditingDirty(tab+'-bank',true));
+    const workbench = createWorkbench(card,q,item,()=>markEditing(tab+'-bank',true));
 
     const work=el('div','','board-panel glass-surface practice-response'),actions=el('div','','practice-actions'),feedback=el('p'),hintList=el('ol','','hint-list');
     const answer=el('input');answer.type='number';answer.min='0';answer.max='12';answer.step='1';answer.id='practice-number';
@@ -90,7 +93,7 @@ export async function initPractice(questions, curriculum, repository, {tab = 'pr
     for(const [value,label] of [['','انتخاب کن'],['yes','با معیار کامل هم‌خوان است'],['no','نیاز به اصلاح دارد']]) {const o=el('option',label);o.value=value;self.append(o);}
     const selfLabel=el('label','ارزیابی پاسخ با معیار: ','workbench-field');selfLabel.append(self);
     rubric.append(el('p','خودارزیابی؛ پاسخ تشریحی به‌صورت ماشینی تصحیح نمی‌شود.'),rubricBody,selfLabel);
-    function changed() { if(finalized)return;setFeedback(feedback,'پاسخ تغییر کرد؛ دوباره بررسی کن.');repository.setEditingDirty('practice',true); }
+    function changed() { if(finalized)return;setFeedback(feedback,'پاسخ تغییر کرد؛ دوباره بررسی کن.');markEditing('practice',true); }
     function draw() {
       board?.destroy();
       const places = item.mode==='graph-construction' ? graph.vertices.map((id,i)=>({id,label:`مرکز ${fa(i+1)}`,x:300+210*Math.cos(i*2*Math.PI/graph.n),y:160+100*Math.sin(i*2*Math.PI/graph.n)})) : item.model.places;
@@ -121,6 +124,15 @@ export async function initPractice(questions, curriculum, repository, {tab = 'pr
       if(item.mode==='integer' && answer.value.trim()==='')throw new Error('عدد پاسخ را وارد کن.');
       if(item.mode==='self-assessed-text' && !self.value)throw new Error('پاسخ را با معیار مقایسه و ارزیابی خود را انتخاب کن.');
       const graphSnapshot=item.mode==='graph-construction'?{graph,modeling:{scenario_fa:item.model.scenario,vertex_means_fa:item.model.vertexMeaning,edge_means_fa:item.model.edgeMeaning,question_in_model_fa:item.prompt}}:undefined;
+      if(freeLab){let evaluation;
+        if(item.mode==='integer'&&(!Number.isSafeInteger(Number(answer.value))||Number(answer.value)<0||Number(answer.value)>12))throw Error('پاسخ باید عدد صحیح صفر تا ۱۲ باشد.');
+        if(item.mode==='self-assessed-text'&&!normalizeUserText(text.value+workbench.summary(),'textResponse').trim())throw Error('پاسخت را وارد کن.');
+        if(item.mode==='vertex-selection')evaluation=evaluateSelection(graph,selected,item.target);
+        else if(item.mode==='integer'){const expectedValue=analyzeGraph(graph).gamma;evaluation={expectedValue,satisfiesTarget:Number(answer.value)===expectedValue};}
+        else if(item.mode==='graph-construction'){const analysis=analyzeGraph(graph),gamma=analysis.gamma;evaluation={n:graph.n,gamma,satisfiesTarget:graph.n===item.target.n&&gamma===item.target.gamma&&analysis.minimumSets.length>=(item.target.minimumSetCountMin??1)&&analysis.minimumSets.length<=(item.target.minimumSetCountMax??Infinity)};}
+        else evaluation={satisfiesTarget:self.value==='yes'};
+        return{evaluation};
+      }
       return createAttempt({questionId:q.id,mode:item.mode,target:item.target,tab,response:item.mode==='vertex-selection'?selected:item.mode==='integer'?Number(answer.value):item.mode==='self-assessed-text'?text.value + workbench.summary():graph,
         graph,graphSnapshot,hintLevel,selfAssessed:self.value==='yes',points:q.scoring.points});
     }
@@ -129,8 +141,8 @@ export async function initPractice(questions, curriculum, repository, {tab = 'pr
         const a=candidate();
         if(item.mode==='vertex-selection') board.update(selected,{missed:a.evaluation.uncoveredVertexIds});
         const explanation=explain(a);
-        showScore(a.finalScore);
-        setFeedback(feedback,`${explanation} ${a.evaluation.satisfiesTarget?'پاسخ با خواسته هم‌خوان است.':'پاسخ هنوز خواسته را برآورده نمی‌کند.'} ${item.mode==='self-assessed-text'?'نتیجه بر پایهٔ خودارزیابی توست.':''} برای ذخیره «ثبت نهایی» را بزن.`,{tone:a.evaluation.satisfiesTarget?'success':'error'});
+        if(!freeLab)showScore(a.finalScore);
+        setFeedback(feedback,`${explanation} ${a.evaluation.satisfiesTarget?'پاسخ با خواسته هم‌خوان است.':'پاسخ هنوز خواسته را برآورده نمی‌کند.'} ${item.mode==='self-assessed-text'?'نتیجه بر پایهٔ خودارزیابی توست.':''} ${freeLab?'می‌توانی پاسخ و مدل را آزادانه تغییر بدهی.':'برای ذخیره «ثبت نهایی» را بزن.'}`,{tone:a.evaluation.satisfiesTarget?'success':'error'});
       } catch(error){setFeedback(feedback,error.message,{tone:'error'});}
     }
     function explain(a) {
@@ -140,7 +152,7 @@ export async function initPractice(questions, curriculum, repository, {tab = 'pr
       return 'پاسخ با معیار نمایش‌داده‌شده توسط خودت مقایسه شده است.';
     }
     const check=button('بررسی بدون ثبت',preview);check.id='practice-check';
-    const hint=button('راهنمای ۱ · رایگان',()=>{if(hintLevel===3)return;const li=el('li');renderTextMath(li,item.hints[hintLevel++]);hintList.append(li);hint.textContent=hintLevel===3?'سه راهنما نمایش داده شد':`راهنمای ${fa(hintLevel+1)} · رایگان`;hint.disabled=hintLevel===3;repository.setEditingDirty('practice',true);});hint.id='practice-hint';
+    const hint=button('راهنمای ۱ · رایگان',()=>{if(hintLevel===3)return;const li=el('li');renderTextMath(li,item.hints[hintLevel++]);hintList.append(li);hint.textContent=hintLevel===3?'سه راهنما نمایش داده شد':`راهنمای ${fa(hintLevel+1)} · رایگان`;hint.disabled=hintLevel===3;markEditing('practice',true);});hint.id='practice-hint';
     const submit=button('ثبت نهایی پاسخ',()=>{
       try {
         const a=candidate(),snapshot=repository.snapshot();
@@ -151,17 +163,17 @@ export async function initPractice(questions, curriculum, repository, {tab = 'pr
         for(const control of work.querySelectorAll('button,input,textarea,select'))control.disabled=true;
         for(const vertex of work.querySelectorAll('.board-vertex')){vertex.setAttribute('aria-disabled','true');vertex.setAttribute('tabindex','-1');}
         check.disabled=true;hint.disabled=true;submit.disabled=true;
-        repository.setEditingDirty('practice',false);status();
+        markEditing('practice',false);status();
       } catch(error){setFeedback(feedback,error.message,{tone:'error'});}
     });submit.id='practice-submit';submit.className='primary-button';
-    const retry=button('تلاش تازه روی همین سؤال',()=>{destroy();repository.setEditingDirty('practice',false);render(item);});retry.id='practice-retry';
+    const retry=button('تلاش تازه روی همین سؤال',()=>{destroy();markEditing('practice',false);render(item);});retry.id='practice-retry';
     function showScore(value){if(!scoreBox.isConnected)card.append(scoreBox);scoreBox.hidden=false;animateNumber(score,value,lastScore);lastScore=value;}
     function status(){if(finalized){showScore(finalized.finalScore);const s=repository.snapshot();setFeedback(feedback,`${explain(finalized)} ${s.dirty||s.warning?'در حافظهٔ موقت؛ ذخیره نشده است.':'ذخیره شد.'} ${item.mode==='self-assessed-text'?'خودارزیابی تشریحی؛ ۱۰ برای هم‌خوانی با معیار و صفر برای نیاز به اصلاح.':''}`,{tone:s.dirty||s.warning||!finalized.evaluation.satisfiesTarget?'error':'success'});}}
     const saveAgain=button('ذخیرهٔ دوبارهٔ کار موقت',()=>{repository.retry();status();});
     unsubscribe=repository.subscribe(s=>{saveAgain.hidden=!s.warning;status();});
-    actions.append(check,hint,submit,retry,saveAgain);
+    if(freeLab)actions.append(check,hint,retry);else actions.append(check,hint,submit,retry,saveAgain);
     host.replaceChildren(card,work,actions,feedback,hintList);if(mount)for(const n of host.querySelectorAll('[id]'))n.id='bank-'+n.id;
-    destroy=()=>{board?.destroy();workbench.destroy();unsubscribe?.();repository.setEditingDirty(tab+'-bank',false);};
+    destroy=()=>{board?.destroy();workbench.destroy();unsubscribe?.();markEditing(tab+'-bank',false);};
   }
   refresh();if(mount)for(const n of root.querySelectorAll('[id]'))if(!n.id.startsWith('bank-'))n.id='bank-'+n.id;
 }
