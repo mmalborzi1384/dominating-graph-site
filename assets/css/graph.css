@@ -100,7 +100,7 @@ button:disabled { cursor: default; color: var(--muted); text-decoration: none; }
 .workspace { background: transparent; border-color: transparent; box-shadow: none; }
 .graph-canvas { background: var(--sheet); }
 /* One compact, explicit view selector; the answer remains on the same board. */
-.graph-view-switch { display:flex; gap:.25rem; width:max-content; max-width:100%; padding:.2rem; margin-block:.5rem; border:1px solid var(--line); border-radius:2rem; background:var(--surface); }
+.graph-view-switch { display:flex; flex-wrap:wrap; gap:.25rem; width:max-content; max-width:100%; padding:.2rem; margin-block:.5rem; border:1px solid var(--line); border-radius:1rem; background:var(--surface); }
 .graph-view-switch button { width:auto; min-height:44px; min-width:64px; margin:0; padding:.4rem .8rem; border:0; border-radius:2rem; color:var(--ink); background:transparent; font:inherit; }
 .graph-view-switch button[aria-pressed=true] { background:var(--heading); color:var(--surface); }
 .graph-three { position:relative; width:100%; height:320px; overflow:hidden; background:var(--sheet); border:1px solid var(--line); border-radius:1rem; }
@@ -115,3 +115,10 @@ button:disabled { cursor: default; color: var(--muted); text-decoration: none; }
 .graph-view-switch button:disabled { opacity:.65; cursor:wait; }
 /* Keep the identifier readable where several colored hatches meet. */
 .graph-three-labels .is-covered .graph-three-number { background:var(--sheet); border-radius:50%; padding-inline:.15em; }
+.graph-zoom { display:flex; direction:ltr; border-inline-start:1px solid var(--line); }
+.graph-zoom button { min-width:44px; border-radius:.5rem; padding:.3rem; }
+.graph-zoom button:nth-child(2) { min-width:64px; font-size:var(--font-sm); }
+.graph-zoom button:disabled { cursor:default; opacity:.45; }
+.graph-zoom button:active:not(:disabled) { transform:scale(.94); }
+.graph-surface-viewport.is-zoomed, .source-graph-viewport.is-zoomed { max-height:520px; overflow:auto; }
+.is-zoomed > svg { min-width:0 !important; }
