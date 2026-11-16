@@ -59,3 +59,6 @@ blur۱۶px و لایهٔ شیشهٔ بدون دریافت کلیک در هر ش�
 `node --check` برای دو فایل JS تغییرکرده و `git diff --check` پاس؛
 `graphify update .` اجرا شد. تست‌های ۴۹۲/۳۱/۳۴ ردیف بالا مربوط به PR18 هستند
 و در این پیگیری تکرار نشده‌اند؛ محدودیت‌های مرورگر/گوشی واقعی همچنان برقرارند.
+
+PR پیگیری: https://github.com/mmalborzi1384/dominating-graph-site/pull/19
+شاخه codex/graph-world-scroll؛ باز برای بازبینی، مرج نشده است.
