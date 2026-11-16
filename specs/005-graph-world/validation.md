@@ -30,3 +30,6 @@
 visibilitychange رسم پیوسته را طبق بررسی کد متوقف می‌کند؛ تست lifecycle جدا اجرا نشد.
 گوشی فیزیکی، Safari، GPU سخت‌افزاری، Windows/VPS و Web Vitals واقعی سنجیده نشده‌اند.
 انتشار عمومی Pages قبل از مرج این PR بررسی/ادعا نمی‌شود.
+
+PR بازبینی: https://github.com/mmalborzi1384/dominating-graph-site/pull/18
+شاخه codex/graph-world-zoom؛ مرج نشده است.
