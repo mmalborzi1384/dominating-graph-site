@@ -57,6 +57,7 @@ export function createWorkbench(host,q,item,onChange){
   }selection.update(selected);fitTargets();
   entering=false;const degrees=graph.vertices.map(id=>`${id}: ${graph.edges.reduce((n,e)=>n+(e[0]===id?1:0)+(e[1]===id?1:0),0)}`).join('، ');status.textContent=`${graph.n} رأس؛ ${graph.edges.length} یال. درجه‌ها: ${degrees}${graph.directed?' (مجموع ورودی و خروجی)':''}`;
  }
+ svg.graphCanMove=()=>!locked&&action.value==='move';
  svg.graphMove=(id,x,y)=>{if(locked||action.value!=='move')return;const p=positions.find(p=>p.id===id);p.x=Math.max(50,Math.min(svg.viewBox.baseVal.width-50,x));p.y=Math.max(50,Math.min(svg.viewBox.baseVal.height-50,y));render();onChange();};
  const syncInteraction=()=>{svg.dataset.interaction=action.value;pending=null;moved=false;};
  action.addEventListener('change',syncInteraction);syncInteraction();
