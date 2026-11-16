@@ -1,6 +1,6 @@
 /* A single decorative canvas sits behind the entire document, never above controls. */
 body { isolation: isolate; }
-.graph-world { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+.graph-world { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; filter: blur(var(--world-blur)); opacity: var(--world-opacity); }
 .page-width { width: min(var(--content-width), calc(100% - 5rem)); margin-inline: auto; }
 .site-header { background: var(--surface); border-bottom: 1px solid var(--line); }
 .header-inner { min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }

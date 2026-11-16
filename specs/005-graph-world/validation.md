@@ -33,3 +33,7 @@ visibilitychange رسم پیوسته را طبق بررسی کد متوقف می
 
 PR بازبینی: https://github.com/mmalborzi1384/dominating-graph-site/pull/18
 شاخه codex/graph-world-zoom؛ مرج نشده است.
+
+پیگیری تاری ملایم: ۵۲ بررسی graph-world دوباره پاس شد؛ تصاویر تازهٔ روز۳۲۰ و شب۱۲۸۰
+بازبینی شدند. filter۱پیکسلی/opacity .85 فقط Canvas سراسری را ملایم می‌کند؛ متن و
+برد آموزشی واضح‌اند. graphify و diff check دوباره اجرا شدند.

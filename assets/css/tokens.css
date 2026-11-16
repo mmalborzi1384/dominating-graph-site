@@ -20,6 +20,8 @@
   --grid: #cadcd2;
   --world-line: #337d68;
   --world-accent: #b84c47;
+  --world-blur: 1px;
+  --world-opacity: .85;
   --error: #a23b32;
   --focus: #174c3c;
   --on-accent: #f5faf7;
