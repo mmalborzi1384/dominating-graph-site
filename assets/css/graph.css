@@ -122,3 +122,7 @@ button:disabled { cursor: default; color: var(--muted); text-decoration: none; }
 .graph-zoom button:active:not(:disabled) { transform:scale(.94); }
 .graph-surface-viewport.is-zoomed, .source-graph-viewport.is-zoomed { max-height:520px; overflow:auto; }
 .is-zoomed > svg { min-width:0 !important; }
+/* Label overlays share the board gesture policy; canvas-only touch-action is insufficient. */
+.graph-three { touch-action:none; user-select:none; -webkit-user-select:none; overscroll-behavior:contain; }
+.graph-device-switch { min-height:44px; min-width:88px; font-size:var(--font-sm); }
+.graph-view-switch .graph-device-switch[aria-checked=true] { background:var(--heading); color:var(--surface); }

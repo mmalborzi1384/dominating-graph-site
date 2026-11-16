@@ -65,12 +65,13 @@ export function createEditableGraphBoard(host,model,onToggle,onPositionsChange=(
     p.x=x;p.y=y;// Refresh geometry without rebuilding the graph.
     board.relayout();onPositionsChange(model.places);
   }
-  const down=e=>{const g=e.target.closest('.board-vertex');if(!g)return;drag={id:g.dataset.vertexId,x:e.clientX,y:e.clientY,moved:false};g.setPointerCapture?.(e.pointerId);};
-  const moving=e=>{if(!drag)return;if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)<5&&!drag.moved)return;drag.moved=true;const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(svg.getScreenCTM().inverse());move(drag.id,compact()?40+(p.x/(svg.viewBox.baseVal.width/340)-40)*2:p.x/(svg.viewBox.baseVal.width/600),p.y/(svg.viewBox.baseVal.height/330));};
-  const up=()=>{if(drag?.moved)suppressClick=true;drag=null;};
-  const click=e=>{if(suppressClick){e.preventDefault();e.stopPropagation();suppressClick=false;}};
+  const down=e=>{const g=e.target.closest('.board-vertex');if(!g||drag||!e.isPrimary||e.button!==0)return;e.preventDefault();suppressClick=false;drag={id:g.dataset.vertexId,pointerId:e.pointerId,x:e.clientX,y:e.clientY,moved:false};svg.setPointerCapture(e.pointerId);};
+  const moving=e=>{if(!drag||e.pointerId!==drag.pointerId)return;if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)<5&&!drag.moved)return;e.preventDefault();drag.moved=true;const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(svg.getScreenCTM().inverse());svg.graphMove(drag.id,p.x,p.y);};
+  const up=e=>{if(!drag||e.pointerId!==drag.pointerId)return;const previous=drag;drag=null;suppressClick=true;if(svg.hasPointerCapture(e.pointerId))svg.releasePointerCapture(e.pointerId);if(e.type==='pointerup'&&!previous.moved)svg.querySelector(`[data-vertex-id="${previous.id}"]`).dispatchEvent(new MouseEvent('click',{bubbles:true}));};
+  const click=e=>{if(suppressClick&&e.isTrusted){e.preventDefault();e.stopPropagation();suppressClick=false;}};
   const key=e=>{const g=e.target.closest('.board-vertex');if(!g||!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();const p=model.places.find(p=>p.id===g.dataset.vertexId);move(p.id,p.x+({ArrowLeft:-20,ArrowRight:20}[e.key]??0),p.y+({ArrowUp:-15,ArrowDown:15}[e.key]??0));};
-  svg.graphMove=(id,x,y)=>move(id,compact()?40+(x/(svg.viewBox.baseVal.width/340)-40)*2:x/(svg.viewBox.baseVal.width/600),y/(svg.viewBox.baseVal.height/330));
+  svg.graphCanMove=()=>true;
+  svg.graphMove=(id,x,y)=>{const g=svg.querySelector(`[data-vertex-id="${id}"]`),m=g.transform.baseVal.consolidate().matrix,p=model.places.find(p=>p.id===id);const factor=svg.viewBox.baseVal.width/(compact()?340:600),horizontal=model.places.every(q=>q.y===model.places[0].y);move(id,p.x+(x-m.e)/(factor*(compact()?.5:1)),p.y+(y-m.f)/(horizontal?1:factor));};
   svg.style.touchAction='none';svg.addEventListener('pointerdown',down);svg.addEventListener('pointermove',moving);svg.addEventListener('pointerup',up);svg.addEventListener('pointercancel',up);svg.addEventListener('click',click,true);svg.addEventListener('keydown',key);
   return {...board,moveVertex:(id,dx,dy)=>{const p=model.places.find(p=>p.id===id);if(p)move(id,p.x+dx,p.y+dy);},destroy(){board.destroy();for(const [event,handler,capture] of [['pointerdown',down],['pointermove',moving],['pointerup',up],['pointercancel',up],['click',click,true],['keydown',key]])svg.removeEventListener(event,handler,capture);}};
 }
