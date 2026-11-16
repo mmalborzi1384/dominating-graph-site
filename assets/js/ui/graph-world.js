@@ -31,7 +31,7 @@ export function initGraphWorld() {
   }
   function draw() {
     const moving = running();
-    const target = scrollY / Math.max(1, root.scrollHeight - innerHeight);
+    const target = Math.max(0, Math.min(1, scrollY / Math.max(1, root.scrollHeight - innerHeight)));
     progress = moving ? progress + (target - progress) * .09 : progress;
     const coords = points.map((p, i) => {
       const x = p.x * width + Math.sin(time / 2400 + i) * 10;
@@ -45,20 +45,23 @@ export function initGraphWorld() {
       return {x: x + p.dx, y: y + p.dy};
     });
     ctx.clearRect(0, 0, width, height);
-    const reach = Math.min(260, Math.max(145, width / 6));
-    ctx.strokeStyle = colors[0]; ctx.lineWidth = 1.6;
+    // As the learner scrolls, separate clusters gradually gain connecting edges.
+    // The same eased progress drives position and reach, so links never pop in.
+    const reach = Math.min(260, Math.max(145, width / 6)) + progress * (width < 640 ? 60 : 110);
+    ctx.strokeStyle = colors[0]; ctx.lineWidth = 4;
     for (let i = 0; i < coords.length; i++) for (let j = i + 1; j < coords.length; j++) {
       const a = coords[i], b = coords[j], distance = Math.hypot(a.x - b.x, a.y - b.y);
       if (distance > reach) continue;
-      ctx.globalAlpha = .65 * Math.min(1, (reach - distance) / 65);
+      const fade = Math.min(1, (reach - distance) / 90);
+      ctx.globalAlpha = .85 * fade * fade * (3 - 2 * fade);
       ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
     }
     ctx.globalAlpha = 1;
     coords.forEach((p, i) => {
       const accent = i % 13 === 3;
       ctx.fillStyle = colors[accent ? 1 : 0];
-      ctx.beginPath(); ctx.arc(p.x, p.y, accent ? 6.5 : 3.8, 0, Math.PI * 2); ctx.fill();
-      if (accent) { ctx.globalAlpha = .5; ctx.beginPath(); ctx.arc(p.x, p.y, 14, 0, Math.PI * 2); ctx.stroke(); ctx.globalAlpha = 1; }
+      ctx.beginPath(); ctx.arc(p.x, p.y, accent ? 11 : 7, 0, Math.PI * 2); ctx.fill();
+      if (accent) { ctx.globalAlpha = .5; ctx.beginPath(); ctx.arc(p.x, p.y, 18, 0, Math.PI * 2); ctx.stroke(); ctx.globalAlpha = 1; }
     });
   }
   function tick(now) {
