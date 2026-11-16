@@ -48,20 +48,20 @@ export function initGraphWorld() {
     // As the learner scrolls, separate clusters gradually gain connecting edges.
     // The same eased progress drives position and reach, so links never pop in.
     const reach = Math.min(260, Math.max(145, width / 6)) + progress * (width < 640 ? 60 : 110);
-    ctx.strokeStyle = colors[0]; ctx.lineWidth = 1.6;
+    ctx.strokeStyle = colors[0]; ctx.lineWidth = 4;
     for (let i = 0; i < coords.length; i++) for (let j = i + 1; j < coords.length; j++) {
       const a = coords[i], b = coords[j], distance = Math.hypot(a.x - b.x, a.y - b.y);
       if (distance > reach) continue;
       const fade = Math.min(1, (reach - distance) / 90);
-      ctx.globalAlpha = .65 * fade * fade * (3 - 2 * fade);
+      ctx.globalAlpha = .85 * fade * fade * (3 - 2 * fade);
       ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
     }
     ctx.globalAlpha = 1;
     coords.forEach((p, i) => {
       const accent = i % 13 === 3;
       ctx.fillStyle = colors[accent ? 1 : 0];
-      ctx.beginPath(); ctx.arc(p.x, p.y, accent ? 6.5 : 3.8, 0, Math.PI * 2); ctx.fill();
-      if (accent) { ctx.globalAlpha = .5; ctx.beginPath(); ctx.arc(p.x, p.y, 14, 0, Math.PI * 2); ctx.stroke(); ctx.globalAlpha = 1; }
+      ctx.beginPath(); ctx.arc(p.x, p.y, accent ? 11 : 7, 0, Math.PI * 2); ctx.fill();
+      if (accent) { ctx.globalAlpha = .5; ctx.beginPath(); ctx.arc(p.x, p.y, 18, 0, Math.PI * 2); ctx.stroke(); ctx.globalAlpha = 1; }
     });
   }
   function tick(now) {

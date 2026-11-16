@@ -25,7 +25,7 @@ try{
   await run(`graphRepository.setTheme('${theme}');document.querySelector('input[name=motion-level][value=off]').click();scrollTo(0,0)`);await pause(200);
   check(await run(`document.documentElement.scrollWidth<=innerWidth+1`),`${theme}/${width} no overflow`);
   check(await run(`getComputedStyle(document.body).backgroundImage==='none'&&getComputedStyle(document.querySelector('.graph-world')).pointerEvents==='none'`),'no grid / no hit interception');
-  check(await run(`getComputedStyle(document.documentElement).getPropertyValue('--world-blur').trim()==='16px'&&getComputedStyle(document.body,'::before').pointerEvents==='none'`),'strong frost remains behind controls');
+  check(await run(`getComputedStyle(document.documentElement).getPropertyValue('--world-blur').trim()==='10px'&&getComputedStyle(document.body,'::before').pointerEvents==='none'`),'strong frost remains behind controls');
   const frozen=await run(`document.querySelector('.graph-world').toDataURL()`);await pause(150);
   check(frozen===await run(`document.querySelector('.graph-world').toDataURL()`),'off freezes world');
   await run(`document.querySelector('input[name=motion-level][value=medium]').click()`);await pause(250);
@@ -35,9 +35,15 @@ try{
   check(before===await run(`document.querySelector('.graph-world').toDataURL()`),'paused scroll remains static');
   await run(`scrollTo(0,0)`);
   const shot=await send('Page.captureScreenshot',{format:'png'});await writeFile(`/tmp/graph-world-${theme}-${width}.png`,Buffer.from(shot.data,'base64'));
+  // Verify the composited background, not just pixels in the source canvas.
+  await run(`document.querySelector('.graph-world').style.visibility='hidden'`);
+  const plain=await send('Page.captureScreenshot',{format:'png'});
+  await run(`document.querySelector('.graph-world').style.visibility=''`);
+  const visibleShare=await run(`(async()=>{const pixels=async data=>{const image=new Image();image.src='data:image/png;base64,'+data;await image.decode();const c=document.createElement('canvas');c.width=image.width;c.height=image.height;const ctx=c.getContext('2d');ctx.drawImage(image,0,0);return ctx.getImageData(0,0,c.width,c.height).data;};const a=await pixels(${JSON.stringify(shot.data)}),b=await pixels(${JSON.stringify(plain.data)});let visible=0;for(let i=0;i<a.length;i+=4)if(Math.max(Math.abs(a[i]-b[i]),Math.abs(a[i+1]-b[i+1]),Math.abs(a[i+2]-b[i+2]))>10)visible++;return visible/(a.length/4);})()`);
+  check(visibleShare>.002,`${theme}/${width} frosted network visible in final screenshot (${visibleShare})`);
  }
  // Inspect actual canvas coordinates to distinguish pointer/scroll response from idle drift.
- await run(`document.querySelector('input[name=motion-level][value=medium]').click();window.worldCenters=[];window.originalArc=CanvasRenderingContext2D.prototype.arc;CanvasRenderingContext2D.prototype.arc=function(x,y,r,...rest){if(this.canvas.className==='graph-world'&&r===3.8){worldCenters.push({x,y});if(worldCenters.length>200)worldCenters.shift();}return originalArc.call(this,x,y,r,...rest);}`);
+ await run(`document.querySelector('input[name=motion-level][value=medium]').click();window.worldCenters=[];window.originalArc=CanvasRenderingContext2D.prototype.arc;CanvasRenderingContext2D.prototype.arc=function(x,y,r,...rest){if(this.canvas.className==='graph-world'&&r===7){worldCenters.push({x,y});if(worldCenters.length>200)worldCenters.shift();}return originalArc.call(this,x,y,r,...rest);}`);
  await pause(150);
  const center=await run(`worldCenters.at(-1)`);
  await send('Input.dispatchMouseEvent',{type:'mouseMoved',x:center.x,y:center.y});await pause(400);
