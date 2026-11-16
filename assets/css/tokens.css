@@ -20,9 +20,9 @@
   --grid: #cadcd2;
   --world-line: #337d68;
   --world-accent: #b84c47;
-  --world-blur: 7px;
+  --world-blur: 16px;
   --world-opacity: .85;
-  --world-glass: #f5faf733;
+  --world-glass: #f5faf761;
   --error: #a23b32;
   --focus: #174c3c;
   --on-accent: #f5faf7;
@@ -82,7 +82,7 @@
   --gold: #f2c279;
   --world-line: #86cbb9;
   --world-accent: #f2c279;
-  --world-glass: #303a3f33;
+  --world-glass: #303a3f61;
   --error: #f08a80;
   --focus: #d9aa45;
   --on-accent: #252c30;

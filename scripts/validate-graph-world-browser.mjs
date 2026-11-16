@@ -25,6 +25,7 @@ try{
   await run(`graphRepository.setTheme('${theme}');document.querySelector('input[name=motion-level][value=off]').click();scrollTo(0,0)`);await pause(200);
   check(await run(`document.documentElement.scrollWidth<=innerWidth+1`),`${theme}/${width} no overflow`);
   check(await run(`getComputedStyle(document.body).backgroundImage==='none'&&getComputedStyle(document.querySelector('.graph-world')).pointerEvents==='none'`),'no grid / no hit interception');
+  check(await run(`getComputedStyle(document.documentElement).getPropertyValue('--world-blur').trim()==='16px'&&getComputedStyle(document.body,'::before').pointerEvents==='none'`),'strong frost remains behind controls');
   const frozen=await run(`document.querySelector('.graph-world').toDataURL()`);await pause(150);
   check(frozen===await run(`document.querySelector('.graph-world').toDataURL()`),'off freezes world');
   await run(`document.querySelector('input[name=motion-level][value=medium]').click()`);await pause(250);
@@ -44,6 +45,18 @@ try{
  await run(`window.dispatchEvent(new Event('blur'));scrollTo(0,document.documentElement.scrollHeight*.8)`);await pause(500);
  check(await run(`Math.abs(worldCenters.at(-1).y-${center.y})>15`),'scroll gradually reshapes graph');
  await run(`CanvasRenderingContext2D.prototype.arc=originalArc;scrollTo(0,0)`);
+ // Count visibly weighted canvas edges at both scroll ends, excluding accent rings.
+ await run(`window.edgeFrames=[];window.edgeCount=0;window.originalClear=CanvasRenderingContext2D.prototype.clearRect;window.originalStroke=CanvasRenderingContext2D.prototype.stroke;
+ CanvasRenderingContext2D.prototype.clearRect=function(...args){if(this.canvas.className==='graph-world'){edgeFrames.push(edgeCount);if(edgeFrames.length>30)edgeFrames.shift();edgeCount=0;}return originalClear.apply(this,args);};
+ CanvasRenderingContext2D.prototype.stroke=function(...args){if(this.canvas.className==='graph-world'&&this.globalAlpha>.04&&this.globalAlpha!==.5)edgeCount++;return originalStroke.apply(this,args);};`);
+ await pause(1800);
+ const topEdges=await run(`edgeFrames.slice(-10).reduce((a,b)=>a+b,0)/10`);
+ const idle=await run(`document.querySelector('.graph-world').toDataURL()`);await pause(600);
+ check(idle!==await run(`document.querySelector('.graph-world').toDataURL()`),'gentle motion continues without pointer or scroll');
+ await run(`scrollTo(0,document.documentElement.scrollHeight)`);await pause(1800);
+ const bottomEdges=await run(`edgeFrames.slice(-10).reduce((a,b)=>a+b,0)/10`);
+ check(bottomEdges>topEdges*1.2,'scroll adds visible connections between clusters');
+ await run(`CanvasRenderingContext2D.prototype.clearRect=originalClear;CanvasRenderingContext2D.prototype.stroke=originalStroke;scrollTo(0,0)`);
  await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
  await run(`document.querySelector('input[name=motion-level][value=full]').click()`);await pause(150);
  const still=await run(`document.querySelector('.graph-world').toDataURL()`);await pause(150);
