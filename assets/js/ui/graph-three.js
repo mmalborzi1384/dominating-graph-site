@@ -27,9 +27,10 @@ export function createThreeView(host,svg){
  if(drag.mesh&&svg.graphMove){pick(e);const normal=new THREE.Vector3(0,0,1).applyQuaternion(camera.quaternion);plane.setFromNormalAndCoplanarPoint(normal,drag.mesh.getWorldPosition(new THREE.Vector3()));if(ray.ray.intersectPlane(plane,hit)){group.worldToLocal(hit);const vb=svg.viewBox.baseVal,scale=4/Math.max(vb.width,vb.height);svg.graphMove(drag.mesh.userData.element.dataset.vertexId,hit.x/scale+vb.width/2,vb.height/2-hit.y/scale);}}
  else if(!drag.mesh){group.rotation.y+=dx*.008;group.rotation.x+=dy*.008;draw();}drag.x=e.clientX;drag.y=e.clientY;};
  const up=()=>{if(drag?.mesh&&!drag.moved)drag.mesh.userData.element.dispatchEvent(new MouseEvent('click',{bubbles:true}));drag=null;};
- const wheel=e=>{e.preventDefault();camera.position.z=THREE.MathUtils.clamp(camera.position.z+e.deltaY*.005,3,12);draw();};
+ function zoomBy(factor){camera.position.z=factor===0?7:THREE.MathUtils.clamp(camera.position.z/factor,7/3,14);draw();host.dispatchEvent(new Event('graphzoom'));}
+ const wheel=e=>{e.preventDefault();zoomBy(Math.exp(-e.deltaY*.001));};
  for(const[type,fn]of [['pointerdown',down],['pointermove',move],['pointerup',up],['pointercancel',()=>{drag=null;}],['wheel',wheel]])host.addEventListener(type,fn,{passive:false});
  const observer=new MutationObserver(schedule);observer.observe(svg,{subtree:true,childList:true,attributes:true,attributeFilter:['transform','d','class','aria-pressed','aria-label','data-owner-ids']});
  const theme=new MutationObserver(schedule);theme.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});const resize=new ResizeObserver(draw);resize.observe(host);build();
- return{setVisible(value){visible=value;if(value)schedule();},destroy(){disposed=true;cancelAnimationFrame(frame);observer.disconnect();theme.disconnect();resize.disconnect();clear();scene.traverse(o=>{o.geometry?.dispose();if(Array.isArray(o.material))o.material.forEach(m=>m.dispose());else o.material?.dispose();});renderer.dispose();renderer.forceContextLoss();host.replaceChildren();}};
+ return{zoomBy,getZoom:()=>7/camera.position.z,setVisible(value){visible=value;if(value)schedule();},destroy(){disposed=true;cancelAnimationFrame(frame);observer.disconnect();theme.disconnect();resize.disconnect();clear();scene.traverse(o=>{o.geometry?.dispose();if(Array.isArray(o.material))o.material.forEach(m=>m.dispose());else o.material?.dispose();});renderer.dispose();renderer.forceContextLoss();host.replaceChildren();}};
 }

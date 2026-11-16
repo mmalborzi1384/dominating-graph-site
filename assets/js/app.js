@@ -9,6 +9,7 @@ import { initLab } from './tabs/lab.js';
 import { initTeaching } from './tabs/teach.js';
 import { initTabs } from './ui/tabs.js';
 import { initGraphNavigation } from './ui/navigation.js';
+import { initGraphWorld } from './ui/graph-world.js';
 import { renderFormula } from './ui/math.js';
 import { setFeedback } from './ui/feedback.js';
 
@@ -29,6 +30,7 @@ themeButton.addEventListener('click', () => {
   updateThemeControl();
 });
 updateThemeControl();
+initGraphWorld();
 initTabs();
 initGraphNavigation();
 initGlassSelects();
