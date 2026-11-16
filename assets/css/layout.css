@@ -1,6 +1,12 @@
 /* A single decorative canvas sits behind the entire document, never above controls. */
 body { isolation: isolate; }
-.graph-world { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; filter: blur(var(--world-blur)); opacity: var(--world-opacity); }
+.graph-world { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; filter: blur(var(--world-blur)); opacity: var(--world-opacity); }
+/* Frost only the decorative network; content and working graphs stay above the glass. */
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: var(--world-glass); }
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .graph-world { filter: none; }
+  body::before { -webkit-backdrop-filter: blur(var(--world-blur)) saturate(1.15); backdrop-filter: blur(var(--world-blur)) saturate(1.15); }
+}
 .page-width { width: min(var(--content-width), calc(100% - 5rem)); margin-inline: auto; }
 .site-header { background: var(--surface); border-bottom: 1px solid var(--line); }
 .header-inner { min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
