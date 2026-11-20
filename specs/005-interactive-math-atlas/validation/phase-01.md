@@ -130,3 +130,5 @@ This gate covers the changed typography and its shared-surface regressions. Base
 - Accent PASS: Existing green hierarchy and sparse gold preserved.
 - Motif PASS: Neighborhood and connected nodes retained.
 - Design Read PASS: Confirmed Persian mathematics atlas direction in research.md.
+
+Review PR: https://github.com/mmalborzi1384/dominating-graph-site/pull/21 . Awaiting human review; no merge or next phase authorized.

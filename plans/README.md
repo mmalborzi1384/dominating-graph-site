@@ -15,3 +15,5 @@ Order: typography -> night theme -> lab workspace -> graph feedback -> learning 
 - Generic music-oriented palette/fonts from initial design-system search: product mismatch.
 - New frontend framework, animation dependency, bitmap/logo, progress store: unrelated cost and scope.
 - Early coverage reveal or persisted lab results: violates current learning and scratch-workspace contracts.
+
+US1 review: https://github.com/mmalborzi1384/dominating-graph-site/pull/21 . Source implementation and validation complete with documented baseline/device limits; awaiting human review.

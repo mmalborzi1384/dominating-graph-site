@@ -20,7 +20,7 @@ Goal and independent test: spec US1; acceptance scenarios and quickstart matrix 
 - [x] T004 [US1] Define shared body/heading/space tokens, retain Vazirmatn and KaTeX in `assets/css/tokens.css`.
 - [x] T005 [US1] Apply content hierarchy and responsive wrapping across base/layout/editorial/teaching/practice/records styles under `assets/css/`.
 - [x] T006 [US1] Add US1 long-text, RTL math, viewport and zoom assertions in `scripts/validate-atlas-browser.mjs`.
-- [ ] T007 [US1] Run US1 gates in quickstart, inspect screenshots, update graph, prepare focused PR URL and STOP for human review; record in `specs/005-interactive-math-atlas/validation/phase-01.md`.
+- [x] T007 [US1] Run US1 gates in quickstart, inspect screenshots, update graph, prepare focused PR URL and STOP for human review; record in `specs/005-interactive-math-atlas/validation/phase-01.md`.
 
 ## Phase 4: US2: Night atlas
 
