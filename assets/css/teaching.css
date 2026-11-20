@@ -152,7 +152,7 @@
 /* Curriculum 3: two lesson routes and one evidence workshop. Everything below
    is scoped so practice, competition and lab retain their existing controls. */
 .apos3 { --route-gap: .7rem; }
-.apos3-header { display: grid; grid-template-columns: minmax(0,1fr) 13rem; gap: 2rem; align-items: center; margin-block: 1.5rem; }
+.apos3-header { display: grid; grid-template-columns: minmax(0,1fr) 13rem; gap: var(--space-4); align-items: center; margin-block: var(--space-3); }
 .apos3-header h1 { font-size: clamp(1.8rem,4vw,2.8rem); color: var(--heading); margin-block: 0 .5rem; }
 .apos3-header p { color: var(--muted); }
 .apos3-progress { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .5rem; padding: 1rem; border-radius: 1rem; }
@@ -168,24 +168,24 @@
 .apos3 button:disabled { color: var(--muted); background: var(--surface); border-style: dashed; cursor: default; }
 .apos3-workspace { min-width: 0; scroll-margin-top: 1rem; }
 .apos3-workspace > h2 { color: var(--heading); font-size: var(--font-xl); margin-block: .7rem; }
-.apos3-objective { color: var(--muted); max-width: 65ch; }
+.apos3-objective { color: var(--muted); max-width: var(--measure-reading); font-size: var(--font-base); }
 .apos3-step-route { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; margin-block: 1rem; }
 .apos3-step-route li { flex: 1 1 10rem; }
 .apos3-step-route button { min-height: 44px; width: 100%; height: 100%; font-size: var(--font-sm); }
 .apos3-step-route button[aria-current=step] { border-color: var(--heading); font-weight: 750; }
 .apos3-guide { margin-block: .7rem 1rem; border-block: 1px solid var(--line); padding-block: .5rem; }
 .apos3 summary { min-height: 44px; align-content: center; cursor: pointer; color: var(--heading); }
-.apos3-guide p { margin-block: .5rem; font-size: var(--font-sm); }
+.apos3-guide p { margin-block: var(--space-1); font-size: var(--font-base); }
 .apos3-card { border-radius: 1.25rem; padding: clamp(1rem,3vw,2rem); margin-block: 1rem; min-width: 0; }
 .apos3-badge { font-size: var(--font-sm); color: var(--heading); margin-bottom: .8rem; }
-.apos3-scenario { font-size: var(--font-lg); max-width: 72ch; line-height: 2; }
-.apos3-model-key { display: grid; grid-template-columns: auto minmax(0,1fr); gap: .3rem .8rem; font-size: var(--font-sm); border-inline-start: 3px solid var(--heading); padding-inline-start: .8rem; margin-block: 1rem; }
+.apos3-scenario { font-size: var(--font-lg); max-width: var(--measure-reading); line-height: var(--line-body); }
+.apos3-model-key { display: grid; grid-template-columns: auto minmax(0,1fr); gap: var(--space-1) var(--space-2); font-size: var(--font-base); border-inline-start: 3px solid var(--heading); padding-inline-start: var(--space-2); margin-block: var(--space-3); }
 .apos3-model-key dt { color: var(--heading); font-weight: 750; }
 .apos3-model-key dd { margin: 0; }
 .apos3-card > ol { padding-inline-start: 1.4rem; margin-block: 1rem; max-width: 75ch; }
 .apos3-figure img { display: block; max-width: 100%; max-height: 38rem; margin-inline: auto; object-fit: contain; border-radius: .5rem; background: var(--sheet); }
-.apos3-evidence { min-width: 0; border-block-start: 1px solid var(--line); padding-block: 1.4rem; }
-.apos3-evidence h3 { color: var(--heading); font-size: var(--font-base); margin-block: 0 .8rem; line-height: 1.9; }
+.apos3-evidence { min-width: 0; border-block-start: 1px solid var(--line); padding-block: var(--space-3); }
+.apos3-evidence h3 { color: var(--heading); font-size: var(--font-subheading); margin-block: 0 var(--space-2); line-height: var(--line-heading); }
 .apos3-evidence > p { margin-block: .7rem; }
 .apos3-evidence .apos3-evidence { padding-inline-start: .7rem; margin-block: .8rem; border-inline-start: 2px solid var(--line); border-block-start: 0; }
 .apos3 input:not([type=checkbox]), .apos3 select, .apos3 textarea { display: block; width: 100%; max-width: 100%; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: .65rem; min-height: 44px; padding: .65rem .8rem; font: inherit; margin-block: .5rem; }

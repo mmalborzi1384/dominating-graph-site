@@ -22,10 +22,10 @@ body { background-image: linear-gradient(var(--grid) 1px, transparent 1px), line
 .tab[aria-selected="true"] { background: var(--heading); color: var(--surface); }
 .tab:not([aria-selected="true"]):hover { background: var(--accent-soft); color: var(--heading); }
 .workspace { margin-block: 1rem 1.25rem; padding: clamp(1rem, 2.5vw, 1.75rem); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 14px 40px var(--shade); }
-.panel-layout { display: grid; grid-template-columns: 1.12fr 1fr; gap: 3.25rem; align-items: center; min-height: 370px; }
+.panel-layout { display: grid; grid-template-columns: minmax(0,1.12fr) minmax(0,1fr); gap: var(--space-5); align-items: center; min-height: 370px; }
 .panel-copy { max-width: 34rem; }
 .panel-heading { font-size: var(--font-display); font-weight: 850; line-height: 1.55; letter-spacing: -.045em; margin-block: .75rem 1.1rem; text-wrap: balance; }
-.panel-lead { color: var(--muted); font-size: var(--font-lg); max-width: 32rem; line-height: 2.1; }
+.panel-lead { color: var(--muted); font-size: var(--font-lg); max-width: var(--measure-reading); line-height: var(--line-body); }
 .availability { display: inline-flex; align-items: center; gap: .5rem; font-size: var(--font-xs); color: var(--heading); background: var(--accent-soft); border-radius: 5px; padding: .15rem .6rem; }
 .availability svg { width: 14px; height: 14px; }
 .empty-note { margin-top: 1.7rem; padding-inline-start: 1rem; border-inline-start: 2px solid var(--gold); font-size: var(--font-sm); color: var(--muted); }
@@ -45,5 +45,7 @@ body { background-image: linear-gradient(var(--grid) 1px, transparent 1px), line
  .workspace { padding: .9rem; margin-top: .75rem; border-radius: 12px; } .panel-layout { grid-template-columns: 1fr; gap: 1.7rem; } .panel-heading { font-size: 2.05rem; margin-block: .75rem; } .panel-lead { font-size: var(--font-base); } .empty-note { margin-top: 1.1rem; } .lesson-overview { grid-template-columns: 1fr; margin-top: 1.5rem; gap: 1rem; } .site-footer { flex-direction: column; align-items: flex-start; gap: .35rem; }
 }
 /* Shared compact rhythm for all five functional panels. */
-.workspace [role=tabpanel] h1 { font-size: clamp(1.35rem,2.5vw,1.9rem); line-height: 1.5; margin-block: 0 .6rem; }
+.workspace [role=tabpanel] h1 { font-size: var(--font-section); font-weight: var(--weight-heading); line-height: var(--line-heading); margin-block: 0 var(--space-1); }
+.workspace [role=tabpanel] { min-width: 0; }
+.panel-copy, .tab-landing > div { min-width: 0; }
 @media (max-width:640px) { .course-intro p { display: none; } }

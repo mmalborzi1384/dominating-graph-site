@@ -1,0 +1,543 @@
+{
+  "story": "US1",
+  "checks": 122,
+  "errors": [],
+  "contrasts": [
+    {
+      "theme": "day",
+      "ratios": {
+        "--ink": 14.366361148234452,
+        "--ink-soft": 9.05625645846693,
+        "--heading": 9.527274054167782
+      }
+    },
+    {
+      "theme": "night",
+      "ratios": {
+        "--ink": 11.915814928186949,
+        "--ink-soft": 8.98882462745564,
+        "--heading": 8.436762406778087
+      }
+    }
+  ],
+  "measurements": [
+    {
+      "theme": "day",
+      "width": 320,
+      "tab": "teach",
+      "client": 320,
+      "scroll": 320,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 320,
+      "tab": "practice",
+      "client": 320,
+      "scroll": 320,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 320,
+      "tab": "competition",
+      "client": 320,
+      "scroll": 320,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 320,
+      "tab": "records",
+      "client": 320,
+      "scroll": 320,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 320,
+      "tab": "lab",
+      "client": 320,
+      "scroll": 320,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 390,
+      "tab": "teach",
+      "client": 390,
+      "scroll": 390,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 390,
+      "tab": "practice",
+      "client": 390,
+      "scroll": 390,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 390,
+      "tab": "competition",
+      "client": 390,
+      "scroll": 390,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 390,
+      "tab": "records",
+      "client": 390,
+      "scroll": 390,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 390,
+      "tab": "lab",
+      "client": 390,
+      "scroll": 390,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 768,
+      "tab": "teach",
+      "client": 758,
+      "scroll": 758,
+      "body": 16,
+      "heading": 24,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 768,
+      "tab": "practice",
+      "client": 758,
+      "scroll": 758,
+      "body": 16,
+      "heading": 24,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 768,
+      "tab": "competition",
+      "client": 758,
+      "scroll": 758,
+      "body": 16,
+      "heading": 24,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 768,
+      "tab": "records",
+      "client": 758,
+      "scroll": 758,
+      "body": 16,
+      "heading": 24,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 768,
+      "tab": "lab",
+      "client": 758,
+      "scroll": 758,
+      "body": 16,
+      "heading": 24,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 1280,
+      "tab": "teach",
+      "client": 1270,
+      "scroll": 1270,
+      "body": 16,
+      "heading": 30.72,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 1280,
+      "tab": "practice",
+      "client": 1270,
+      "scroll": 1270,
+      "body": 16,
+      "heading": 30.72,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 1280,
+      "tab": "competition",
+      "client": 1270,
+      "scroll": 1270,
+      "body": 16,
+      "heading": 30.72,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 1280,
+      "tab": "records",
+      "client": 1270,
+      "scroll": 1270,
+      "body": 16,
+      "heading": 30.72,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 1280,
+      "tab": "lab",
+      "client": 1270,
+      "scroll": 1270,
+      "body": 16,
+      "heading": 30.72,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 1440,
+      "tab": "teach",
+      "client": 1430,
+      "scroll": 1430,
+      "body": 16,
+      "heading": 32,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 1440,
+      "tab": "practice",
+      "client": 1430,
+      "scroll": 1430,
+      "body": 16,
+      "heading": 32,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 1440,
+      "tab": "competition",
+      "client": 1430,
+      "scroll": 1430,
+      "body": 16,
+      "heading": 32,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 1440,
+      "tab": "records",
+      "client": 1430,
+      "scroll": 1430,
+      "body": 16,
+      "heading": 32,
+      "dir": "rtl"
+    },
+    {
+      "theme": "day",
+      "width": 1440,
+      "tab": "lab",
+      "client": 1430,
+      "scroll": 1430,
+      "body": 16,
+      "heading": 32,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 320,
+      "tab": "teach",
+      "client": 320,
+      "scroll": 320,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 320,
+      "tab": "practice",
+      "client": 320,
+      "scroll": 320,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 320,
+      "tab": "competition",
+      "client": 320,
+      "scroll": 320,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 320,
+      "tab": "records",
+      "client": 320,
+      "scroll": 320,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 320,
+      "tab": "lab",
+      "client": 320,
+      "scroll": 320,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 390,
+      "tab": "teach",
+      "client": 390,
+      "scroll": 390,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 390,
+      "tab": "practice",
+      "client": 390,
+      "scroll": 390,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 390,
+      "tab": "competition",
+      "client": 390,
+      "scroll": 390,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 390,
+      "tab": "records",
+      "client": 390,
+      "scroll": 390,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 390,
+      "tab": "lab",
+      "client": 390,
+      "scroll": 390,
+      "body": 16,
+      "heading": 21.6,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 768,
+      "tab": "teach",
+      "client": 758,
+      "scroll": 758,
+      "body": 16,
+      "heading": 24,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 768,
+      "tab": "practice",
+      "client": 758,
+      "scroll": 758,
+      "body": 16,
+      "heading": 24,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 768,
+      "tab": "competition",
+      "client": 758,
+      "scroll": 758,
+      "body": 16,
+      "heading": 24,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 768,
+      "tab": "records",
+      "client": 758,
+      "scroll": 758,
+      "body": 16,
+      "heading": 24,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 768,
+      "tab": "lab",
+      "client": 758,
+      "scroll": 758,
+      "body": 16,
+      "heading": 24,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 1280,
+      "tab": "teach",
+      "client": 1270,
+      "scroll": 1270,
+      "body": 16,
+      "heading": 30.72,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 1280,
+      "tab": "practice",
+      "client": 1270,
+      "scroll": 1270,
+      "body": 16,
+      "heading": 30.72,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 1280,
+      "tab": "competition",
+      "client": 1270,
+      "scroll": 1270,
+      "body": 16,
+      "heading": 30.72,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 1280,
+      "tab": "records",
+      "client": 1270,
+      "scroll": 1270,
+      "body": 16,
+      "heading": 30.72,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 1280,
+      "tab": "lab",
+      "client": 1270,
+      "scroll": 1270,
+      "body": 16,
+      "heading": 30.72,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 1440,
+      "tab": "teach",
+      "client": 1430,
+      "scroll": 1430,
+      "body": 16,
+      "heading": 32,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 1440,
+      "tab": "practice",
+      "client": 1430,
+      "scroll": 1430,
+      "body": 16,
+      "heading": 32,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 1440,
+      "tab": "competition",
+      "client": 1430,
+      "scroll": 1430,
+      "body": 16,
+      "heading": 32,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 1440,
+      "tab": "records",
+      "client": 1430,
+      "scroll": 1430,
+      "body": 16,
+      "heading": 32,
+      "dir": "rtl"
+    },
+    {
+      "theme": "night",
+      "width": 1440,
+      "tab": "lab",
+      "client": 1430,
+      "scroll": 1430,
+      "body": 16,
+      "heading": 32,
+      "dir": "rtl"
+    }
+  ],
+  "screenshots": [
+    "/tmp/atlas-day-390-teach.png",
+    "/tmp/atlas-day-390-practice.png",
+    "/tmp/atlas-day-390-records.png",
+    "/tmp/atlas-day-1280-teach.png",
+    "/tmp/atlas-day-1280-practice.png",
+    "/tmp/atlas-day-1280-records.png",
+    "/tmp/atlas-night-390-teach.png",
+    "/tmp/atlas-night-390-practice.png",
+    "/tmp/atlas-night-390-records.png",
+    "/tmp/atlas-night-1280-teach.png",
+    "/tmp/atlas-night-1280-practice.png",
+    "/tmp/atlas-night-1280-records.png",
+    "/tmp/atlas-reflow-200-teach.png",
+    "/tmp/atlas-reflow-200-practice.png"
+  ],
+  "zoom": "200% reflow emulation: 1280 physical / 640 CSS px; native toolbar zoom not tested",
+  "physicalTouchDevice": false
+}

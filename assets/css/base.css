@@ -1,14 +1,17 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { min-width: 320px; scroll-behavior: smooth; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--font-base); line-height: 1.9; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--font-base); line-height: var(--line-body); }
 button, a { -webkit-tap-highlight-color: transparent; }
-button { font: inherit; color: inherit; cursor: pointer; }
+button { font: inherit; line-height: var(--line-control); color: inherit; cursor: pointer; }
 a { color: var(--heading); text-underline-offset: .25em; }
 button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible { outline: 3px solid var(--focus); outline-offset: 5px; }
 button { touch-action: manipulation; }
 svg { display: block; }
 h1, h2, p { margin: 0; }
 h1, h2 { color: var(--heading); }
+h1, h2, h3 { line-height: var(--line-heading); overflow-wrap: anywhere; }
+p, li, dd, label { overflow-wrap: anywhere; }
+input, select, textarea { line-height: var(--line-control); }
 [hidden] { display: none !important; }
 .skip-link { position: fixed; top: .5rem; right: 1rem; transform: translateY(-160%); z-index: 10; background: var(--surface); padding: .5rem 1rem; }
 .skip-link:focus { transform: translateY(0); }

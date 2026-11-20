@@ -2,8 +2,10 @@
 .practice-filters label:last-child { grid-column: 1 / -1; }
 .practice-filters label, .practice-activity label { display: flex; flex-direction: column; gap: .5rem; }
 .practice-filters select, .practice-activity input, .practice-activity textarea, .practice-activity select { min-height: 44px; max-width: 100%; width: 100%; padding: .6rem; font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
-.practice-activity > * { margin-block: .65rem; }
-.practice-activity .question-card p { margin-block: .45rem; }
+.practice-activity > * { margin-block: var(--space-2); }
+.practice-activity .question-card p { margin-block: var(--space-1); font-size: var(--font-base); line-height: var(--line-body); max-width: var(--measure-reading); }
+.practice-activity .question-card h2 { font-size: var(--font-subheading); margin-block-end: var(--space-2); }
+.practice-filters label, .practice-activity label { min-width: 0; }
 .practice-actions, .edge-choices { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
 .edge-choices button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--heading); }
 .practice-activity textarea { resize: vertical; }

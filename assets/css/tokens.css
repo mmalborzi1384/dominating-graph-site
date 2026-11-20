@@ -30,6 +30,19 @@
   --font-lg: 1.125rem;
   --font-xl: 1.5rem;
   --font-display: clamp(2.1rem, 4vw, 3.8rem);
+  /* Persian prose needs breathing room; compact labels use the control rhythm. */
+  --font-section: clamp(1.5rem, 2.4vw, 2rem);
+  --font-subheading: clamp(1.125rem, 1.6vw, 1.375rem);
+  --line-body: 1.8;
+  --line-heading: 1.5;
+  --line-control: 1.5;
+  --weight-heading: 800;
+  --measure-reading: 68ch;
+  --space-1: .5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
   --panel: rgba(255, 251, 243, 0.84);
   --sheet: #FFFBF3;
   --ink-soft: #3B4A43;

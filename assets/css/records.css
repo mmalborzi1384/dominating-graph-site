@@ -1,7 +1,9 @@
-#panel-records { display: grid; gap: .8rem; }
+#panel-records { display: grid; gap: var(--space-3); }
 #panel-records[hidden] { display: none; }
 .records-card { padding: clamp(.85rem, 2vw, 1.2rem); min-width: 0; border-radius: var(--radius-lg, 1rem); }
-.records-card > * + * { margin-block-start: .65rem; }
+.records-card > * + * { margin-block-start: var(--space-2); }
+.records-card h2 { font-size: var(--font-subheading); }
+.records-card p, .records-row { font-size: var(--font-base); line-height: var(--line-body); }
 .records-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 1rem; }
 .records-coverage { padding: .75rem; border: 1px solid var(--line); border-radius: .75rem; }
 .records-card progress { display: block; width: 100%; max-width: 28rem; accent-color: var(--accent); }
