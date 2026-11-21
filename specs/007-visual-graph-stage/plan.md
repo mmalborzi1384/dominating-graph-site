@@ -10,3 +10,10 @@ Antislop during applies throughout. Native Liquid Glass APIs do not apply to thi
 component; no added blur. Existing Three renderer handles host resize unchanged.
 Run five existing graph validators and new stage browser test, contrast and states;
 Graphify update, live preview, focused PR, stop for human review before merge.
+
+Review follow-up: the user explicitly expanded scope to the navigation window. Move
+original nodes in initGraphNavigation rather than clone controls; event handlers and IDs
+stay stable. Add a settings section, visible labels and compact segmented motion controls.
+Keep one glass container and native nonmodal dismissal. Dedicated acceptance script:
+node scripts/validate-navigation-preferences-browser.mjs. Old combined lab test has
+obsolete lab assertions; do not alter lab policy or remove assertions to make it green.

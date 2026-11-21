@@ -22,6 +22,7 @@ try{
 
 
  await send('Emulation.setDeviceMetricsOverride',{width:390,height:850,deviceScaleFactor:1,mobile:true});
+ await run(`document.getElementById('navigation-toggle').click()`);
  await run(`scrollTo({top:0,behavior:'instant'});document.querySelector('input[name=motion-level][value=full]').click()`);
  for(const [theme,selector]of [['day','.theme-sun-rays'],['night','.theme-moon']]){
   await run(`graphRepository.setTheme('${theme}')`);await pause(100);
@@ -37,6 +38,7 @@ try{
  check(await run(`getComputedStyle(document.querySelector('.theme-moon')).animationName==='none'`),'moon respects reduced motion');
  await run(`graphRepository.setTheme('day')`);check(await run(`getComputedStyle(document.querySelector('.theme-sun-rays')).animationName==='none'`),'sun respects reduced motion');
  await send('Emulation.setEmulatedMedia',{features:[]});
+ await run(`document.getElementById('navigation-close').click()`);
  await send('Emulation.setTouchEmulationEnabled',{enabled:true,maxTouchPoints:5});
  const touch=async(type,x,y)=>send('Input.dispatchTouchEvent',{type,touchPoints:type==='touchEnd'||type==='touchCancel'?[]:[{x,y,id:1}]});
  let mouse=false;

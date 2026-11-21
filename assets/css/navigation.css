@@ -75,3 +75,29 @@
 @media (max-width: 360px) {
   .graph-tab { width: 68px; height: 68px; margin-left: -34px; margin-top: -34px; font-size: var(--font-xs); }
 }
+
+/* One glass navigation window, with routes above and display preferences below. */
+.site-header .header-controls { visibility:hidden; }
+.graph-navigation { width:min(380px,calc(100vw - 2rem)); padding:1rem; border-radius:20px; overscroll-behavior:contain; scrollbar-gutter:stable; }
+.navigation-heading { padding-bottom:.7rem; border-bottom:1px solid var(--line); }
+.navigation-heading h2 { color:var(--heading); margin:0; font-size:var(--font-lg); }
+.navigation-heading p { color:var(--muted); margin:.2rem 0 0; font-size:var(--font-xs); }
+.navigation-heading button { flex:none; border-radius:10px; cursor:pointer; }
+.graph-navigation .graph-destinations { margin-block:.5rem .75rem; }
+.graph-navigation .graph-tab { display:flex; border:1px solid var(--heading); }
+.graph-navigation .graph-tab[aria-selected=true] { border-width:2px; font-weight:800; }
+.graph-navigation .graph-tab:not([aria-selected=true]):hover { box-shadow:inset 0 0 0 1px var(--heading); }
+.navigation-preferences { padding-top:1rem; border-top:1px solid var(--line); }
+.navigation-preferences h3 { color:var(--heading); font-size:var(--font-sm); margin:0 0 .75rem; }
+.navigation-preferences .header-controls { display:flex; flex-direction:column; align-items:stretch; justify-content:start; width:100%; gap:1rem; }
+.navigation-appearance { display:flex; align-items:center; justify-content:space-between; gap:1rem; color:var(--ink); font-size:var(--font-sm); }
+.navigation-preferences .motion-rail { display:flex; justify-content:space-between; gap:.5rem; padding:0; border:0; border-radius:0; background:none; box-shadow:none; }
+.navigation-preferences .motion-rail legend { color:var(--ink); font-size:var(--font-sm); padding:0 0 .5rem; }
+.navigation-preferences .motion-rail label { flex:1; min-width:44px; }
+.navigation-preferences .motion-rail span { width:100%; min-height:44px; border:1px solid var(--line); border-radius:8px; color:var(--ink); background:var(--surface); }
+.navigation-preferences .motion-rail input:checked + span { color:var(--surface); background:var(--heading); border-color:var(--heading); font-weight:800; }
+.navigation-preferences .motion-rail label:hover span { box-shadow:inset 0 0 0 1px var(--heading); }
+.navigation-preferences .motion-rail label:active span { transform:scale(.97); }
+.graph-navigation button:focus-visible, .graph-navigation a:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+.navigation-toggle:active, .navigation-heading button:active { transform:scale(.96); }
+@media(max-width:400px) { .graph-navigation { padding:.8rem; } .graph-navigation .graph-destinations { min-height:230px; } }

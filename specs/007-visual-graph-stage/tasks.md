@@ -7,3 +7,9 @@
 - [x] T005 Browser acceptance and regressions.
 - [x] T006 Themes, mobile, contrast, states and antislop Delivery Gate.
 - [x] T007 Graphify, preview and PR; no merge.
+
+## Explicit navigation review follow-up
+
+- [x] T008 Move original theme/motion controls into map window, refine hierarchy.
+- [x] T009 Test real mouse/touch/keyboard/settings reload/fallback and map routes.
+- [x] T010 Record antislop during evidence and historical lab-test limitation.

@@ -5,6 +5,19 @@ export function initGraphNavigation() {
   const trigger = document.getElementById('navigation-toggle');
   const window = document.getElementById('graph-navigation');
   const closeButton = document.getElementById('navigation-close');
+  // Move the original controls, preserving theme/motion listeners and saved settings.
+  const controls = document.querySelector('.header-controls');
+  const preferences = document.getElementById('navigation-preferences');
+  preferences.append(controls);
+  const theme = document.getElementById('theme-toggle');
+  const appearance = document.createElement('div');
+  appearance.className = 'navigation-appearance';
+  const themeName = document.createElement('span');
+  themeName.textContent = 'حالت روز و شب';
+  appearance.append(themeName, theme);
+  controls.prepend(appearance);
+  controls.querySelector('.motion-rail legend').classList.remove('sr-only');
+  preferences.append(document.getElementById('motion-note'));
   const nativePopover = typeof window.showPopover === 'function';
   if (!nativePopover) window.removeAttribute('popover');
   let open = false;
