@@ -52,7 +52,9 @@ try {
  }
  await viewport(1280);await click('#navigation-toggle');await key('ArrowLeft');check(await run(`document.activeElement.matches('[role=tab]')&&document.activeElement.getAttribute('aria-selected')==='true'`),'Arrow navigation retains focus and selected state');await key('Enter');check(await run(`document.getElementById('graph-navigation').hidden`),'Keyboard Enter chooses route');
  await click('#navigation-toggle');await click('.brand-name');check(await run(`document.getElementById('graph-navigation').hidden`),'Pointer outside closes nonmodal window');
- await click('#navigation-toggle');await key('Tab');check(await run(`document.getElementById('graph-navigation').hidden`),'Keyboard can leave nonmodal window without trapped focus');
+ await click('#navigation-toggle');await key('Tab');check(await run(`document.activeElement.id==='theme-toggle'&&!document.getElementById('graph-navigation').hidden`),'Tab reaches display preferences');
+ for(let i=0;i<8&&!await run(`document.getElementById('graph-navigation').hidden`);i++)await key('Tab');
+ check(await run(`document.getElementById('graph-navigation').hidden`),'Keyboard can leave preferences without trapped focus');
  // All three random levels use the active lesson/category filter in both catalog surfaces.
  const levelCounts={};
  for(const [tab,prefix]of [['practice',''],['lab','bank-']]){

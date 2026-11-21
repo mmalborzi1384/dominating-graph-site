@@ -15,8 +15,10 @@ export function paintGraph(svg,graph,places,onToggle,options={}){
  layout();return{...selection,layout};
 }
 /** Shared view switch. 3D observes the same SVG state; it never owns a second answer. */
-export function attachGraphView(svg){
+export function attachGraphView(svg,options={}){
  let viewport=null;if(!svg.parentElement.classList.contains('source-graph-viewport')){viewport=document.createElement('div');viewport.className='graph-surface-viewport';viewport.tabIndex=0;viewport.setAttribute('aria-label','برد گراف؛ برای مدل پرتراکم داخل برد پیمایش کن');svg.before(viewport);viewport.append(svg);}
+ const frame=document.createElement('section');frame.className='graph-stage';frame.setAttribute('role','group');
+ const caption=document.createElement('p');caption.className='graph-stage-title';caption.id='graph-stage-title-'+(++serial);caption.textContent=options.title??svg.getAttribute('aria-label')??'مدل گراف';frame.setAttribute('aria-labelledby',caption.id);
  const bar=document.createElement('div');bar.className='graph-view-switch';bar.setAttribute('role','group');bar.setAttribute('aria-label','نمای گراف');
  const stage=document.createElement('div');stage.className='graph-three';stage.hidden=true;
  const note=document.createElement('p');note.className='model-key';note.setAttribute('role','status');
@@ -34,8 +36,19 @@ export function attachGraphView(svg){
  stage.addEventListener('graphzoom',updateZoom);
  function mode(three){if(threeMode&&view)zoom=view.getZoom();if(three&&view){view.zoomBy(0);view.zoomBy(zoom);}threeMode=three;if(viewport)viewport.hidden=three;svg.hidden=three;svg.toggleAttribute('hidden',three);stage.hidden=!three;buttons.forEach((b,i)=>b.setAttribute('aria-pressed',String(Boolean(i)===three)));view?.setVisible(three);if(!three)changeZoom(1);updateZoom();}
  for(const[title,three]of [['۲بعدی',false],['۳بعدی',true]]){const b=document.createElement('button');b.type='button';b.textContent=title;b.setAttribute('aria-pressed',String(!three));buttons.push(b);b.addEventListener('click',async()=>{const request=++generation;if(!three){mode(false);note.textContent='';return;}if(loading||dead)return;loading=true;b.disabled=true;note.textContent='در حال آماده‌سازی نمای سه‌بعدی…';try{if(!view){const{createThreeView}=await import('./graph-three.js');if(dead||request!==generation)return;stage.hidden=false;view=createThreeView(stage,svg);view.setMobile(mobile);}mode(true);note.textContent='برای چرخش، زمینه را بکش؛ دکمه‌های رأس زیر برد نیز در دسترس‌اند.';}catch{mode(false);stage.replaceChildren();note.textContent='نمای سه‌بعدی در این مرورگر در دسترس نیست؛ ابزار دوبعدی آماده است.';}finally{loading=false;b.disabled=false;}});bar.append(b);}
- const anchor=viewport??svg;bar.append(zoomBar,device);anchor.before(bar);anchor.after(stage,note);updateZoom();
+ const anchor=viewport??svg.parentElement;
+ const tools=document.createElement('div');tools.className='graph-tools';
+ function toolGroup(label,control){const group=document.createElement('div');group.className='graph-tool-group';const name=document.createElement('span');name.className='graph-tool-label';name.textContent=label;group.append(name,control);return group;}
+ const focus=document.createElement('button');focus.type='button';focus.className='graph-focus-toggle';focus.setAttribute('aria-expanded','false');
+ const areaId='graph-stage-area-'+serial;anchor.id=anchor.id||areaId;focus.setAttribute('aria-controls',anchor.id);
+ let expanded=false;
+ function setExpanded(value){expanded=value;frame.classList.toggle('is-focused',value);focus.setAttribute('aria-expanded',String(value));focus.textContent=value?'بازگشت به نمای عادی':'نمای متمرکز';}
+ focus.addEventListener('click',()=>setExpanded(!expanded));setExpanded(false);
+ const onKey=e=>{if(e.key==='Escape'&&expanded&&!e.defaultPrevented){e.preventDefault();e.stopPropagation();setExpanded(false);focus.focus({preventScroll:true});}};
+ frame.addEventListener('keydown',onKey);
+ tools.append(toolGroup('نما',bar),toolGroup('بزرگ‌نمایی',zoomBar),toolGroup('کنترل',device),toolGroup('فضای کار',focus));
+ anchor.before(frame);frame.append(caption,anchor,stage,tools,note);updateZoom();
  const fit=()=>{const m=svg.getScreenCTM();if(!m)return;const scale=Math.hypot(m.a,m.b);if(scale)for(const hit of svg.querySelectorAll('.vertex-hit'))hit.setAttribute('r',Math.max(23,(mobile?27:22.5)/scale));};const resize=new ResizeObserver(fit);resize.observe(svg);fit();setDevice();
  let box=svg.getAttribute('viewBox');const geometry=new MutationObserver(()=>{const next=svg.getAttribute('viewBox');if(next===box){fit();return;}box=next;changeZoom(1);});geometry.observe(svg,{attributes:true,childList:true,attributeFilter:['viewBox']});
- return{destroy(){resize.disconnect();geometry.disconnect();dead=true;view?.destroy();bar.remove();stage.remove();note.remove();}};
+ return{destroy(){resize.disconnect();geometry.disconnect();dead=true;generation++;view?.destroy();frame.removeEventListener('keydown',onKey);frame.before(anchor);frame.remove();}};
 }

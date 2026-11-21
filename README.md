@@ -256,3 +256,13 @@ Canvas تزئینی، پشت محتوا و بدون دریافت کلیک است
 کشید یا با کشیدن فضای خالی گراف را چرخاند. در کارگاه بانک، رفتار انتخاب باید روی
 «جابه‌جایی رأس» باشد تا کشیدن فعال شود. پیمایش صفحه بیرون برد کار می‌کند.
 آزمون لمس و ماوس: `node scripts/validate-graph-mobile-browser.mjs`.
+
+### Shared graph stage
+
+Interactive graph adapters share `attachGraphView(svg, options = {})`. `options.title`
+may supply plain text; otherwise the existing SVG accessible name becomes the caption.
+Tools sit below the same drawing. Inline focus expands the working area and restores
+with its button or Escape from inside that board, preserving zoom/selection/3D instance.
+No stored learning data changes. Review contract: `specs/007-visual-graph-stage/`.
+Acceptance: `node scripts/validate-graph-stage-browser.mjs`; measured evidence and limits
+are in `anti-slop/audit-007-graph-stage.md`.
