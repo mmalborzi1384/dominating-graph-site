@@ -41,7 +41,7 @@ try{
  const touch=async(type,x,y)=>send('Input.dispatchTouchEvent',{type,touchPoints:type==='touchEnd'||type==='touchCancel'?[]:[{x,y,id:1}]});
  let mouse=false;
  const drag=async(x,y,dx,dy,cancel=false)=>{if(mouse){await send('Input.dispatchMouseEvent',{type:'mousePressed',x,y,button:'left',buttons:1,clickCount:1});for(let i=1;i<=6;i++){await send('Input.dispatchMouseEvent',{type:'mouseMoved',x:x+dx*i/6,y:y+dy*i/6,button:'left',buttons:1});await pause(35);}await send('Input.dispatchMouseEvent',{type:'mouseReleased',x:x+dx,y:y+dy,button:'left',buttons:0,clickCount:1});await pause(150);return;}await touch('touchStart',x,y);for(let i=1;i<=6;i++){await touch('touchMove',x+dx*i/6,y+dy*i/6);await pause(35);}await touch(cancel?'touchCancel':'touchEnd',x+dx,y+dy);await pause(150);};
- const center=selector=>run(`(()=>{const r=document.querySelector(${JSON.stringify(selector)}).getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2};})()`);
+ const center=async selector=>{await run(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({block:'center',inline:'nearest',behavior:'instant'})`);return run(`(()=>{const r=document.querySelector(${JSON.stringify(selector)}).getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2};})()`);};
  const tap=async selector=>{const p=await center(selector);await touch('touchStart',p.x,p.y);await touch('touchEnd',p.x,p.y);await pause(150);};
  for(const width of [320,390,1280])for(const theme of ['day','night']){
   mouse=width===1280;

@@ -126,3 +126,24 @@ button:disabled { cursor: default; color: var(--muted); text-decoration: none; }
 .graph-three { touch-action:none; user-select:none; -webkit-user-select:none; overscroll-behavior:contain; }
 .graph-device-switch { min-height:44px; min-width:88px; font-size:var(--font-sm); }
 .graph-view-switch .graph-device-switch[aria-checked=true] { background:var(--heading); color:var(--surface); }
+
+/* Shared mathematics workbench: the drawing leads, tools follow in named groups. */
+.graph-stage { min-width:0; max-width:100%; margin-block:1rem; padding:.8rem; border:1px solid var(--line); border-radius:14px; background:var(--sheet); }
+.graph-stage-title { color:var(--heading); font-weight:700; font-size:var(--font-sm); margin:0 0 .8rem; overflow-wrap:anywhere; }
+.graph-tools { display:flex; flex-wrap:wrap; gap:1rem; align-items:flex-start; padding-top:1rem; margin-top:.8rem; border-top:1px solid var(--line); }
+.graph-tool-group { display:flex; flex-direction:column; gap:.4rem; min-width:0; max-width:100%; }
+.graph-tool-label { color:var(--muted); font-size:var(--font-xs); }
+.graph-stage .graph-view-switch { margin:0; padding:0; gap:.5rem; border:0; border-radius:0; }
+.graph-stage .graph-zoom { border:0; gap:.5rem; }
+.graph-stage .graph-tools button { cursor:pointer; width:auto; min-width:44px; min-height:44px; margin:0; padding:.45rem .7rem; border:1px solid var(--line); border-radius:8px; font:inherit; color:var(--ink); background:var(--surface); }
+.graph-stage .graph-tools button[aria-pressed=true], .graph-stage .graph-tools button[aria-checked=true] { background:var(--heading); color:var(--surface); }
+.graph-stage .graph-tools button:hover:not(:disabled) { box-shadow:inset 0 0 0 1px var(--heading); }
+.graph-stage .graph-tools button:active:not(:disabled) { transform:scale(.97); }
+.graph-stage .graph-tools button:disabled { cursor:not-allowed; opacity:.55; }
+.graph-stage .graph-tools button:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+.graph-stage.is-focused { border-color:var(--heading); }
+.graph-stage.is-focused .graph-surface-viewport, .graph-stage.is-focused .source-graph-viewport { max-height:75vh; overflow:auto; }
+.graph-stage.is-focused svg { min-height: min(60vh,560px); }
+.graph-stage.is-focused .graph-three, .graph-stage.is-focused .graph-three canvas { height: min(65vh,600px); }
+.graph-stage .model-key:empty { display:none; }
+@media(max-width:400px) { .graph-stage { padding:.5rem; } .graph-tools { column-gap:.75rem; } }
