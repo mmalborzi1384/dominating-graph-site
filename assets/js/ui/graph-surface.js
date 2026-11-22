@@ -50,5 +50,11 @@ export function attachGraphView(svg,options={}){
  anchor.before(frame);frame.append(caption,anchor,stage,tools,note);updateZoom();
  const fit=()=>{const m=svg.getScreenCTM();if(!m)return;const scale=Math.hypot(m.a,m.b);if(scale)for(const hit of svg.querySelectorAll('.vertex-hit'))hit.setAttribute('r',Math.max(23,(mobile?27:22.5)/scale));};const resize=new ResizeObserver(fit);resize.observe(svg);fit();setDevice();
  let box=svg.getAttribute('viewBox');const geometry=new MutationObserver(()=>{const next=svg.getAttribute('viewBox');if(next===box){fit();return;}box=next;changeZoom(1);});geometry.observe(svg,{attributes:true,childList:true,attributeFilter:['viewBox']});
- return{destroy(){resize.disconnect();geometry.disconnect();dead=true;generation++;view?.destroy();frame.removeEventListener('keydown',onKey);frame.before(anchor);frame.remove();}};
+ // Adapter redraws may retain presentation without persisting an answer or a preference.
+ const stateApi={getState:()=>({zoom:threeMode?(view?.getZoom()??zoom):zoom,three:threeMode,mobile,expanded}),
+  async restoreState(state){if(!state||dead)return;mobile=state.mobile;setDevice();zoom=state.zoom;changeZoom(1);setExpanded(state.expanded);
+   if(state.three){buttons[1].click();while(loading&&!dead)await new Promise(resolve=>requestAnimationFrame(resolve));}
+  }};
+ svg.graphView=stateApi;
+ return{...stateApi,destroy(){resize.disconnect();geometry.disconnect();dead=true;generation++;view?.destroy();if(svg.graphView===stateApi)delete svg.graphView;frame.removeEventListener('keydown',onKey);frame.before(anchor);frame.remove();}};
 }

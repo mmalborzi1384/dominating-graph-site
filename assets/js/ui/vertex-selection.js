@@ -62,8 +62,9 @@ export function createVertexSelection(svg,graph,placeList,onToggle,{numberFor=(i
     views.set(place.id, { group, coverage, button, label: place.label });
   }
 
-  function update(selected, { missed = [], hinted = [] } = {}) {
+  function update(selected, { missed = [], hinted = [], diagnostics = null } = {}) {
       const selectedIds = new Set(selected), missedIds = new Set(missed), hintIds = new Set(hinted);
+      const diagnosticMissed = new Set(diagnostics?.missed ?? []), removableIds = new Set(diagnostics?.removable ?? []);
       // Owner order is canonical vertex order, not click order.
       for (const [id, view] of views) {
         const owners = graph.vertices.filter(owner => selectedIds.has(owner) && neighbors.get(id).has(owner));
@@ -89,9 +90,27 @@ export function createVertexSelection(svg,graph,placeList,onToggle,{numberFor=(i
         view.group.classList.toggle('is-covered', covered);
         view.group.classList.toggle('is-missed', !covered && missedIds.has(id));
         view.group.classList.toggle('is-hinted', !covered && hintIds.has(id));
+        const diagnostic = !covered && diagnosticMissed.has(id) ? 'missed'
+          : chosen && removableIds.has(id) ? 'removable' : '';
+        view.group.classList.toggle('has-diagnostic', Boolean(diagnostic));
+        view.group.classList.toggle('is-removable', diagnostic === 'removable');
+        view.group.dataset.diagnostic = diagnostic;
+        let marker = view.group.querySelector('.vertex-diagnostic');
+        if (!diagnostic) marker?.remove();
+        else {
+          if (!marker) {
+            marker = svgElement('g', {class:'vertex-diagnostic', 'aria-hidden':'true'});
+            marker.append(svgElement('circle', {r:28, class:'diagnostic-ring'}),
+              svgElement('text', {x:32,y:-23,class:'diagnostic-symbol','text-anchor':'middle'}));
+            view.group.append(marker);
+          }
+          marker.querySelector('text').textContent = diagnostic === 'missed' ? '!' : '−';
+        }
         view.group.setAttribute('aria-pressed', String(chosen));
         const ownerText = owners.map(owner => places.get(owner).label).join('، ');
         view.group.setAttribute('aria-label', `${view.label}؛ ${chosen ? 'انتخاب‌شده' : covered ? `تحت پوشش ${ownerText}` : missedIds.has(id) ? 'جاافتاده؛ بی‌پوشش' : 'بی‌پوشش'}`);
+        if (diagnostic) view.group.setAttribute('aria-label', view.group.getAttribute('aria-label')
+          + (diagnostic === 'removable' ? '؛ حذف‌پذیر؛ پوشش با حذف این رأس باقی می‌ماند' : '؛ نشان بررسی: بی‌پوشش'));
         view.button.setAttribute('aria-pressed', String(chosen));
         view.button.setAttribute('aria-label', view.group.getAttribute('aria-label'));
       }
