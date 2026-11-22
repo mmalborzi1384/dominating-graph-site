@@ -147,3 +147,11 @@ button:disabled { cursor: default; color: var(--muted); text-decoration: none; }
 .graph-stage.is-focused .graph-three, .graph-stage.is-focused .graph-three canvas { height: min(65vh,600px); }
 .graph-stage .model-key:empty { display:none; }
 @media(max-width:400px) { .graph-stage { padding:.5rem; } .graph-tools { column-gap:.75rem; } }
+
+/* Opt-in diagnostics: rings and symbols never replace owner colors or hatches. */
+.vertex-diagnostic { pointer-events:none; }
+.diagnostic-ring { fill:none; stroke:var(--error); stroke-width:2.5; }
+.is-removable .diagnostic-ring { stroke:var(--hint); stroke-dasharray:5 4; }
+.diagnostic-symbol { fill:var(--ink); font-family:var(--font-body); font-size:20px; font-weight:800; paint-order:stroke fill; stroke:var(--sheet); stroke-width:5px; stroke-linejoin:round; }
+.graph-three-diagnostic { position:absolute; inset-inline-end:-.25rem; top:-.35rem; background:var(--sheet); color:var(--ink); border:1px solid var(--error); border-radius:4px; min-width:1.2rem; line-height:1.25; font-size:var(--font-sm); }
+[data-diagnostic=removable] .graph-three-diagnostic { border-color:var(--hint); border-style:dashed; }

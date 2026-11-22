@@ -237,8 +237,7 @@ snapshot، validator و آزمون‌های تبدیل/ورود را در PR ط�
 
 تمام بردهای تعاملی در هر دو نمای۲بعدی/۳بعدی کنترل کاهش، افزایش و بازنشانی زوم دارند
 (۵۰٪ تا۳۰۰٪). در۲بعدی بخش بزرگ‌شده داخل همان برد پیمایش می‌شود؛ در۳بعدی فاصلهٔ
-دوربین تغییر می‌کند. درصد هر نما مستقل است؛ پاسخ و رأس‌های انتخاب‌شده عوض نمی‌شوند.
-با تغییر چیدمان/اندازهٔ منطقی برد، زوم۲بعدی به۱۰۰٪ بازمی‌گردد.
+دوربین تغییر می‌کند. زوم در تعویض نما و ویرایش حفظ می‌شود؛ پاسخ و رأس‌های انتخاب‌شده عوض نمی‌شوند.
 
 پس‌زمینهٔ سراسری در `assets/js/ui/graph-world.js` و پالت آن در توکن‌های مرکزی است.
 تعداد رأس و DPR و نرخ رسم محدودند؛ صفحهٔ پنهان رسم پیوسته ندارد. گزینهٔ «خاموش»
@@ -266,3 +265,16 @@ with its button or Escape from inside that board, preserving zoom/selection/3D i
 No stored learning data changes. Review contract: `specs/007-visual-graph-stage/`.
 Acceptance: `node scripts/validate-graph-stage-browser.mjs`; measured evidence and limits
 are in `anti-slop/audit-007-graph-stage.md`.
+
+### Lab workbench and diagnostics
+
+The lab uses three persistent disclosure groups: build, change and check. On desktop
+they sit beside the shared graph; on mobile they follow it in normal document flow.
+Check or free hint adds uncovered rings/! and removable dashed rings/minus, with a
+text key and accessible vertex names. Both 2D and 3D consume the same state, leaving
+owner colors and hatches intact. Editing the answer clears stale diagnoses.
+All lab responses and comparison notes stay in RAM; no score/attempt/session is saved.
+Topology redraw preserves zoom, view, device mode and expanded state; it recreates the
+3D scene and resets camera rotation. Geometry-only moves keep the renderer alive.
+Acceptance: `node scripts/validate-lab-stage-browser.mjs`. Contracts and measured
+review evidence: `specs/008-visual-lab-feedback/`, `anti-slop/audit-009-lab-feedback.md`.
