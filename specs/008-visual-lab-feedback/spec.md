@@ -1,6 +1,6 @@
 # Phase 2: lab workbench and graph diagnostics
 
-Date: 2026-11-22. Branch: codex/visual-lab-feedback. Status: implementation.
+Date: 2026-11-22. Branch: codex/visual-lab-feedback. Status: ready for review, PR23, unmerged.
 User clarified that the entire phase 2 plan is authorized, not phase 1.
 
 ## User stories and acceptance

@@ -4,7 +4,7 @@
 - مبنا: `59388a0`، تاریخ 2026-11-21، دسته direction.
 - اولویت: P1؛ حجم تقریبی: L؛ ریسک: MED. برآوردها قول زمان تحویل نیستند.
 - پیش‌نیاز: فاز۱ باید تایید و به main منتقل شده باشد.
-- شاخه آینده: `codex/visual-lab-feedback`؛ قرارداد آینده: `specs/008-visual-lab-feedback/`.
+- شاخه اجرا: `codex/visual-lab-feedback`؛ قرارداد: `specs/008-visual-lab-feedback/`؛ PR23 باز و مرج‌نشده است.
 
 شواهد اجرا در `anti-slop/audit-009-lab-feedback.md` و قرارداد ویژگی ثبت شده‌اند.
 
