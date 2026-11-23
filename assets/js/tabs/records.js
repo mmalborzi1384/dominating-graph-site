@@ -1,6 +1,6 @@
 import { summarizeRecords, recordScore } from '../domain/coverage.js';
 import { createProgressRing } from '../ui/motion.js';
-import { progressPercent } from '../domain/progress.js';
+import { progressPercent, unlockedUnits } from '../domain/progress.js';
 import { curriculumForState } from '../storage/validate.js';
 import { exportBackup, parseBackup, mergeBackup } from '../storage/transfer.js';
 import { LIMITS } from '../domain/limits.js';
@@ -13,7 +13,9 @@ function download(text,name) {const url=URL.createObjectURL(new Blob([text],{typ
 export async function initRecords({questions,curriculum,bankVersion,legacyCurriculum,previousCurriculum},repository) {
   const response=await fetch(new URL('../../../content/records.json',import.meta.url));if(!response.ok)throw Error('محتوای سوابق بارگیری نشد.');const copy=await response.json(),context={questions,bankVersion,legacyCurriculum,previousCurriculum};
   const root=document.getElementById('panel-records'),heading=el('h1',copy.title),intro=el('p',copy.intro),notice=el('p'),progress=el('section',undefined,'records-card glass-surface'),summary=el('section',undefined,'records-card glass-surface'),coverage=el('section',undefined,'records-card glass-surface'),history=el('section',undefined,'records-card glass-surface'),transfer=el('section',undefined,'records-card glass-surface records-transfer');
-  root.replaceChildren(heading,intro,notice,progress,summary,coverage,history,transfer);
+  const overview=el('div',undefined,'records-overview'),management=el('section',undefined,'records-management');
+  overview.append(progress,summary);management.id='records-management';management.append(el('h2','مدیریت داده‌های این مرورگر'),el('p','پشتیبان بگیر، فایل معتبر را با تأیید وارد کن یا وضعیت ذخیره را بازیابی کن. حذف نتیجه‌ها کنار دفتر تلاش‌هاست.'),transfer);
+  root.replaceChildren(heading,intro,notice,overview,history,coverage,management);
   const selected=new Set();let pending=null,selectionRevision=null,filter='all',requestId=0;
   const status=el('p');status.id='records-feedback';
   const reportError=error=>setFeedback(status,error.message??'عملیات انجام نشد.',{tone:'error'});
@@ -31,11 +33,14 @@ export async function initRecords({questions,curriculum,bankVersion,legacyCurric
     const count=Object.values(snapshot.state.sessions).flatMap(s=>s.turns??[]).filter(t=>deleteIds.includes(t.finalizedAttemptId)).length;
     impact.textContent=`${fa(deleteIds.length)} نتیجه حذف می‌شود؛ ${fa(count)} نوبت به «حذف‌شده» تبدیل می‌شود. امتیاز و پوشش دوباره محاسبه می‌شوند.`;deletion.open(deleteButton);
   });
-  history.append(el('h2','نتایج ثبت‌شده'),filterSelect,deleteButton,impact,deletion.element,table);
+  const filterLabel=el('label','بخش فعالیت');filterLabel.htmlFor=filterSelect.id;filterLabel.append(filterSelect);
+  const historyTools=el('div',undefined,'records-history-tools');historyTools.append(filterLabel,deleteButton);
+  history.append(el('h2','دفتر تلاش‌ها'),el('p','از تازه‌ترین نتیجه به قدیمی‌ترین؛ زمان‌ها همان زمان ثبت در این مرورگرند. برای دیدن پاسخ، جزئیات هر تلاش را باز کن.'),historyTools,impact,deletion.element,table);
   const reset=createInlineConfirmation({message:'فقط پیشرفت آموزش صفر شود؟ سایر نتایج و نشست‌ها حفظ می‌شوند.',id:'records-reset-confirmation',confirmId:'records-reset-confirm',onConfirm(){savedMessage(repository.resetTeaching());}});
   const resetButton=btn('شروع آموزش از اول','records-reset',()=>reset.open(resetButton));
   const ringLabel=el('strong'),progressRing=createProgressRing(ringLabel);
-  const progressCopy=el('div');progress.append(el('h2','پیشرفت آموزش APOS'),progressCopy,resetButton,reset.element);
+  const progressCopy=el('div');progress.append(el('h2','پیشرفت آموزش APOS'),progressCopy);
+  const resetSection=el('section',undefined,'records-card glass-surface records-reset-section');resetSection.append(el('h3','بازنشانی مسیر آموزش'),el('p','شروع دوباره فقط پیشرفت فعال آموزش را صفر می‌کند؛ آرشیو و نتیجه‌های دیگر حفظ می‌شوند.'),resetButton,reset.element);management.append(resetSection);
   let migrationRevision = null;
   const migrationPanel = el('section', undefined, 'records-card');
   migrationPanel.id = 'records-teaching-migration';
@@ -82,7 +87,7 @@ export async function initRecords({questions,curriculum,bankVersion,legacyCurric
   const retry=btn('تلاش دوباره برای ذخیره','records-retry',()=>savedMessage(repository.retry()));
   const reloadDialog=createInlineConfirmation({message:'وضعیت ذخیره دوباره خوانده شود؟ ابتدا کار ذخیره‌نشده را خروجی بگیرید؛ کار موقت کنار گذاشته می‌شود.',id:'records-reload-confirmation',confirmId:'records-reload-confirm',onConfirm(){clearImport();repository.reload({discardUnsaved:true});}});
   const reload=btn('بازخوانی ذخیره','records-reload',()=>reloadDialog.open(reload));
-  transfer.append(el('h2','پشتیبان‌گیری و ورود فایل'),el('p',copy.transferNote),exportButton,original,retry,reload,reloadDialog.element,fileLabel,fileInput,importPreview,importDialog.element,status);
+  transfer.append(el('h3','پشتیبان‌گیری و ورود فایل'),el('p',copy.transferNote),exportButton,original,retry,reload,reloadDialog.element,fileLabel,fileInput,importPreview,importDialog.element,status);
   const transferActions=el('div',undefined,'transfer-actions');for(const control of [exportButton,reload,fileLabel,fileInput,original,retry])transferActions.append(control);transfer.insertBefore(transferActions,importPreview);
   function render(snapshot) {
     const {state}=snapshot,report=summarizeRecords(state,questions);setFeedback(notice,snapshot.warning||(snapshot.dirty?'کار فعلی ذخیره نشده؛ خروجی شامل همین کار موقت است.':''),{tone:'error'});
@@ -94,27 +99,30 @@ export async function initRecords({questions,curriculum,bankVersion,legacyCurric
     migrationButton.disabled = snapshot.dirty || snapshot.conflict || snapshot.editing;
     resetButton.disabled = snapshot.needsMigration;
     const meter=el('progress');meter.className='sr-only';progressRing.update(progressPercent(state.teachingProgress,displayedCurriculum));meter.max=100;meter.value=progressPercent(state.teachingProgress,displayedCurriculum);meter.setAttribute('aria-label','پیشرفت آموزش');
-    const stages=el('ul');for(const stage of displayedCurriculum.units??displayedCurriculum.stages)stages.append(el('li',`${displayedCurriculum.curriculumVersion===3?displayedCurriculum.lessons.find(l=>l.id===stage.lessonId).title+'؛ ':''}${stage.title??stage.stageId}: ${(state.teachingProgress.passedUnitIds??state.teachingProgress.passedStageIds).includes(stage.id)?'تکمیل‌شده':'تکمیل نشده'}`));
-    const link=el('a','ادامهٔ آموزش','secondary-button');link.href='#teach';progressCopy.replaceChildren(progressRing.element,el('p',`${fa(meter.value)}٪ · ${fa(state.teachingProgress.completedActivityIds.length)} فعالیت تکمیل‌شده؛ پاسخ و امتیاز آموزشی ثبت نمی‌شود.`),meter,stages,link);
+    const learningOverview=el('div',undefined,'records-learning-overview'),learningText=el('div');learningText.append(el('p',`${fa(meter.value)}٪ · ${fa(state.teachingProgress.completedActivityIds.length)} فعالیت تکمیل‌شده؛ پاسخ و امتیاز آموزشی ثبت نمی‌شود.`),el('p','برای تکمیل آموزش تاریخ ثبت نمی‌شود؛ این نقشه فقط وضعیت فعلی مسیر است.','records-note'));learningOverview.append(progressRing.element,learningText);
+    const stages=el('div',undefined,'records-learning-map'),passed=state.teachingProgress.passedUnitIds??state.teachingProgress.passedStageIds;
+    const link=el('a','ادامه آموزش','secondary-button');link.href='#teach';progressCopy.replaceChildren(learningOverview,meter,stages,link);
     if(displayedCurriculum.curriculumVersion===3){
-      const lessons=el('div',undefined,'records-grid');
-      for(const lesson of displayedCurriculum.lessons)lessons.append(el('p',`${lesson.title}: ${fa(progressPercent(state.teachingProgress,displayedCurriculum,lesson.id))}٪ تکمیل مسیر`));
-      progressCopy.append(lessons,el('p','درصد تکمیل مسیر، گواه تسلط یا نمرهٔ آموزش نیست.'));
+      const open=unlockedUnits(state.teachingProgress,displayedCurriculum);
+      for(const lesson of displayedCurriculum.lessons){const group=el('section'),list=el('ol');group.append(el('h3',`${lesson.title}: ${fa(progressPercent(state.teachingProgress,displayedCurriculum,lesson.id))}٪ تکمیل مسیر`),list);for(const id of lesson.unitIds){const u=displayedCurriculum.units.find(u=>u.id===id),done=passed.includes(id),current=state.teachingProgress.lastVisitedUnitId===id,item=el('li'),mark=el('span',done?'✓':open.includes(id)?'○':'−','records-unit-mark');item.dataset.unitId=id;item.dataset.state=done?'complete':open.includes(id)?'available':'locked';mark.setAttribute('aria-hidden','true');item.append(mark,el('span',`${u.title}؛ ${done?'تکمیل‌شده':open.includes(id)?'تکمیل نشده':'قفل'}${current?' · محل ادامه':''}`));list.append(item);}stages.append(group);}
+      progressCopy.append(el('p','درصد تکمیل مسیر، گواه تسلط یا نمره آموزش نیست.','records-note'));
       if(state.teachingProgressArchive){const archived=state.teachingProgressArchive.teachingProgress,details=el('details');details.id='records-teaching-archive';details.append(el('summary','آرشیو پیشرفت مسیر قبلی؛ جدا از درصد تازه'),el('p',`${fa(progressPercent(archived,previousCurriculum))}٪ مسیر قبلی؛ ${fa(archived.completedActivityIds.length)} فعالیت. این آرشیو بر درصد مسیر تازه اثر ندارد و پاسخ یا امتیاز ندارد.`));progressCopy.append(details);}
-    }
-    summary.replaceChildren(el('h2','تحلیل فعالیت‌ها'),el('p',`${fa(report.count)} تلاش · ${fa(report.unique)} سؤال یکتا · ${fa(report.score)} امتیاز · ${fa(report.correct)} پاسخ مطابق خواسته · ${fa(report.hints)} راهنمای مصرف‌شده`));
+    }else{const list=el('ul');for(const stage of displayedCurriculum.stages)list.append(el('li',`${stage.title??stage.stageId}: ${passed.includes(stage.id)?'تکمیل‌شده':'تکمیل نشده'}`));stages.append(list);}
+    summary.replaceChildren(el('h2','تحلیل فعالیت‌ها'),el('p',`${fa(report.count)} تلاش ثبت‌شده`,'records-summary-total'),el('p',`${fa(report.unique)} سؤال یکتا · ${fa(report.score)} امتیاز · ${fa(report.correct)} پاسخ مطابق خواسته · ${fa(report.hints)} راهنمای مصرف‌شده`));
     const grid=el('div',undefined,'records-grid');for(const t of report.tabs)grid.append(el('p',`${copy.tabs[t.tab]}: ${fa(t.count)} تلاش، ${fa(t.correct)} مطابق خواسته، ${fa(t.score)} امتیاز، ${fa(t.hints)} راهنما`));summary.append(grid);
     for(const [title,rows] of [['به تفکیک درس',report.lessons],['به تفکیک APOS سؤال',report.apos]]){const details=el('details');details.append(el('summary',title));for(const row of rows)details.append(el('p',`${row.value} · ${fa(row.count)} تلاش · ${fa(row.correct)} مطابق خواسته · ${fa(row.score)} امتیاز`));summary.append(details);}
     summary.append(el('p','پاسخ‌های تشریحی با برچسب خودارزیابی مشخص‌اند؛ مدل‌های سفارشیِ بدون سؤال در تفکیک درس و APOS نمی‌آیند.'));
     coverage.replaceChildren(el('h2','پوشش شش ساحت'),el('p',copy.coverageNote));const cards=el('div',undefined,'records-grid');
     for(const tag of report.sahat){const card=el('article',undefined,'records-coverage');const m=el('progress');m.max=tag.total;m.value=tag.count;m.setAttribute('aria-label',tag.label);card.append(el('h3',tag.label),el('p',`${fa(tag.count)} از ${fa(tag.total)} سؤال · ${fa(tag.percent)}٪`),m);cards.append(card);}coverage.append(cards);
+    const expanded=new Set([...table.querySelectorAll('.records-row details[open]')].map(d=>d.closest('.records-row').dataset.attemptId));
     table.replaceChildren();const attempts=Object.values(state.attempts).filter(a=>filter==='all'||a.tab===filter).sort((a,b)=>b.recordedAt.localeCompare(a.recordedAt));
     if(!attempts.length)table.append(el('p',copy.noData));
-    for(const a of attempts){const row=el('article',undefined,'records-row'),label=el('label'),check=el('input');check.type='checkbox';check.dataset.attemptId=a.id;check.checked=selected.has(a.id);check.addEventListener('change',()=>{check.checked?selected.add(a.id):selected.delete(a.id);deleteButton.disabled=!selected.size||snapshot.dirty||snapshot.conflict;});
-      const q=questions.find(q=>q.id===a.questionId),session=state.sessions[a.sessionId],group=session?.groups?.find(g=>g.id===a.groupId);const title=el('span');renderTextMath(title,`${copy.tabs[a.tab]} · ${q?`${q.id} — ${q.title_fa}`:copy.activities[a.activityId]??'فعالیت سفارشی'}${group?` · ${group.name}`:''}`);label.append(check,title);
+    const timeline=el('ol',undefined,'records-timeline');if(attempts.length)table.append(timeline);
+    for(const a of attempts){const item=el('li'),row=el('article',undefined,'records-row'),label=el('label'),check=el('input');row.dataset.attemptId=a.id;check.type='checkbox';check.dataset.attemptId=a.id;check.checked=selected.has(a.id);check.addEventListener('change',()=>{check.checked?selected.add(a.id):selected.delete(a.id);deleteButton.disabled=!selected.size||snapshot.dirty||snapshot.conflict;});
+      const q=questions.find(q=>q.id===a.questionId),session=state.sessions[a.sessionId],group=session?.groups?.find(g=>g.id===a.groupId);const title=el('span');renderTextMath(title,`${copy.tabs[a.tab]} · ${q?`${q.id} · ${q.title_fa}`:copy.activities[a.activityId]??'فعالیت سفارشی'}${group?` · ${group.name}`:''}`);label.append(check,title);
       const time=el('time',new Date(a.recordedAt).toLocaleString('fa-IR'));time.dateTime=a.recordedAt;
-      const metrics=el('p',undefined,'records-metrics');for(const text of [a.evaluation.satisfiesTarget?'مطابق خواسته':'نیاز به بازبینی',`امتیاز ${fa(recordScore(a,questions))}`,`راهنما ${fa(a.hintLevel)}`,...(a.evaluation.selfAssessed?['خودارزیابی تشریحی']:[])])metrics.append(el('span',text));row.append(label,metrics,time);
-      const details=el('details');details.append(el('summary','پاسخ ثبت‌شده و نوع بررسی'));let answer=Array.isArray(a.response)?a.response.join('، '):typeof a.response==='object'?`${fa(a.response.n)} رأس، ${fa(a.response.edges.length)} یال`:String(a.response);const answerNode=el('p',answer);if(Array.isArray(a.response)){answerNode.dir='ltr';answerNode.className='records-selection';}const target=el('p',`نوع پاسخ: ${copy.modes[a.responseMode]} · خواسته: `);if(typeof a.target==='object'){const math=el('span');renderFormula(math,`n=${a.target.n},\\quad \\gamma=${a.target.gamma}`);target.append(math);}else target.append(document.createTextNode(copy.targets[a.target]));details.append(answerNode,target);row.append(details);table.append(row);
+      const metrics=el('p',undefined,'records-metrics');for(const text of [a.evaluation.satisfiesTarget?'مطابق خواسته':'نیاز به بازبینی',`امتیاز ${fa(recordScore(a,questions))}`,`راهنما ${fa(a.hintLevel)}`,...(a.evaluation.selfAssessed?['خودارزیابی تشریحی']:[])])metrics.append(el('span',text));row.append(time,label,metrics);
+      const details=el('details');details.open=expanded.has(a.id);details.append(el('summary','پاسخ ثبت‌شده و نوع بررسی'));let answer=Array.isArray(a.response)?a.response.join('، '):typeof a.response==='object'?`${fa(a.response.n)} رأس، ${fa(a.response.edges.length)} یال`:String(a.response);const answerNode=el('p',answer);if(Array.isArray(a.response)){answerNode.dir='ltr';answerNode.className='records-selection';}const target=el('p',`نوع پاسخ: ${copy.modes[a.responseMode]} · خواسته: `);if(typeof a.target==='object'){const math=el('span');renderFormula(math,`n=${a.target.n},\\quad \\gamma=${a.target.gamma}`);target.append(math);}else target.append(document.createTextNode(copy.targets[a.target]));details.append(answerNode,target);row.append(details);item.append(row);timeline.append(item);
     }
     for(const s of Object.values(state.sessions))for(const t of s.turns??[])if(t.resultStatus==='finalized-deleted'&&(filter==='all'||s.kind===filter)){table.append(el('p',`${copy.tabs[s.kind]} · ${t.questionId} · ${s.groups?.find(g=>g.id===t.groupId)?.name??'نوبت چالش'} · حذف‌شده؛ نوبت مصرف‌شده و غیرقابل تکرار`,'records-deleted'));}
   }

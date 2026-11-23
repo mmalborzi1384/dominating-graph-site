@@ -4,6 +4,7 @@ import { createEvidenceInput, el, action } from '../ui/teaching-inputs.js';
 import { createTeachingBoard } from '../ui/teaching-board.js';
 import { renderTextMath } from '../ui/math.js';
 import { setFeedback, createInlineConfirmation } from '../ui/feedback.js';
+import { animateFinite, motionLevel } from '../ui/motion.js';
 const fa=n=>n.toLocaleString('fa-IR',{maximumFractionDigits:1});
 const math=(tag,text,cls='')=>{const node=el(tag,undefined,cls);renderTextMath(node,text);return node;};
 const link=(text,href)=>{const a=el('a',text,'secondary-button');a.href=href;return a;};
@@ -15,6 +16,10 @@ export function initTeachingV3({curriculum},repository){
  percent.id='teaching-percent';save.id='teaching-save-state';meter.max=100;meter.setAttribute('aria-label','درصد تکمیل مسیر آموزش');intro.append(el('h1','از رابطه تا تصمیم'),el('p','دو درس؛ تجربه، پیش‌بینی، مقایسه و مدل‌سازی.'));progress.append(el('span','تکمیل مسیر'),percent,meter,save);header.append(intro,progress);
  const lessonNav=el('nav',undefined,'apos3-lessons');lessonNav.setAttribute('aria-label','درس‌های آموزش');
  const unitNav=el('nav',undefined,'apos3-units');unitNav.setAttribute('aria-label','ایستگاه‌های APOS درس');
+ const routeTitle=el('h2','مسیر این درس'),routeList=el('ol',undefined,'apos3-unit-path');
+ routeTitle.id='teaching-route-title';unitNav.setAttribute('aria-labelledby',routeTitle.id);unitNav.append(routeTitle,routeList);
+ const lessonButtons=new Map(),unitNodes=new Map();let routeLesson=null,previousPassed=null,refreshSteps=()=>{};
+ for(const item of curriculum.lessons){const button=action('',()=>{const p=repository.snapshot().state.teachingProgress;navigate(item.unitIds.find(id=>!p.passedUnitIds.includes(id))??item.unitIds.at(-1));});button.dataset.lessonId=item.id;lessonButtons.set(item.id,button);lessonNav.append(button);}
  const notice=el('p');notice.id='teaching-notice';notice.setAttribute('role','status');
  const host=el('section',undefined,'apos3-workspace');host.id='teaching-stage';
  const privacy=el('p','فقط تکمیل و محل ادامه ذخیره می‌شوند؛ پاسخ‌ها و توضیح‌های موقت با ترک فعالیت کنار گذاشته می‌شوند. ۱۰۰٪ نشانهٔ تکمیل مسیر است، نه گواه تسلط.','teaching-privacy');
@@ -33,7 +38,13 @@ export function initTeachingV3({curriculum},repository){
   const snap=repository.snapshot(),p=snap.state.teachingProgress,position=unit.requiredActivityIds.indexOf(activityId),done=p.completedActivityIds.includes(activityId),isExit=activityId===unit.exitActivityId;
   host.replaceChildren();host.dataset.unitId=unit.id;host.dataset.activityId=activityId;host.dataset.exitVariant=String(transfer);
   const heading=el('h2',`${unit.title}؛ ${activity.title}`);heading.tabIndex=-1;heading.id='learning-activity-heading';host.append(heading,el('p',unit.objective,'apos3-objective'));
-  const steps=el('ol',undefined,'apos3-step-route');steps.setAttribute('aria-label','قدم‌های این ایستگاه');for(const id of unit.requiredActivityIds){const index=unit.requiredActivityIds.indexOf(id),item=el('li'),button=action(`${p.completedActivityIds.includes(id)?'✓':fa(index+1)} ${curriculum.activities.find(a=>a.id===id).title}`,()=>{cursors.set(unit.id,id);renderActivity(unit,id);focus();});button.disabled=!(p.completedActivityIds.includes(id)||id===available(unit,{...p,completedActivityIds:p.completedActivityIds}));button.setAttribute('aria-current',id===activityId?'step':'false');item.append(button);steps.append(item);}host.append(steps);
+  const steps=el('ol',undefined,'apos3-step-route'),stepNodes=new Map();steps.setAttribute('aria-label','قدم‌های این ایستگاه');
+  for(const [index,id]of unit.requiredActivityIds.entries()){
+   const item=el('li'),button=action('',()=>{cursors.set(unit.id,id);renderActivity(unit,id);focus();}),title=el('span',`${fa(index+1)}. ${curriculum.activities.find(a=>a.id===id).title}`),state=el('small');
+   button.dataset.activityId=id;button.append(title,state);item.append(button);steps.append(item);stepNodes.set(id,{button,state});
+  }
+  refreshSteps=progress=>{for(const[id,{button,state}]of stepNodes){const complete=progress.completedActivityIds.includes(id),open=complete||id===available(unit,progress),current=id===activityId;button.disabled=!open;button.dataset.complete=String(complete);button.setAttribute('aria-current',current?'step':'false');state.textContent=[current?'قدم جاری':null,complete?'✓ تکمیل‌شده':open?'آماده':'قفل',id===unit.exitActivityId?'خروج با نمونه تازه':null].filter(Boolean).join(' · ');}};
+  refreshSteps(p);host.append(el('p',`قدم‌های ایستگاه ${unit.title}`,'apos3-step-caption'),steps);
   const guide=el('details',undefined,'apos3-guide');guide.append(el('summary','هدف، کمک و خطاهای این ایستگاه'),el('p',unit.scaffolding.join(' ')),el('p','به این خطا توجه کن: '+unit.misconceptions.join(' ')),el('p','معیار خروج: '+unit.evidenceCriteria.join(' ')));host.append(guide);
   const card=el('article',undefined,'apos3-card glass-surface');card.dataset.activityId=activityId;
   const badge=el('p',transfer?'خروج مستقل؛ نمونهٔ تازه':done?'✓ این فعالیت قبلاً تکمیل شده؛ مرور، پیشرفت را کم نمی‌کند.':`قدم ${fa(position+1)} از ${fa(unit.requiredActivityIds.length)}`,'apos3-badge');
@@ -79,13 +90,32 @@ export function initTeachingV3({curriculum},repository){
   if(position>0)host.append(action('مرور قدم قبلی',()=>{cursors.set(unit.id,unit.requiredActivityIds[position-1]);renderActivity(unit,unit.requiredActivityIds[position-1]);focus();}));
  }
  function showFinish(){clear();host.replaceChildren(el('h2','مسیر هر دو درس کامل شد'),el('p','شواهد این مسیر را ساخته‌ای و توضیح‌هایت را خودت بازبینی کرده‌ای. برای ادامه، مسئله‌های تازه را در تمرین یا آزمایشگاه تجربه کن.'),link('رفتن به تمرین','#practice'),link('دیدن پیشرفت و آرشیو','#records'));const heading=host.querySelector('h2');heading.tabIndex=-1;heading.focus({preventScroll:true});host.scrollIntoView({block:'start',behavior:'instant'});}
+ function updateRoute(lesson,unit,p,unlocked){
+  for(const item of curriculum.lessons){const button=lessonButtons.get(item.id),open=unlocked.includes(item.unitIds[0]);button.hidden=false;button.textContent=`${item.title}؛ ${fa(progressPercent(p,curriculum,item.id))}٪${open?'':'؛ قفل تا پایان درس اول'}`;button.disabled=!open;button.setAttribute('aria-current',lesson.id===item.id?'page':'false');}
+  if(routeLesson!==lesson.id){
+   routeLesson=lesson.id;routeList.replaceChildren();unitNodes.clear();
+   for(const[idIndex,id]of lesson.unitIds.entries()){
+    const u=curriculum.units.find(u=>u.id===id),item=el('li'),button=action('',()=>navigate(id)),mark=el('span',undefined,'apos3-route-mark'),copy=el('span',undefined,'apos3-route-copy'),title=el('strong',u.title),state=el('span',undefined,'apos3-route-state'),objective=el('span',u.objective,'apos3-route-objective');
+    button.dataset.unitId=id;button.className='secondary-button apos3-unit-button';mark.setAttribute('aria-hidden','true');copy.append(title,state,objective);button.append(mark,copy);item.append(button);
+    const connections=[];for(const from of u.prerequisites){const edge=el('span',undefined,'apos3-route-edge');edge.dataset.from=from;edge.dataset.to=id;edge.dataset.external=String(!lesson.unitIds.includes(from));edge.setAttribute('aria-hidden','true');item.append(edge);connections.push(edge);}
+    routeList.append(item);unitNodes.set(id,{button,mark,state,connections,index:idIndex});
+   }
+  }
+  for(const[id,node]of unitNodes){
+   const u=curriculum.units.find(u=>u.id===id),open=unlocked.includes(id),passed=p.passedUnitIds.includes(id),current=id===unit.id,missing=u.prerequisites.filter(from=>!p.passedUnitIds.includes(from));
+   node.button.disabled=!open;node.button.dataset.state=passed?'complete':open?'available':'locked';node.button.setAttribute('aria-current',current?'step':'false');node.mark.textContent=passed?'✓':open?fa(node.index+1):'−';
+   node.state.textContent=[current?'ایستگاه جاری':null,passed?'تکمیل‌شده':open?'آماده':`قفل؛ پس از خروج ${missing.map(from=>{const before=curriculum.units.find(v=>v.id===from);return(before.lessonId!==u.lessonId?curriculum.lessons.find(l=>l.id===before.lessonId).title+'، ':'')+before.title;}).join(' و ')}`,`${fa(u.requiredActivityIds.filter(id=>p.completedActivityIds.includes(id)).length)} از ${fa(u.requiredActivityIds.length)} فعالیت`].filter(Boolean).join(' · ');
+   for(const edge of node.connections){edge.dataset.complete=String(p.passedUnitIds.includes(edge.dataset.from));if(previousPassed&&!previousPassed.has(edge.dataset.from)&&p.passedUnitIds.includes(edge.dataset.from)&&!['off','low'].includes(motionLevel()))animateFinite(edge,[{opacity:.2},{opacity:1}],'--learning-celebrate');}
+  }
+  previousPassed=new Set(p.passedUnitIds);
+ }
  function sync(snapshot){if(rendering)return;rendering=true;try{
   const{state}=snapshot;recovery.hidden=!snapshot.warning&&!snapshot.dirty;setFeedback(notice,snapshot.warning||'');save.textContent=snapshot.dirty||!snapshot.persisted?'ذخیره نشده':'ذخیره شده';resetButton.disabled=snapshot.needsMigration;
-  if(snapshot.needsMigration){percent.textContent='مسیر تازه';meter.value=0;lessonNav.replaceChildren();unitNav.replaceChildren();if(pendingMode!==true){clear();host.replaceChildren(el('h2','پیش از شروع مسیر تازه، پیشرفتت را حفظ کن'),el('p','پیشرفت قبلی هنوز دست‌نخورده است. در سوابق، تفاوت مسیر و آرشیو را بررسی کن؛ می‌توانی خروجی بگیری، تأیید کنی یا منصرف شوی. سایر بخش‌ها در دسترس‌اند.'),link('بررسی و تأیید در سوابق','#records'));currentUnit=null;}pendingMode=true;return;}
+  lessonNav.hidden=unitNav.hidden=snapshot.needsMigration;
+  if(snapshot.needsMigration){percent.textContent='مسیر تازه';meter.value=0;if(pendingMode!==true){clear();host.replaceChildren(el('h2','پیش از شروع مسیر تازه، پیشرفتت را حفظ کن'),el('p','پیشرفت قبلی هنوز دست‌نخورده است. در سوابق، تفاوت مسیر و آرشیو را بررسی کن؛ می‌توانی خروجی بگیری، تأیید کنی یا منصرف شوی. سایر بخش‌ها در دسترس‌اند.'),link('بررسی و تأیید در سوابق','#records'));currentUnit=null;}pendingMode=true;return;}
   const p=state.teachingProgress;if(pendingMode){currentUnit=null;pendingMode=false;}const unlocked=unlockedUnits(p,curriculum),unit=curriculum.units.find(u=>u.id===p.lastVisitedUnitId),lesson=curriculum.lessons.find(l=>l.id===unit.lessonId);
   percent.textContent=fa(progressPercent(p,curriculum))+'٪';meter.value=progressPercent(p,curriculum);
-  lessonNav.replaceChildren();for(const item of curriculum.lessons){const open=unlocked.includes(item.unitIds[0]),button=action(`${item.title}؛ ${fa(progressPercent(p,curriculum,item.id))}٪${open?'':'؛ قفل تا پایان درس اول'}`,()=>navigate(item.unitIds.find(id=>!p.passedUnitIds.includes(id))??item.unitIds.at(-1)));button.disabled=!open;button.dataset.lessonId=item.id;button.setAttribute('aria-current',lesson.id===item.id?'page':'false');lessonNav.append(button);}
-  unitNav.replaceChildren();for(const id of lesson.unitIds){const u=curriculum.units.find(u=>u.id===id),open=unlocked.includes(id),button=action(`${u.title} — ${p.passedUnitIds.includes(id)?'✓ تکمیل‌شده':open?'آماده':'قفل؛ پس از خروج '+curriculum.units.find(v=>v.id===u.prerequisites[0]).title}`,()=>navigate(id));button.disabled=!open;button.dataset.unitId=id;button.setAttribute('aria-current',id===unit.id?'step':'false');unitNav.append(button);}
+  updateRoute(lesson,unit,p,unlocked);refreshSteps(p);
   const activity=curriculum.activities.find(a=>a.id===currentActivity);
   if(currentUnit!==unit.id||!activity?.prerequisites.every(id=>p.completedActivityIds.includes(id)))renderActivity(unit,available(unit,p));
  }finally{rendering=false;}}

@@ -28,3 +28,48 @@
 .records-metrics > span { white-space:normal; }
 /* The accessible progress meter must not inherit the visible meter's 100% width. */
 .records-card progress.sr-only { width:1px; max-width:1px; }
+
+/* Phase 3: completion has no date; only real attempts form the ledger. */
+.records-overview { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 1rem; align-items: start; }
+.records-overview > *, .records-learning-overview > * { min-width: 0; }
+.records-overview h2, .records-management h2 { color: var(--heading); }
+.records-learning-overview { display: grid; grid-template-columns: 5.5rem minmax(0,1fr); gap: 1rem; align-items: center; }
+.records-learning-overview .progress-ring { width: 5.5rem; height: 5.5rem; }
+.records-note { color: var(--muted); font-size: var(--font-sm); }
+.records-summary-total { font-size: clamp(1.6rem,3vw,2.25rem); color: var(--heading); font-weight: 750; }
+.records-learning-map { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; margin-block: 1.25rem; }
+.records-learning-map h3 { color: var(--heading); font-size: var(--font-sm); line-height: 1.9; margin-block: 0 .75rem; }
+.records-learning-map ol { list-style: none; margin: 0; padding: 0; }
+.records-learning-map ol li { display: flex; align-items: baseline; gap: .6rem; min-width: 0; padding-block: .4rem; border-inline-start: 2px solid var(--line); padding-inline-start: .65rem; font-size: var(--font-sm); }
+.records-learning-map li[data-state=complete] { border-color: var(--heading); }
+.records-learning-map li[data-state=locked] { border-inline-start-style: dashed; }
+.records-unit-mark { flex: 0 0 1rem; color: var(--heading); font-weight: 750; }
+.records-history-tools { display: flex; flex-wrap: wrap; align-items: end; gap: .75rem 1rem; padding-block: .5rem 1rem; border-block-end: 1px solid var(--line); }
+.records-history-tools > label { flex: 1 1 15rem; max-width: 28rem; min-width: 0; display: grid; gap: .5rem; }
+.records-card .records-history-tools > button { flex: 0 1 auto; margin: 0; }
+.records-timeline { list-style: none; margin: 1rem 0 0; padding: 0; }
+.records-timeline > li { position: relative; min-width: 0; padding-inline-start: 1.5rem; border-inline-start: 2px solid var(--line); padding-block-end: 1.5rem; }
+.records-timeline > li::before { content: ''; position: absolute; inset-inline-start: -.4rem; inset-block-start: .45rem; width: .65rem; height: .65rem; background: var(--sheet); border: 2px solid var(--heading); border-radius: 50%; }
+.records-timeline > li:last-child { border-color: transparent; padding-block-end: 0; }
+.records-timeline .records-row { padding: 0 0 1rem; }
+.records-row time { color: var(--muted); font-size: var(--font-sm); margin-block-end: .6rem; }
+.records-row label { min-height: 44px; align-items: center; }
+.records-row input[type=checkbox] { width: 1.5rem; height: 1.5rem; margin: 0; accent-color: var(--heading); }
+.records-row details { margin-block-start: .75rem; }
+#panel-records summary { cursor: pointer; min-height: 44px; align-content: center; color: var(--heading); }
+#panel-records details > p { margin-block: .75rem; }
+.records-management { display: grid; grid-template-columns: minmax(0,1fr); gap: 1rem; border-block-start: 2px solid var(--line); padding-block-start: 1.5rem; margin-block-start: .75rem; }
+.records-management h2 { font-size: var(--font-xl); margin: 0; }
+.records-management h3 { color: var(--heading); font-size: var(--font-lg); }
+.records-management .records-card { margin: 0; }
+.records-reset-section > .secondary-button { margin-block-start: .75rem; }
+#panel-records .inline-confirm .secondary-button { margin: 0; }
+@media(max-width:900px) { .records-overview { grid-template-columns: minmax(0,1fr); } }
+@media(max-width:600px) {
+ .records-learning-map { grid-template-columns: minmax(0,1fr); }
+ .records-learning-overview { grid-template-columns: minmax(0,1fr); gap: .75rem; }
+ .records-history-tools { display: grid; grid-template-columns: minmax(0,1fr); }
+ .records-history-tools > label { max-width: none; }
+ .records-timeline > li { padding-inline-start: 1rem; }
+ .records-row .records-metrics { gap: .5rem .75rem; }
+}

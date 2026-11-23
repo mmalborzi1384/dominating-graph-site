@@ -14,6 +14,13 @@
 آزمایشگاه پنج ایستگاه، سازندهٔ ۲–۱۰ رأس، ویرایش لمسی/کیبورد، گاما و چالش زمان‌دار دارد.
 سوابق شامل تحلیل، شش ساحت، حذف انتخابی و ورود/خروج JSON است.
 
+پرداخت بصری فاز سوم در شاخه بازبینی: مسیر آموزش، واحدهای هر درس را با پیش‌نیازهای
+واقعی، هدف و وضعیت جاری/تکمیل/قفل نشان می‌دهد؛ روی گوشی مسیر عمودی است. قدم‌های
+فعالیت زیر همین مسیر می‌مانند و خروج تازه همچنان شرط عبور است. سوابق، نقشه تکمیل
+بدون تاریخ آموزشی و دفتر تلاش‌ها با زمان واقعی ثبت دارد؛ پشتیبان‌گیری و بازنشانی در
+بخش مدیریت داده در همان صفحه در دسترس‌اند. معیار عبور و داده ذخیره‌شده تغییر نکرده‌اند.
+قرارداد و نتایج: [نقشه و سوابق](specs/009-visual-learning-map/quickstart.md).
+
 دکمهٔ نقشه در بالای چپ، پنج بخش را در یک پنجرهٔ گرافی کوچک نشان می‌دهد؛ با Escape،
 دکمهٔ بستن یا لمس بیرون بسته می‌شود. مقصدهای hash قبلی حفظ شده‌اند.
 در تمرین و کاوش بانک آزمایشگاه، هر سه درجهٔ۱،۲،۳ برای سؤال تصادفی دیده می‌شوند؛
@@ -104,6 +111,7 @@ node scripts/validate-apos-v3.mjs
 node scripts/validate-apos-learning-browser.mjs
 node scripts/validate-apos-v3-browser.mjs
 node scripts/validate-apos-review-browser.mjs
+node scripts/validate-learning-map-browser.mjs
 node scripts/validate-navigation-lab-browser.mjs
 node scripts/validate-antislop-browser.mjs
 node scripts/validate-foundation.mjs
