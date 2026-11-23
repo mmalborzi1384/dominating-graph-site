@@ -112,6 +112,7 @@ node scripts/validate-apos-learning-browser.mjs
 node scripts/validate-apos-v3-browser.mjs
 node scripts/validate-apos-review-browser.mjs
 node scripts/validate-learning-map-browser.mjs
+node scripts/validate-neighborhood-browser.mjs
 node scripts/validate-navigation-lab-browser.mjs
 node scripts/validate-antislop-browser.mjs
 node scripts/validate-foundation.mjs
@@ -286,3 +287,20 @@ Topology redraw preserves zoom, view, device mode and expanded state; it recreat
 3D scene and resets camera rotation. Geometry-only moves keep the renderer alive.
 Acceptance: `node scripts/validate-lab-stage-browser.mjs`. Contracts and measured
 review evidence: `specs/008-visual-lab-feedback/`, `anti-slop/audit-009-lab-feedback.md`.
+
+## Interactive neighborhood (visual phase four)
+
+The introduction now contains a native inline disclosure, initially closed, for the
+original five places and eight roads. Its adapter in `assets/js/ui/neighborhood.js`
+uses the same `paintGraph` / `attachGraphView` component as activity boards. Select
+one place to name its direct neighbors and highlight existing incident roads; select
+again or reset to clear. This is a local introduction, not APOS evidence or coverage
+assessment, and never records a result or score. All shared view controls still work.
+
+The learning link reads validated durable current progress: fresh users start teaching,
+returning users resume the saved unlocked unit, completed users can review. Pending
+migration, conflict or unavailable storage retains a generic teaching link. It does not
+restore transient answers or invent a mastery metric. No new storage flag or schema.
+Contracts, actual checks and limitations: `specs/010-visual-neighborhood/quickstart.md`.
+The legacy `validate-navigation-lab-browser.mjs` still expects a removed manual/scored
+lab flow and fails on baseline; current free-lab coverage is `validate-lab-stage-browser.mjs`.

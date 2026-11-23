@@ -10,6 +10,7 @@ import { initTeaching } from './tabs/teach.js';
 import { initTabs } from './ui/tabs.js';
 import { initGraphNavigation } from './ui/navigation.js';
 import { initGraphWorld } from './ui/graph-world.js';
+import { initNeighborhood } from './ui/neighborhood.js';
 import { renderFormula } from './ui/math.js';
 import { setFeedback } from './ui/feedback.js';
 
@@ -34,6 +35,7 @@ initGraphWorld();
 initTabs();
 initGraphNavigation();
 initGlassSelects();
+const neighborhood = initNeighborhood();
 document.querySelector('.skip-link').addEventListener('click', event => {
   event.preventDefault();
   document.getElementById('main-content').focus();
@@ -63,6 +65,7 @@ try {
   const repository = createRepository(teaching.curriculum, undefined,
     { questions: teaching.questions, bankVersion: teaching.bankVersion, legacyCurriculum: teaching.legacyCurriculum, previousCurriculum: teaching.previousCurriculum });
   window.graphRepository = repository;
+  neighborhood.connect(teaching, repository);
   initMotion(repository);
   repository.subscribe(({ state }) => {
     document.documentElement.dataset.theme = state.settings.theme;
@@ -83,6 +86,7 @@ try {
   catch { setFeedback(document.getElementById('panel-lab'), 'آزمایشگاه آماده نشد؛ فایل محتوای آن را بررسی کنید.', {tone:'error'}); }
   await initLandings();
 } catch {
+  neighborhood.unavailable();
   const notice = document.getElementById('content-notice');
   notice.textContent = 'آموزش آماده نشد؛ فایل‌های بانک و محتوای آموزش را بررسی کنید. پیشرفت ذخیره‌شده تغییر نمی‌کند.';
   notice.hidden = false;

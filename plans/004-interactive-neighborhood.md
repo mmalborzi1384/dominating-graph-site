@@ -1,10 +1,12 @@
 # فاز ۴: محله تعاملی و ورودی کوتاه برای بازگشت
 
-- وضعیت: TODO، فقط برنامه‌ریزی؛ اجرا هنوز مجاز نشده است.
+- وضعیت: اجرا با مجوز کاربر در 2026-11-23؛ آماده بازبینی، مرج مجاز نیست.
+- بازبینی: [PR25](https://github.com/mmalborzi1384/dominating-graph-site/pull/25)، باز و بدون مرج.
+- مبنای اجرا: `7a58860` پس از مرج PR24؛ قرارداد `specs/010-visual-neighborhood/`.
 - مبنا: `59388a0`، تاریخ 2026-11-21، دسته direction.
 - اولویت: P2؛ حجم تقریبی: M؛ ریسک: MED. برآوردها قول زمان تحویل نیستند.
 - پیش‌نیاز: فازهای۱ تا۳ تایید و مرج شده باشند.
-- شاخه آینده: `codex/visual-neighborhood`؛ قرارداد آینده: `specs/010-visual-neighborhood/`.
+- شاخه اجرا: `codex/visual-neighborhood`؛ قرارداد: `specs/010-visual-neighborhood/`.
 
 ## هدف و وضع موجود
 
@@ -37,7 +39,9 @@
 | فرمان | انتظار |
 | --- | --- |
 | `node scripts/validate-foundation.mjs` | exit 0، همه assertionها موفق و خطای runtime جدید صفر |
-| `node scripts/validate-navigation-lab-browser.mjs` | exit 0، همه assertionها موفق و خطای runtime جدید صفر |
+| `node scripts/validate-navigation-lab-browser.mjs` | شکست پایه در خط80: قرارداد قدیمی ثبت آزمایشگاه و دکمه حذف‌شده؛ بدون تغییر حفظ شد |
+| `node scripts/validate-lab-stage-browser.mjs` | جایگزین معتبر برای آزمایشگاه آزاد فعلی؛ exit 0 |
+| `node scripts/validate-learning-map-browser.mjs` | پسرفت آموزش و سوابق؛ exit 0 |
 | `node scripts/validate-apos-v3-browser.mjs` | exit 0، همه assertionها موفق و خطای runtime جدید صفر |
 | `node scripts/validate-graph-mobile-browser.mjs` | exit 0، همه assertionها موفق و خطای runtime جدید صفر |
 | `node scripts/validate-graph-world-browser.mjs` | exit 0، همه assertionها موفق و خطای runtime جدید صفر |
@@ -79,3 +83,12 @@
 اگر رفع مشکل به تغییر schema، منطق امتیاز، معیار عبور APOS، کتابخانه جدید، renderer موازی یا فایل خارج محدوده نیاز داشت، توقف و علت را گزارش کن. اگر یک بررسی پس از دو تلاش معقول همچنان شکست خورد، همان بخش را مسدود اعلام کن؛ نتایج موفق مستقل را نگه دار. شماره خط فقط نشانی اولیه است؛ نماد و excerpt ملاک تطبیق‌اند.
 
 بازبین باید حفظ قرارداد آداپترها، پاک‌سازی event/observer، focus و وضعیت موقت را بررسی کند. برای آینده، امکانات مشترک فقط در هسته توسعه یابند و داده و ارزیابی در لایه خود بمانند.
+
+## تصمیم و شواهد اجرا
+
+نقشه در یک details بومی و ابتدا بسته است تا در پنج تب، ورود به فعالیت زیر یک نقشه
+بلند پنهان نشود. بازکردن آن انتخاب خود کاربر است؛ متن مقدمه فضای رزروشده دارد و
+برای کاربر برگشتی از پیشرفت معتبر مشتق می‌شود. همان هشت ارتباط و پنج مکان حفظ شدند.
+هیچ renderer، schema یا وابستگی تازه اضافه نشد. نتایج واقعی و محدودیت‌ها در
+`specs/010-visual-neighborhood/quickstart.md` و `anti-slop/audit-011-neighborhood.md`.
+تست قدیمی آزمایشگاه برای پنهان‌کردن شکست پایه تغییر نکرد. مرج یا مرحله بعد اجرا نشود.
