@@ -30,7 +30,7 @@ Independent test: selective delete, import cancel/confirm/error, reset, quota/co
 ## Review and delivery
 - [x] T012 Run all phase-table commands, responsive/theme/keyboard/contrast/reflow checks; document baseline distinction in `specs/009-visual-learning-map/quickstart.md`.
 - [x] T013 Update Graphify, `README.md`, `plans/003-learning-map-records.md`, `plans/README.md` and `anti-slop/audit-010-learning-map-records.md`; record full delivery gate and limitations.
-- [ ] T014 Start verified teach/records preview, push branch and create/attach focused PR; record review boundary in `specs/009-visual-learning-map/quickstart.md`. Stop without merging.
+- [x] T014 Start verified teach/records preview, push branch and create/attach focused PR; record review boundary in `specs/009-visual-learning-map/quickstart.md`. Stop without merging.
 
 ## Dependencies and execution
 T001-003 -> US1 -> US2 -> US3 -> T012-014. US1 and records fixture assertions can be

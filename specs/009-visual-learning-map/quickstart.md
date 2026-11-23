@@ -70,3 +70,10 @@ HTTP200 and source SHA equality. Opening an app browser tab may be queued; use t
 Screenshots: /tmp/learning-map-teach-{day,night}-{390,1280}.png,
 /tmp/learning-map-records-{day,night}-{390,1280}.png and
 /tmp/learning-map-ledger-details-night-320.png.
+
+## Review handoff
+
+PR24: https://github.com/mmalborzi1384/dominating-graph-site/pull/24, open and unmerged.
+Implementation commit9700a5a. Preview HTTP200 verified for both tabs and served controller
+bytes equal checkout bytes. Graphify delivery update succeeded:4952nodes,8665edges,
+323communities. Main folder remains on d0e3387. No merge or phase4 started.

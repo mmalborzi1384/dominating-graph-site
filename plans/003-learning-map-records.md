@@ -4,7 +4,7 @@
 - مبنا: `59388a0`، تاریخ 2026-11-21، دسته direction.
 - اولویت: P2؛ حجم تقریبی: L؛ ریسک: MED. برآوردها قول زمان تحویل نیستند.
 - پیش‌نیاز: فازهای۱ و۲ تایید و مرج شده باشند.
-- شاخه اجرا: `codex/visual-learning-map`؛ قرارداد: `specs/009-visual-learning-map/`؛ مبنای اجرا `d0e3387`.
+- شاخه اجرا: `codex/visual-learning-map`؛ قرارداد: `specs/009-visual-learning-map/`؛ مبنای اجرا `d0e3387`؛ PR24 باز و مرج‌نشده است.
 
 شواهد اجرا و محدودیت آزمون پایه در `specs/009-visual-learning-map/quickstart.md` و
 `anti-slop/audit-010-learning-map-records.md` است. معیارها و فرمان‌های زیر قرارداد اولیه‌اند؛
