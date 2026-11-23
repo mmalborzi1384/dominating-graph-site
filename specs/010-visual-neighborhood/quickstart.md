@@ -46,3 +46,9 @@ simulation is not native browser UI zoom. No measured field CLS/Lighthouse numbe
 Fixture completion flags prove navigation behavior, not learner mastery. No Pages
 publication or merge performed. Previously documented shared animation-cancellation
 race remains out of scope. Antislop gate: anti-slop/audit-011-neighborhood.md.
+
+Review: [PR25](https://github.com/mmalborzi1384/dominating-graph-site/pull/25), open,
+base main, feature code5cacf72. Verified HTTP200 and exact served neighborhood/app bytes
+at http://127.0.0.1:8775/?preview=5cacf72#teach ; same entrance in all five hashes.
+Server retained for review. Codex open request returned queued, not confirmed visible.
+Main checkout remains7a58860. No merge or further phase authorized.

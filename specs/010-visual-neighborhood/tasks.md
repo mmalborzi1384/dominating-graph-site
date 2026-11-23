@@ -25,7 +25,7 @@
 - [x] T009 Run relevant existing/new regressions; update specs/010-visual-neighborhood/quickstart.md with actual results/limitations.
 - [x] T010 Record all antislop R01..R40/C1..C5 gates in anti-slop/audit-011-neighborhood.md and inspect day/night phone/desktop images.
 - [x] T011 Update README.md, plans/README.md and plans/004-interactive-neighborhood.md; graphify update, diff/syntax/character checks.
-- [ ] T012 Start verified preview, push focused branch, create/attach PR, report and stop without merge.
+- [x] T012 Start verified preview on8775, push focused branch, create/attach PR25, report and stop without merge.
 
 Dependencies: T001/T002 -> T003 -> T004/T005 -> T006 -> T007/T008 -> T009..T012.
 Serial implementation; independent validator runs may overlap. No agent delegation required.
